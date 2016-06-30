@@ -8,12 +8,16 @@
 
 /* Begin PBXBuildFile section */
 		02DE3C221D258C79002B58E2 /* FueledUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 02DE3C211D258C79002B58E2 /* FueledUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		02DE3C2A1D258E02002B58E2 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02DE3C291D258E02002B58E2 /* ReactiveCocoa.framework */; };
+		02DE3C2C1D258E08002B58E2 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02DE3C2B1D258E08002B58E2 /* Result.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		02DE3C1E1D258C79002B58E2 /* FueledUtils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FueledUtils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		02DE3C211D258C79002B58E2 /* FueledUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FueledUtils.h; sourceTree = "<group>"; };
 		02DE3C231D258C79002B58E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		02DE3C291D258E02002B58E2 /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveCocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		02DE3C2B1D258E08002B58E2 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Result.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -21,6 +25,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02DE3C2C1D258E08002B58E2 /* Result.framework in Frameworks */,
+				02DE3C2A1D258E02002B58E2 /* ReactiveCocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -30,6 +36,8 @@
 		02DE3C141D258C79002B58E2 = {
 			isa = PBXGroup;
 			children = (
+				02DE3C2B1D258E08002B58E2 /* Result.framework */,
+				02DE3C291D258E02002B58E2 /* ReactiveCocoa.framework */,
 				02DE3C201D258C79002B58E2 /* FueledUtils */,
 				02DE3C1F1D258C79002B58E2 /* Products */,
 			);
@@ -233,6 +241,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = FueledUtils/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -250,6 +262,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = FueledUtils/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
