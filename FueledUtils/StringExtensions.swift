@@ -7,7 +7,11 @@ public extension String {
 		return self.stringByAddingPercentEncodingWithAllowedCharacters(allowedCharacters)!
 	}
 
+	public var nsLength: Int {
+		return (self as NSString).length
+	}
+
 	public var fullRange: NSRange {
-		return NSRange(location: 0, length: (self as NSString).length)
+		return NSRange(location: 0, length: nsLength)
 	}
 }

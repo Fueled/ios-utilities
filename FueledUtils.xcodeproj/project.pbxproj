@@ -24,6 +24,7 @@
 		02DE3C4E1D259628002B58E2 /* LabelWithTitleAdjustment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DE3C4C1D259628002B58E2 /* LabelWithTitleAdjustment.swift */; };
 		02DE3C501D259966002B58E2 /* SetRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DE3C4F1D259966002B58E2 /* SetRootViewController.swift */; };
 		02DE3C551D259FA9002B58E2 /* DimmingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DE3C541D259FA9002B58E2 /* DimmingButton.swift */; };
+		02DE3C571D25A24B002B58E2 /* DecoratingTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DE3C561D25A24B002B58E2 /* DecoratingTextFieldDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		02DE3C4C1D259628002B58E2 /* LabelWithTitleAdjustment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelWithTitleAdjustment.swift; sourceTree = "<group>"; };
 		02DE3C4F1D259966002B58E2 /* SetRootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetRootViewController.swift; sourceTree = "<group>"; };
 		02DE3C541D259FA9002B58E2 /* DimmingButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DimmingButton.swift; sourceTree = "<group>"; };
+		02DE3C561D25A24B002B58E2 /* DecoratingTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecoratingTextFieldDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				02DE3C4B1D259628002B58E2 /* ButtonWithTitleAdjustment.swift */,
+				02DE3C561D25A24B002B58E2 /* DecoratingTextFieldDelegate.swift */,
 				02DE3C541D259FA9002B58E2 /* DimmingButton.swift */,
 				02DE3C211D258C79002B58E2 /* FueledUtils.h */,
 				02DE3C451D25933E002B58E2 /* HairlineView.swift */,
@@ -189,6 +192,7 @@
 				02DE3C3C1D258FD1002B58E2 /* RACExtensions.swift in Sources */,
 				02DE3C4E1D259628002B58E2 /* LabelWithTitleAdjustment.swift in Sources */,
 				02DE3C461D25933E002B58E2 /* HairlineView.swift in Sources */,
+				02DE3C571D25A24B002B58E2 /* DecoratingTextFieldDelegate.swift in Sources */,
 				02DE3C491D25952A002B58E2 /* NSDecimalNumberOperators.swift in Sources */,
 				02DE3C411D258FD1002B58E2 /* UIExtensions.swift in Sources */,
 				02DE3C3E1D258FD1002B58E2 /* SequenceTypeExtensions.swift in Sources */,
