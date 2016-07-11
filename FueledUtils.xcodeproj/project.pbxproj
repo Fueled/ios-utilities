@@ -25,6 +25,7 @@
 		02DE3C501D259966002B58E2 /* SetRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DE3C4F1D259966002B58E2 /* SetRootViewController.swift */; };
 		02DE3C551D259FA9002B58E2 /* DimmingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DE3C541D259FA9002B58E2 /* DimmingButton.swift */; };
 		02DE3C571D25A24B002B58E2 /* DecoratingTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DE3C561D25A24B002B58E2 /* DecoratingTextFieldDelegate.swift */; };
+		02E626091D340F0C0041E512 /* LoadingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E626081D340F0C0041E512 /* LoadingState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		02DE3C4F1D259966002B58E2 /* SetRootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetRootViewController.swift; sourceTree = "<group>"; };
 		02DE3C541D259FA9002B58E2 /* DimmingButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DimmingButton.swift; sourceTree = "<group>"; };
 		02DE3C561D25A24B002B58E2 /* DecoratingTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecoratingTextFieldDelegate.swift; sourceTree = "<group>"; };
+		02E626081D340F0C0041E512 /* LoadingState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 				02DE3C231D258C79002B58E2 /* Info.plist */,
 				02DE3C431D25928F002B58E2 /* KeyboardInsetHelper.swift */,
 				02DE3C4C1D259628002B58E2 /* LabelWithTitleAdjustment.swift */,
+				02E626081D340F0C0041E512 /* LoadingState.swift */,
 				02DE3C471D25952A002B58E2 /* NSDecimalNumberOperators.swift */,
 				02DE3C351D258FD1002B58E2 /* RACExtensions.swift */,
 				02DE3C361D258FD1002B58E2 /* RACTerminal.swift */,
@@ -195,6 +198,7 @@
 				02DE3C571D25A24B002B58E2 /* DecoratingTextFieldDelegate.swift in Sources */,
 				02DE3C491D25952A002B58E2 /* NSDecimalNumberOperators.swift in Sources */,
 				02DE3C411D258FD1002B58E2 /* UIExtensions.swift in Sources */,
+				02E626091D340F0C0041E512 /* LoadingState.swift in Sources */,
 				02DE3C3E1D258FD1002B58E2 /* SequenceTypeExtensions.swift in Sources */,
 				02DE3C3F1D258FD1002B58E2 /* SignalingAlert.swift in Sources */,
 				02DE3C551D259FA9002B58E2 /* DimmingButton.swift in Sources */,

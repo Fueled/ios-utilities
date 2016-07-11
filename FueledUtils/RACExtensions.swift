@@ -3,6 +3,14 @@ import ReactiveCocoa
 import Result
 
 public extension SignalType {
+	func mergeWith(signal2: Signal<Value, Error>) -> Signal<Value, Error> {
+		return Signal { observer in
+			let disposable = CompositeDisposable()
+			disposable += self.observe(observer)
+			disposable += signal2.observe(observer)
+			return disposable
+		}
+	}
 	public func observeWithContext(context: (Void -> Void) -> Void) -> Signal<Value, Error> {
 		return Signal { observer in
 			return self.observe { event in
