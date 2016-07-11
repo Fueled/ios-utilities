@@ -1,12 +1,12 @@
 import UIKit
 
 public class LabelWithTitleAdjustment: UILabel {
-	@IBInspectable public var matadorLineSpacing: CGFloat = 0 {
+	@IBInspectable public var adjustmentLineSpacing: CGFloat = 0 {
 		didSet {
 			setAdjustedText(text)
 		}
 	}
-	@IBInspectable public var matadorKerning: CGFloat = 0 {
+	@IBInspectable public var adjustmentKerning: CGFloat = 0 {
 		didSet {
 			setAdjustedText(text)
 		}
@@ -18,11 +18,11 @@ public class LabelWithTitleAdjustment: UILabel {
 			return
 		}
 		let paragraphStyle = NSMutableParagraphStyle()
-		paragraphStyle.lineSpacing = self.matadorLineSpacing
+		paragraphStyle.lineSpacing = self.adjustmentLineSpacing
 		paragraphStyle.alignment = self.textAlignment
 		let attributes = [
 			NSParagraphStyleAttributeName: paragraphStyle,
-			NSKernAttributeName: self.matadorKerning
+			NSKernAttributeName: self.adjustmentKerning
 		]
 		self.attributedText = NSAttributedString(string: text, attributes: attributes)
 	}

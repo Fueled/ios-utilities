@@ -1,12 +1,12 @@
 import UIKit
 
 public class ButtonWithTitleAdjustment: UIButton {
-	@IBInspectable public var matadorLineSpacing: CGFloat = 0 {
+	@IBInspectable public var adjustmentLineSpacing: CGFloat = 0 {
 		didSet {
 			updateAdjustedTitles()
 		}
 	}
-	@IBInspectable public var matadorKerning: CGFloat = 0 {
+	@IBInspectable public var adjustmentKerning: CGFloat = 0 {
 		didSet {
 			updateAdjustedTitles()
 		}
@@ -18,11 +18,11 @@ public class ButtonWithTitleAdjustment: UIButton {
 			return
 		}
 		let paragraphStyle = NSMutableParagraphStyle()
-		paragraphStyle.lineSpacing = self.matadorLineSpacing
+		paragraphStyle.lineSpacing = self.adjustmentLineSpacing
 		let titleColor = self.titleColorForState(state) ?? .blackColor()
 		let attributes = [
 			NSParagraphStyleAttributeName: paragraphStyle,
-			NSKernAttributeName: self.matadorKerning,
+			NSKernAttributeName: self.adjustmentKerning,
 			NSForegroundColorAttributeName: titleColor
 		]
 		let attributedTitle = NSAttributedString(string: title, attributes: attributes)
