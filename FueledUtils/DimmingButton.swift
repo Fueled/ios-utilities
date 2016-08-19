@@ -14,10 +14,10 @@ public final class DimmingButton: UIButton {
 	}
 
 	@objc private func dim() {
-		self.dimmingView?.alpha = 0.4
+		(self.dimmingView ?? self).alpha = 0.4
 	}
 
 	@objc private func undim() {
-		self.dimmingView?.alpha = 1
+		(self.dimmingView ?? self).alpha = 1
 	}
 }
