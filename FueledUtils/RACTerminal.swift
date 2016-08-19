@@ -76,6 +76,10 @@ public extension UIView {
 	public var racBackgroundColor: Terminal<UIColor> {
 		return Terminal(self) { $0.backgroundColor = $1 }
 	}
+
+	var racUserInteractionEnabled: Terminal<Bool> {
+		return Terminal(self) { $0.userInteractionEnabled = $1 }
+	}
 }
 
 public extension UILabel {
@@ -154,5 +158,11 @@ public extension UITableViewCell {
 public extension UITabBarItem {
 	public var racBadgeValue: Terminal<String?> {
 		return Terminal(self) { $0.badgeValue = $1 }
+	}
+}
+
+extension UIViewController {
+	var racPerformSegue: Terminal<(String, AnyObject?)> {
+		return Terminal(self) { $0.performSegueWithIdentifier($1.0, sender: $1.1) }
 	}
 }
