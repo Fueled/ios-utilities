@@ -30,4 +30,11 @@ public extension SequenceType {
 		}
 		return res
 	}
+
+	func findFirst(predicate: Generator.Element -> Bool) -> Generator.Element? {
+		for element in self where predicate(element) {
+			return element
+		}
+		return nil
+	}
 }
