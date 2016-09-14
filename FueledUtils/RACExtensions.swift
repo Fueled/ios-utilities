@@ -48,21 +48,16 @@ public func animatingContext(
 }
 
 public extension SignalProducerType {
-	@warn_unused_result(message="Did you forget to call `start` on the producer?")
 	public func ignoreError() -> SignalProducer<Value, NoError> {
 		return self.flatMapError { _ in
 			SignalProducer<Value, NoError>.empty
 		}
 	}
-
-	@warn_unused_result(message="Did you forget to call `start` on the producer?")
 	public func delayStart(interval: NSTimeInterval, onScheduler scheduler: DateSchedulerType) -> ReactiveCocoa.SignalProducer<Value, Error> {
 		return SignalProducer<(), Error>(value: ())
 			.delay(interval, onScheduler: scheduler)
 			.flatMap(.Latest) { _ in self.producer }
 	}
-
-	@warn_unused_result(message="Did you forget to call `start` on the producer?")
 	public func observeWithContext(context: (Void -> Void) -> Void) -> SignalProducer<Value, Error> {
 		return lift { $0.observeWithContext(context) }
 	}

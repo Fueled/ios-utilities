@@ -1,5 +1,6 @@
 import Foundation
 import ReactiveCocoa
+import Result
 
 public final class Terminal<Value> {
 
@@ -26,14 +27,14 @@ public final class Terminal<Value> {
 
 }
 
-public func <~ <Value, Error: ErrorType> (terminal: Terminal<Value>?, producer: Signal<Value, Error>) -> Disposable? {
+public func <~ <Value> (terminal: Terminal<Value>?, producer: Signal<Value, NoError>) -> Disposable? {
 	guard let terminal = terminal else { return nil }
 	let disposable = producer.observeNext(terminal.setter)
 	terminal.disposable += disposable
 	return disposable
 }
 
-public func <~ <Value, Error: ErrorType> (terminal: Terminal<Value>?, producer: SignalProducer<Value, Error>) -> Disposable? {
+public func <~ <Value> (terminal: Terminal<Value>?, producer: SignalProducer<Value, NoError>) -> Disposable? {
 	guard let terminal = terminal else { return nil }
 	let disposable = producer.startWithNext(terminal.setter)
 	terminal.disposable += disposable
@@ -45,14 +46,14 @@ public func <~ <P: PropertyType> (terminal: Terminal<P.Value>?, property: P) -> 
 	return terminal <~ property.producer
 }
 
-public func <~ <Value, Error: ErrorType> (terminal: Terminal<Value?>?, producer: Signal<Value, Error>) -> Disposable? {
+public func <~ <Value> (terminal: Terminal<Value?>?, producer: Signal<Value, NoError>) -> Disposable? {
 	guard let terminal = terminal else { return nil }
 	let disposable = producer.observeNext(terminal.setter)
 	terminal.disposable += disposable
 	return disposable
 }
 
-public func <~ <Value, Error: ErrorType> (terminal: Terminal<Value?>?, producer: SignalProducer<Value, Error>) -> Disposable? {
+public func <~ <Value> (terminal: Terminal<Value?>?, producer: SignalProducer<Value, NoError>) -> Disposable? {
 	guard let terminal = terminal else { return nil }
 	let disposable = producer.startWithNext(terminal.setter)
 	terminal.disposable += disposable
