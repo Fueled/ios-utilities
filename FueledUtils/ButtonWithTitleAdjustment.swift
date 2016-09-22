@@ -1,46 +1,39 @@
 import UIKit
 
-public class ButtonWithTitleAdjustment: UIButton {
-	@IBInspectable public var adjustmentLineSpacing: CGFloat = 0 {
+open class ButtonWithTitleAdjustment: UIButton {
+	@IBInspectable open var adjustmentLineSpacing: CGFloat = 0 {
 		didSet {
 			updateAdjustedTitles()
 		}
 	}
-	@IBInspectable public var adjustmentKerning: CGFloat = 0 {
+	@IBInspectable open var adjustmentKerning: CGFloat = 0 {
 		didSet {
 			updateAdjustedTitles()
 		}
 	}
 
-	public func setAdjustedTitle(title: String?, forState state: UIControlState) {
+	open func setAdjustedTitle(_ title: String?, for state: UIControlState) {
 		guard let title = title else {
-			self.setAttributedTitle(nil, forState: state)
+			self.setAttributedTitle(nil, for: state)
 			return
 		}
 		let paragraphStyle = NSMutableParagraphStyle()
 		paragraphStyle.lineSpacing = self.adjustmentLineSpacing
-		let titleColor = self.titleColorForState(state) ?? .blackColor()
-		let attributes = [
+		let titleColor = self.titleColor(for: state) ?? .black
+		let attributes: [String: Any] = [
 			NSParagraphStyleAttributeName: paragraphStyle,
 			NSKernAttributeName: self.adjustmentKerning,
 			NSForegroundColorAttributeName: titleColor
 		]
 		let attributedTitle = NSAttributedString(string: title, attributes: attributes)
-		self.setAttributedTitle(attributedTitle, forState: state)
+		self.setAttributedTitle(attributedTitle, for: state)
 	}
 
-	public func updateAdjustedTitles() {
-		let states: [UIControlState] = [
-			.Normal,
-			.Highlighted,
-			.Selected,
-			.Disabled,
-			[.Selected, .Highlighted],
-			[.Selected, .Disabled]
-		]
+	open func updateAdjustedTitles() {
+		let states: [UIControlState] = [.highlighted, .selected, .disabled, [.selected, .highlighted], [.selected, .disabled]]
 		for state in states {
-			let title = self.titleForState(state)
-			setAdjustedTitle(title, forState: state)
+			let title = self.title(for: state)
+			setAdjustedTitle(title, for: state)
 		}
 	}
 }

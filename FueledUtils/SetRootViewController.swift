@@ -2,12 +2,12 @@ import Foundation
 import UIKit
 
 public extension UIApplicationDelegate {
-	public func setRootViewController(viewController: UIViewController, @noescape setWindow: UIWindow -> Void) {
-		if let optionalWindow = self.window, window = optionalWindow {
-			UIView.transitionWithView(
-				window,
+	public func setRootViewController(_ viewController: UIViewController, setWindow: (UIWindow) -> Void) {
+		if let optionalWindow = self.window, let window = optionalWindow {
+			UIView.transition(
+				with: window,
 				duration: 0.33,
-				options: .TransitionCrossDissolve,
+				options: .transitionCrossDissolve,
 				animations: {
 					UIView.setAnimationsEnabled(false)
 					window.endEditing(true)
@@ -18,7 +18,7 @@ public extension UIApplicationDelegate {
 				completion: nil
 			)
 		} else {
-			let window = UIWindow(frame: UIScreen.mainScreen().bounds)
+			let window = UIWindow(frame: UIScreen.main.bounds)
 			setWindow(window)
 			window.rootViewController = viewController
 			window.makeKeyAndVisible()

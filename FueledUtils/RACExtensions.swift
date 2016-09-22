@@ -1,9 +1,9 @@
 import Foundation
-import ReactiveCocoa
+import ReactiveSwift
 import Result
 
-public extension SignalType {
-	func mergeWith(signal2: Signal<Value, Error>) -> Signal<Value, Error> {
+public extension SignalProtocol {
+	func mergeWith(_ signal2: Signal<Value, Error>) -> Signal<Value, Error> {
 		return Signal { observer in
 			let disposable = CompositeDisposable()
 			disposable += self.observe(observer)
@@ -11,11 +11,11 @@ public extension SignalType {
 			return disposable
 		}
 	}
-	public func observeWithContext(context: (Void -> Void) -> Void) -> Signal<Value, Error> {
+	public func observeWithContext(_ context: @escaping ((Void) -> Void) -> Void) -> Signal<Value, Error> {
 		return Signal { observer in
 			return self.observe { event in
 				switch event {
-				case .Next:
+				case .value:
 					context({ observer.action(event) })
 				default:
 					observer.action(event)
@@ -26,17 +26,17 @@ public extension SignalType {
 }
 
 public func animatingContext(
-	duration: NSTimeInterval,
-	delay: NSTimeInterval = 0,
+	_ duration: TimeInterval,
+	delay: TimeInterval = 0,
 	options: UIViewAnimationOptions = [],
 	layoutView: UIView? = nil,
 	completion: ((Bool) -> Void)? = nil)
-	-> ((Void -> Void) -> Void)
+	-> ((@escaping (Void) -> Void) -> Void)
 {
 	return { [weak layoutView] animations in
 		layoutView?.layoutIfNeeded()
-		UIView.animateWithDuration(
-			duration,
+		UIView.animate(
+			withDuration: duration,
 			delay: delay,
 			options: options,
 			animations: {
@@ -47,96 +47,93 @@ public func animatingContext(
 	}
 }
 
-public extension SignalProducerType {
+public extension SignalProducerProtocol {
 	public func ignoreError() -> SignalProducer<Value, NoError> {
 		return self.flatMapError { _ in
 			SignalProducer<Value, NoError>.empty
 		}
 	}
-	public func delayStart(interval: NSTimeInterval, onScheduler scheduler: DateSchedulerType) -> ReactiveCocoa.SignalProducer<Value, Error> {
+	public func delayStart(_ interval: TimeInterval, onScheduler scheduler: DateSchedulerProtocol) -> ReactiveSwift.SignalProducer<Value, Error> {
 		return SignalProducer<(), Error>(value: ())
-			.delay(interval, onScheduler: scheduler)
-			.flatMap(.Latest) { _ in self.producer }
+			.delay(interval, on: scheduler)
+			.flatMap(.latest) { _ in self.producer }
 	}
-	public func observeWithContext(context: (Void -> Void) -> Void) -> SignalProducer<Value, Error> {
+	public func observeWithContext(_ context: @escaping ((Void) -> Void) -> Void) -> SignalProducer<Value, Error> {
 		return lift { $0.observeWithContext(context) }
 	}
 }
 
-public extension SignalProducerType where Error == NoError {
+public extension SignalProducerProtocol where Error == NoError {
 
-	public func chain<U>(transform: Value -> Signal<U, NoError>) -> SignalProducer<U, NoError> {
-		return flatMap(.Latest, transform: transform)
+	public func chain<U>(_ transform: @escaping (Value) -> Signal<U, NoError>) -> SignalProducer<U, NoError> {
+		return flatMap(.latest, transform: transform)
 	}
 
-	public func chain<U>(transform: Value -> SignalProducer<U, NoError>) -> SignalProducer<U, NoError> {
-		return flatMap(.Latest, transform: transform)
+	public func chain<U>(_ transform: @escaping (Value) -> SignalProducer<U, NoError>) -> SignalProducer<U, NoError> {
+		return flatMap(.latest, transform: transform)
 	}
 
-	public func chain<P: PropertyType>(transform: Value -> P) -> SignalProducer<P.Value, NoError> {
-		return flatMap(.Latest) { transform($0).producer }
+	public func chain<P: PropertyProtocol>(_ transform: @escaping (Value) -> P) -> SignalProducer<P.Value, NoError> {
+		return flatMap(.latest) { transform($0).producer }
 	}
 
-	public func chain<U>(transform: Value -> Signal<U, NoError>?) -> SignalProducer<U, NoError> {
-		return flatMap(.Latest) { transform($0) ?? Signal<U, NoError>.never }
+	public func chain<U>(_ transform: @escaping (Value) -> Signal<U, NoError>?) -> SignalProducer<U, NoError> {
+		return flatMap(.latest) { transform($0) ?? Signal<U, NoError>.never }
 	}
 
-	public func chain<U>(transform: Value -> SignalProducer<U, NoError>?) -> SignalProducer<U, NoError> {
-		return flatMap(.Latest) { transform($0) ?? SignalProducer<U, NoError>.empty }
+	public func chain<U>(_ transform: @escaping (Value) -> SignalProducer<U, NoError>?) -> SignalProducer<U, NoError> {
+		return flatMap(.latest) { transform($0) ?? SignalProducer<U, NoError>.empty }
 	}
 
-	public func chain<P: PropertyType>(transform: Value -> P?) -> SignalProducer<P.Value, NoError> {
-		return flatMap(.Latest) { transform($0)?.producer ?? SignalProducer<P.Value, NoError>.empty }
-	}
-
-}
-
-public extension PropertyType {
-
-	public func chain<U>(transform: Value -> Signal<U, NoError>) -> SignalProducer<U, NoError> {
-		return producer.chain(transform)
-	}
-
-	public func chain<U>(transform: Value -> SignalProducer<U, NoError>) -> SignalProducer<U, NoError> {
-		return producer.chain(transform)
-	}
-
-	public func chain<P: PropertyType>(transform: Value -> P) -> SignalProducer<P.Value, NoError> {
-		return producer.chain(transform)
-	}
-
-	public func chain<U>(transform: Value -> Signal<U, NoError>?) -> SignalProducer<U, NoError> {
-		return producer.chain(transform)
-	}
-
-	public func chain<U>(transform: Value -> SignalProducer<U, NoError>?) -> SignalProducer<U, NoError> {
-		return producer.chain(transform)
-	}
-
-	public func chain<P: PropertyType>(transform: Value -> P?) -> SignalProducer<P.Value, NoError> {
-		return producer.chain(transform)
+	public func chain<P: PropertyProtocol>(_ transform: @escaping (Value) -> P?) -> SignalProducer<P.Value, NoError> {
+		return flatMap(.latest) { transform($0)?.producer ?? SignalProducer<P.Value, NoError>.empty }
 	}
 
 }
 
-infix operator <~> {
-	associativity right
-	precedence 93
+public extension PropertyProtocol {
+
+	public func chain<U>(_ transform: @escaping (Value) -> Signal<U, NoError>) -> SignalProducer<U, NoError> {
+		return producer.chain(transform)
+	}
+
+	public func chain<U>(_ transform: @escaping (Value) -> SignalProducer<U, NoError>) -> SignalProducer<U, NoError> {
+		return producer.chain(transform)
+	}
+
+	public func chain<P: PropertyProtocol>(_ transform: @escaping (Value) -> P) -> SignalProducer<P.Value, NoError> {
+		return producer.chain(transform)
+	}
+
+	public func chain<U>(_ transform: @escaping (Value) -> Signal<U, NoError>?) -> SignalProducer<U, NoError> {
+		return producer.chain(transform)
+	}
+
+	public func chain<U>(_ transform: @escaping (Value) -> SignalProducer<U, NoError>?) -> SignalProducer<U, NoError> {
+		return producer.chain(transform)
+	}
+
+	public func chain<P: PropertyProtocol>(_ transform: @escaping (Value) -> P?) -> SignalProducer<P.Value, NoError> {
+		return producer.chain(transform)
+	}
+
 }
 
-public func <~> <P1: MutablePropertyType, P2: MutablePropertyType where P1.Value == P2.Value>(property1: P1, property2: P2) -> Disposable {
+infix operator <~> : AssignmentPrecedence
+
+public func <~> <P1: MutablePropertyProtocol, P2: MutablePropertyProtocol>(property1: P1, property2: P2) -> Disposable where P1.Value == P2.Value {
 	let disposable = CompositeDisposable()
 	var inObservation = false
 	disposable += property2.producer.start {
 		[weak property1] event in
 		switch event {
-		case let .Next(value):
+		case let .value(value):
 			if !inObservation {
 				inObservation = true
 				property1?.value = value
 				inObservation = false
 			}
-		case .Completed:
+		case .completed:
 			disposable.dispose()
 		default:
 			break
@@ -145,13 +142,13 @@ public func <~> <P1: MutablePropertyType, P2: MutablePropertyType where P1.Value
 	disposable += property1.producer.start {
 		[weak property2] event in
 		switch event {
-		case let .Next(value):
+		case let .value(value):
 			if !inObservation {
 				inObservation = true
 				property2?.value = value
 				inObservation = false
 			}
-		case .Completed:
+		case .completed:
 			disposable.dispose()
 		default:
 			break

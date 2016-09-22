@@ -6,18 +6,18 @@ public final class DimmingButton: UIButton {
 
 	override public func awakeFromNib() {
 		super.awakeFromNib()
-		self.addTarget(self, action: #selector(DimmingButton.dim), forControlEvents: .TouchDown)
-		self.addTarget(self, action: #selector(DimmingButton.dim), forControlEvents: .TouchDragEnter)
-		self.addTarget(self, action: #selector(DimmingButton.undim), forControlEvents: .TouchDragExit)
-		self.addTarget(self, action: #selector(DimmingButton.undim), forControlEvents: .TouchUpInside)
-		self.addTarget(self, action: #selector(DimmingButton.undim), forControlEvents: .TouchCancel)
+		self.addTarget(self, action: #selector(DimmingButton.dim), for: .touchDown)
+		self.addTarget(self, action: #selector(DimmingButton.dim), for: .touchDragEnter)
+		self.addTarget(self, action: #selector(DimmingButton.undim), for: .touchDragExit)
+		self.addTarget(self, action: #selector(DimmingButton.undim), for: .touchUpInside)
+		self.addTarget(self, action: #selector(DimmingButton.undim), for: .touchCancel)
 	}
 
-	@objc private func dim() {
+	@objc fileprivate func dim() {
 		(self.dimmingView ?? self).alpha = 0.4
 	}
 
-	@objc private func undim() {
+	@objc fileprivate func undim() {
 		(self.dimmingView ?? self).alpha = 1
 	}
 }

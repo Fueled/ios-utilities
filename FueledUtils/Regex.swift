@@ -1,14 +1,14 @@
 import Foundation
 
 public struct Regex {
-	private let impl: NSRegularExpression
+	fileprivate let impl: NSRegularExpression
 
-	init(_ pattern: String, options: NSRegularExpressionOptions = []) {
+	init(_ pattern: String, options: NSRegularExpression.Options = []) {
 		impl = try! NSRegularExpression(pattern: pattern, options: options)
 	}
 
-	func match(string: String, options: NSMatchingOptions = []) -> Bool {
-		return impl.numberOfMatchesInString(string, options: options, range: string.fullRange) != 0
+	func match(_ string: String, options: NSRegularExpression.MatchingOptions = []) -> Bool {
+		return impl.numberOfMatches(in: string, options: options, range: string.fullRange) != 0
 	}
 }
 

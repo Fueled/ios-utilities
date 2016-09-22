@@ -1,6 +1,6 @@
-public extension SequenceType {
-	public func collate<K: Hashable>(@noescape key: Generator.Element -> K?) -> [K: [Generator.Element]] {
-		var res: [K: [Generator.Element]] = [:]
+public extension Sequence {
+	public func collate<K: Hashable>(_ key: (Iterator.Element) -> K?) -> [K: [Iterator.Element]] {
+		var res: [K: [Iterator.Element]] = [:]
 		for s in self {
 			if let k = key(s) {
 				if let vs = res[k] {
@@ -13,12 +13,12 @@ public extension SequenceType {
 		return res
 	}
 
-	public func splitBetween(@noescape areSeparated: (Generator.Element, Generator.Element) -> Bool) -> [[Generator.Element]] {
-		var res: [[Generator.Element]] = []
-		var chunk: [Generator.Element] = []
-		var last: Generator.Element? = nil
+	public func splitBetween(_ areSeparated: (Iterator.Element, Iterator.Element) -> Bool) -> [[Iterator.Element]] {
+		var res: [[Iterator.Element]] = []
+		var chunk: [Iterator.Element] = []
+		var last: Iterator.Element? = nil
 		for s in self {
-			if let last = last where areSeparated(last, s) {
+			if let last = last , areSeparated(last, s) {
 				res.append(chunk)
 				chunk = []
 			}
@@ -31,7 +31,7 @@ public extension SequenceType {
 		return res
 	}
 
-	func findFirst(predicate: Generator.Element -> Bool) -> Generator.Element? {
+	func findFirst(_ predicate: (Iterator.Element) -> Bool) -> Iterator.Element? {
 		for element in self where predicate(element) {
 			return element
 		}

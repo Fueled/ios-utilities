@@ -5,13 +5,13 @@ public final class DecoratingTextFieldDelegate: NSObject {
 	public weak var textField: UITextField?
 	public let pattern: String
 	public let patternPlaceholderForDataCharacter: Character
-	public let isDataCharacter: Character -> Bool
+	public let isDataCharacter: (Character) -> Bool
 
 	public init(
 		textField: UITextField,
 		pattern: String,
 		patternPlaceholderForDataCharacter: Character,
-		isDataCharacter: Character -> Bool)
+		isDataCharacter: @escaping (Character) -> Bool)
 	{
 		self.textField = textField
 		self.pattern = pattern
@@ -21,17 +21,17 @@ public final class DecoratingTextFieldDelegate: NSObject {
 		textField.delegate = self
 	}
 
-	public func decorateString(dataString: String) -> String {
+	public func decorateString(_ dataString: String) -> String {
 		var res = ""
 		let dataChars = dataString.characters
-		var dataIndex = dataString.startIndex
+		var dataIndex = dataChars.startIndex
 		for patternChar in pattern.characters {
 			if patternChar == patternPlaceholderForDataCharacter {
 				if dataIndex == dataChars.endIndex {
 					return res
 				}
 				res += String(dataChars[dataIndex])
-				dataIndex = dataIndex.successor()
+				dataIndex = dataChars.index(after: dataIndex)
 			} else {
 				res += String(patternChar)
 			}
@@ -39,7 +39,7 @@ public final class DecoratingTextFieldDelegate: NSObject {
 		return res
 	}
 
-	public func undecorateString(decoratedString: String) -> String {
+	public func undecorateString(_ decoratedString: String) -> String {
 		var res = ""
 		for decoChar in decoratedString.characters {
 			if isDataCharacter(decoChar) {
@@ -49,15 +49,15 @@ public final class DecoratingTextFieldDelegate: NSObject {
 		return res
 	}
 
-	private func convertDecoRange(decoRange: NSRange, fromDecoratedString decoratedString: String) -> NSRange {
-		let decoPrefix = (decoratedString as NSString).substringToIndex(decoRange.location)
-		let decoSubstring = (decoratedString as NSString).substringWithRange(decoRange)
+	fileprivate func convertDecoRange(_ decoRange: NSRange, fromDecoratedString decoratedString: String) -> NSRange {
+		let decoPrefix = (decoratedString as NSString).substring(to: decoRange.location)
+		let decoSubstring = (decoratedString as NSString).substring(with: decoRange)
 		let dataPrefix = self.undecorateString(decoPrefix)
 		let dataSubstring = self.undecorateString(decoSubstring)
 		return NSRange(location: dataPrefix.nsLength, length: dataSubstring.nsLength)
 	}
 
-	private func convertDataLocation(dataLocation: Int, toDecoratedString decoratedString: String) -> Int {
+	fileprivate func convertDataLocation(_ dataLocation: Int, toDecoratedString decoratedString: String) -> Int {
 		if dataLocation <= 0 {
 			return dataLocation
 		}
@@ -78,7 +78,7 @@ public final class DecoratingTextFieldDelegate: NSObject {
 }
 
 extension DecoratingTextFieldDelegate: UITextFieldDelegate {
-	public func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+	public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
 		let decoString = textField.text ?? ""
 		let decoReplacement = string
 		let dataString = undecorateString(decoString)
@@ -88,18 +88,18 @@ extension DecoratingTextFieldDelegate: UITextFieldDelegate {
 			// probably backspace was hit with no data characters selected or prior to cursor
 			// in this case we grow data range by one prior data character (if possible)
 			// in order to erase that data character
-			dataRange = (dataString as NSString).rangeOfComposedCharacterSequenceAtIndex(dataRange.location - 1)
+			dataRange = (dataString as NSString).rangeOfComposedCharacterSequence(at: dataRange.location - 1)
 		}
 
-		let newDataString = (dataString as NSString).stringByReplacingCharactersInRange(dataRange, withString: dataReplacement)
+		let newDataString = (dataString as NSString).replacingCharacters(in: dataRange, with: dataReplacement)
 		let newDecoString = decorateString(newDataString)
 		textField.text = newDecoString
-		textField.sendActionsForControlEvents(.EditingChanged)
+		textField.sendActions(for: .editingChanged)
 
 		let newDataLocation = dataRange.location + dataReplacement.nsLength
 		let newDecoLocation = convertDataLocation(newDataLocation, toDecoratedString: newDecoString)
-		if let selPos = textField.positionFromPosition(textField.beginningOfDocument, offset: newDecoLocation) {
-			textField.selectedTextRange = textField.textRangeFromPosition(selPos, toPosition: selPos)
+		if let selPos = textField.position(from: textField.beginningOfDocument, offset: newDecoLocation) {
+			textField.selectedTextRange = textField.textRange(from: selPos, to: selPos)
 		}
 		return false
 	}

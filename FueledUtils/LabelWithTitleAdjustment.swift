@@ -1,18 +1,18 @@
 import UIKit
 
-public class LabelWithTitleAdjustment: UILabel {
-	@IBInspectable public var adjustmentLineSpacing: CGFloat = 0 {
+open class LabelWithTitleAdjustment: UILabel {
+	@IBInspectable open var adjustmentLineSpacing: CGFloat = 0 {
 		didSet {
 			setAdjustedText(text)
 		}
 	}
-	@IBInspectable public var adjustmentKerning: CGFloat = 0 {
+	@IBInspectable open var adjustmentKerning: CGFloat = 0 {
 		didSet {
 			setAdjustedText(text)
 		}
 	}
 
-	public func setAdjustedText(text: String?) {
+	open func setAdjustedText(_ text: String?) {
 		guard let text = text else {
 			self.attributedText = nil
 			return
@@ -23,7 +23,7 @@ public class LabelWithTitleAdjustment: UILabel {
 		let attributes = [
 			NSParagraphStyleAttributeName: paragraphStyle,
 			NSKernAttributeName: self.adjustmentKerning
-		]
+		] as [String : Any]
 		self.attributedText = NSAttributedString(string: text, attributes: attributes)
 	}
 }

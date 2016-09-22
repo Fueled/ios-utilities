@@ -9,48 +9,48 @@ public final class KeyboardInsetHelper: NSObject {
 
 	override public func awakeFromNib() {
 		super.awakeFromNib()
-		let nc = NSNotificationCenter.defaultCenter()
+		let nc = NotificationCenter.default
 		nc.addObserver(
 			self,
 			selector: #selector(handleKeyboardNotification(_:)),
-			name: UIKeyboardWillShowNotification,
+			name: NSNotification.Name.UIKeyboardWillShow,
 			object: nil)
 		nc.addObserver(
 			self,
 			selector: #selector(handleKeyboardNotification(_:)),
-			name: UIKeyboardWillHideNotification,
+			name: NSNotification.Name.UIKeyboardWillHide,
 			object: nil)
 	}
 
 	deinit {
-		let nc = NSNotificationCenter.defaultCenter()
-		nc.removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
-		nc.removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
+		let nc = NotificationCenter.default
+		nc.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+		nc.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
 	}
 
-	@objc private func handleKeyboardNotification(notification: NSNotification) {
+	@objc fileprivate func handleKeyboardNotification(_ notification: Notification) {
 		guard let referenceView = referenceView,
-			userInfo = notification.userInfo,
-			curve = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? UInt,
-			duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? Double,
-			keyboardFrameValue = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue
+			let userInfo = (notification as NSNotification).userInfo,
+			let curve = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? UInt,
+			let duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? Double,
+			let keyboardFrameValue = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue
 			else { return }
-		let keyboardFrame = referenceView.convertRect(keyboardFrameValue.CGRectValue(), fromView: referenceView.window)
+		let keyboardFrame = referenceView.convert(keyboardFrameValue.cgRectValue, from: referenceView.window)
 		let curveOption = UIViewAnimationOptions(rawValue: curve << 16)
-		let animationOptions = curveOption.union(.BeginFromCurrentState)
+		let animationOptions = curveOption.union(.beginFromCurrentState)
 		let inset = max(baseInset, referenceView.bounds.maxY - keyboardFrame.minY)
 		UIView.performWithoutAnimation {
 			self.referenceView?.window?.layoutIfNeeded()
 		}
-		UIView.animateWithDuration(
-			duration,
+		UIView.animate(
+			withDuration: duration,
 			delay: 0,
 			options: animationOptions,
 			animations: { self.updateForInset(inset) },
 			completion: nil)
 	}
 
-	public func updateForInset(inset: CGFloat) {
+	public func updateForInset(_ inset: CGFloat) {
 		scrollView?.contentInset.bottom = inset
 		scrollView?.scrollIndicatorInsets.bottom = inset
 		constraint?.constant = inset
