@@ -27,40 +27,40 @@ public final class Terminal<Value> {
 
 }
 
-public func <~ <Value> (terminal: Terminal<Value>?, producer: Signal<Value, NoError>) -> Disposable? {
+@discardableResult public func <~ <Value> (terminal: Terminal<Value>?, producer: Signal<Value, NoError>) -> Disposable? {
 	guard let terminal = terminal else { return nil }
 	let disposable = producer.observeValues(terminal.setter)
 	terminal.disposable += disposable
 	return disposable
 }
 
-public func <~ <Value> (terminal: Terminal<Value>?, producer: SignalProducer<Value, NoError>) -> Disposable? {
+@discardableResult public func <~ <Value> (terminal: Terminal<Value>?, producer: SignalProducer<Value, NoError>) -> Disposable? {
 	guard let terminal = terminal else { return nil }
 	let disposable = producer.startWithValues(terminal.setter)
 	terminal.disposable += disposable
 	return disposable
 }
 
-public func <~ <P: PropertyProtocol> (terminal: Terminal<P.Value>?, property: P) -> Disposable? {
+@discardableResult public func <~ <P: PropertyProtocol> (terminal: Terminal<P.Value>?, property: P) -> Disposable? {
 	guard let terminal = terminal else { return nil }
 	return terminal <~ property.producer
 }
 
-public func <~ <Value> (terminal: Terminal<Value?>?, producer: Signal<Value, NoError>) -> Disposable? {
+@discardableResult public func <~ <Value> (terminal: Terminal<Value?>?, producer: Signal<Value, NoError>) -> Disposable? {
 	guard let terminal = terminal else { return nil }
 	let disposable = producer.observeValues(terminal.setter)
 	terminal.disposable += disposable
 	return disposable
 }
 
-public func <~ <Value> (terminal: Terminal<Value?>?, producer: SignalProducer<Value, NoError>) -> Disposable? {
+@discardableResult public func <~ <Value> (terminal: Terminal<Value?>?, producer: SignalProducer<Value, NoError>) -> Disposable? {
 	guard let terminal = terminal else { return nil }
 	let disposable = producer.startWithValues(terminal.setter)
 	terminal.disposable += disposable
 	return disposable
 }
 
-public func <~ <P: PropertyProtocol> (terminal: Terminal<P.Value?>?, property: P) -> Disposable? {
+@discardableResult public func <~ <P: PropertyProtocol> (terminal: Terminal<P.Value?>?, property: P) -> Disposable? {
 	guard let terminal = terminal else { return nil }
 	return terminal <~ property.producer
 }
