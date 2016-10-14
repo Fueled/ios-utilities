@@ -36,6 +36,6 @@ public extension Action {
 				return LoadingState<Error>.default
 			}
 		}
-		return loading.lift { $0.mergeWith(eventStates) }
+		return loading.lift { $0.merge(with: eventStates) }
 	}
 }

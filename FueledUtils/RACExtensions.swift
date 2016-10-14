@@ -2,8 +2,15 @@ import Foundation
 import ReactiveSwift
 import Result
 
+public final class Function<A, B> {
+	let f: (A) -> B
+	init(_ f: @escaping (A) -> B) {
+		self.f = f
+	}
+}
+
 public extension SignalProtocol {
-	func mergeWith(_ signal2: Signal<Value, Error>) -> Signal<Value, Error> {
+	func merge(with signal2: Signal<Value, Error>) -> Signal<Value, Error> {
 		return Signal { observer in
 			let disposable = CompositeDisposable()
 			disposable += self.observe(observer)
@@ -11,12 +18,12 @@ public extension SignalProtocol {
 			return disposable
 		}
 	}
-	public func observeWithContext(_ context: @escaping ((Void) -> Void) -> Void) -> Signal<Value, Error> {
+	public func observe(context: @escaping (Function<Void, Void>) -> Void) -> Signal<Value, Error> {
 		return Signal { observer in
 			return self.observe { event in
 				switch event {
 				case .value:
-					context({ observer.action(event) })
+					context(Function { observer.action(event) })
 				default:
 					observer.action(event)
 				}
@@ -31,7 +38,7 @@ public func animatingContext(
 	options: UIViewAnimationOptions = [],
 	layoutView: UIView? = nil,
 	completion: ((Bool) -> Void)? = nil)
-	-> ((@escaping (Void) -> Void) -> Void)
+	-> ((Function<Void, Void>) -> Void)
 {
 	return { [weak layoutView] animations in
 		layoutView?.layoutIfNeeded()
@@ -40,7 +47,7 @@ public func animatingContext(
 			delay: delay,
 			options: options,
 			animations: {
-				animations()
+				animations.f()
 				layoutView?.layoutIfNeeded()
 			},
 			completion: completion)
@@ -53,13 +60,13 @@ public extension SignalProducerProtocol {
 			SignalProducer<Value, NoError>.empty
 		}
 	}
-	public func delayStart(_ interval: TimeInterval, onScheduler scheduler: DateSchedulerProtocol) -> ReactiveSwift.SignalProducer<Value, Error> {
+	public func delayStart(_ interval: TimeInterval, on scheduler: DateSchedulerProtocol) -> ReactiveSwift.SignalProducer<Value, Error> {
 		return SignalProducer<(), Error>(value: ())
 			.delay(interval, on: scheduler)
 			.flatMap(.latest) { _ in self.producer }
 	}
-	public func observeWithContext(_ context: @escaping ((Void) -> Void) -> Void) -> SignalProducer<Value, Error> {
-		return lift { $0.observeWithContext(context) }
+	public func observe(context: @escaping (Function<Void, Void>) -> Void) -> SignalProducer<Value, Error> {
+		return lift { $0.observe(context: context) }
 	}
 }
 

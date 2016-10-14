@@ -162,7 +162,13 @@ public extension UITabBarItem {
 	}
 }
 
-extension UIViewController {
+public extension UISwitch {
+	var racOn: Terminal<Bool> {
+		return Terminal(self) { $0.isOn = $1 }
+	}
+}
+
+public extension UIViewController {
 	var racPerformSegue: Terminal<(String, AnyObject?)> {
 		return Terminal(self) { $0.performSegue(withIdentifier: $1.0, sender: $1.1) }
 	}
