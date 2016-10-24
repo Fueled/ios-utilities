@@ -163,3 +163,14 @@ infix operator <~> : AssignmentPrecedence
 	}
 	return disposable
 }
+
+extension Reactive where Base: NSObject {
+	public func target<U>(action: @escaping (Base, U) -> Void) -> BindingTarget<U> {
+		return BindingTarget(on: ImmediateScheduler(), lifetime: lifetime) {
+			[weak base = self.base] value in
+			if let base = base {
+				action(base, value)
+			}
+		}
+	}
+}
