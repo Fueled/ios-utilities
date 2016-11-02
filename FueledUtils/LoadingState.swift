@@ -2,11 +2,11 @@ import Foundation
 import ReactiveSwift
 import Result
 
-public enum LoadingState<ErrorType: Error> {
+public enum LoadingState<Error: Swift.Error> {
 	case `default`
-	case Loading
-	case failed(error: ErrorType)
-	public var error: ErrorType? {
+	case loading
+	case failed(error: Error)
+	public var error: Error? {
 		if case .failed(let error) = self {
 			return error
 		} else {
@@ -14,7 +14,7 @@ public enum LoadingState<ErrorType: Error> {
 		}
 	}
 	public var loading: Bool {
-		if case .Loading = self {
+		if case .loading = self {
 			return true
 		} else {
 			return false
@@ -26,7 +26,7 @@ public extension Action {
 	public func loadingState() -> SignalProducer<LoadingState<Error>, NoError> {
 		let loading = self.isExecuting.producer
 			.filter { $0 }
-			.map { _ in LoadingState<Error>.Loading }
+			.map { _ in LoadingState<Error>.loading }
 		let eventStates = self.events.map {
 			(event: Event<Output, Error>) -> LoadingState<Error> in
 			switch event {
