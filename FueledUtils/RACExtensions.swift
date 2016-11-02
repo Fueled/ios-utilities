@@ -2,13 +2,6 @@ import Foundation
 import ReactiveSwift
 import Result
 
-public final class Function<A, B> {
-	let f: (A) -> B
-	init(_ f: @escaping (A) -> B) {
-		self.f = f
-	}
-}
-
 public extension SignalProtocol {
 	func merge(with signal2: Signal<Value, Error>) -> Signal<Value, Error> {
 		return Signal { observer in
@@ -18,12 +11,12 @@ public extension SignalProtocol {
 			return disposable
 		}
 	}
-	public func observe(context: @escaping (Function<Void, Void>) -> Void) -> Signal<Value, Error> {
+	public func observe(context: @escaping (@escaping () -> Void) -> Void) -> Signal<Value, Error> {
 		return Signal { observer in
 			return self.observe { event in
 				switch event {
 				case .value:
-					context(Function { observer.action(event) })
+					context({ observer.action(event) })
 				default:
 					observer.action(event)
 				}
@@ -38,7 +31,7 @@ public func animatingContext(
 	options: UIViewAnimationOptions = [],
 	layoutView: UIView? = nil,
 	completion: ((Bool) -> Void)? = nil)
-	-> ((Function<Void, Void>) -> Void)
+	-> ((@escaping () -> Void) -> Void)
 {
 	return { [weak layoutView] animations in
 		layoutView?.layoutIfNeeded()
@@ -47,7 +40,7 @@ public func animatingContext(
 			delay: delay,
 			options: options,
 			animations: {
-				animations.f()
+				animations()
 				layoutView?.layoutIfNeeded()
 			},
 			completion: completion)
@@ -65,7 +58,7 @@ public extension SignalProducerProtocol {
 			.delay(interval, on: scheduler)
 			.flatMap(.latest) { _ in self.producer }
 	}
-	public func observe(context: @escaping (Function<Void, Void>) -> Void) -> SignalProducer<Value, Error> {
+	public func observe(context: @escaping (@escaping () -> Void) -> Void) -> SignalProducer<Value, Error> {
 		return lift { $0.observe(context: context) }
 	}
 }
