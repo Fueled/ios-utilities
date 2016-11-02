@@ -174,3 +174,51 @@ extension Reactive where Base: NSObject {
 		}
 	}
 }
+
+extension Reactive where Base: NSLayoutConstraint {
+	public var isActive: BindingTarget<Bool> {
+		return target { $0.isActive = $1 }
+	}
+	public var constant: BindingTarget<CGFloat> {
+		return target { $0.constant = $1 }
+	}
+}
+
+extension Reactive where Base: LabelWithTitleAdjustment {
+	public var adjustedText: BindingTarget<String?> {
+		return target { $0.setAdjustedText($1) }
+	}
+}
+
+extension Reactive where Base: ButtonWithTitleAdjustment {
+	public func adjustedTitle(for state: UIControlState) -> BindingTarget<String?> {
+		return target { $0.setAdjustedTitle($1, for: state) }
+	}
+}
+
+extension Reactive where Base: UISearchBar {
+	public var text: BindingTarget<String?> {
+		return target { $0.text = $1 }
+	}
+}
+
+extension Reactive where Base: UIView {
+	public var backgroundColor: BindingTarget<UIColor?> {
+		return target { $0.backgroundColor = $1 }
+	}
+}
+
+extension Reactive where Base: UIViewController {
+	public var title: BindingTarget<String?> {
+		return target { $0.title = $1 }
+	}
+	public var performSegue: BindingTarget<(String, AnyObject?)> {
+		return target { $0.performSegue(withIdentifier: $1.0, sender: $1.1) }
+	}
+}
+
+extension Reactive where Base: UIBarItem {
+	public var title: BindingTarget<String?> {
+		return target { $0.title = $1 }
+	}
+}
