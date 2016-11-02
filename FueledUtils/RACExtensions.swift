@@ -188,6 +188,9 @@ extension Reactive where Base: LabelWithTitleAdjustment {
 	public var adjustedText: BindingTarget<String?> {
 		return target { $0.setAdjustedText($1) }
 	}
+	public var adjustedAttributedText: BindingTarget<NSAttributedString?> {
+		return target { $0.setAdjustedAttributedText($1) }
+	}
 }
 
 extension Reactive where Base: ButtonWithTitleAdjustment {

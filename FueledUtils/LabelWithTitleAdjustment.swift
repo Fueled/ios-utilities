@@ -12,18 +12,23 @@ open class LabelWithTitleAdjustment: UILabel {
 		}
 	}
 
-	open func setAdjustedText(_ text: String?) {
+	open func setAdjustedAttributedText(_ text: NSAttributedString?) {
 		guard let text = text else {
 			self.attributedText = nil
 			return
 		}
 		let paragraphStyle = NSMutableParagraphStyle()
-		paragraphStyle.lineSpacing = self.adjustmentLineSpacing
-		paragraphStyle.alignment = self.textAlignment
-		let attributes = [
-			NSParagraphStyleAttributeName: paragraphStyle,
-			NSKernAttributeName: self.adjustmentKerning
-		] as [String : Any]
-		self.attributedText = NSAttributedString(string: text, attributes: attributes)
+		paragraphStyle.lineSpacing = adjustmentLineSpacing
+		paragraphStyle.alignment = textAlignment
+		let attributedString = NSMutableAttributedString(attributedString: text)
+		attributedString.addAttributes(
+			[NSParagraphStyleAttributeName: paragraphStyle, NSKernAttributeName: self.adjustmentKerning],
+			range: attributedString.string.fullRange
+		)
+		self.attributedText = attributedString
+	}
+
+	open func setAdjustedText(_ text: String?) {
+		setAdjustedAttributedText(text.map { NSAttributedString(string: $0) })
 	}
 }
