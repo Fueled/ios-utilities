@@ -3,14 +3,6 @@ import ReactiveSwift
 import Result
 
 public extension SignalProtocol {
-	func merge(with signal2: Signal<Value, Error>) -> Signal<Value, Error> {
-		return Signal { observer in
-			let disposable = CompositeDisposable()
-			disposable += self.observe(observer)
-			disposable += signal2.observe(observer)
-			return disposable
-		}
-	}
 	public func observe(context: @escaping (@escaping () -> Void) -> Void) -> Signal<Value, Error> {
 		return Signal { observer in
 			return self.observe { event in
@@ -157,64 +149,32 @@ infix operator <~> : AssignmentPrecedence
 	return disposable
 }
 
-extension Reactive where Base: NSObject {
-	public func target<U>(action: @escaping (Base, U) -> Void) -> BindingTarget<U> {
-		return BindingTarget(on: ImmediateScheduler(), lifetime: lifetime) {
-			[weak base = self.base] value in
-			if let base = base {
-				action(base, value)
-			}
-		}
-	}
-}
-
 extension Reactive where Base: NSLayoutConstraint {
 	public var isActive: BindingTarget<Bool> {
-		return target { $0.isActive = $1 }
-	}
-	public var constant: BindingTarget<CGFloat> {
-		return target { $0.constant = $1 }
+		return makeBindingTarget { $0.isActive = $1 }
 	}
 }
 
 extension Reactive where Base: LabelWithTitleAdjustment {
 	public var adjustedText: BindingTarget<String?> {
-		return target { $0.setAdjustedText($1) }
+		return makeBindingTarget { $0.setAdjustedText($1) }
 	}
 	public var adjustedAttributedText: BindingTarget<NSAttributedString?> {
-		return target { $0.setAdjustedAttributedText($1) }
+		return makeBindingTarget { $0.setAdjustedAttributedText($1) }
 	}
 }
 
 extension Reactive where Base: ButtonWithTitleAdjustment {
 	public func adjustedTitle(for state: UIControlState) -> BindingTarget<String?> {
-		return target { $0.setAdjustedTitle($1, for: state) }
-	}
-}
-
-extension Reactive where Base: UISearchBar {
-	public var text: BindingTarget<String?> {
-		return target { $0.text = $1 }
-	}
-}
-
-extension Reactive where Base: UIView {
-	public var backgroundColor: BindingTarget<UIColor?> {
-		return target { $0.backgroundColor = $1 }
+		return makeBindingTarget { $0.setAdjustedTitle($1, for: state) }
 	}
 }
 
 extension Reactive where Base: UIViewController {
 	public var title: BindingTarget<String?> {
-		return target { $0.title = $1 }
+		return makeBindingTarget { $0.title = $1 }
 	}
-	public var performSegue: BindingTarget<(String, AnyObject?)> {
-		return target { $0.performSegue(withIdentifier: $1.0, sender: $1.1) }
-	}
-}
-
-extension Reactive where Base: UIBarItem {
-	public var title: BindingTarget<String?> {
-		return target { $0.title = $1 }
+	public var performSegue: BindingTarget<(String, Any?)> {
+		return makeBindingTarget { $0.performSegue(withIdentifier: $1.0, sender: $1.1) }
 	}
 }

@@ -27,7 +27,7 @@ public extension Action {
 		let loading = self.isExecuting.producer
 			.filter { $0 }
 			.map { _ in LoadingState<Error>.loading }
-		let eventStates = self.events.map {
+		let eventStates = SignalProducer(self.events).map {
 			(event: Event<Output, Error>) -> LoadingState<Error> in
 			switch event {
 			case .failed(let error):
@@ -36,6 +36,6 @@ public extension Action {
 				return LoadingState<Error>.default
 			}
 		}
-		return loading.lift { $0.merge(with: eventStates) }
+		return SignalProducer.merge(loading, eventStates)
 	}
 }
