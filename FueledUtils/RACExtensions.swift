@@ -170,11 +170,50 @@ extension Reactive where Base: ButtonWithTitleAdjustment {
 	}
 }
 
+extension Reactive where Base: UILabel {
+	public var textAlignment: BindingTarget<NSTextAlignment> {
+		return makeBindingTarget { $0.textAlignment = $1 }
+	}
+}
+
 extension Reactive where Base: UIViewController {
 	public var title: BindingTarget<String?> {
 		return makeBindingTarget { $0.title = $1 }
 	}
 	public var performSegue: BindingTarget<(String, Any?)> {
 		return makeBindingTarget { $0.performSegue(withIdentifier: $1.0, sender: $1.1) }
+	}
+}
+
+extension Reactive where Base: UINavigationItem {
+	public var title: BindingTarget<String?> {
+		return makeBindingTarget { $0.title = $1 }
+	}
+	public func hidesBackButton(animated: Bool) -> BindingTarget<Bool> {
+		return makeBindingTarget { $0.setHidesBackButton($1, animated: animated) }
+	}
+	public func rightBarButtonItem(animated: Bool) -> BindingTarget<UIBarButtonItem?> {
+		return makeBindingTarget { $0.setRightBarButton($1, animated: animated) }
+	}
+	public func rightBarButtonItems(animated: Bool) -> BindingTarget<[UIBarButtonItem]> {
+		return makeBindingTarget { $0.setRightBarButtonItems($1, animated: animated) }
+	}
+	public func leftBarButtonItem(animated: Bool) -> BindingTarget<UIBarButtonItem?> {
+		return makeBindingTarget { $0.setLeftBarButton($1, animated: animated) }
+	}
+	public func leftBarButtonItems(animated: Bool) -> BindingTarget<[UIBarButtonItem]> {
+		return makeBindingTarget { $0.setLeftBarButtonItems($1, animated: animated) }
+	}
+	public var rightBarButtonItem: BindingTarget<UIBarButtonItem?> {
+		return makeBindingTarget { $0.rightBarButtonItem = $1 }
+	}
+	public var rightBarButtonItems: BindingTarget<[UIBarButtonItem]> {
+		return makeBindingTarget { $0.rightBarButtonItems = $1 }
+	}
+	public var leftBarButtonItem: BindingTarget<UIBarButtonItem?> {
+		return makeBindingTarget { $0.leftBarButtonItem = $1 }
+	}
+	public var leftBarButtonItems: BindingTarget<[UIBarButtonItem]> {
+		return makeBindingTarget { $0.leftBarButtonItems = $1 }
 	}
 }
