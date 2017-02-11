@@ -90,7 +90,7 @@ public extension UITableView {
 }
 
 public extension UICollectionView {
-	public func deselectAllRows(_ animated: Bool) {
+	public func deselectAllItems(_ animated: Bool) {
 		if let indexPaths = self.indexPathsForSelectedItems {
 			for indexPath in indexPaths {
 				self.deselectItem(at: indexPath, animated: animated)
