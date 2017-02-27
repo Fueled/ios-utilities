@@ -25,6 +25,7 @@
 		02DE3C501D259966002B58E2 /* SetRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DE3C4F1D259966002B58E2 /* SetRootViewController.swift */; };
 		02DE3C551D259FA9002B58E2 /* DimmingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DE3C541D259FA9002B58E2 /* DimmingButton.swift */; };
 		02DE3C571D25A24B002B58E2 /* DecoratingTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DE3C561D25A24B002B58E2 /* DecoratingTextFieldDelegate.swift */; };
+		02DF8ECB1E6464AB009AB29C /* ReactiveLifetimeProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DF8ECA1E6464AB009AB29C /* ReactiveLifetimeProvider.swift */; };
 		02E626091D340F0C0041E512 /* LoadingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E626081D340F0C0041E512 /* LoadingState.swift */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +50,7 @@
 		02DE3C4F1D259966002B58E2 /* SetRootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetRootViewController.swift; sourceTree = "<group>"; };
 		02DE3C541D259FA9002B58E2 /* DimmingButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DimmingButton.swift; sourceTree = "<group>"; };
 		02DE3C561D25A24B002B58E2 /* DecoratingTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecoratingTextFieldDelegate.swift; sourceTree = "<group>"; };
+		02DF8ECA1E6464AB009AB29C /* ReactiveLifetimeProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactiveLifetimeProvider.swift; sourceTree = "<group>"; };
 		02E626081D340F0C0041E512 /* LoadingState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -107,6 +109,7 @@
 				02E626081D340F0C0041E512 /* LoadingState.swift */,
 				02DE3C471D25952A002B58E2 /* NSDecimalNumberOperators.swift */,
 				02DE3C351D258FD1002B58E2 /* RACExtensions.swift */,
+				02DF8ECA1E6464AB009AB29C /* ReactiveLifetimeProvider.swift */,
 				02DE3C481D25952A002B58E2 /* Regex.swift */,
 				02DE3C371D258FD1002B58E2 /* SequenceTypeExtensions.swift */,
 				02DE3C4F1D259966002B58E2 /* SetRootViewController.swift */,
@@ -202,6 +205,7 @@
 				02DE3C501D259966002B58E2 /* SetRootViewController.swift in Sources */,
 				02DE3C441D25928F002B58E2 /* KeyboardInsetHelper.swift in Sources */,
 				02DE3C3C1D258FD1002B58E2 /* RACExtensions.swift in Sources */,
+				02DF8ECB1E6464AB009AB29C /* ReactiveLifetimeProvider.swift in Sources */,
 				02DE3C4E1D259628002B58E2 /* LabelWithTitleAdjustment.swift in Sources */,
 				02DE3C461D25933E002B58E2 /* HairlineView.swift in Sources */,
 				02DE3C571D25A24B002B58E2 /* DecoratingTextFieldDelegate.swift in Sources */,
