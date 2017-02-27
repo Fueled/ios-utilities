@@ -7,19 +7,21 @@ public final class KeyboardInsetHelper: NSObject {
 	@IBOutlet public weak var scrollView: UIScrollView?
 	@IBOutlet public weak var constraint: NSLayoutConstraint?
 
-	override public func awakeFromNib() {
-		super.awakeFromNib()
+	public override init() {
+		super.init()
 		let nc = NotificationCenter.default
 		nc.addObserver(
 			self,
 			selector: #selector(handleKeyboardNotification(_:)),
 			name: NSNotification.Name.UIKeyboardWillShow,
-			object: nil)
+			object: nil
+		)
 		nc.addObserver(
 			self,
 			selector: #selector(handleKeyboardNotification(_:)),
 			name: NSNotification.Name.UIKeyboardWillHide,
-			object: nil)
+			object: nil
+		)
 	}
 
 	deinit {
@@ -47,7 +49,8 @@ public final class KeyboardInsetHelper: NSObject {
 			delay: 0,
 			options: animationOptions,
 			animations: { self.updateForInset(inset) },
-			completion: nil)
+			completion: nil
+		)
 	}
 
 	public func updateForInset(_ inset: CGFloat) {
