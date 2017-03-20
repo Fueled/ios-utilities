@@ -45,7 +45,7 @@ public extension SignalProducerProtocol {
 			SignalProducer<Value, NoError>.empty
 		}
 	}
-	public func delayStart(_ interval: TimeInterval, on scheduler: DateSchedulerProtocol) -> ReactiveSwift.SignalProducer<Value, Error> {
+	public func delayStart(_ interval: TimeInterval, on scheduler: DateScheduler) -> ReactiveSwift.SignalProducer<Value, Error> {
 		return SignalProducer<(), Error>(value: ())
 			.delay(interval, on: scheduler)
 			.flatMap(.latest) { _ in self.producer }

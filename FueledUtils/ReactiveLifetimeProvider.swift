@@ -14,7 +14,7 @@ public extension Reactive where Base: ReactiveLifetimeProvider {
 	public var lifetime: Lifetime {
 		return Lifetime(self.base.lifetimeToken)
 	}
-	public func makeBindingTarget<U>(on scheduler: SchedulerProtocol = UIScheduler(), _ action: @escaping (Base, U) -> Void) -> BindingTarget<U> {
+	public func makeBindingTarget<U>(on scheduler: Scheduler = UIScheduler(), _ action: @escaping (Base, U) -> Void) -> BindingTarget<U> {
 		return BindingTarget(on: scheduler, lifetime: lifetime) { [weak base = self.base] value in
 			if let base = base {
 				action(base, value)
