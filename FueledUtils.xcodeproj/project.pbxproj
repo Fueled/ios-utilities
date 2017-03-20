@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0238E9351E69B53200BF26D4 /* ScrollViewPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0238E9341E69B53200BF26D4 /* ScrollViewPage.swift */; };
 		024E88731DA1597900826334 /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 024E88721DA1597900826334 /* ReactiveSwift.framework */; };
 		02DE3C221D258C79002B58E2 /* FueledUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 02DE3C211D258C79002B58E2 /* FueledUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		02DE3C2A1D258E02002B58E2 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02DE3C291D258E02002B58E2 /* ReactiveCocoa.framework */; };
@@ -30,6 +31,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0238E9341E69B53200BF26D4 /* ScrollViewPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollViewPage.swift; sourceTree = "<group>"; };
 		024E88721DA1597900826334 /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveSwift.framework; path = "Carthage/Checkouts/ReactiveSwift/build/Debug-iphoneos/ReactiveSwift.framework"; sourceTree = "<group>"; };
 		02DE3C1E1D258C79002B58E2 /* FueledUtils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FueledUtils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		02DE3C211D258C79002B58E2 /* FueledUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FueledUtils.h; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				02DE3C351D258FD1002B58E2 /* RACExtensions.swift */,
 				02DF8ECA1E6464AB009AB29C /* ReactiveLifetimeProvider.swift */,
 				02DE3C481D25952A002B58E2 /* Regex.swift */,
+				0238E9341E69B53200BF26D4 /* ScrollViewPage.swift */,
 				02DE3C371D258FD1002B58E2 /* SequenceTypeExtensions.swift */,
 				02DE3C4F1D259966002B58E2 /* SetRootViewController.swift */,
 				02DE3C381D258FD1002B58E2 /* SignalingAlert.swift */,
@@ -206,6 +209,7 @@
 				02DE3C441D25928F002B58E2 /* KeyboardInsetHelper.swift in Sources */,
 				02DE3C3C1D258FD1002B58E2 /* RACExtensions.swift in Sources */,
 				02DF8ECB1E6464AB009AB29C /* ReactiveLifetimeProvider.swift in Sources */,
+				0238E9351E69B53200BF26D4 /* ScrollViewPage.swift in Sources */,
 				02DE3C4E1D259628002B58E2 /* LabelWithTitleAdjustment.swift in Sources */,
 				02DE3C461D25933E002B58E2 /* HairlineView.swift in Sources */,
 				02DE3C571D25A24B002B58E2 /* DecoratingTextFieldDelegate.swift in Sources */,
