@@ -1,4 +1,5 @@
 import Foundation
+import ReactiveCocoa
 import ReactiveSwift
 import Result
 
@@ -186,9 +187,6 @@ extension Reactive where Base: UIViewController {
 }
 
 extension Reactive where Base: UINavigationItem {
-	public var title: BindingTarget<String?> {
-		return makeBindingTarget { $0.title = $1 }
-	}
 	public func hidesBackButton(animated: Bool) -> BindingTarget<Bool> {
 		return makeBindingTarget { $0.setHidesBackButton($1, animated: animated) }
 	}
