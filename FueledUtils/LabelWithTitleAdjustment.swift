@@ -18,6 +18,7 @@ open class LabelWithTitleAdjustment: UILabel {
 			return
 		}
 		let paragraphStyle = NSMutableParagraphStyle()
+		paragraphStyle.lineBreakMode = lineBreakMode
 		paragraphStyle.lineSpacing = adjustmentLineSpacing
 		paragraphStyle.alignment = textAlignment
 		let attributedString = NSMutableAttributedString(attributedString: text)
