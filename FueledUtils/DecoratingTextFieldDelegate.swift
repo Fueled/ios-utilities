@@ -2,23 +2,19 @@ import UIKit
 import Foundation
 
 public final class DecoratingTextFieldDelegate: NSObject {
-	public weak var textField: UITextField?
 	public let pattern: String
 	public let patternPlaceholderForDataCharacter: Character
 	public let isDataCharacter: (Character) -> Bool
 
 	public init(
-		textField: UITextField,
 		pattern: String,
 		patternPlaceholderForDataCharacter: Character,
 		isDataCharacter: @escaping (Character) -> Bool)
 	{
-		self.textField = textField
 		self.pattern = pattern
 		self.patternPlaceholderForDataCharacter = patternPlaceholderForDataCharacter
 		self.isDataCharacter = isDataCharacter
 		super.init()
-		textField.delegate = self
 	}
 
 	public func decorateString(_ dataString: String) -> String {
