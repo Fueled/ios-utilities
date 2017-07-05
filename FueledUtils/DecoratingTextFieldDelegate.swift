@@ -2,16 +2,28 @@ import UIKit
 import Foundation
 
 public final class DecoratingTextFieldDelegate: NSObject {
-	public let pattern: String
+	public let patternForDataString: (String) -> String
 	public let patternPlaceholderForDataCharacter: Character
 	public let isDataCharacter: (Character) -> Bool
 
-	public init(
+	public convenience init(
 		pattern: String,
 		patternPlaceholderForDataCharacter: Character,
 		isDataCharacter: @escaping (Character) -> Bool)
 	{
-		self.pattern = pattern
+		self.init(
+			patternForDataString: { _ in pattern },
+			patternPlaceholderForDataCharacter: patternPlaceholderForDataCharacter,
+			isDataCharacter: isDataCharacter
+		)
+	}
+
+	public init(
+		patternForDataString: @escaping (String) -> String,
+		patternPlaceholderForDataCharacter: Character,
+		isDataCharacter: @escaping (Character) -> Bool)
+	{
+		self.patternForDataString = patternForDataString
 		self.patternPlaceholderForDataCharacter = patternPlaceholderForDataCharacter
 		self.isDataCharacter = isDataCharacter
 		super.init()
@@ -21,6 +33,7 @@ public final class DecoratingTextFieldDelegate: NSObject {
 		var res = ""
 		let dataChars = dataString.characters
 		var dataIndex = dataChars.startIndex
+		let pattern = self.patternForDataString(dataString)
 		for patternChar in pattern.characters {
 			if patternChar == patternPlaceholderForDataCharacter {
 				if dataIndex == dataChars.endIndex {
