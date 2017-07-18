@@ -1,39 +1,58 @@
 import UIKit
 
 open class ButtonWithTitleAdjustment: UIButton {
-	@IBInspectable open var adjustmentLineSpacing: CGFloat = 0 {
+	@IBInspectable public var adjustmentLineSpacing: CGFloat = 0 {
 		didSet {
-			updateAdjustedTitles()
-		}
-	}
-	@IBInspectable open var adjustmentKerning: CGFloat = 0 {
-		didSet {
-			updateAdjustedTitles()
+			self.updateAdjustedTitles()
 		}
 	}
 
-	open func setAdjustedTitle(_ title: String?, for state: UIControlState) {
-		guard let title = title else {
-			self.setAttributedTitle(nil, for: state)
-			return
+	@IBInspectable public var adjustmentKerning: CGFloat = 0 {
+		didSet {
+			self.updateAdjustedTitles()
 		}
-		let paragraphStyle = NSMutableParagraphStyle()
-		paragraphStyle.lineSpacing = self.adjustmentLineSpacing
-		let titleColor = self.titleColor(for: state) ?? .black
-		let attributes: [String: Any] = [
-			NSParagraphStyleAttributeName: paragraphStyle,
-			NSKernAttributeName: self.adjustmentKerning,
-			NSForegroundColorAttributeName: titleColor
-		]
-		let attributedTitle = NSAttributedString(string: title, attributes: attributes)
-		self.setAttributedTitle(attributedTitle, for: state)
 	}
 
-	open func updateAdjustedTitles() {
+	override public init(frame: CGRect) {
+		super.init(frame: frame)
+		self.updateAdjustedTitles()
+	}
+
+	required public init?(coder aDecoder: NSCoder) {
+		super.init(coder: aDecoder)
+		self.updateAdjustedTitles()
+	}
+
+	override open func setTitleColor(_ color: UIColor?, for state: UIControlState) {
+		super.setTitleColor(color, for: state)
+		self.updateAdjustedTitles()
+	}
+
+	override open func setTitle(_ title: String?, for state: UIControlState) {
+		super.setTitle(title, for: state)
+		self.updateAdjustedTitles()
+	}
+
+	private func updateAdjustedTitles() {
 		let states: [UIControlState] = [.normal, .highlighted, .selected, .disabled, [.selected, .highlighted], [.selected, .disabled]]
 		for state in states {
-			let title = self.title(for: state)
-			setAdjustedTitle(title, for: state)
+			self.setAdjustedTitle(self.title(for: state), for: state)
 		}
+	}
+
+	private func setAdjustedTitle(_ title: String?, for state: UIControlState) {
+		let adjustedString = title.map { title -> NSAttributedString in
+			let paragraphStyle = NSMutableParagraphStyle()
+			paragraphStyle.lineSpacing = self.adjustmentLineSpacing
+			var attributes: [String : Any] = [
+				NSParagraphStyleAttributeName: paragraphStyle,
+				NSKernAttributeName: self.adjustmentKerning,
+			]
+			if let titleColor = self.titleColor(for: state) {
+				attributes[NSForegroundColorAttributeName] = titleColor
+			}
+			return NSAttributedString(string: title, attributes: attributes)
+		}
+		self.setAttributedTitle(adjustedString, for: state)
 	}
 }

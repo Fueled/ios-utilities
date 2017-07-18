@@ -1,35 +1,56 @@
 import UIKit
+import Foundation
 
 open class LabelWithTitleAdjustment: UILabel {
-	@IBInspectable open var adjustmentLineSpacing: CGFloat = 0 {
+	@IBInspectable public var adjustmentLineSpacing: CGFloat = 0.0 {
 		didSet {
-			setAdjustedText(text)
-		}
-	}
-	@IBInspectable open var adjustmentKerning: CGFloat = 0 {
-		didSet {
-			setAdjustedText(text)
+			self.setAdjustedText(self.text)
 		}
 	}
 
-	open func setAdjustedAttributedText(_ text: NSAttributedString?) {
+	@IBInspectable public var adjustmentKerning: CGFloat = 0.0 {
+		didSet {
+			self.setAdjustedText(self.text)
+		}
+	}
+
+	override open var text: String? {
+		get {
+			return super.text
+		}
+		set {
+			super.text = newValue
+			self.setAdjustedText(newValue)
+		}
+	}
+
+	override init(frame: CGRect) {
+		super.init(frame: frame)
+		self.setAdjustedText(self.text)
+	}
+
+	required public init?(coder aDecoder: NSCoder) {
+		super.init(coder: aDecoder)
+		self.setAdjustedText(self.text)
+	}
+
+	private func setAdjustedAttributedText(_ text: NSAttributedString?) {
 		guard let text = text else {
 			self.attributedText = nil
 			return
 		}
+
 		let paragraphStyle = NSMutableParagraphStyle()
-		paragraphStyle.lineBreakMode = lineBreakMode
-		paragraphStyle.lineSpacing = adjustmentLineSpacing
-		paragraphStyle.alignment = textAlignment
+		paragraphStyle.lineSpacing = self.adjustmentLineSpacing
+		paragraphStyle.alignment = self.textAlignment
 		let attributedString = NSMutableAttributedString(attributedString: text)
 		attributedString.addAttributes(
 			[NSParagraphStyleAttributeName: paragraphStyle, NSKernAttributeName: self.adjustmentKerning],
-			range: attributedString.string.fullRange
-		)
+			range: NSRange(location: 0, length:  attributedString.string.characters.count))
 		self.attributedText = attributedString
 	}
 
-	open func setAdjustedText(_ text: String?) {
-		setAdjustedAttributedText(text.map { NSAttributedString(string: $0) })
+	private func setAdjustedText(_ text: String?) {
+		self.setAdjustedAttributedText(text.map { NSAttributedString(string: $0) })
 	}
 }

@@ -156,21 +156,6 @@ extension Reactive where Base: NSLayoutConstraint {
 	}
 }
 
-extension Reactive where Base: LabelWithTitleAdjustment {
-	public var adjustedText: BindingTarget<String?> {
-		return makeBindingTarget { $0.setAdjustedText($1) }
-	}
-	public var adjustedAttributedText: BindingTarget<NSAttributedString?> {
-		return makeBindingTarget { $0.setAdjustedAttributedText($1) }
-	}
-}
-
-extension Reactive where Base: ButtonWithTitleAdjustment {
-	public func adjustedTitle(for state: UIControlState) -> BindingTarget<String?> {
-		return makeBindingTarget { $0.setAdjustedTitle($1, for: state) }
-	}
-}
-
 extension Reactive where Base: UILabel {
 	public var textAlignment: BindingTarget<NSTextAlignment> {
 		return makeBindingTarget { $0.textAlignment = $1 }
