@@ -14,7 +14,7 @@
     "46B19F3040765B0804498FD4689AE86ED8E3E630" : "FueledUtils\/",
     "51B210D0D41486D3ADD6940D57E4480BBD4DE4C5" : "FueledUtils\/Carthage\/Checkouts\/ReactiveSwift\/",
     "956D2B21DD155C49504BB67697A67F7C5351A353" : "FueledUtils\/Carthage\/Checkouts\/Result\/",
-    "E084C86B03F81D63323C9E7510697EA528A758C7" : "FueledUtils\/Carthage\/Checkouts\/ReactiveCocoa\/Carthage\/Checkouts\/xcconfigs\/"
+    "E084C86B03F81D63323C9E7510697EA528A758C7" : "FueledUtils\/Carthage\/Checkouts\/ReactiveSwift\/Carthage\/Checkouts\/xcconfigs\/"
   },
   "DVTSourceControlWorkspaceBlueprintNameKey" : "FueledUtils",
   "DVTSourceControlWorkspaceBlueprintVersion" : 204,
