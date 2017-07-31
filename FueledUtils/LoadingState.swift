@@ -28,7 +28,7 @@ public extension Action {
 			.filter { $0 }
 			.map { _ in LoadingState<Error>.loading }
 		let eventStates = SignalProducer(self.events).map {
-			(event: Event<Output, Error>) -> LoadingState<Error> in
+			(event: Signal<Output, Error>.Event) -> LoadingState<Error> in
 			switch event {
 			case .failed(let error):
 				return LoadingState<Error>.failed(error: error)

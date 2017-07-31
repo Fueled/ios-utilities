@@ -18,7 +18,7 @@ public final class SignalingAlert<T> {
 		}
 	}
 
-	public func addAction(title: String, style: UIAlertActionStyle, event: Event<T, NoError>) {
+	public func addAction(title: String, style: UIAlertActionStyle, event: Signal<T, NoError>.Event) {
 		controller.addAction(UIAlertAction(title: title, style: style) { [observer] _ in
 			observer.action(event)
 		})
@@ -52,7 +52,7 @@ public final class SignalingAlert<T> {
 				ppc.sourceRect = sourceView.bounds
 			}
 			presentingController.present(alert.controller, animated: true, completion: nil)
-			disposable += ActionDisposable { [weak presentingController, weak alert] in
+			disposable += AnyDisposable { [weak presentingController, weak alert] in
 				if let presentingController = presentingController,
 					let alert = alert ,
 					alert.controller.presentingViewController == presentingController

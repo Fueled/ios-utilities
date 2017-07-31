@@ -3,7 +3,7 @@ import ReactiveCocoa
 import ReactiveSwift
 import Result
 
-public extension SignalProtocol {
+public extension Signal {
 	public func observe(context: @escaping (@escaping () -> Void) -> Void) -> Signal<Value, Error> {
 		return Signal { observer in
 			return self.observe { event in
@@ -40,7 +40,7 @@ public func animatingContext(
 	}
 }
 
-public extension SignalProducerProtocol {
+public extension SignalProducer {
 	public func ignoreError() -> SignalProducer<Value, NoError> {
 		return self.flatMapError { _ in
 			SignalProducer<Value, NoError>.empty
@@ -56,14 +56,14 @@ public extension SignalProducerProtocol {
 	}
 }
 
-public extension SignalProducerProtocol where Error == NoError {
+public extension SignalProducer where Error == NoError {
 
 	public func chain<U>(_ transform: @escaping (Value) -> Signal<U, NoError>) -> SignalProducer<U, NoError> {
-		return flatMap(.latest, transform: transform)
+		return flatMap(.latest, transform)
 	}
 
 	public func chain<U>(_ transform: @escaping (Value) -> SignalProducer<U, NoError>) -> SignalProducer<U, NoError> {
-		return flatMap(.latest, transform: transform)
+		return flatMap(.latest, transform)
 	}
 
 	public func chain<P: PropertyProtocol>(_ transform: @escaping (Value) -> P) -> SignalProducer<P.Value, NoError> {
