@@ -1,6 +1,7 @@
 import Foundation
 import UIKit
 
+/// A view with intrinsic content size if 1px by 1px
 open class HairlineView: UIView {
 	override open var intrinsicContentSize : CGSize {
 		let pixel = 1.0 / UIScreen.main.scale

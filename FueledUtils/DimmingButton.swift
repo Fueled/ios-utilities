@@ -1,7 +1,9 @@
 import Foundation
 import UIKit
 
+/// A button that dims a view when highlighted.
 public final class DimmingButton: UIButton {
+	/// A view to dim while highlited
 	@IBOutlet public weak var dimmingView: UIView?
 
 	override public func awakeFromNib() {

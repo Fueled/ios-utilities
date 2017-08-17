@@ -1,5 +1,6 @@
 import Foundation
 
+/// `NSRegularExpression` convenience wrapper.
 public struct Regex {
 	fileprivate let impl: NSRegularExpression
 

@@ -1,9 +1,11 @@
 import ReactiveSwift
 
+/// The goal of this protocol is to add RAC-style `reactive` proxy to Swift objects.
 public protocol ReactiveLifetimeProvider: ReactiveExtensionsProvider {
 	var lifetimeToken: Lifetime.Token { get }
 }
 
+/// This base class adds RAC-style `reactive` proxy to Swift objects.
 open class Lifetimed: ReactiveLifetimeProvider {
 	public let lifetimeToken = Lifetime.Token()
 	public init() {

@@ -4,6 +4,7 @@ import ReactiveSwift
 import Result
 import UIKit
 
+/// A UIAlertController wrapper that sends values associated with alert actions to its output signal.
 public final class SignalingAlert<T> {
 
 	public let controller: UIAlertController
