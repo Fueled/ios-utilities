@@ -31,10 +31,8 @@ public extension Sequence {
 		return res
 	}
 
+	@available(*, deprecated, renamed: "first(where:)")
 	func findFirst(_ predicate: (Iterator.Element) -> Bool) -> Iterator.Element? {
-		for element in self where predicate(element) {
-			return element
-		}
-		return nil
+		return self.first(where: predicate)
 	}
 }

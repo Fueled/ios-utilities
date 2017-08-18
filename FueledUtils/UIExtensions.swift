@@ -37,6 +37,26 @@ public extension UILabel {
 		])
 		self.font = UIFont(descriptor: newFontDescriptor, size: self.font.pointSize)
 	}
+
+	public func setText(_ string: String?, animated: Bool) {
+		if !animated {
+			self.text = string
+			return
+		}
+		UIView.transition(with: self, duration: 0.35, options: .transitionCrossDissolve, animations: {
+			self.text = string
+		}, completion: nil)
+	}
+
+	public func setAttributedText(_ attributedString: NSAttributedString, animated: Bool) {
+		if !animated {
+			self.attributedText = attributedString
+			return
+		}
+		UIView.transition(with: self, duration: 0.35, options: .transitionCrossDissolve, animations: {
+			self.attributedText = attributedString
+		}, completion: nil)
+	}
 }
 
 public extension UIActivityIndicatorView {
@@ -76,6 +96,12 @@ public extension UIView {
 		let views = ["view": view]
 		self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[view]|", options: [], metrics: nil, views: views))
 		self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[view]|", options: [], metrics: nil, views: views))
+	}
+
+	public func snapshotImage(afterScreenUpdates: Bool = true) -> UIImage? {
+		return UIImage.draw(size: self.bounds.size) { _ in
+			self.drawHierarchy(in: self.bounds, afterScreenUpdates: afterScreenUpdates)
+		}
 	}
 }
 
@@ -126,5 +152,11 @@ public extension UIImage {
 			self.draw(at: .zero, blendMode: .destinationIn, alpha: 1)
 		}
 		return image.resizableImage(withCapInsets: self.capInsets, resizingMode: self.resizingMode).withRenderingMode(self.renderingMode)
+	}
+
+	public func resized(offset: CGPoint = .zero, size: CGSize) -> UIImage? {
+		return UIImage.draw(size: size) { _ in
+			self.draw(in: CGRect(origin: offset, size: size))
+		}
 	}
 }

@@ -14,4 +14,14 @@ public extension String {
 	public var fullRange: NSRange {
 		return NSRange(location: 0, length: nsLength)
 	}
+
+	public mutating func replaceOccurrences(of target: String, with replacement: String, options: String.CompareOptions = [], locale: Locale? = nil) {
+		var range: Range<String.Index>?
+		repeat {
+			range = self.range(of: target, options: options, range: range.map { $0.lowerBound..<self.endIndex }, locale: locale)
+			if let range = range {
+				self.replaceSubrange(range, with: replacement)
+			}
+		} while range != nil
+	}
 }

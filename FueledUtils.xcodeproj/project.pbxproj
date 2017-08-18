@@ -29,6 +29,7 @@
 		02DF8ECB1E6464AB009AB29C /* ReactiveLifetimeProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DF8ECA1E6464AB009AB29C /* ReactiveLifetimeProvider.swift */; };
 		02E626091D340F0C0041E512 /* LoadingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E626081D340F0C0041E512 /* LoadingState.swift */; };
 		35996E0F1F55C3E1004D6AC0 /* FoundationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35996E0E1F55C3E1004D6AC0 /* FoundationExtensions.swift */; };
+		F4A619551F47263100777BB2 /* CollectionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A619541F47263100777BB2 /* CollectionExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		02DF8ECA1E6464AB009AB29C /* ReactiveLifetimeProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactiveLifetimeProvider.swift; sourceTree = "<group>"; };
 		02E626081D340F0C0041E512 /* LoadingState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingState.swift; sourceTree = "<group>"; };
 		35996E0E1F55C3E1004D6AC0 /* FoundationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationExtensions.swift; sourceTree = "<group>"; };
+		F4A619541F47263100777BB2 /* CollectionExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +119,7 @@
 				02DE3C481D25952A002B58E2 /* Regex.swift */,
 				0238E9341E69B53200BF26D4 /* ScrollViewPage.swift */,
 				02DE3C371D258FD1002B58E2 /* SequenceExtensions.swift */,
+				F4A619541F47263100777BB2 /* CollectionExtensions.swift */,
 				02DE3C4F1D259966002B58E2 /* SetRootViewController.swift */,
 				02DE3C381D258FD1002B58E2 /* SignalingAlert.swift */,
 				02DE3C3B1D258FD1002B58E2 /* StringExtensions.swift */,
@@ -219,6 +222,7 @@
 				02DE3C571D25A24B002B58E2 /* DecoratingTextFieldDelegate.swift in Sources */,
 				02DE3C491D25952A002B58E2 /* NSDecimalNumberOperators.swift in Sources */,
 				02DE3C411D258FD1002B58E2 /* UIExtensions.swift in Sources */,
+				F4A619551F47263100777BB2 /* CollectionExtensions.swift in Sources */,
 				02E626091D340F0C0041E512 /* LoadingState.swift in Sources */,
 				02DE3C3E1D258FD1002B58E2 /* SequenceExtensions.swift in Sources */,
 				02DE3C3F1D258FD1002B58E2 /* SignalingAlert.swift in Sources */,
