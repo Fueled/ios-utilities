@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 
 /// Binds keyboard appearance and metrics to scroll view content and scroll bar insets and/or a layout constraint \
-/// relative to reference view. This object is can to be created and linked in a sotryboard.
+/// relative to reference view. This object can be created and linked in a sotryboard.
 public final class KeyboardInsetHelper: NSObject {
 	/// Minimum inset
 	@IBInspectable public var baseInset: CGFloat = 0
