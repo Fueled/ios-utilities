@@ -1,11 +1,24 @@
 import UIKit
 import Foundation
 
+/// Adds formatting (decoration) characters to text field's content according to a variable pattern. Can be used for
+/// payment card number formatting, phone number formatting, etc.
 public final class DecoratingTextFieldDelegate: NSObject {
 	public let patternForDataString: (String) -> String
 	public let patternPlaceholderForDataCharacter: Character
 	public let isDataCharacter: (Character) -> Bool
 
+	/**
+	Intializes a delegate with a fixed pattern
+	- parameters:
+		- pattern: a string containing data placeholder and formatting characters.
+		- patternPlaceholderForDataCharacter: a character that is not a formatting character.
+		- isDataCharacter: a predicate to filter non-data characters from user's input. No matter what user tries to put \
+		  into the textfield, only characters for which `isDataCharacter` returns `true` will appear in the text field.
+	## Example:
+	A 16-digit VISA payment card pattern might look like this `####-####-####-####` `'#'` is a
+	`patternPlaceholderForDataCharacter` and '`-`' is a formatting (decorating) character.
+	*/
 	public convenience init(
 		pattern: String,
 		patternPlaceholderForDataCharacter: Character,
@@ -18,6 +31,22 @@ public final class DecoratingTextFieldDelegate: NSObject {
 		)
 	}
 
+	/**
+	Intializes a delegate with a fixed pattern
+	- parameters:
+	- patternForDataString: `DecoratingTextFieldDelegate` will call this function passing current data string as a \
+	parameter every time the data string changes, the returned pattern will subsequently be used to format the data \
+	string passed.
+	- patternPlaceholderForDataCharacter: a character that is not a formatting character.
+	- isDataCharacter: a predicate to filter non-data characters from user's input. No matter what user tries to put \
+	into the textfield, only characters for which `isDataCharacter` returns `true` will appear in the text field.
+	## Example:
+	A 16-digit VISA payment card pattern might look like this `####-####-####-####` `'#'` is a
+	`patternPlaceholderForDataCharacter` and '`-`' is a formatting (decorating) character. Furthermore, to support \
+	various kinds of payment cards a more complex behaviour may need to be implemented where the first 6 digits of a \
+	payment card number will define total length and formatting pattern for any valid card number starting with those 6 \
+	digits. This behaviour can be implemented by using `patternForDataString`.
+	*/
 	public init(
 		patternForDataString: @escaping (String) -> String,
 		patternPlaceholderForDataCharacter: Character,
@@ -29,6 +58,10 @@ public final class DecoratingTextFieldDelegate: NSObject {
 		super.init()
 	}
 
+	/// - Parameters:
+	///		- dataString: a string conaining only data characters (see `isDataCharacter`).
+	/// - Returns: a representation of `dataString` formatted using a corresponding pattern obtained using \
+	/// `patternForDataString`.
 	public func decorateString(_ dataString: String) -> String {
 		var res = ""
 		let dataChars = dataString.characters
@@ -48,6 +81,7 @@ public final class DecoratingTextFieldDelegate: NSObject {
 		return res
 	}
 
+	/// Strips formatting (decoration) characters from the input string.
 	public func undecorateString(_ decoratedString: String) -> String {
 		var res = ""
 		for decoChar in decoratedString.characters {

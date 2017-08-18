@@ -4,6 +4,16 @@ import ReactiveSwift
 import Result
 
 public extension Signal {
+	/**
+	The original purpose of this method is to allow triggering animations in response to signal values.
+	- Returns: a signal of which observers will receive values in the context defined by `context` function.
+	- Parameters:
+		- context: defines a context in which observers of the resulting signal will be called.
+	## Example
+	The following code
+		self.constraint.reactive.constant <~ viewModel.constraintConstantValue.signal.observe(context: animatingContext)
+	will result in all changes to `constraintConstantValue` in `viewModel` to be reflected in the constraint and animated.
+	*/
 	public func observe(context: @escaping (@escaping () -> Void) -> Void) -> Signal<Value, Error> {
 		return Signal { observer in
 			return self.observe { event in
@@ -18,6 +28,7 @@ public extension Signal {
 	}
 }
 
+/// Use with `observe(context:)` function to animate all changes made by observers of the signal returned from `observe(context:)`.
 public func animatingContext(
 	_ duration: TimeInterval,
 	delay: TimeInterval = 0,
