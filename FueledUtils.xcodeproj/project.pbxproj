@@ -28,6 +28,7 @@
 		02DE3C571D25A24B002B58E2 /* DecoratingTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DE3C561D25A24B002B58E2 /* DecoratingTextFieldDelegate.swift */; };
 		02DF8ECB1E6464AB009AB29C /* ReactiveLifetimeProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DF8ECA1E6464AB009AB29C /* ReactiveLifetimeProvider.swift */; };
 		02E626091D340F0C0041E512 /* LoadingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E626081D340F0C0041E512 /* LoadingState.swift */; };
+		35996E0F1F55C3E1004D6AC0 /* FoundationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35996E0E1F55C3E1004D6AC0 /* FoundationExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		02DE3C561D25A24B002B58E2 /* DecoratingTextFieldDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DecoratingTextFieldDelegate.swift; sourceTree = "<group>"; };
 		02DF8ECA1E6464AB009AB29C /* ReactiveLifetimeProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactiveLifetimeProvider.swift; sourceTree = "<group>"; };
 		02E626081D340F0C0041E512 /* LoadingState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingState.swift; sourceTree = "<group>"; };
+		35996E0E1F55C3E1004D6AC0 /* FoundationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 				02DE3C381D258FD1002B58E2 /* SignalingAlert.swift */,
 				02DE3C3B1D258FD1002B58E2 /* StringExtensions.swift */,
 				02DE3C3A1D258FD1002B58E2 /* UIExtensions.swift */,
+				35996E0E1F55C3E1004D6AC0 /* FoundationExtensions.swift */,
 			);
 			path = FueledUtils;
 			sourceTree = "<group>";
@@ -210,6 +213,7 @@
 				02DE3C3C1D258FD1002B58E2 /* RACExtensions.swift in Sources */,
 				02DF8ECB1E6464AB009AB29C /* ReactiveLifetimeProvider.swift in Sources */,
 				0238E9351E69B53200BF26D4 /* ScrollViewPage.swift in Sources */,
+				35996E0F1F55C3E1004D6AC0 /* FoundationExtensions.swift in Sources */,
 				02DE3C4E1D259628002B58E2 /* LabelWithTitleAdjustment.swift in Sources */,
 				02DE3C461D25933E002B58E2 /* HairlineView.swift in Sources */,
 				02DE3C571D25A24B002B58E2 /* DecoratingTextFieldDelegate.swift in Sources */,
