@@ -21,9 +21,27 @@ public func animatingContext(
 			animations: {
 				animations()
 				layoutView?.layoutIfNeeded()
-		},
+			},
 			completion: completion)
-	}
+		}
+}
+
+public func transitionContext(
+	with view: UIView,
+	duration: TimeInterval,
+	delay: TimeInterval = 0,
+	options: UIViewAnimationOptions = [],
+	completion: ((Bool) -> Void)? = nil)
+	-> ((@escaping () -> Void) -> Void)
+{
+	return { animations in
+		UIView.transition(
+			with: view,
+			duration: duration,
+			options: options,
+			animations: animations,
+			completion: completion)
+		}
 }
 
 public extension SignalProtocol {
@@ -49,13 +67,47 @@ public extension SignalProtocol {
 			}
 		}
 	}
-	/// All events (except .interrupted) are send after the minimum interval.
+
+	/// All events (except .interrupted) are sent after the minimum interval.
 	/// If interrupted is received, the signal is interrupted (regardless of the interval), and
 	/// all values received beforehand are sent, after which `.interrupted` is sent.
+	///
 	/// This is different from `debounce` in the following way: if the signal sends values/error
 	/// before `interval` has passed, it will wait for `interval`, and then send all values in the
 	/// order they were received.
 	/// (With `debounce`, values received before `interval` are never sent, and errors are sent right away)
+	///
+	/// ### Example: ###
+	/// ````
+	/// // Make the action lasts at least 1.0, even if it takes less than that
+	/// let actionProducer = SignalProducer { ... }
+	/// let fetchAction = Action { actionProducer.minimum(interval: 1, on: QueueScheduler.main) }
+	/// // The activity indicator will display for at least 1 second
+	/// self.activityIndicator.reactive.isHidden <~ fetchAction.isExecuting.negate()
+	/// self.activityIndicator.reactive.isAnimating <~ fetchAction.isExecuting/
+	/// // Or making sure that we don't perform segues too early
+	/// <viewController>.reactive.performSegue <~ fetchAction.values.map { ("myAwesomeSuccessSegue", nil) }
+	/// <viewController>.reactive.performSegue <~ fetchAction.errors.map { ("myAwesomeFailureSegue", nil) }
+	/// ````
+	///
+	/// - seealso: `debounce`, `throttle`
+	///
+	/// - note: If multiple values are received before the interval has elapsed,
+	///         they will all be sent at once.
+	///
+	/// - note: If the input signal terminates while a value is being debounced, 
+	///         that value will be discarded and the returned signal will 
+	///         terminate immediately.
+	///
+	/// - precondition: `interval` must be non-negative number.
+	///
+	/// - parameters:
+	///   - interval: A number of seconds to wait before sending a value.
+	///   - scheduler: A scheduler to send values on.
+	///
+	/// - returns: A signal that sends values that are sent from `self` at least
+	///            `interval` seconds apart.
+	///
 	func minimum(interval: TimeInterval, on scheduler: DateScheduler) -> Signal<Value, Error> {
 		return Signal { observer in
 			let semaphore = DispatchSemaphore(value: 1)
@@ -105,6 +157,7 @@ public extension SignalProducerProtocol {
 	public func observe(context: @escaping (@escaping () -> Void) -> Void) -> SignalProducer<Value, Error> {
 		return self.producer.lift { $0.observe(context: context) }
 	}
+	/// See `Signal.minimum` for documentation
 	func minimum(interval: TimeInterval, on scheduler: DateScheduler) -> SignalProducer<Value, Error> {
 		return self.producer.lift { $0.minimum(interval: interval, on: scheduler) }
 	}
