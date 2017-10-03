@@ -46,8 +46,11 @@ open class LabelWithTitleAdjustment: UILabel {
 		paragraphStyle.alignment = self.textAlignment
 		let attributedString = NSMutableAttributedString(attributedString: text)
 		attributedString.addAttributes(
-			[NSParagraphStyleAttributeName: paragraphStyle, NSKernAttributeName: self.adjustmentKerning],
-			range: NSRange(location: 0, length:  attributedString.string.characters.count))
+			[
+				NSAttributedStringKey.paragraphStyle: paragraphStyle,
+				NSAttributedStringKey.kern: self.adjustmentKerning,
+			],
+			range: NSRange(location: 0, length: attributedString.string.utf16.count))
 		self.attributedText = attributedString
 	}
 
