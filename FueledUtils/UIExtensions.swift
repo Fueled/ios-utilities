@@ -16,9 +16,9 @@ public extension UIColor {
 		guard let match = regex.firstMatch(in: hexString, options: [], range: hexString.fullRange) , match.numberOfRanges == 4 else {
 			return nil
 		}
-		let redString = (hexString as NSString).substring(with: match.rangeAt(1))
-		let greenString = (hexString as NSString).substring(with: match.rangeAt(2))
-		let blueString = (hexString as NSString).substring(with: match.rangeAt(3))
+		let redString = (hexString as NSString).substring(with: match.range(at: 1))
+		let greenString = (hexString as NSString).substring(with: match.range(at: 2))
+		let blueString = (hexString as NSString).substring(with: match.range(at: 3))
 		guard let red = Int(redString, radix: 16), let green = Int(greenString, radix: 16), let blue = Int(blueString, radix: 16) else {
 			return nil
 		}
@@ -30,9 +30,9 @@ public extension UILabel {
 	public func useMonospacedNumbers() {
 		let fontDescriptor = self.font.fontDescriptor
 		let newFontDescriptor = fontDescriptor.addingAttributes([
-			UIFontDescriptorFeatureSettingsAttribute: [[
-				UIFontFeatureTypeIdentifierKey: kNumberSpacingType,
-				UIFontFeatureSelectorIdentifierKey: kMonospacedNumbersSelector
+			UIFontDescriptor.AttributeName.featureSettings: [[
+				UIFontDescriptor.FeatureKey.featureIdentifier: kNumberSpacingType,
+				UIFontDescriptor.FeatureKey.typeIdentifier: kMonospacedNumbersSelector
 			]]
 		])
 		self.font = UIFont(descriptor: newFontDescriptor, size: self.font.pointSize)
@@ -81,8 +81,9 @@ public extension UITextField {
 		}
 		set {
 			if let color = newValue, let placeholder = self.placeholder {
-				let placeholderAttributes = [NSForegroundColorAttributeName: color]
-				attributedPlaceholder = NSAttributedString(string: placeholder, attributes: placeholderAttributes)
+				attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [
+					NSAttributedStringKey.foregroundColor: color
+				])
 			}
 		}
 	}

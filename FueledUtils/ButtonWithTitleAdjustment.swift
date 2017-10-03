@@ -44,12 +44,12 @@ open class ButtonWithTitleAdjustment: UIButton {
 		let adjustedString = title.map { title -> NSAttributedString in
 			let paragraphStyle = NSMutableParagraphStyle()
 			paragraphStyle.lineSpacing = self.adjustmentLineSpacing
-			var attributes: [String : Any] = [
-				NSParagraphStyleAttributeName: paragraphStyle,
-				NSKernAttributeName: self.adjustmentKerning,
+			var attributes: [NSAttributedStringKey: Any] = [
+				NSAttributedStringKey.paragraphStyle: paragraphStyle,
+				NSAttributedStringKey.kern: self.adjustmentKerning,
 			]
 			if let titleColor = self.titleColor(for: state) {
-				attributes[NSForegroundColorAttributeName] = titleColor
+				attributes[NSAttributedStringKey.foregroundColor] = titleColor
 			}
 			return NSAttributedString(string: title, attributes: attributes)
 		}
