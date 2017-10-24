@@ -24,6 +24,16 @@ open class LabelWithTitleAdjustment: UILabel {
 		}
 	}
 
+	override open var attributedText: NSAttributedString? {
+		get {
+			return super.attributedText
+		}
+		set {
+			super.attributedText = newValue
+			self.setAdjustedAttributedText(newValue)
+		}
+	}
+
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 		self.setAdjustedText(self.text)
@@ -36,7 +46,7 @@ open class LabelWithTitleAdjustment: UILabel {
 
 	private func setAdjustedAttributedText(_ text: NSAttributedString?) {
 		guard let text = text else {
-			self.attributedText = nil
+			super.attributedText = nil
 			return
 		}
 
@@ -51,7 +61,7 @@ open class LabelWithTitleAdjustment: UILabel {
 				NSAttributedStringKey.kern: self.adjustmentKerning,
 			],
 			range: NSRange(location: 0, length: attributedString.string.utf16.count))
-		self.attributedText = attributedString
+		super.attributedText = attributedString
 	}
 
 	private func setAdjustedText(_ text: String?) {
