@@ -3,7 +3,7 @@ import UIKit
 
 /// Binds keyboard appearance and metrics to scroll view content and scroll bar insets and/or a layout constraint \
 /// relative to reference view. This object can be created and linked in a sotryboard.
-public final class KeyboardInsetHelper: NSObject {
+open class KeyboardInsetHelper: NSObject {
 	/// Minimum inset
 	@IBInspectable public var baseInset: CGFloat = 0
 	/// The inset and constraint constant will be calculated in the coordinates of this view.
@@ -61,7 +61,7 @@ public final class KeyboardInsetHelper: NSObject {
 		)
 	}
 
-	public func updateForInset(_ inset: CGFloat) {
+	open func updateForInset(_ inset: CGFloat) {
 		scrollView?.contentInset.bottom = inset
 		scrollView?.scrollIndicatorInsets.bottom = inset
 		constraint?.constant = inset
