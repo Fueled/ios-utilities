@@ -3,7 +3,7 @@ import UIKit
 
 public extension UIApplicationDelegate {
 	/// Switches root view controller avoiding common problems of unintended animations.
-	public func setRootViewController(_ viewController: UIViewController, setWindow: (UIWindow) -> Void, completion: (Void) -> Void = {}) {
+	public func setRootViewController(_ viewController: UIViewController, setWindow: (UIWindow) -> Void, completion: @escaping () -> Void = {}) {
 		if let optionalWindow = self.window, let window = optionalWindow {
 			UIView.transition(
 				with: window,
