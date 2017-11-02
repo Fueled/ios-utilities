@@ -56,13 +56,13 @@ public extension SignalProtocol {
 	will result in all changes to `constraintConstantValue` in `viewModel` to be reflected in the constraint and animated.
 	*/
 	public func observe(context: @escaping (@escaping () -> Void) -> Void) -> Signal<Value, Error> {
-		return Signal { observer in
-			return self.signal.observe { event in
+		return Signal { observer, disposable in
+			disposable += self.signal.observe { event in
 				switch event {
 				case .value:
-					context({ observer.action(event) })
+					context({ observer.send(event) })
 				default:
-					observer.action(event)
+					observer.send(event)
 				}
 			}
 		}
@@ -109,14 +109,13 @@ public extension SignalProtocol {
 	///            `interval` seconds apart.
 	///
 	func minimum(interval: TimeInterval, on scheduler: DateScheduler) -> Signal<Value, Error> {
-		return Signal { observer in
+		return Signal { observer, disposable in
 			let semaphore = DispatchSemaphore(value: 1)
 			var events: [Signal<Value, Error>.Event] = []
 			var forwardEvents = false
-			let disposable = CompositeDisposable()
 			func sendEvents() {
 				semaphore.wait()
-				events.forEach { observer.action($0) }
+				events.forEach { observer.send($0) }
 				events.removeAll()
 				forwardEvents = true
 				semaphore.signal()
@@ -127,18 +126,17 @@ public extension SignalProtocol {
 			disposable += self.signal.observe { event in
 				if case .interrupted = event {
 					sendEvents()
-					observer.action(event)
+					observer.send(event)
 					return
 				}
 				if forwardEvents {
-					observer.action(event)
+					observer.send(event)
 				} else {
 					semaphore.wait()
 					events.append(event)
 					semaphore.signal()
 				}
 			}
-			return disposable
 		}
 	}
 }
