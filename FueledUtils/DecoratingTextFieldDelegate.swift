@@ -64,16 +64,15 @@ public final class DecoratingTextFieldDelegate: NSObject {
 	/// `patternForDataString`.
 	public func decorateString(_ dataString: String) -> String {
 		var res = ""
-		let dataChars = dataString.characters
-		var dataIndex = dataChars.startIndex
+		var dataIndex = dataString.startIndex
 		let pattern = self.patternForDataString(dataString)
-		for patternChar in pattern.characters {
+		for patternChar in pattern {
 			if patternChar == patternPlaceholderForDataCharacter {
-				if dataIndex == dataChars.endIndex {
+				if dataIndex == dataString.endIndex {
 					return res
 				}
-				res += String(dataChars[dataIndex])
-				dataIndex = dataChars.index(after: dataIndex)
+				res += String(dataString[dataIndex])
+				dataIndex = dataString.index(after: dataIndex)
 			} else {
 				res += String(patternChar)
 			}
@@ -84,7 +83,7 @@ public final class DecoratingTextFieldDelegate: NSObject {
 	/// Strips formatting (decoration) characters from the input string.
 	public func undecorateString(_ decoratedString: String) -> String {
 		var res = ""
-		for decoChar in decoratedString.characters {
+		for decoChar in decoratedString {
 			if isDataCharacter(decoChar) {
 				res += String(decoChar)
 			}
@@ -106,7 +105,7 @@ public final class DecoratingTextFieldDelegate: NSObject {
 		}
 		var res = 0
 		var prefixLength = dataLocation
-		for decoChar in decoratedString.characters {
+		for decoChar in decoratedString {
 			let characterLength = String(decoChar).nsLength
 			if isDataCharacter(decoChar) {
 				if prefixLength <= 0 {
