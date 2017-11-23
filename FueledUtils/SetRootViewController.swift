@@ -12,6 +12,7 @@ public extension UIApplicationDelegate {
 				animations: {
 					UIView.setAnimationsEnabled(false)
 					window.endEditing(true)
+					
 					window.rootViewController = viewController
 					window.layoutIfNeeded()
 					UIView.setAnimationsEnabled(true)

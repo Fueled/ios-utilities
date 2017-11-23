@@ -21,7 +21,7 @@ public final class SignalingAlert<T> {
 
 	public func addAction(title: String, style: UIAlertActionStyle, event: Signal<T, NoError>.Event) {
 		controller.addAction(UIAlertAction(title: title, style: style) { [observer] _ in
-			observer.action(event)
+			observer.send(event)
 		})
 	}
 
