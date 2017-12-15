@@ -24,4 +24,54 @@ public extension String {
 			}
 		} while range != nil
 	}
+	
+	// 2...5
+	public subscript(_ range: CountableClosedRange<Int>) -> String {
+		get {
+			let i = index(startIndex, offsetBy: range.lowerBound)
+			let j = index(startIndex, offsetBy: range.upperBound)
+			return self[i...j].string
+		}
+	}
+	
+	// 2..<5
+	public subscript(_ range: CountableRange<Int>) -> String {
+		get {
+			let i = index(startIndex, offsetBy: range.lowerBound)
+			let j = index(startIndex, offsetBy: range.upperBound)
+			return self[i..<j].string
+		}
+	}
+	
+	// ...5
+	public subscript(_ range: PartialRangeThrough<Int>) -> String {
+		get {
+			let i = startIndex
+			let j = index(startIndex, offsetBy: range.upperBound)
+			return self[i...j].string
+		}
+	}
+	
+	// ..<5
+	public subscript(_ range: PartialRangeUpTo<Int>) -> String {
+		get {
+			let i = startIndex
+			let j = index(startIndex, offsetBy: range.upperBound)
+			return self[i..<j].string
+		}
+	}
+	
+	// 5...
+	public subscript(_ range: PartialRangeFrom<Int>) -> String {
+		get {
+			let i = index(startIndex, offsetBy: range.lowerBound)
+			let j = endIndex
+			return self[i...j].string
+		}
+	}
+}
+
+public extension Substring {
+	
+	public var string: String { return String(self) }
 }
