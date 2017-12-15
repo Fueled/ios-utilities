@@ -28,8 +28,8 @@ public extension String {
 	// 2...5
 	public subscript(_ range: CountableClosedRange<Int>) -> String {
 		get {
-			let i = index(startIndex, offsetBy: range.lowerBound)
-			let j = index(startIndex, offsetBy: range.upperBound)
+			let i = stringIndex(range.lowerBound)
+			let j = stringIndex(range.upperBound)
 			return self[i...j].string
 		}
 	}
@@ -37,8 +37,8 @@ public extension String {
 	// 2..<5
 	public subscript(_ range: CountableRange<Int>) -> String {
 		get {
-			let i = index(startIndex, offsetBy: range.lowerBound)
-			let j = index(startIndex, offsetBy: range.upperBound)
+			let i = stringIndex(range.lowerBound)
+			let j = stringIndex(range.upperBound)
 			return self[i..<j].string
 		}
 	}
@@ -46,28 +46,29 @@ public extension String {
 	// ...5
 	public subscript(_ range: PartialRangeThrough<Int>) -> String {
 		get {
-			let i = startIndex
-			let j = index(startIndex, offsetBy: range.upperBound)
-			return self[i...j].string
+			let j = stringIndex(range.upperBound)
+			return prefix(through: j).string
 		}
 	}
 	
 	// ..<5
 	public subscript(_ range: PartialRangeUpTo<Int>) -> String {
 		get {
-			let i = startIndex
-			let j = index(startIndex, offsetBy: range.upperBound)
-			return self[i..<j].string
+			let j = stringIndex(range.upperBound)
+			return prefix(upTo: j).string
 		}
 	}
 	
 	// 5...
 	public subscript(_ range: PartialRangeFrom<Int>) -> String {
 		get {
-			let i = index(startIndex, offsetBy: range.lowerBound)
-			let j = endIndex
-			return self[i...j].string
+			let i = stringIndex(range.lowerBound)
+			return suffix(from: i).string
 		}
+	}
+	
+	public func stringIndex(_ idx: Int) -> String.Index {
+		return index(startIndex, offsetBy: idx)
 	}
 }
 
