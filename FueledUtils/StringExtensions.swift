@@ -24,4 +24,51 @@ public extension String {
 			}
 		} while range != nil
 	}
+	
+	// 2...5
+	public subscript(_ range: CountableClosedRange<Int>) -> String {
+		get {
+			let i = stringIndex(range.lowerBound)
+			let j = stringIndex(range.upperBound)
+			return String(self[i...j])
+		}
+	}
+	
+	// 2..<5
+	public subscript(_ range: CountableRange<Int>) -> String {
+		get {
+			let i = stringIndex(range.lowerBound)
+			let j = stringIndex(range.upperBound)
+			return String(self[i..<j])
+		}
+	}
+	
+	// ...5
+	public subscript(_ range: PartialRangeThrough<Int>) -> String {
+		get {
+			let j = stringIndex(range.upperBound)
+			return String(prefix(through: j))
+		}
+	}
+	
+	// ..<5
+	public subscript(_ range: PartialRangeUpTo<Int>) -> String {
+		get {
+			let j = stringIndex(range.upperBound)
+			return String(prefix(upTo: j))
+		}
+	}
+	
+	// 5...
+	public subscript(_ range: PartialRangeFrom<Int>) -> String {
+		get {
+			let i = stringIndex(range.lowerBound)
+			return String(suffix(from: i))
+		}
+	}
+	
+	public func stringIndex(_ idx: Int) -> String.Index {
+		return index(startIndex, offsetBy: idx)
+	}
 }
+
