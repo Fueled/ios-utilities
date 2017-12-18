@@ -30,7 +30,7 @@ public extension String {
 		get {
 			let i = stringIndex(range.lowerBound)
 			let j = stringIndex(range.upperBound)
-			return self[i...j].string
+			return String(self[i...j])
 		}
 	}
 	
@@ -39,7 +39,7 @@ public extension String {
 		get {
 			let i = stringIndex(range.lowerBound)
 			let j = stringIndex(range.upperBound)
-			return self[i..<j].string
+			return String(self[i..<j])
 		}
 	}
 	
@@ -47,7 +47,7 @@ public extension String {
 	public subscript(_ range: PartialRangeThrough<Int>) -> String {
 		get {
 			let j = stringIndex(range.upperBound)
-			return prefix(through: j).string
+			return String(prefix(through: j))
 		}
 	}
 	
@@ -55,7 +55,7 @@ public extension String {
 	public subscript(_ range: PartialRangeUpTo<Int>) -> String {
 		get {
 			let j = stringIndex(range.upperBound)
-			return prefix(upTo: j).string
+			return String(prefix(upTo: j))
 		}
 	}
 	
@@ -63,7 +63,7 @@ public extension String {
 	public subscript(_ range: PartialRangeFrom<Int>) -> String {
 		get {
 			let i = stringIndex(range.lowerBound)
-			return suffix(from: i).string
+			return String(suffix(from: i))
 		}
 	}
 	
@@ -72,7 +72,3 @@ public extension String {
 	}
 }
 
-public extension Substring {
-	
-	public var string: String { return String(self) }
-}
