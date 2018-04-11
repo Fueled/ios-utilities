@@ -1,4 +1,5 @@
 import Foundation
+import ReactiveSwift
 import UIKit
 
 /// Binds keyboard appearance and metrics to scroll view content and scroll bar insets and/or a layout constraint \
@@ -14,8 +15,14 @@ open class KeyboardInsetHelper: NSObject {
 	/// When the keyboard appears or disappears, the constraint's constant will be set to the distance between the bottom of the \
 	/// reference view and the top of the keyboard but no less than `baseInset`.
 	@IBOutlet public weak var constraint: NSLayoutConstraint?
+	/// This property is automatically updated based on the current inset calculated by the inset helper.
+	/// It it changed right before the referenceView's is called.
+	public let keyboardInset: Property<CGFloat>
+
+	private let keyboardInsetMutable = MutableProperty<CGFloat>(0.0)
 
 	public override init() {
+		self.keyboardInset = Property(self.keyboardInsetMutable)
 		super.init()
 		let nc = NotificationCenter.default
 		nc.addObserver(
@@ -65,6 +72,7 @@ open class KeyboardInsetHelper: NSObject {
 		scrollView?.contentInset.bottom = inset
 		scrollView?.scrollIndicatorInsets.bottom = inset
 		constraint?.constant = inset
+		keyboardInsetMutable.value = inset
 		referenceView?.layoutIfNeeded()
 	}
 }
