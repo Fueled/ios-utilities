@@ -34,6 +34,12 @@ open class KeyboardInsetHelper: NSObject {
 		nc.addObserver(
 			self,
 			selector: #selector(handleKeyboardNotification(_:)),
+			name: NSNotification.Name.UIKeyboardWillChangeFrame,
+			object: nil
+		)
+		nc.addObserver(
+			self,
+			selector: #selector(handleKeyboardNotification(_:)),
 			name: NSNotification.Name.UIKeyboardWillHide,
 			object: nil
 		)
@@ -42,6 +48,7 @@ open class KeyboardInsetHelper: NSObject {
 	deinit {
 		let nc = NotificationCenter.default
 		nc.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+		nc.removeObserver(self, name: NSNotification.Name.UIKeyboardWillChangeFrame, object: nil)
 		nc.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
 	}
 
