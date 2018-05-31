@@ -172,7 +172,7 @@ public extension UIImage {
 	}
 
 	public static func roundedRectStretchableImage(
-		_ borderColor: UIColor,
+		borderColor: UIColor,
 		backgroundColor: UIColor = .clear,
 		lineWidth: CGFloat,
 		radius: CGFloat,
