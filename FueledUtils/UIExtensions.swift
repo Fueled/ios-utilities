@@ -160,4 +160,40 @@ public extension UIImage {
 			self.draw(in: CGRect(origin: offset, size: size))
 		}
 	}
+
+	public static func imageWithColor(_ color: UIColor) -> UIImage {
+		let size = CGSize(width: 1, height: 1)
+
+		let image = UIImage.draw(size: size, scale: 1) { _ in
+			color.setFill()
+			UIRectFill(CGRect(origin: .zero, size: size))
+		}
+		return image
+	}
+
+	public static func roundedRectStretchableImage(
+		_ borderColor: UIColor,
+		backgroundColor: UIColor = .clear,
+		lineWidth: CGFloat,
+		radius: CGFloat,
+		scale: CGFloat = UIScreen.main.scale)
+		-> UIImage
+	{
+		let stretchableAreaSize: CGFloat = 1
+		let canvasSize = CGSize(width: radius * 2 + stretchableAreaSize, height: radius * 2 + stretchableAreaSize)
+		let roundedRectSize = CGSize(width: canvasSize.width - lineWidth, height: canvasSize.height - lineWidth)
+
+		let image = UIImage.draw(size: canvasSize, scale: scale) { _ in
+			backgroundColor.setFill()
+			borderColor.setStroke()
+
+			let bezierPath = UIBezierPath(roundedRect: CGRect(origin: CGPoint(x: lineWidth / 2, y: lineWidth / 2), size: roundedRectSize), cornerRadius: radius)
+			bezierPath.lineWidth = lineWidth
+			bezierPath.fill()
+			bezierPath.stroke()
+		}
+
+		let capInset = radius + 0.5 * lineWidth
+		return image.resizableImage(withCapInsets: .init(top: capInset, left: capInset, bottom: capInset, right: capInset), resizingMode: .stretch)
+	}
 }
