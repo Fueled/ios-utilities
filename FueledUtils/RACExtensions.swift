@@ -7,7 +7,7 @@ import Result
 public func animatingContext(
 	_ duration: TimeInterval,
 	delay: TimeInterval = 0,
-	options: UIViewAnimationOptions = [],
+	options: UIView.AnimationOptions = [],
 	layoutView: UIView? = nil,
 	completion: ((Bool) -> Void)? = nil)
 	-> ((@escaping () -> Void) -> Void)
@@ -30,7 +30,7 @@ public func transitionContext(
 	with view: UIView,
 	duration: TimeInterval,
 	delay: TimeInterval = 0,
-	options: UIViewAnimationOptions = [],
+	options: UIView.AnimationOptions = [],
 	completion: ((Bool) -> Void)? = nil)
 	-> ((@escaping () -> Void) -> Void)
 {

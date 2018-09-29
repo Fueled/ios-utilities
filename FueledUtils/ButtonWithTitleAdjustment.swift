@@ -23,33 +23,33 @@ open class ButtonWithTitleAdjustment: UIButton {
 		self.updateAdjustedTitles()
 	}
 
-	override open func setTitleColor(_ color: UIColor?, for state: UIControlState) {
+	override open func setTitleColor(_ color: UIColor?, for state: UIControl.State) {
 		super.setTitleColor(color, for: state)
 		self.updateAdjustedTitles()
 	}
 
-	override open func setTitle(_ title: String?, for state: UIControlState) {
+	override open func setTitle(_ title: String?, for state: UIControl.State) {
 		super.setTitle(title, for: state)
 		self.updateAdjustedTitles()
 	}
 
 	private func updateAdjustedTitles() {
-		let states: [UIControlState] = [.normal, .highlighted, .selected, .disabled, [.selected, .highlighted], [.selected, .disabled]]
+		let states: [UIControl.State] = [.normal, .highlighted, .selected, .disabled, [.selected, .highlighted], [.selected, .disabled]]
 		for state in states {
 			self.setAdjustedTitle(self.title(for: state), for: state)
 		}
 	}
 
-	private func setAdjustedTitle(_ title: String?, for state: UIControlState) {
+	private func setAdjustedTitle(_ title: String?, for state: UIControl.State) {
 		let adjustedString = title.map { title -> NSAttributedString in
 			let paragraphStyle = NSMutableParagraphStyle()
 			paragraphStyle.lineSpacing = self.adjustmentLineSpacing
-			var attributes: [NSAttributedStringKey: Any] = [
-				NSAttributedStringKey.paragraphStyle: paragraphStyle,
-				NSAttributedStringKey.kern: self.adjustmentKerning,
+			var attributes: [NSAttributedString.Key: Any] = [
+				NSAttributedString.Key.paragraphStyle: paragraphStyle,
+				NSAttributedString.Key.kern: self.adjustmentKerning,
 			]
 			if let titleColor = self.titleColor(for: state) {
-				attributes[NSAttributedStringKey.foregroundColor] = titleColor
+				attributes[NSAttributedString.Key.foregroundColor] = titleColor
 			}
 			return NSAttributedString(string: title, attributes: attributes)
 		}

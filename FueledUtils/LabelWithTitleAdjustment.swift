@@ -57,8 +57,8 @@ open class LabelWithTitleAdjustment: UILabel {
 		let attributedString = NSMutableAttributedString(attributedString: text)
 		attributedString.addAttributes(
 			[
-				NSAttributedStringKey.paragraphStyle: paragraphStyle,
-				NSAttributedStringKey.kern: self.adjustmentKerning,
+				NSAttributedString.Key.paragraphStyle: paragraphStyle,
+				NSAttributedString.Key.kern: self.adjustmentKerning,
 			],
 			range: NSRange(location: 0, length: attributedString.string.utf16.count))
 		super.attributedText = attributedString
