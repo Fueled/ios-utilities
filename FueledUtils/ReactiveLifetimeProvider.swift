@@ -12,7 +12,7 @@ open class Lifetimed: ReactiveLifetimeProvider {
 	}
 }
 
-public extension Reactive where Base: ReactiveLifetimeProvider {
+public extension Reactive where Base: AnyObject, Base: ReactiveLifetimeProvider {
 	public var lifetime: Lifetime {
 		return Lifetime(self.base.lifetimeToken)
 	}

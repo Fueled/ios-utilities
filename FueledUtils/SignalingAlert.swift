@@ -11,7 +11,7 @@ public final class SignalingAlert<T> {
 	public let signal: Signal<T, NoError>
 	fileprivate let observer: Signal<T, NoError>.Observer
 
-	public init(title: String?, message: String?, preferredStyle: UIAlertControllerStyle) {
+	public init(title: String?, message: String?, preferredStyle: UIAlertController.Style) {
 		(signal, observer) = Signal<T, NoError>.pipe()
 		controller = UIAlertController(title: title, message: message, preferredStyle: preferredStyle)
 		controller.reactive.lifetime.ended.observeCompleted { [observer] in
@@ -19,13 +19,13 @@ public final class SignalingAlert<T> {
 		}
 	}
 
-	public func addAction(title: String, style: UIAlertActionStyle, event: Signal<T, NoError>.Event) {
+	public func addAction(title: String, style: UIAlertAction.Style, event: Signal<T, NoError>.Event) {
 		controller.addAction(UIAlertAction(title: title, style: style) { [observer] _ in
 			observer.send(event)
 		})
 	}
 
-	public func addAction(title: String, style: UIAlertActionStyle, value: T) {
+	public func addAction(title: String, style: UIAlertAction.Style, value: T) {
 		controller.addAction(UIAlertAction(title: title, style: style) { [observer] _ in
 			observer.send(value: value)
 			observer.sendCompleted()
@@ -35,7 +35,7 @@ public final class SignalingAlert<T> {
 	public static func producer(
 		title: String? = nil,
 		message: String? = nil,
-		preferredStyle: UIAlertControllerStyle,
+		preferredStyle: UIAlertController.Style,
 		presentingController: UIViewController,
 		sourceView: UIView,
 		configure: @escaping (SignalingAlert) -> () = { _ in })

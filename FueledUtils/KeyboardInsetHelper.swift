@@ -21,32 +21,32 @@ open class KeyboardInsetHelper: NSObject {
 		nc.addObserver(
 			self,
 			selector: #selector(handleKeyboardNotification(_:)),
-			name: NSNotification.Name.UIKeyboardWillShow,
+			name: UIResponder.keyboardWillShowNotification,
 			object: nil
 		)
 		nc.addObserver(
 			self,
 			selector: #selector(handleKeyboardNotification(_:)),
-			name: NSNotification.Name.UIKeyboardWillHide,
+			name: UIResponder.keyboardWillHideNotification,
 			object: nil
 		)
 	}
 
 	deinit {
 		let nc = NotificationCenter.default
-		nc.removeObserver(self, name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-		nc.removeObserver(self, name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+		nc.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+		nc.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
 	}
 
 	@objc fileprivate func handleKeyboardNotification(_ notification: Notification) {
 		guard let referenceView = referenceView,
 			let userInfo = (notification as NSNotification).userInfo,
-			let curve = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? UInt,
-			let duration = userInfo[UIKeyboardAnimationDurationUserInfoKey] as? Double,
-			let keyboardFrameValue = userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue
+			let curve = userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? UInt,
+			let duration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double,
+			let keyboardFrameValue = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue
 			else { return }
 		let keyboardFrame = referenceView.convert(keyboardFrameValue.cgRectValue, from: referenceView.window)
-		let curveOption = UIViewAnimationOptions(rawValue: curve << 16)
+		let curveOption = UIView.AnimationOptions(rawValue: curve << 16)
 		let animationOptions = curveOption.union(.beginFromCurrentState)
 		let inset = max(baseInset, referenceView.bounds.maxY - keyboardFrame.minY)
 		UIView.performWithoutAnimation {

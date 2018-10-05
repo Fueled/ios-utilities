@@ -82,7 +82,7 @@ public extension UITextField {
 		set {
 			if let color = newValue, let placeholder = self.placeholder {
 				attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [
-					NSAttributedStringKey.foregroundColor: color
+					NSAttributedString.Key.foregroundColor: color
 				])
 			}
 		}
