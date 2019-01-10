@@ -18,5 +18,5 @@ Pod::Spec.new do |s|
 
 	s.source_files = "FueledUtils/*.swift"
 
-	s.dependency "ReactiveCocoa", "~> 7.0"
+	s.dependency "ReactiveCocoa", "~> 8.0"
 end
