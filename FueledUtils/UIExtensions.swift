@@ -103,7 +103,7 @@ public extension UIActivityIndicatorView {
 		}
 	}
 
-	@nonobjc public var animating: Bool {
+	public var animating: Bool {
 		get {
 			return self.isAnimating
 		}

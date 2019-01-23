@@ -53,7 +53,7 @@ public extension UIScrollView {
 	///
 	/// - Returns: Returns the current page (0-based)
 	///
-	@nonobjc public var currentPage: Int {
+	public var currentPage: Int {
 		get {
 			let page = Int((self.bounds.size.width / self.contentOffset.x).rounded())
 			return min(max(0, page), self.numberOfPages - 1)
@@ -68,7 +68,7 @@ public extension UIScrollView {
 	///
 	/// - Returns: Returns the number of pages.
 	///
-	@nonobjc public var numberOfPages: Int {
+	public var numberOfPages: Int {
 		return Int((self.bounds.size.width / self.contentSize.width).rounded(.up))
 	}
 
@@ -79,7 +79,7 @@ public extension UIScrollView {
 	///   - page: The page to set to.
 	///   - animated: Whether to animate the change or not.
 	///
-	@nonobjc public func setCurrentPage(_ page: Int, animated: Bool) {
+	public func setCurrentPage(_ page: Int, animated: Bool) {
 		let offset = CGPoint(x: self.bounds.size.width * CGFloat(page), y: 0)
 		self.setContentOffset(offset, animated: animated)
 	}
