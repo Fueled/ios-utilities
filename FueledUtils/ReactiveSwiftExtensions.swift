@@ -18,6 +18,13 @@ import ReactiveSwift
 import Result
 
 extension SignalProtocol {
+	///
+	/// Make the `Signal` output optional `Value`.
+	///
+	public func promoteOptional() -> Signal<Value?, Error> {
+		return self.signal.map { $0 }
+	}
+
 	/// The original purpose of this method is to allow triggering animations in response to signal values.
 	///
 	/// - Parameters:
@@ -118,6 +125,20 @@ extension SignalProtocol {
 
 extension SignalProducerProtocol {
 	///
+	/// Make the `SignalProducer` output optional `Value`.
+	///
+	public func promoteOptional() -> SignalProducer<Value?, Error> {
+		return self.producer.lift { $0.promoteOptional() }
+	}
+
+	///
+	/// Make the `Signal` output optional `Value`, and prefix it with `nil`.
+	///
+	public func prefixNil() -> SignalProducer<Value?, Error> {
+		return self.producer.promoteOptional().prefix(value: nil)
+	}
+
+	///
 	/// Returns a SignalProducer which cannot fail. Errors that would be otherwise be sent in the original producer are ignored.
 	///
 	public func ignoreError() -> SignalProducer<Value, NoError> {
@@ -148,6 +169,15 @@ extension SignalProducerProtocol {
 	///
 	public func minimum(interval: TimeInterval, on scheduler: DateScheduler) -> SignalProducer<Value, Error> {
 		return self.producer.lift { $0.minimum(interval: interval, on: scheduler) }
+	}
+}
+
+extension PropertyProtocol {
+	///
+	/// Make the `Property` have an optional `Value`.
+	///
+	public func promoteOptional() -> Property<Value?> {
+		return Property(initial: self.value, then: self.signal)
 	}
 }
 
