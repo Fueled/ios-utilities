@@ -67,7 +67,7 @@ public enum LoadingState<Error: Swift.Error> {
 	}
 }
 
-extension Action {
+extension ActionProtocol {
 	///
 	/// **Deprecated**: Please use `getSafely(at:)` instead.
 	///
@@ -76,7 +76,7 @@ extension Action {
 	@available(*, deprecated, renamed: "loadingState")
 	// The unused parameter allows to bypass the compiler error "Invalid redeclaration of 'loadingState'",
 	// while retaining backward compatibility
-	public func loadingState(_ unused: Void = ()) -> SignalProducer<LoadingState<Error>, NoError> {
+	public func loadingState(_ unused: Void = ()) -> SignalProducer<LoadingState<ErrorType>, NoError> {
 		return self.loadingState
 	}
 
@@ -84,12 +84,11 @@ extension Action {
 	/// Returns a `SignalProducer` whose events corresponds to the current loading state of the action.
 	/// Please refer to `LoadingState` for more info.
 	///
-	public var loadingState: SignalProducer<LoadingState<Error>, NoError> {
+	public var loadingState: SignalProducer<LoadingState<ErrorType>, NoError> {
 		let loading = self.isExecuting.producer
 			.filter { $0 }
-			.map { _ in LoadingState<Error>.loading }
-		let eventStates = self.events.map {
-			(event: Signal<Output, Error>.Event) -> LoadingState<Error> in
+			.map { _ in LoadingState<ErrorType>.loading }
+		let eventStates = self.events.map { (event: Signal<OutputType, ErrorType>.Event) -> LoadingState<ErrorType> in
 			switch event {
 			case .failed(let error):
 				return .failed(error: error)

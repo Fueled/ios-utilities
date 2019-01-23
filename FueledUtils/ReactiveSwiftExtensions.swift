@@ -243,3 +243,18 @@ infix operator <~> : AssignmentPrecedence
 	}
 	return disposable
 }
+
+extension ActionProtocol {
+	///
+	/// A signal of all values or errors generated from all units of work of the `Action`.
+	///
+	/// In other words, this sends every `Result` from every unit of work that the `Action`
+	/// executes.
+	///
+	public var results: Signal<Result<OutputType, ErrorType>, NoError> {
+		return Signal.merge(
+			self.values.map { .success($0) },
+			self.errors.map { .failure($0) }
+		)
+	}
+}

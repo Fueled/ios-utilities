@@ -32,6 +32,7 @@
 		DFA57F0621E7A64200467647 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA57F0521E7A64200467647 /* GradientView.swift */; };
 		F40C574821F9182B0006FB3F /* TransferState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40C574721F9182B0006FB3F /* TransferState.swift */; };
 		F40C574221F9092A0006FB3F /* ReactiveCocoaExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40C574121F909290006FB3F /* ReactiveCocoaExtensions.swift */; };
+		F40C574421F909A60006FB3F /* ActionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40C574321F909A60006FB3F /* ActionProtocol.swift */; };
 		F4A619551F47263100777BB2 /* CollectionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A619541F47263100777BB2 /* CollectionExtensions.swift */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +64,7 @@
 		DFA57F0521E7A64200467647 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		F40C574721F9182B0006FB3F /* TransferState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransferState.swift; sourceTree = "<group>"; };
 		F40C574121F909290006FB3F /* ReactiveCocoaExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactiveCocoaExtensions.swift; sourceTree = "<group>"; };
+		F40C574321F909A60006FB3F /* ActionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionProtocol.swift; sourceTree = "<group>"; };
 		F4A619541F47263100777BB2 /* CollectionExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -112,6 +114,7 @@
 			children = (
 				02DE3C211D258C79002B58E2 /* FueledUtils.h */,
 				02DE3C231D258C79002B58E2 /* Info.plist */,
+				F40C574321F909A60006FB3F /* ActionProtocol.swift */,
 				02DE3C4B1D259628002B58E2 /* ButtonWithTitleAdjustment.swift */,
 				F4A619541F47263100777BB2 /* CollectionExtensions.swift */,
 				02DE3C561D25A24B002B58E2 /* DecoratingTextFieldDelegate.swift */,
@@ -234,6 +237,7 @@
 				02DE3C491D25952A002B58E2 /* NSDecimalNumberOperators.swift in Sources */,
 				02DE3C411D258FD1002B58E2 /* UIExtensions.swift in Sources */,
 				F4A619551F47263100777BB2 /* CollectionExtensions.swift in Sources */,
+				F40C574421F909A60006FB3F /* ActionProtocol.swift in Sources */,
 				02E626091D340F0C0041E512 /* LoadingState.swift in Sources */,
 				02DE3C3E1D258FD1002B58E2 /* SequenceExtensions.swift in Sources */,
 				02DE3C3F1D258FD1002B58E2 /* SignalingAlert.swift in Sources */,
