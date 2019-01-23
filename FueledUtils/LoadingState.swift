@@ -17,10 +17,26 @@ import Foundation
 import ReactiveSwift
 import Result
 
+///
+/// Represents the possible state of an `Action` in Reactive Swift.
+///
 public enum LoadingState<Error: Swift.Error> {
+	///
+	/// Represents the state of an action that has completed successfully
+	///
 	case `default`
+	///
+	/// Represents the state of an action that is loading
+	///
 	case loading
+	///
+	/// Represents the state of an action that has failed, with the `Error` it failed with.
+	///
 	case failed(error: Error)
+
+	///
+	/// If the current state is `.failed`, returns the associated error. If not, returns `nil`
+	///
 	public var error: Error? {
 		if case .failed(let error) = self {
 			return error
@@ -28,6 +44,10 @@ public enum LoadingState<Error: Swift.Error> {
 			return nil
 		}
 	}
+
+	///
+	/// If the current state is `.loading`, returns `true`. If not, returns `false`
+	///
 	public var loading: Bool {
 		if case .loading = self {
 			return true
@@ -38,6 +58,9 @@ public enum LoadingState<Error: Swift.Error> {
 }
 
 public extension Action {
+	///
+	/// Returns the current loading state for a given action.
+	///
 	public func loadingState() -> SignalProducer<LoadingState<Error>, NoError> {
 		let loading = self.isExecuting.producer
 			.filter { $0 }

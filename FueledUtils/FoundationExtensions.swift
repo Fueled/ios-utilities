@@ -16,7 +16,13 @@ limitations under the License.
 import Foundation
 
 public extension Bool {
+	///
+	/// **Deprecated**: Please use `toggle()` instead.
+	///
+	/// Refer to the documentation for `toggle()` for more info.
+	///
+	@available(*, deprecated, renamed: "toggle()")
 	public mutating func flip() {
-		self = !self
+		self.toggle()
 	}
 }

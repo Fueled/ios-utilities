@@ -14,8 +14,27 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 public extension Collection {
+	///
+	/// **Deprecated**: Please use `getSafely(at:)` instead.
+	///
+	/// Refer to the documentation for `getSafely(at:)` for more info.
+	///
+	@available(*, deprecated, renamed: "getSafely(at:)")
 	public func getSafely(_ index: Self.Index) -> Self.Iterator.Element? {
-		if index < self.startIndex || index >= self.endIndex {
+		if !self.indices.contains(index) {
+			return nil
+		}
+		return self[index]
+	}
+
+	///
+	/// Try to get the item at index `index`. If the index is out of bounds, `nil` is returned.
+	///
+	/// Parameter index: The index of the item to tentatively get.
+	/// Returns: The element as a wrapped optional if the `index` is in the `indices` of the collection, `nil` otherwise
+	///
+	public func getSafely(at index: Self.Index) -> Self.Iterator.Element? {
+		if !self.indices.contains(index) {
 			return nil
 		}
 		return self[index]

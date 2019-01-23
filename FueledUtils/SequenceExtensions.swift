@@ -14,18 +14,50 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 public extension Sequence {
-	public func collate<K: Hashable>(_ key: (Iterator.Element) -> K?) -> [K: [Iterator.Element]] {
-		var res: [K: [Iterator.Element]] = [:]
-		for s in self {
-			if let k = key(s) {
-				if let vs = res[k] {
-					res[k] = vs + [s]
-				} else {
-					res[k] = [s]
-				}
+	///
+	/// Transforms the sequence into a dictionary grouped by the specified Key type.
+	///
+	/// ## Example
+	///
+	/// Given the following `Person` struct:
+	/// ```swift
+	/// struct Person {
+	///   let firstName: String
+	///   let lastName: String
+	/// }
+	/// ```
+	/// This method allows to easily group a list of `Person` by their last name:
+	/// ```swift
+	/// let people = [Person(firstName: "Stephane", lastName: "Foo"), Person(firstName: "Leonty", lastName: "Bar"), Person(firstName: "Bastien", lastName: "Bar")]
+	/// let groupedByLastNamesPeople = people.collate { $0.lastName }
+	/// print(groupedByLastNamesPeople)
+	/// ```
+	/// This will output:
+	/// ```
+	/// [
+	///   "Foo": [
+	///     Person(firstName: "Stephane", lastName: "Foo"),
+	///   ],
+	///   "Bar": [
+	///     Person(firstName: "Leonty", lastName: "Bar"),
+	///     Person(firstName: "Bastien", lastName: "Bar"),
+	///   ]
+	/// ]
+	/// ```
+	///
+	/// - Parameters:
+	///   - key: The key to use for the given element of the sequence. If the key returned is `nil`,
+	///     the element will be ignored and not be included in the result dictionary.
+	/// - Returns: The values in the sequence grouped by keys as specified in the `key` closure.
+	///
+	public func collate<Key: Hashable>(_ key: (Iterator.Element) -> Key?) -> [Key: [Iterator.Element]] {
+		var result: [Key: [Iterator.Element]] = [:]
+		for value in self {
+			if let key = key(value) {
+				result[key, default: []].append(value)
 			}
 		}
-		return res
+		return result
 	}
 
 	public func splitBetween(_ areSeparated: (Iterator.Element, Iterator.Element) -> Bool) -> [[Iterator.Element]] {

@@ -16,25 +16,43 @@ limitations under the License.
 import Foundation
 import UIKit
 
+///
 /// A button that dims a view when highlighted.
+///
 public final class DimmingButton: UIButton {
-	/// A view to dim while highlited
-	@IBOutlet public weak var dimmingView: UIView?
-
-	override public func awakeFromNib() {
-		super.awakeFromNib()
-		self.addTarget(self, action: #selector(DimmingButton.dim), for: .touchDown)
-		self.addTarget(self, action: #selector(DimmingButton.dim), for: .touchDragEnter)
-		self.addTarget(self, action: #selector(DimmingButton.undim), for: .touchDragExit)
-		self.addTarget(self, action: #selector(DimmingButton.undim), for: .touchUpInside)
-		self.addTarget(self, action: #selector(DimmingButton.undim), for: .touchCancel)
+	///
+	/// The view to dim while highlighted
+	///
+	/// - Note: If `dimmingView` is `nil`, the button itself is dimmed.
+	///
+	@IBOutlet public weak var dimmingView: UIView? {
+		willSet {
+			self.updateDimmedAmount(for: self.dimmingView, dimAmount: 1.0)
+		}
+		didSet {
+			self.updateDimmedViewAmount()
+		}
+	}
+	///
+	/// The alpha to set the view to when dimmed. Defaults to `0.4`
+	///
+	@IBInspectable public var dimAmount: CGFloat = 0.4 {
+		didSet {
+			self.updateDimmedViewAmount()
+		}
 	}
 
-	@objc fileprivate func dim() {
-		(self.dimmingView ?? self).alpha = 0.4
+	public override var isHighlighted: Bool {
+		didSet {
+			self.updateDimmedViewAmount()
+		}
 	}
 
-	@objc fileprivate func undim() {
-		(self.dimmingView ?? self).alpha = 1
+	private func updateDimmedViewAmount() {
+		self.updateDimmedAmount(for: self.dimmingView, dimAmount: self.isHighlighted ? self.dimAmount : 1.0)
+	}
+
+	private func updateDimmedAmount(for view: UIView?, dimAmount: CGFloat) {
+		(view ?? self).alpha = dimAmount
 	}
 }

@@ -15,23 +15,37 @@ limitations under the License.
 */
 import Foundation
 
-public extension String {
-	//RFC 3986 section 2.3 Unreserved Characters (January 2005)
-	public func urlSafeString() -> String {
-		let allowedCharacters = CharacterSet(charactersIn: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_.~")
-		return self.addingPercentEncoding(withAllowedCharacters: allowedCharacters)!
-	}
-
+extension StringProtocol {
 	public var nsLength: Int {
-		return (self as NSString).length
+		return (String(self) as NSString).length
 	}
 
+	@available(*, deprecated, renamed: "nsRange")
 	public var fullRange: NSRange {
 		return NSRange(location: 0, length: nsLength)
 	}
 
-	public mutating func replaceOccurrences(of target: String, with replacement: String, options: String.CompareOptions = [], locale: Locale? = nil) {
-		var range: Range<String.Index>?
+	public var nsRange: NSRange {
+		return NSRange(location: 0, length: nsLength)
+	}
+}
+
+extension StringProtocol where Self.Index == String.Index {
+	///
+	/// Returns a URL percent-encoded as per RFC 3986 section 2.3 Unreserved Characters (January 2005)
+	///
+	public func urlSafeString() -> String {
+		let allowedCharacters = CharacterSet(charactersIn: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_.~")
+		return self.addingPercentEncoding(withAllowedCharacters: allowedCharacters)!
+	}
+}
+
+extension String {
+	///
+	/// Mutating version of `self.replacingOccurrences(of:, with:, options:, range:)`
+	///
+	public mutating func replaceOccurrences<Target: StringProtocol, Replacement: StringProtocol>(of target: Target, with replacement: Replacement, options: String.CompareOptions = [], locale: Locale? = nil) {
+		var range: Range<Index>?
 		repeat {
 			range = self.range(of: target, options: options, range: range.map { $0.lowerBound..<self.endIndex }, locale: locale)
 			if let range = range {
@@ -39,7 +53,7 @@ public extension String {
 			}
 		} while range != nil
 	}
-	
+
 	// 2...5
 	public subscript(_ range: CountableClosedRange<Int>) -> String {
 		get {
@@ -48,7 +62,7 @@ public extension String {
 			return String(self[i...j])
 		}
 	}
-	
+
 	// 2..<5
 	public subscript(_ range: CountableRange<Int>) -> String {
 		get {
@@ -57,7 +71,7 @@ public extension String {
 			return String(self[i..<j])
 		}
 	}
-	
+
 	// ...5
 	public subscript(_ range: PartialRangeThrough<Int>) -> String {
 		get {
@@ -65,7 +79,7 @@ public extension String {
 			return String(prefix(through: j))
 		}
 	}
-	
+
 	// ..<5
 	public subscript(_ range: PartialRangeUpTo<Int>) -> String {
 		get {
@@ -73,7 +87,7 @@ public extension String {
 			return String(prefix(upTo: j))
 		}
 	}
-	
+
 	// 5...
 	public subscript(_ range: PartialRangeFrom<Int>) -> String {
 		get {
@@ -81,9 +95,8 @@ public extension String {
 			return String(suffix(from: i))
 		}
 	}
-	
-	public func stringIndex(_ idx: Int) -> String.Index {
-		return index(startIndex, offsetBy: idx)
+
+	public func stringIndex(_ index: Int) -> Index {
+		return self.index(startIndex, offsetBy: index)
 	}
 }
-
