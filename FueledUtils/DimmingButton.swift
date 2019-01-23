@@ -27,7 +27,7 @@ public final class DimmingButton: UIButton {
 	///
 	@IBOutlet public weak var dimmingView: UIView? {
 		willSet {
-			self.updateDimmedAmount(for: self.dimmingView, dimAmount: 1.0)
+			self.updateDimmedAmount(for: self.dimmingView, dimmedAlpha: 1.0)
 		}
 		didSet {
 			self.updateDimmedViewAmount()
@@ -36,7 +36,7 @@ public final class DimmingButton: UIButton {
 	///
 	/// The alpha to set the view to when dimmed. Defaults to `0.4`
 	///
-	@IBInspectable public var dimAmount: CGFloat = 0.4 {
+	@IBInspectable public var dimmedAlpha: CGFloat = 0.4 {
 		didSet {
 			self.updateDimmedViewAmount()
 		}
@@ -49,10 +49,10 @@ public final class DimmingButton: UIButton {
 	}
 
 	private func updateDimmedViewAmount() {
-		self.updateDimmedAmount(for: self.dimmingView, dimAmount: self.isHighlighted ? self.dimAmount : 1.0)
+		self.updateDimmedAmount(for: self.dimmingView, dimmedAlpha: self.isHighlighted ? self.dimmedAlpha : 1.0)
 	}
 
-	private func updateDimmedAmount(for view: UIView?, dimAmount: CGFloat) {
-		(view ?? self).alpha = dimAmount
+	private func updateDimmedAmount(for view: UIView?, dimmedAlpha: CGFloat) {
+		(view ?? self).alpha = dimmedAlpha
 	}
 }
