@@ -29,7 +29,7 @@ public final class SignalingAlert<T> {
 	public init(title: String?, message: String?, preferredStyle: UIAlertController.Style) {
 		(signal, observer) = Signal<T, NoError>.pipe()
 		controller = UIAlertController(title: title, message: message, preferredStyle: preferredStyle)
-		controller.reactive.lifetime.ended.observeCompleted { [observer] in
+		Lifetime.of(controller).ended.observeCompleted { [observer] in
 			observer.sendInterrupted()
 		}
 	}
