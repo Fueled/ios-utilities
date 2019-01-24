@@ -79,6 +79,19 @@ public final class GradientView: UIView {
 		/// about what this property refers to.
 		///
 		case linear(direction: CGPoint)
+		///
+		/// Defines a radial gradient type, starting at the specified center with the given initial radius, and expanding/reducing to the specified center and final radius.
+		/// When used with `GradientView`, `startCenter` and `endCenter` is scaled to the bounds of the view. `startRadius` and `endRadius` are not scaled.
+		///
+		/// ## Examples
+		/// - `.radial(startCenter: CGPoint(x: 0.5, y: 0.5), startRadius: 10.0, endCenter: CGPoint(x: 0.5, y: 0.5), endRadius: 200.0)`: Define a radial gradient that starts
+		///   in the center of the view with an initial radius of 10, and expands to a radius of 200 without changing its center.
+		/// - `.radial(startCenter: CGPoint(x: 0.0, y: 0.5), startRadius: 200.0, endCenter: CGPoint(x: 1.0, y: 0.5), endRadius: 10.0)`: Define a radial gradient that starts
+		///   in the left edge of the view centered vertically with an initial radius of 200, and reduce to a radius of 50 to the right-most edge centered vertically.
+		///
+		/// - Note: When using different centers for a radial gradient, the resulting gradient might be unexpected.
+		///
+		case radial(startCenter: CGPoint, startRadius: CGFloat, endCenter: CGPoint, endRadius: CGFloat)
 	}
 
 	///
@@ -191,6 +204,26 @@ public final class GradientView: UIView {
 					x: baseEnd.x < 0.0 ? 0.0 : baseEnd.x,
 					y: baseEnd.y < 0.0 ? 0.0 : baseEnd.y
 				),
+				options: [
+					.drawsBeforeStartLocation,
+					.drawsAfterEndLocation,
+				]
+			)
+		case .radial(let startCenter, let startRadius, let endCenter, let endRadius):
+			let startCenter = CGPoint(
+				x: self.bounds.size.width * startCenter.x,
+				y: self.bounds.size.height * startCenter.y
+			)
+			let endCenter = CGPoint(
+				x: self.bounds.size.width * endCenter.x,
+				y: self.bounds.size.height * endCenter.y
+			)
+			context.drawRadialGradient(
+				gradient,
+				startCenter: startCenter,
+				startRadius: startRadius,
+				endCenter: endCenter,
+				endRadius: endRadius,
 				options: [
 					.drawsBeforeStartLocation,
 					.drawsAfterEndLocation,

@@ -2,7 +2,7 @@ import FueledUtils
 import PlaygroundSupport
 import UIKit
 
-let gradientView = GradientView(frame: CGRect(origin: .zero, size: CGSize(width: 200.0, height: 200.0)))
+let gradientView = GradientView(frame: CGRect(origin: .zero, size: CGSize(width: 500.0, height: 500.0)))
 
-gradientView.type = .linear(direction: CGPoint(x: 0.0, y: 0.5))
+gradientView.type = .radial(startCenter: CGPoint(x: 0.5, y: 0.5), startRadius: 10.0, endCenter: CGPoint(x: 0.5, y: 0.5), endRadius: 50.0)
 gradientView.definition = .custom([(.black, 0.0), (.red, 0.5), (.blue, 1.0)])
