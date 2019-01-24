@@ -5,6 +5,9 @@
       location = "group:FueledUtils.xcodeproj">
    </FileRef>
    <FileRef
+      location = "group:FueledUtils.playground">
+   </FileRef>
+   <FileRef
       location = "group:Carthage/Checkouts/ReactiveCocoa/ReactiveCocoa.xcodeproj">
    </FileRef>
    <FileRef
