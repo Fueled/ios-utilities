@@ -267,9 +267,43 @@ extension UIView {
 	}
 }
 
+@available(iOS 9.0, *)
+extension UIStackView {
+	///
+	/// Removes all of the current arranged subviews from the `UIStackView`, optionally
+	/// allowing to remove them from the `UIStackView`'s subviews as well.
+	///
+	/// - Parameters:
+	///   - removeFromHierachy: If `true`, each views is also removed from the receiver using `removeFromSuperview()`.
+	///     If `false`, `removeFromSuperview()` is not called.
+	///
+	func removeArrangedSubviews(removeFromHierachy: Bool) {
+		let arrangedSubviews = self.arrangedSubviews
+		arrangedSubviews.forEach { self.removeArrangedSubview($0, removeFromHierachy: removeFromHierachy) }
+	}
+
+	///
+	/// Removes the given arranged subview from the `UIStackView`, optionally
+	/// allowing to remove it from the `UIStackView`'s subviews as well.
+	///
+	/// - Parameters:
+	///   - view: The arranged subview to remove from the receiver.
+	///   - removeFromHierachy: If `true`, the view is also removed from the receiver using `removeFromSuperview()`.
+	///     If `false`, `removeFromSuperview()` is not called.
+	///
+	func removeArrangedSubview(_ view: UIView, removeFromHierachy: Bool) {
+		if removeFromHierachy {
+			view.removeFromSuperview()
+		} else {
+			// `removeArrangedSubview` doesn't call `removeFromSuperview` for the `view`
+			self.removeArrangedSubview(view)
+		}
+	}
+}
+
 extension UITableView {
 	///
-	/// Deselect given rows, optionally with an animation.
+	/// Deselect the given rows, optionally with an animation.
 	///
 	/// - Parameters:
 	///   - indexPaths: The rows to deselect.
@@ -306,7 +340,7 @@ extension UITableView {
 
 extension UICollectionView {
 	///
-	/// Deselect given items, optionally with an animation.
+	/// Deselect the given items, optionally with an animation.
 	///
 	/// - Parameters:
 	///   - indexPaths: The items to deselect.
