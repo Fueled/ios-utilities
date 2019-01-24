@@ -171,7 +171,7 @@ public extension SignalProducerProtocol {
 	}
 
 	///
-	/// Starts the `SignalProducer` after the given delay, on the given `DateScheduler`.
+	/// Returns a SignalProducer that when started will delay starting of the original producer on given scheduler.
 	///
 	/// - Parameters:
 	///   - interval: The time interval after which to start the `SignalProducer`
