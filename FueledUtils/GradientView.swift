@@ -1,26 +1,163 @@
 import UIKit
 
+///
+/// An easy to use wrapper around `CGGradient` for drawing linear gradients.
+///
+/// For examples and testing its usage, you can use the `FueledUtils` playground file provided with the workspace.
+///
 public final class GradientView: UIView {
-	var gradientInfo: [(color: UIColor, location: CGFloat)] = [] {
+	public enum Definition {
+		///
+		/// Defines a simple gradient, that has a start color and an end color
+		///
+		case simple(startColor: UIColor, endColor: UIColor)
+		///
+		/// Defines a custom gradient, that has as many colors and location point as wanted.
+		/// It should at least contain 2 elements.
+		/// When used in `GradientView`, it ensures that it is the case, and will report a
+		/// crash at runtime if the array has less than 2 elements.
+		///
+		case custom([(color: UIColor, location: CGFloat)])
+
+		///
+		/// Get the start color of the receiver.
+		/// If the current value is `.simple`, returns `startColor`.
+		/// If the current value is `.custom`, returns the first color of the array. If the array is empty, this will crash at runtime.
+		///
+		public var startColor: UIColor {
+			switch self {
+			case .simple(let startColor, _):
+				return startColor
+			case .custom(let colors):
+				return colors.first!.color
+			}
+		}
+
+		///
+		/// Get the end color of the receiver.
+		/// If the current value is `.simple`, returns `endColor`.
+		/// If the current value is `.custom`, returns the last color of the array. If the array is empty, this will crash at runtime.
+		///
+		public var endColor: UIColor {
+			switch self {
+			case .simple(_, let endColor):
+				return endColor
+			case .custom(let colors):
+				return colors.last!.color
+			}
+		}
+
+		fileprivate var gradientInfo: [(color: UIColor, location: CGFloat)] {
+			switch self {
+			case .simple(let startColor, let endColor):
+				return [
+					(startColor, 0.0),
+					(endColor, 1.0),
+				]
+			case .custom(let colors):
+				return colors
+			}
+		}
+	}
+
+	///
+	/// Defines the different type of supported gradients.
+	///
+	public enum GradientType {
+		///
+		/// Defines a linear gradient type, along the specified direction.
+		/// When used with `GradientView`, `direction` is scaled to the bounds of the view.
+		///
+		/// ## Examples
+		/// - `.linear(direction: CGPoint(x: 0.0, y: 1.0)`: Define a gradient going from the left edge to the right edge.
+		/// - `.linear(direction: CGPoint(x: 1.0, y: 1.0)`: Define a gradient going from the top-left corner to the bottom-right corner.
+		/// - `.linear(direction: CGPoint(x: -1.0, y: -1.0)`: Define a gradient going from the bottom-right corner to the top-left corner.
+		/// - `.linear(direction: CGPoint(x: -1.0, y: 0.0)`: Define a gradient going from the bottom edge to the top edge.
+		/// - `.linear(direction: CGPoint(x: 0.0, y: 0.5)`: Define a gradient going from the top edge to the middle, extending the last color until the bottom edge.
+		///
+		/// - Note: If `direction` is `.zero`, only the `endColor` of the `Definition` will be drawn. See `GradientView.Definition.endColor` for more info
+		/// about what this property refers to.
+		///
+		case linear(direction: CGPoint)
+	}
+
+	///
+	/// Get/Set the type of the gradient. Please refer to `GradientType` for more info.
+	///
+	public var type: GradientType = .linear(direction: .verticalDirection) {
 		didSet {
 			self.setNeedsDisplay()
 		}
 	}
 
-	@IBInspectable var isVertical: Bool = true {
+	///
+	/// Get/Set the definition of the gradient. Please refer to `Definition` for more info.
+	///
+	/// - Warning: If the definition is `.custom`, and the array has less than 2 elements, the code will crash at runtime.
+	///
+	public var definition: Definition = .simple(startColor: .black, endColor: .white) {
 		didSet {
-			if self.isVertical != oldValue {
-				self.setNeedsDisplay()
+			if case .custom(let info) = self.definition, info.count < 2 {
+				fatalError(".custom() must have at least 2 colors to make a gradient")
 			}
+			self.setNeedsDisplay()
 		}
 	}
 
-	override init(frame: CGRect) {
+	///
+	/// Get/Set the start color of the gradient.
+	/// When getting the property, if the gradient is `.custom`, it will return the first color in the array.
+	/// When setting this property, if the gradient is `.custom`, it will convert it to a `.simple` using
+	/// the last color of the array as the `endColor`.
+	///
+	@IBInspectable
+	public var startColor: UIColor {
+		get {
+			return self.definition.startColor
+		}
+		set {
+			self.definition = .simple(startColor: newValue, endColor: self.definition.endColor)
+		}
+	}
+
+	///
+	/// Get/Set the end color of the gradient.
+	/// When getting the property, if the gradient is `.custom`, it will return the last color in the array.
+	/// When setting this property, if the gradient is `.custom`, it will convert it to a `.simple` using
+	/// the first color of the array as the `startColor`.
+	///
+	@IBInspectable
+	public var endColor: UIColor {
+		get {
+			return self.definition.endColor
+		}
+		set {
+			self.definition = .simple(startColor: self.definition.startColor, endColor: newValue)
+		}
+	}
+
+	///
+	/// Get/set the direction of the gradient. Returns `.zero` if the configured gradient is not `.linear`
+	/// When setting this property, if the gradient is not `.linear`, it is converted to a `.linear` gradient with the given direction.
+	///
+	@IBInspectable var direction: CGPoint {
+		get {
+			if case .linear(let direction) = self.type {
+				return direction
+			}
+			return .zero
+		}
+		set {
+			self.type = .linear(direction: newValue)
+		}
+	}
+
+	override public init(frame: CGRect) {
 		super.init(frame: frame)
 		self.commonInit()
 	}
 
-	required init?(coder aDecoder: NSCoder) {
+	required public init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		self.commonInit()
 	}
@@ -34,71 +171,47 @@ public final class GradientView: UIView {
 
 	override public func draw(_ rect: CGRect) {
 		let context = UIGraphicsGetCurrentContext()!
-		let colors = self.gradientInfo.map { $0.color.cgColor }
-		var locations: [CGFloat] = self.gradientInfo.map { $0.location }
+		let colors = self.definition.gradientInfo.map { $0.color.cgColor }
+		var locations = self.definition.gradientInfo.map { $0.location }
 		let colorSpace = CGColorSpaceCreateDeviceRGB()
 		let gradient = CGGradient(colorsSpace: colorSpace, colors: colors as CFArray, locations: &locations)!
-		context.drawLinearGradient(
-			gradient,
-			start: .zero,
-			end: CGPoint(
-				x: self.isVertical ? 0.0 : self.bounds.size.width,
-				y: self.isVertical ? self.bounds.size.height : 0.0
-			),
-			options: []
-		)
+		switch self.type {
+		case .linear(let direction):
+			let baseEnd = CGPoint(
+				x: self.bounds.size.width * direction.x,
+				y: self.bounds.size.height * direction.y
+			)
+			context.drawLinearGradient(
+				gradient,
+				start: CGPoint(
+					x: baseEnd.x < 0.0 ? -baseEnd.x : 0.0,
+					y: baseEnd.y < 0.0 ? -baseEnd.y : 0.0
+				),
+				end: CGPoint(
+					x: baseEnd.x < 0.0 ? 0.0 : baseEnd.x,
+					y: baseEnd.y < 0.0 ? 0.0 : baseEnd.y
+				),
+				options: [
+					.drawsBeforeStartLocation,
+					.drawsAfterEndLocation,
+				]
+			)
+		}
 	}
 }
 
-public final class SimpleGradientView: UIView {
-	private lazy var gradientView: GradientView = {
-		$0.gradientInfo = [
-			(.white, 0.0),
-			(.black, 1.0),
-		]
-		return $0
-	}(GradientView())
-
-	@IBInspectable
-	public var startColor: UIColor {
-		get {
-			return UIColor(cgColor: self.gradientView.gradientInfo[0].color.cgColor)
-		}
-		set {
-			self.gradientView.gradientInfo[0].color = newValue
-		}
+extension CGPoint {
+	///
+	/// Defines a vertical top to down direction.
+	///
+	public static var verticalDirection: CGPoint {
+		return CGPoint(x: 0.0, y: 1.0)
 	}
 
-	@IBInspectable
-	public var endColor: UIColor {
-		get {
-			return UIColor(cgColor: self.gradientView.gradientInfo[1].color.cgColor)
-		}
-		set {
-			self.gradientView.gradientInfo[1].color = newValue
-		}
-	}
-
-	@IBInspectable var isVertical: Bool {
-		get {
-			return self.gradientView.isVertical
-		}
-		set {
-			self.gradientView.isVertical = newValue
-		}
-	}
-
-	override public init(frame: CGRect) {
-		super.init(frame: frame)
-		self.commonInit()
-	}
-
-	public required init?(coder aDecoder: NSCoder) {
-		super.init(coder: aDecoder)
-		self.commonInit()
-	}
-
-	private func commonInit() {
-		self.addAndFitSubview(self.gradientView)
+	///
+	/// Defines a horizontal left to right direction.
+	///
+	public static var horizontalDirection: CGPoint {
+		return CGPoint(x: 1.0, y: 0.0)
 	}
 }
