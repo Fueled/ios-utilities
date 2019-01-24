@@ -164,6 +164,64 @@ public extension UIView {
 			self.drawHierarchy(in: self.bounds, afterScreenUpdates: afterScreenUpdates)
 		}
 	}
+
+	///
+	/// Apply a shadow with the parameters that can be specified in the Sketch application.
+	/// This methods internally updates the following properties of the backing `CALayer` (`self.layer`):
+	/// - `CALayer.shadowColor`
+	/// - `CALayer.shadowOpacity`
+	/// - `CALayer.shadowOffset`
+	/// - `CALayer.shadowRadius`
+	/// - `CALayer.shadowPath`
+	///
+	/// When using this method, it is recommended **not** to modify any of these properties to avoid unexpected results.
+	///
+	/// - Parameters:
+	///   - color: The color of the shadow, as specified in Sketch (usually without the alpha component, specified afterwards)
+	///   - alpha: The alpha (opacity) of the shadow, as specified in Sketch
+	///   - xAxis: The X direction of the shadow, as specified in Sketch
+	///   - yAxis: The y direction of the shadow, as specified in Sketch
+	///   - blur: The blur offset of the shadow, as specified in Sketch
+	///   - spread: The spread of the shadow, as specified in Sketch.
+	///   - path: The path the shadow should use. If `nil`, it defaults to a rectangle of the size of the bounds of the receiver
+	///
+	/// - Note: It is safe to call this method multiple times without calling `removeSketchShadow` between each calls.
+	///
+	func applySketchShadow(
+		color: UIColor = .black,
+		alpha: Float = 0.5,
+		xAxis: CGFloat = 0.0,
+		yAxis: CGFloat = 2.0,
+		blur: CGFloat = 4.0,
+		spread: CGFloat = 0.0,
+		path: CGPath? = nil)
+	{
+		self.layer.shadowColor = color.cgColor
+		self.layer.shadowOpacity = alpha
+		self.layer.shadowOffset = CGSize(width: xAxis, height: yAxis)
+		self.layer.shadowRadius = blur / 2.0
+
+		if path == nil || spread == 0.0 {
+			self.layer.shadowPath = nil
+		} else {
+			let scaleFactor = (self.bounds.size.width + spread * 2.0) / self.bounds.size.width
+			let path = (path.map { UIBezierPath(cgPath: $0) } ?? UIBezierPath(rect: self.bounds))
+			path.apply(CGAffineTransform(scaleX: scaleFactor, y: scaleFactor))
+			self.layer.shadowPath = path.cgPath
+		}
+	}
+
+	///
+	/// Remove a shadow as set by `applySketchShadow`
+	/// This method will reset any shadows sets on the backing layer, _even it wasn't applied by `applySketchShadow`
+	///
+	func removeSketchShadow() {
+		self.layer.shadowColor = nil
+		self.layer.shadowOpacity = 0.0
+		self.layer.shadowOffset = .zero
+		self.layer.shadowRadius = 0.0
+		self.layer.shadowPath = nil
+	}
 }
 
 public extension UITableView {
