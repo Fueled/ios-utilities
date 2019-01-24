@@ -39,4 +39,11 @@ public extension Collection {
 		}
 		return self[index]
 	}
+
+	///
+	/// Returns a collection with same element, and information as to whether the element is the first or the last, or both.
+	///
+	public func withPositionInformation() -> [(element: Self.Element, isFirstElement: Bool, isLastElement: Bool)] {
+		return self.enumerated().map { ($0.element, $0.offset == 0, $0.offset == self.count - 1) }
+	}
 }
