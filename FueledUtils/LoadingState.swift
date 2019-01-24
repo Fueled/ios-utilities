@@ -59,9 +59,21 @@ public enum LoadingState<Error: Swift.Error> {
 
 public extension Action {
 	///
+	/// **Deprecated**: Please use `getSafely(at:)` instead.
+	///
+	/// Refer to the documentation for `getSafely(at:)` for more info.
+	///
+	@available(*, deprecated, renamed: "loadingState")
+	// The unused parameter allows to bypass the compiler error "Invalid redeclaration of 'loadingState'",
+	// while retaining backward compatibility
+	public func loadingState(_ unused: Void = ()) -> SignalProducer<LoadingState<Error>, NoError> {
+		return self.loadingState
+	}
+
+	///
 	/// Returns the current loading state for a given action.
 	///
-	public func loadingState() -> SignalProducer<LoadingState<Error>, NoError> {
+	public var loadingState: SignalProducer<LoadingState<Error>, NoError> {
 		let loading = self.isExecuting.producer
 			.filter { $0 }
 			.map { _ in LoadingState<Error>.loading }
