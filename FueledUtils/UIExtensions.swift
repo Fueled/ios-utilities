@@ -433,11 +433,18 @@ extension UIImage {
 
 	///
 	/// Apply the given tint to the image. The rendering mode is kept the same.
+	/// This method takes the rgb values of each pixels in the image, and replace them with the color
+	/// given as parameter. The alpha value of each pixels is kept the same.
 	/// The resulting image will be made resizable whether it was originally or not,
 	/// with `capInsets` set as the cap insets, and `resizingMode` as its resizing mode.
 	///
+	/// The behavior of this method is similar to using the `UIImage` with a `.alwaysTemplate` rendering mode
+	/// and using a `tintColor` when displaying the `UIImage` in an `UIImageView`.
+	///
+	/// - SeeAlso: `withColor(_:)`
+	///
 	/// - Parameters:
-	///   - color: The color to apply to the receiver.
+	///   - tint: The tint to apply to the receiver.
 	///
 	public func withTint(_ tint: UIColor) -> UIImage {
 		let image = UIImage.draw(size: self.size, scale: self.scale) { _ in
@@ -446,6 +453,32 @@ extension UIImage {
 			self.draw(at: .zero, blendMode: .destinationIn, alpha: 1)
 		}
 		return image.resizableImage(withCapInsets: self.capInsets, resizingMode: self.resizingMode).withRenderingMode(self.renderingMode)
+	}
+
+	///
+	/// Apply the given color to the image. The rendering mode is kept the same.
+	/// This method keeps the brightness of all pixels the same, but updates the saturation and hue
+	/// to that of the given color.
+	///
+	/// In other words, this methods can be used to color grayscale images or tint images without loosing
+	/// contrast information.
+	///
+	/// - SeeAlso: `withTint(_:)`
+	///
+	/// - Parameters:
+	///   - color: The color to apply to the receiver.
+	///
+	public func withColor(_ color: UIColor) -> UIImage {
+		return UIImage.draw(
+			size: self.size,
+			graphics: { context in
+				let rect = CGRect(origin: .zero, size: self.size)
+				self.draw(in: rect, blendMode: .color, alpha: 1.0)
+				context.setFillColor(color.cgColor)
+				context.setBlendMode(.color)
+				context.fill(rect)
+			}
+		).withRenderingMode(self.renderingMode)
 	}
 
 	///
