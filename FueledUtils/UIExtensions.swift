@@ -16,7 +16,50 @@ limitations under the License.
 import Foundation
 import UIKit
 
-public extension UIColor {
+extension CGSize {
+	///
+	/// Scale the recipient to the given size, according to the specified content mode.
+	///
+	/// This methods is best use in combination of `UIImage.resized`, to make sure that the image
+	/// is scaled properly for your needs.
+	///
+	/// - Parameters:
+	///   - size: The size to scale the receiver to.
+	///   - contentMode: The content mode to use when scaling the receiver.
+	///     If `contentMode` is `.scaleAspectFill`, the method will try to maximize the lowest dimension of the receiver
+	///     to the lowest dimension of `size`.
+	///     If `contentMode` is `.scaleAspectFit`, the method will try to maximize the highest dimension of the receiver
+	///     to the lowest dimension of `size`.
+	///     If the `contentMode` is `redraw` or `scaleToFill` (the default), `size` is returned.
+	///     In all other cases, the receiver is returned and `size` is ignored.
+	/// - Returns: The scaled size as specified by the parameters.
+	///
+	func scaled(to size: CGSize, contentMode: UIView.ContentMode = .scaleToFill) -> CGSize {
+		switch contentMode {
+		case .redraw,
+				 .scaleToFill:
+			return size
+		case .scaleAspectFill:
+			let aspectRatio = self.width / self.height
+			if self.width < self.height {
+				return CGSize(width: size.width, height: size.width / aspectRatio)
+			} else {
+				return CGSize(width: size.width * aspectRatio, height: size.height)
+			}
+		case .scaleAspectFit:
+			let aspectRatio = self.width / self.height
+			if self.width < self.height {
+				return CGSize(width: size.width, height: size.width / aspectRatio)
+			} else {
+				return CGSize(width: size.width * aspectRatio, height: size.height)
+			}
+		default:
+			return self
+		}
+	}
+}
+
+extension UIColor {
 	public convenience init(hex: UInt32, alpha: CGFloat = 1) {
 		func byteColor(_ x: UInt32) -> CGFloat {
 			return CGFloat(x & 0xFF) / 255
@@ -42,7 +85,7 @@ public extension UIColor {
 	}
 }
 
-public extension UILabel {
+extension UILabel {
 	///
 	/// Add the monospaced number font descriptor to the current `font`.
 	///
@@ -92,7 +135,7 @@ public extension UILabel {
 	}
 }
 
-public extension UIActivityIndicatorView {
+extension UIActivityIndicatorView {
 	@available(*, deprecated, renamed: "animating")
 	public var fueled_animating: Bool {
 		get {
@@ -117,7 +160,7 @@ public extension UIActivityIndicatorView {
 	}
 }
 
-public extension UITextField {
+extension UITextField {
 	///
 	/// Allows to set the placeholder color by setting the `attributedPlaceholder`.
 	///
@@ -137,7 +180,7 @@ public extension UITextField {
 	}
 }
 
-public extension UIView {
+extension UIView {
 	///
 	/// Adds the given subview into the receiver, and adds constraint so that its top, bottom, left and right's edges are bounds to its superview's edges.
 	///
@@ -224,7 +267,7 @@ public extension UIView {
 	}
 }
 
-public extension UITableView {
+extension UITableView {
 	///
 	/// Deselect given rows, optionally with an animation.
 	///
@@ -261,7 +304,7 @@ public extension UITableView {
 	}
 }
 
-public extension UICollectionView {
+extension UICollectionView {
 	///
 	/// Deselect given items, optionally with an animation.
 	///
@@ -298,7 +341,7 @@ public extension UICollectionView {
 	}
 }
 
-public extension UIImage {
+extension UIImage {
 	///
 	/// Create a `CGContext` allowing to do custom drawing, and returns the resulting image as drawn in the context.
 	/// - Parameters:

@@ -61,7 +61,7 @@ public func transitionContext(
 		}
 }
 
-public extension SignalProtocol {
+extension SignalProtocol {
 	/// The original purpose of this method is to allow triggering animations in response to signal values.
 	///
 	/// - Parameters:
@@ -160,7 +160,7 @@ public extension SignalProtocol {
 	}
 }
 
-public extension SignalProducerProtocol {
+extension SignalProducerProtocol {
 	///
 	/// Returns a SignalProducer which cannot fail. Errors that would be otherwise be sent in the original producer are ignored.
 	///
@@ -195,7 +195,7 @@ public extension SignalProducerProtocol {
 	}
 }
 
-public extension SignalProducer where Error == NoError {
+extension SignalProducer where Error == NoError {
 	public func chain<U>(_ transform: @escaping (Value) -> Signal<U, NoError>) -> SignalProducer<U, NoError> {
 		return flatMap(.latest, transform)
 	}
@@ -221,7 +221,7 @@ public extension SignalProducer where Error == NoError {
 	}
 }
 
-public extension PropertyProtocol {
+extension PropertyProtocol {
 	public func chain<U>(_ transform: @escaping (Value) -> Signal<U, NoError>) -> SignalProducer<U, NoError> {
 		return producer.chain(transform)
 	}

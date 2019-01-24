@@ -15,7 +15,7 @@ limitations under the License.
 */
 import UIKit
 
-public extension UIScrollView {
+extension UIScrollView {
 	///
 	/// **Deprecated**: Please use `currentPage` instead.
 	///

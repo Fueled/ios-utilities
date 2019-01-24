@@ -15,7 +15,7 @@ limitations under the License.
 */
 import Foundation
 
-public extension Bool {
+extension Bool {
 	///
 	/// **Deprecated**: Please use `toggle()` instead.
 	///

@@ -67,7 +67,7 @@ public enum LoadingState<Error: Swift.Error> {
 	}
 }
 
-public extension Action {
+extension Action {
 	///
 	/// **Deprecated**: Please use `getSafely(at:)` instead.
 	///

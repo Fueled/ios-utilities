@@ -16,7 +16,7 @@ limitations under the License.
 import Foundation
 import UIKit
 
-public extension UIApplicationDelegate {
+extension UIApplicationDelegate {
 	///
 	/// Switches root view controller avoiding common problems of unintended animations.
 	///
