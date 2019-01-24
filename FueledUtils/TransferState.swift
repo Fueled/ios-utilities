@@ -75,7 +75,7 @@ extension SignalProtocol {
 	{
 		return self.signal.map { $0.map(mapper) }
 	}
-git 
+
 	///
 	/// Maps a `Signal` for which each value is a `TransferState` into a `TransferState` returning a `SignalProducer` returning the mapped value.
 	///

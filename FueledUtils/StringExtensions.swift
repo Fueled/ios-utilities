@@ -38,6 +38,24 @@ extension StringProtocol where Self.Index == String.Index {
 		let allowedCharacters = CharacterSet(charactersIn: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_.~")
 		return self.addingPercentEncoding(withAllowedCharacters: allowedCharacters)!
 	}
+	///
+	/// Returns true if the receiver is empty or if it only contains whitespaces or newlines
+	///
+	public var isBlank: Bool {
+		return self.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+	}
+	///
+	/// Returns the receiver if `isEmpty` is `false`, and `nil` if it is `true`
+	///
+	public var nonEmptyValue: Self? {
+		return self.isEmpty ? nil : self
+	}
+	///
+	/// Returns the receiver if `isBlank` is `false`, and `nil` if it is `true`
+	///
+	public var nonBlankValue: Self? {
+		return self.isBlank ? nil : self
+	}
 }
 
 extension String {
@@ -98,5 +116,26 @@ extension String {
 
 	public func stringIndex(_ index: Int) -> Index {
 		return self.index(startIndex, offsetBy: index)
+	}
+}
+
+extension Optional where Wrapped: StringProtocol, Wrapped.Index == String.Index {
+	///
+	/// If the receiver is non-`nil`, returns the result of `StringProtocol.nonBlankValue.isBlank`, otherwise returns `false.
+	///
+	public var isBlank: Bool {
+		return self.map { $0.isBlank } ?? true
+	}
+	///
+	/// If the receiver is non-`nil`, returns the result of `StringProtocol.nonEmptyValue`, otherwise returns `false.
+	///
+	public var nonEmptyValue: Wrapped? {
+		return self.flatMap { $0.nonEmptyValue }
+	}
+	///
+	/// If the receiver is non-`nil`, returns the result of `StringProtocol.nonBlankValue`, otherwise returns `false.
+	///
+	public var nonBlankValue: Wrapped? {
+		return self.flatMap { $0.nonBlankValue }
 	}
 }
