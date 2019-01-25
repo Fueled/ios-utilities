@@ -46,9 +46,19 @@ public enum LoadingState<Error: Swift.Error> {
 	}
 
 	///
+	/// **Deprecated**: Please use `isLoading` instead.
+	///
+	/// Refer to the documentation for `isLoading` for more info.
+	///
+	@available(*, deprecated, renamed: "isLoading")
+	public var loading: Bool {
+		return self.isLoading
+	}
+
+	///
 	/// If the current state is `.loading`, returns `true`. If not, returns `false`
 	///
-	public var loading: Bool {
+	public var isLoading: Bool {
 		if case .loading = self {
 			return true
 		} else {
