@@ -22,7 +22,7 @@ import Result
 ///
 public enum LoadingState<Error: Swift.Error> {
 	///
-	/// Represents the state of an action that has completed successfully
+	/// Represents the state of an action that has received any values, has completed successfully or was interrupted.
 	///
 	case `default`
 	///
@@ -71,19 +71,20 @@ public extension Action {
 	}
 
 	///
-	/// Returns the current loading state for a given action.
+	/// Returns a `SignalProducer` whose events corresponds to the current loading state of the action.
+	/// Please refer to `LoadingState` for more info.
 	///
 	public var loadingState: SignalProducer<LoadingState<Error>, NoError> {
 		let loading = self.isExecuting.producer
 			.filter { $0 }
 			.map { _ in LoadingState<Error>.loading }
-		let eventStates = SignalProducer(self.events).map {
+		let eventStates = self.events.map {
 			(event: Signal<Output, Error>.Event) -> LoadingState<Error> in
 			switch event {
 			case .failed(let error):
-				return LoadingState<Error>.failed(error: error)
+				return .failed(error: error)
 			default:
-				return LoadingState<Error>.default
+				return .default
 			}
 		}
 		return SignalProducer.merge(loading, eventStates)
