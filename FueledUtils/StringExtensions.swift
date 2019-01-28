@@ -65,7 +65,7 @@ extension String {
 	public mutating func replaceOccurrences<Target: StringProtocol, Replacement: StringProtocol>(of target: Target, with replacement: Replacement, options: String.CompareOptions = [], locale: Locale? = nil) {
 		var range: Range<Index>?
 		repeat {
-			range = self.range(of: target, options: options, range: range.map { $0.lowerBound..<self.endIndex }, locale: locale)
+			range = self.range(of: target, options: options, range: range.map { self.index($0.lowerBound, offsetBy: replacement.count)..<self.endIndex }, locale: locale)
 			if let range = range {
 				self.replaceSubrange(range, with: replacement)
 			}
