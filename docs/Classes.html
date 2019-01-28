@@ -14,7 +14,7 @@
     <a title="Classes  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">FueledUtils Docs</a> (59% documented)</p>
+        <p><a href="index.html">FueledUtils Docs</a> (100% documented)</p>
         <p class="header-right"><a href="https://github.com/Fueled/FueledUtils"><img src="img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -33,6 +33,9 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="Classes/ButtonWithTitleAdjustment.html">ButtonWithTitleAdjustment</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/CoalescingAction.html">CoalescingAction</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/DecoratingTextFieldDelegate.html">DecoratingTextFieldDelegate</a>
@@ -64,6 +67,9 @@
               <li class="nav-group-task">
                 <a href="Classes/SignalingAlert.html">SignalingAlert</a>
               </li>
+              <li class="nav-group-task">
+                <a href="Classes/TypedSerialDisposable.html">TypedSerialDisposable</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -72,13 +78,16 @@
               <li class="nav-group-task">
                 <a href="Enums/LoadingState.html">LoadingState</a>
               </li>
+              <li class="nav-group-task">
+                <a href="Enums/TransferState.html">TransferState</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
             <a href="Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Extensions/Action.html">Action</a>
+                <a href="Extensions/ActionError.html">ActionError</a>
               </li>
               <li class="nav-group-task">
                 <a href="Extensions/Bool.html">Bool</a>
@@ -90,13 +99,22 @@
                 <a href="Extensions/Collection.html">Collection</a>
               </li>
               <li class="nav-group-task">
+                <a href="Extensions/Optional.html">Optional</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Extensions/PropertyProtocol.html">PropertyProtocol</a>
               </li>
               <li class="nav-group-task">
                 <a href="Extensions/Reactive.html">Reactive</a>
               </li>
               <li class="nav-group-task">
+                <a href="Extensions/ScopedDisposable.html">ScopedDisposable</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Extensions/Sequence.html">Sequence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/Signal.html">Signal</a>
               </li>
               <li class="nav-group-task">
                 <a href="Extensions/SignalProducer.html">SignalProducer</a>
@@ -184,6 +202,12 @@
             <a href="Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="Protocols/ActionErrorProtocol.html">ActionErrorProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/ActionProtocol.html">ActionProtocol</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Protocols/ReactiveLifetimeProvider.html">ReactiveLifetimeProvider</a>
               </li>
             </ul>
@@ -234,6 +258,40 @@ this class if you&rsquo;re using <code>setAttributedTitle(_:, for:)</code> anywh
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">ButtonWithTitleAdjustment</span> <span class="p">:</span> <span class="kt">UIButton</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11FueledUtils16CoalescingActionC"></a>
+                    <a name="//apple_ref/swift/Class/CoalescingAction" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11FueledUtils16CoalescingActionC">CoalescingAction</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Similar to <code>Action</code>, except if the action is already executing, subsequent <code>apply()</code> call will not fail,
+and will be completed with the same output when the initial executing action completes.
+Disposing any of the <code>SignalProducer</code> returned by &lsquo;apply()` will cancel the action.</p>
+
+                        <a href="Classes/CoalescingAction.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">CoalescingAction</span><span class="o">&lt;</span><span class="kt">Output</span><span class="p">,</span> <span class="kt">Error</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt"><a href="Protocols/ActionProtocol.html">ActionProtocol</a></span> <span class="k">where</span> <span class="kt">Error</span> <span class="p">:</span> <span class="kt">Error</span></code></pre>
 
                         </div>
                       </div>
@@ -457,7 +515,8 @@ this class if you&rsquo;re using <code>attributedText</code> anywhere.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>This base class adds RAC-style <code>reactive</code> proxy to Swift objects.</p>
+                        <p><strong>Deprecated</strong>: Please just make your type a <code>class</code> that conform to <code>ReactiveExtensionsProvider</code> instead; there is no need to inherit from this anymore.
+This base class adds RAC-style <code>reactive</code> proxy to Swift objects.</p>
 
                         <a href="Classes/Lifetimed.html" class="slightly-smaller">See more</a>
                       </div>
@@ -465,7 +524,8 @@ this class if you&rsquo;re using <code>attributedText</code> anywhere.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">Lifetimed</span> <span class="p">:</span> <span class="kt"><a href="Protocols/ReactiveLifetimeProvider.html">ReactiveLifetimeProvider</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@available(*, deprecated, message: "Make your type a class that conforms to ReactiveLifetimeProvider instead")</span>
+<span class="kd">open</span> <span class="kd">class</span> <span class="kt">Lifetimed</span> <span class="p">:</span> <span class="kt"><a href="Protocols/ReactiveLifetimeProvider.html">ReactiveLifetimeProvider</a></span></code></pre>
 
                         </div>
                       </div>
@@ -489,7 +549,7 @@ this class if you&rsquo;re using <code>attributedText</code> anywhere.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A UIAlertController wrapper that sends values associated with alert actions to its output signal.</p>
+                        <p>A UIAlertController wrapper that sends values associated with alert actions to its output signal that emits values of type <code>T</code>.</p>
 
                         <a href="Classes/SignalingAlert.html" class="slightly-smaller">See more</a>
                       </div>
@@ -498,6 +558,47 @@ this class if you&rsquo;re using <code>attributedText</code> anywhere.</p>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">SignalingAlert</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11FueledUtils21TypedSerialDisposableC"></a>
+                    <a name="//apple_ref/swift/Class/TypedSerialDisposable" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11FueledUtils21TypedSerialDisposableC">TypedSerialDisposable</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A disposable that disposes of its wrapped disposable, and allows its
+wrapped disposable to be replaced.
+The <code>Inner</code> disposable type is fixed and cannot be changed.</p>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    This class is backed internally by a <code>SerialDisposable()</code>, so if the documentation
+of this class differs in any way from <code>SerialDisposable</code>, please use its documentation
+as the source of truth.
+
+</div>
+
+                        <a href="Classes/TypedSerialDisposable.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">TypedSerialDisposable</span><span class="o">&lt;</span><span class="kt">Inner</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt">Disposable</span> <span class="k">where</span> <span class="kt">Inner</span> <span class="p">:</span> <span class="kt">Disposable</span></code></pre>
 
                         </div>
                       </div>

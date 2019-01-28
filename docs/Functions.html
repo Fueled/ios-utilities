@@ -14,7 +14,7 @@
     <a title="Functions  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">FueledUtils Docs</a> (59% documented)</p>
+        <p><a href="index.html">FueledUtils Docs</a> (100% documented)</p>
         <p class="header-right"><a href="https://github.com/Fueled/FueledUtils"><img src="img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -33,6 +33,9 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="Classes/ButtonWithTitleAdjustment.html">ButtonWithTitleAdjustment</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/CoalescingAction.html">CoalescingAction</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/DecoratingTextFieldDelegate.html">DecoratingTextFieldDelegate</a>
@@ -64,6 +67,9 @@
               <li class="nav-group-task">
                 <a href="Classes/SignalingAlert.html">SignalingAlert</a>
               </li>
+              <li class="nav-group-task">
+                <a href="Classes/TypedSerialDisposable.html">TypedSerialDisposable</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -72,13 +78,16 @@
               <li class="nav-group-task">
                 <a href="Enums/LoadingState.html">LoadingState</a>
               </li>
+              <li class="nav-group-task">
+                <a href="Enums/TransferState.html">TransferState</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
             <a href="Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Extensions/Action.html">Action</a>
+                <a href="Extensions/ActionError.html">ActionError</a>
               </li>
               <li class="nav-group-task">
                 <a href="Extensions/Bool.html">Bool</a>
@@ -90,13 +99,22 @@
                 <a href="Extensions/Collection.html">Collection</a>
               </li>
               <li class="nav-group-task">
+                <a href="Extensions/Optional.html">Optional</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Extensions/PropertyProtocol.html">PropertyProtocol</a>
               </li>
               <li class="nav-group-task">
                 <a href="Extensions/Reactive.html">Reactive</a>
               </li>
               <li class="nav-group-task">
+                <a href="Extensions/ScopedDisposable.html">ScopedDisposable</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Extensions/Sequence.html">Sequence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/Signal.html">Signal</a>
               </li>
               <li class="nav-group-task">
                 <a href="Extensions/SignalProducer.html">SignalProducer</a>
@@ -184,6 +202,12 @@
             <a href="Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="Protocols/ActionErrorProtocol.html">ActionErrorProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/ActionProtocol.html">ActionProtocol</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Protocols/ReactiveLifetimeProvider.html">ReactiveLifetimeProvider</a>
               </li>
             </ul>
@@ -221,7 +245,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Compare 2 <code>NSDecimalNumber</code>s.</p>
 
                       </div>
                       <div class="declaration">
@@ -231,6 +255,10 @@
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="o">&lt;</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">NSDecimalNumber</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">NSDecimalNumber</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>true</code> if the left side is lesser than the right side, <code>false</code> otherwise.</p>
                       </div>
                     </section>
                   </div>
@@ -248,7 +276,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Compare 2 <code>NSDecimalNumber</code>s.</p>
 
                       </div>
                       <div class="declaration">
@@ -258,6 +286,10 @@
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="o">&lt;=</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">NSDecimalNumber</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">NSDecimalNumber</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>true</code> if the left side is lesser than or equal the right side, <code>false</code> otherwise.</p>
                       </div>
                     </section>
                   </div>
@@ -275,7 +307,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Compare 2 <code>NSDecimalNumber</code>s.</p>
 
                       </div>
                       <div class="declaration">
@@ -285,6 +317,10 @@
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="o">&gt;</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">NSDecimalNumber</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">NSDecimalNumber</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>true</code> if the left side is greater than the right side, <code>false</code> otherwise.</p>
                       </div>
                     </section>
                   </div>
@@ -302,7 +338,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Compare 2 <code>NSDecimalNumber</code>s.</p>
 
                       </div>
                       <div class="declaration">
@@ -312,6 +348,10 @@
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">NSDecimalNumber</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">NSDecimalNumber</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>true</code> if the left side is greater than or equal the right side, <code>false</code> otherwise.</p>
                       </div>
                     </section>
                   </div>
@@ -329,7 +369,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Multiply 2 <code>NSDecimalNumber</code>s together.</p>
 
                       </div>
                       <div class="declaration">
@@ -339,6 +379,10 @@
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="o">*</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">NSDecimalNumber</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">NSDecimalNumber</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">NSDecimalNumber</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The result of multiplying the left side with the right side.</p>
                       </div>
                     </section>
                   </div>
@@ -356,7 +400,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Divide one <code>NSDecimalNumber</code> with another.</p>
 
                       </div>
                       <div class="declaration">
@@ -366,6 +410,10 @@
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="o">/</span> <span class="p">(</span><span class="nv">lhs</span><span class="p">:</span> <span class="kt">NSDecimalNumber</span><span class="p">,</span> <span class="nv">rhs</span><span class="p">:</span> <span class="kt">NSDecimalNumber</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">NSDecimalNumber</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The result of dividing the left side with the right side.</p>
                       </div>
                     </section>
                   </div>
@@ -387,7 +435,8 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Use with <code>observe(context:)</code> function below to animate all changes made by observers of the signal returned from <code>observe(context:)</code>.</p>
+                        <p>Use with <code><a href="Extensions/SignalProtocol.html#/s:13ReactiveSwift14SignalProtocolP11FueledUtilsE7observe7contextAA0C0Cy5ValueQz5ErrorQzGyyycc_tF">SignalProtocol.observe(context:)</a></code> or  <code><a href="Extensions/SignalProducerProtocol.html#/s:13ReactiveSwift22SignalProducerProtocolP11FueledUtilsE7observe7contextAA0cD0Vy5ValueQz5ErrorQzGyyycc_tF">SignalProducerProtocol.observe(context:)</a></code> below to animate
+all changes made by observers of the signal returned from <code>observe(context:)</code>.</p>
 
                       </div>
                       <div class="declaration">
@@ -420,7 +469,8 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Use with <code><a href="Extensions/SignalProtocol.html#/s:13ReactiveSwift14SignalProtocolP11FueledUtilsE7observe7contextAA0C0Cy5ValueQz5ErrorQzGyyycc_tF">SignalProtocol.observe(context:)</a></code> or  <code><a href="Extensions/SignalProducerProtocol.html#/s:13ReactiveSwift22SignalProducerProtocolP11FueledUtilsE7observe7contextAA0cD0Vy5ValueQz5ErrorQzGyyycc_tF">SignalProducerProtocol.observe(context:)</a></code> below to animate
+all changes made by observers of the signal returned from <code>observe(context:)</code>.</p>
 
                       </div>
                       <div class="declaration">
@@ -440,6 +490,10 @@
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -485,7 +539,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Match a regex with a string.</p>
 
                       </div>
                       <div class="declaration">
@@ -495,6 +549,41 @@
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="o">~=</span> <span class="p">(</span><span class="nv">pattern</span><span class="p">:</span> <span class="kt"><a href="Structs/Regex.html">Regex</a></span><span class="p">,</span> <span class="nv">string</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>pattern</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The Regex to match the string against.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>string</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The string to try to match against the Regex.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p><code>true</code> if <code>pattern</code> matches <code>string</code>, <code>false</code> otherwise.</p>
                       </div>
                     </section>
                   </div>

@@ -164,6 +164,9 @@ public final class DecoratingTextFieldDelegate: NSObject {
 }
 
 extension DecoratingTextFieldDelegate: UITextFieldDelegate {
+	///
+	/// Please refer to the documentation for `UITextFieldDelegate.textField(_:, shouldChangeCharactersIn:, replacementString:)`.
+	///
 	public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
 		let decoratedString = textField.text ?? ""
 		let decoratedReplacement = string

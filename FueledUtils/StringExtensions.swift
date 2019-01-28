@@ -16,15 +16,28 @@ limitations under the License.
 import Foundation
 
 extension StringProtocol {
+	///
+	/// Returns the equivalent length of the string (as given by `NSString.length`) if the receiver's content was in a `NSString`.
+	///
+	/// Equivalent to using `(String(self) as NSString).length` or `self.utf16.count`
+	///
 	public var nsLength: Int {
 		return (String(self) as NSString).length
 	}
 
+	///
+	/// **Deprecated**: Please use `nsRange` instead.
+	///
+	/// Refer to the documentation for `nsRange` for more info.
+	///
 	@available(*, deprecated, renamed: "nsRange")
 	public var fullRange: NSRange {
 		return NSRange(location: 0, length: nsLength)
 	}
 
+	///
+	/// Returns `NSRange(location: 0, length: nsLength)` for usage with Objective-C APIs.
+	///
 	public var nsRange: NSRange {
 		return NSRange(location: 0, length: nsLength)
 	}
@@ -72,48 +85,51 @@ extension String {
 		} while range != nil
 	}
 
-	// 2...5
-	public subscript(_ range: CountableClosedRange<Int>) -> String {
-		get {
-			let i = stringIndex(range.lowerBound)
-			let j = stringIndex(range.upperBound)
-			return String(self[i...j])
-		}
+	///
+	/// Allows to get a substring from a string using an integer range.
+	///
+	public func substring(_ range: CountableClosedRange<Int>) -> String {
+		let i = stringIndex(range.lowerBound)
+		let j = stringIndex(range.upperBound)
+		return String(self[i...j])
 	}
 
-	// 2..<5
-	public subscript(_ range: CountableRange<Int>) -> String {
-		get {
-			let i = stringIndex(range.lowerBound)
-			let j = stringIndex(range.upperBound)
-			return String(self[i..<j])
-		}
+	///
+	/// Allows to get a substring from a string using an integer range.
+	///
+	public func substring(_ range: CountableRange<Int>) -> String {
+		let i = stringIndex(range.lowerBound)
+		let j = stringIndex(range.upperBound)
+		return String(self[i..<j])
 	}
 
-	// ...5
-	public subscript(_ range: PartialRangeThrough<Int>) -> String {
-		get {
-			let j = stringIndex(range.upperBound)
-			return String(prefix(through: j))
-		}
+	///
+	/// Allows to get a substring from a string using an integer range.
+	///
+	public func substring(_ range: PartialRangeThrough<Int>) -> String {
+		let j = stringIndex(range.upperBound)
+		return String(self[...j])
 	}
 
-	// ..<5
-	public subscript(_ range: PartialRangeUpTo<Int>) -> String {
-		get {
-			let j = stringIndex(range.upperBound)
-			return String(prefix(upTo: j))
-		}
+	///
+	/// Allows to get a substring from a string using an integer range.
+	///
+	public func substring(_ range: PartialRangeUpTo<Int>) -> String {
+		let j = stringIndex(range.upperBound)
+		return String(self[..<j])
 	}
 
-	// 5...
-	public subscript(_ range: PartialRangeFrom<Int>) -> String {
-		get {
-			let i = stringIndex(range.lowerBound)
-			return String(suffix(from: i))
-		}
+	///
+	/// Allows to get a substring from a string using an integer range.
+	///
+	public func substring(_ range: PartialRangeFrom<Int>) -> String {
+		let i = stringIndex(range.lowerBound)
+		return String(suffix(from: i))
 	}
 
+	///
+	/// Helper function to convert an integer index (0-based) into a string index.
+	///
 	public func stringIndex(_ index: Int) -> Index {
 		return self.index(startIndex, offsetBy: index)
 	}

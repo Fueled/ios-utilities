@@ -14,7 +14,7 @@
     <a title="SignalProducerProtocol Extension Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">FueledUtils Docs</a> (59% documented)</p>
+        <p><a href="../index.html">FueledUtils Docs</a> (100% documented)</p>
         <p class="header-right"><a href="https://github.com/Fueled/FueledUtils"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -33,6 +33,9 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Classes/ButtonWithTitleAdjustment.html">ButtonWithTitleAdjustment</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CoalescingAction.html">CoalescingAction</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/DecoratingTextFieldDelegate.html">DecoratingTextFieldDelegate</a>
@@ -64,6 +67,9 @@
               <li class="nav-group-task">
                 <a href="../Classes/SignalingAlert.html">SignalingAlert</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TypedSerialDisposable.html">TypedSerialDisposable</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -72,13 +78,16 @@
               <li class="nav-group-task">
                 <a href="../Enums/LoadingState.html">LoadingState</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TransferState.html">TransferState</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
             <a href="../Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Extensions/Action.html">Action</a>
+                <a href="../Extensions/ActionError.html">ActionError</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/Bool.html">Bool</a>
@@ -90,13 +99,22 @@
                 <a href="../Extensions/Collection.html">Collection</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Extensions/Optional.html">Optional</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Extensions/PropertyProtocol.html">PropertyProtocol</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/Reactive.html">Reactive</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Extensions/ScopedDisposable.html">ScopedDisposable</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Extensions/Sequence.html">Sequence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Signal.html">Signal</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/SignalProducer.html">SignalProducer</a>
@@ -184,6 +202,12 @@
             <a href="../Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="../Protocols/ActionErrorProtocol.html">ActionErrorProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ActionProtocol.html">ActionProtocol</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Protocols/ReactiveLifetimeProvider.html">ReactiveLifetimeProvider</a>
               </li>
             </ul>
@@ -213,6 +237,60 @@
           <section class="section task-group-section">
             <div class="task-group">
               <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13ReactiveSwift22SignalProducerProtocolP11FueledUtilsE15promoteOptionalAA0cD0Vy5ValueQzSg5ErrorQzGyF"></a>
+                    <a name="//apple_ref/swift/Method/promoteOptional()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13ReactiveSwift22SignalProducerProtocolP11FueledUtilsE15promoteOptionalAA0cD0Vy5ValueQzSg5ErrorQzGyF">promoteOptional()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Make the <code>SignalProducer</code> output optional <code>Value</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">promoteOptional</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">SignalProducer</span><span class="o">&lt;</span><span class="kt">Value</span><span class="p">?,</span> <span class="kt">Error</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13ReactiveSwift22SignalProducerProtocolP11FueledUtilsE9prefixNilAA0cD0Vy5ValueQzSg5ErrorQzGyF"></a>
+                    <a name="//apple_ref/swift/Method/prefixNil()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13ReactiveSwift22SignalProducerProtocolP11FueledUtilsE9prefixNilAA0cD0Vy5ValueQzSg5ErrorQzGyF">prefixNil()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Make the <code>Signal</code> output optional <code>Value</code>, and prefix it with <code>nil</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">prefixNil</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">SignalProducer</span><span class="o">&lt;</span><span class="kt">Value</span><span class="p">?,</span> <span class="kt">Error</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
                 <li class="item">
                   <div>
                     <code>
@@ -311,7 +389,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The original purpose of this method is to allow triggering animations in response to signal values.</p>
+<h2 id='example' class='heading'>Example</h2>
+
+<p>The following code</p>
+<pre class="highlight swift"><code><span class="k">self</span><span class="o">.</span><span class="n">constraint</span><span class="o">.</span><span class="n">reactive</span><span class="o">.</span><span class="n">constant</span> <span class="o">&lt;~</span> <span class="n">viewModel</span><span class="o">.</span><span class="n">constraintConstantValue</span><span class="o">.</span><span class="n">signal</span><span class="o">.</span><span class="nf">observe</span><span class="p">(</span><span class="nv">context</span><span class="p">:</span> <span class="n">animatingContext</span><span class="p">)</span>
+</code></pre>
+
+<p>will result in all changes to <code>constraintConstantValue</code> in <code>viewModel</code> to be reflected in the constraint and animated.</p>
 
                       </div>
                       <div class="declaration">
@@ -322,15 +407,42 @@
 
                         </div>
                       </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>context</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Defines a context in which observers of the resulting signal will be called.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A signal of which observers will receive values in the context defined by <code>context</code> function.</p>
+                      </div>
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13ReactiveSwift22SignalProducerProtocolP11FueledUtilsE7minimum8interval2onAA0cD0Vy5ValueQz5ErrorQzGSd_AA13DateScheduler_ptF"></a>
-                    <a name="//apple_ref/swift/Method/minimum(interval:on:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13ReactiveSwift22SignalProducerProtocolP11FueledUtilsE7minimum8interval2onAA0cD0Vy5ValueQz5ErrorQzGSd_AA13DateScheduler_ptF">minimum(interval:on:)</a>
+                    <a name="/s:13ReactiveSwift22SignalProducerProtocolP11FueledUtilsE13ignoreLoadingAA0cD0Vyqd_0_5ErrorQzGyAD13TransferStateOyqd__qd_0_G5ValueRtzr0_lF"></a>
+                    <a name="//apple_ref/swift/Method/ignoreLoading()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13ReactiveSwift22SignalProducerProtocolP11FueledUtilsE13ignoreLoadingAA0cD0Vyqd_0_5ErrorQzGyAD13TransferStateOyqd__qd_0_G5ValueRtzr0_lF">ignoreLoading()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -338,14 +450,71 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>See <code>Signal.minimum</code> for documentation</p>
+                        <p>Converts a <code>SignalProducer</code> that has a <code><a href="../Enums/TransferState.html">TransferState</a></code> value into a <code>SignalProducer</code> only returning a value when <code>finished()</code> is received.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">minimum</span><span class="p">(</span><span class="nv">interval</span><span class="p">:</span> <span class="kt">TimeInterval</span><span class="p">,</span> <span class="n">on</span> <span class="nv">scheduler</span><span class="p">:</span> <span class="kt">DateScheduler</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">SignalProducer</span><span class="o">&lt;</span><span class="kt">Value</span><span class="p">,</span> <span class="kt">Error</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">ignoreLoading</span><span class="o">&lt;</span><span class="kt">Progress</span><span class="p">,</span> <span class="kt">Value</span><span class="o">&gt;</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">SignalProducer</span><span class="o">&lt;</span><span class="kt">Value</span><span class="p">,</span> <span class="kt">Error</span><span class="o">&gt;</span>
+	<span class="k">where</span> <span class="k">Self</span><span class="o">.</span><span class="kt">Value</span> <span class="o">==</span> <span class="kt"><a href="../Enums/TransferState.html">TransferState</a></span><span class="o">&lt;</span><span class="kt">Progress</span><span class="p">,</span> <span class="kt">Value</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13ReactiveSwift22SignalProducerProtocolP11FueledUtilsE11mapFinishedyAA0cD0VyAD13TransferStateOyqd__qd_1_G5ErrorQzGqd_1_qd_0_cAIyqd__qd_0_G5ValueRtzr1_lF"></a>
+                    <a name="//apple_ref/swift/Method/mapFinished(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13ReactiveSwift22SignalProducerProtocolP11FueledUtilsE11mapFinishedyAA0cD0VyAD13TransferStateOyqd__qd_1_G5ErrorQzGqd_1_qd_0_cAIyqd__qd_0_G5ValueRtzr1_lF">mapFinished(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Maps a <code>SignalProducer</code> for which each value is a <code><a href="../Enums/TransferState.html">TransferState</a></code> into a <code><a href="../Enums/TransferState.html">TransferState</a></code> returning the mapped value.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">mapFinished</span><span class="o">&lt;</span><span class="kt">Progress</span><span class="p">,</span> <span class="kt">Value</span><span class="p">,</span> <span class="kt">Mapped</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">mapper</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Value</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Mapped</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">SignalProducer</span><span class="o">&lt;</span><span class="kt"><a href="../Enums/TransferState.html">TransferState</a></span><span class="o">&lt;</span><span class="kt">Progress</span><span class="p">,</span> <span class="kt">Mapped</span><span class="o">&gt;</span><span class="p">,</span> <span class="kt">Error</span><span class="o">&gt;</span>
+	<span class="k">where</span> <span class="k">Self</span><span class="o">.</span><span class="kt">Value</span> <span class="o">==</span> <span class="kt"><a href="../Enums/TransferState.html">TransferState</a></span><span class="o">&lt;</span><span class="kt">Progress</span><span class="p">,</span> <span class="kt">Value</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13ReactiveSwift22SignalProducerProtocolP11FueledUtilsE15flatMapFinishedyAA0cD0VyAD13TransferStateOyqd__qd_1_G5ErrorQzGAGyqd_1_ALGqd_0_cAIyqd__qd_0_G5ValueRtzr1_lF"></a>
+                    <a name="//apple_ref/swift/Method/flatMapFinished(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13ReactiveSwift22SignalProducerProtocolP11FueledUtilsE15flatMapFinishedyAA0cD0VyAD13TransferStateOyqd__qd_1_G5ErrorQzGAGyqd_1_ALGqd_0_cAIyqd__qd_0_G5ValueRtzr1_lF">flatMapFinished(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Maps a <code>SignalProducer</code> for which each value is a <code><a href="../Enums/TransferState.html">TransferState</a></code> into a <code><a href="../Enums/TransferState.html">TransferState</a></code> returning a <code>SignalProducer</code> returning the mapped value.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">flatMapFinished</span><span class="o">&lt;</span><span class="kt">Progress</span><span class="p">,</span> <span class="kt">Value</span><span class="p">,</span> <span class="kt">Mapped</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">mapper</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Value</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">SignalProducer</span><span class="o">&lt;</span><span class="kt">Mapped</span><span class="p">,</span> <span class="kt">Error</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">SignalProducer</span><span class="o">&lt;</span><span class="kt"><a href="../Enums/TransferState.html">TransferState</a></span><span class="o">&lt;</span><span class="kt">Progress</span><span class="p">,</span> <span class="kt">Mapped</span><span class="o">&gt;</span><span class="p">,</span> <span class="kt">Error</span><span class="o">&gt;</span>
+	<span class="k">where</span> <span class="k">Self</span><span class="o">.</span><span class="kt">Value</span> <span class="o">==</span> <span class="kt"><a href="../Enums/TransferState.html">TransferState</a></span><span class="o">&lt;</span><span class="kt">Progress</span><span class="p">,</span> <span class="kt">Value</span><span class="o">&gt;</span></code></pre>
 
                         </div>
                       </div>

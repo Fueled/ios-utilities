@@ -14,7 +14,7 @@
     <a title="Collection Extension Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">FueledUtils Docs</a> (59% documented)</p>
+        <p><a href="../index.html">FueledUtils Docs</a> (100% documented)</p>
         <p class="header-right"><a href="https://github.com/Fueled/FueledUtils"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -33,6 +33,9 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Classes/ButtonWithTitleAdjustment.html">ButtonWithTitleAdjustment</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CoalescingAction.html">CoalescingAction</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/DecoratingTextFieldDelegate.html">DecoratingTextFieldDelegate</a>
@@ -64,6 +67,9 @@
               <li class="nav-group-task">
                 <a href="../Classes/SignalingAlert.html">SignalingAlert</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TypedSerialDisposable.html">TypedSerialDisposable</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -72,13 +78,16 @@
               <li class="nav-group-task">
                 <a href="../Enums/LoadingState.html">LoadingState</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TransferState.html">TransferState</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
             <a href="../Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Extensions/Action.html">Action</a>
+                <a href="../Extensions/ActionError.html">ActionError</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/Bool.html">Bool</a>
@@ -90,13 +99,22 @@
                 <a href="../Extensions/Collection.html">Collection</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Extensions/Optional.html">Optional</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Extensions/PropertyProtocol.html">PropertyProtocol</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/Reactive.html">Reactive</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Extensions/ScopedDisposable.html">ScopedDisposable</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Extensions/Sequence.html">Sequence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Signal.html">Signal</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/SignalProducer.html">SignalProducer</a>
@@ -184,6 +202,12 @@
             <a href="../Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="../Protocols/ActionErrorProtocol.html">ActionErrorProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ActionProtocol.html">ActionProtocol</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Protocols/ReactiveLifetimeProvider.html">ReactiveLifetimeProvider</a>
               </li>
             </ul>
@@ -267,6 +291,33 @@ Returns: The element as a wrapped optional if the <code>index</code> is in the <
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">getSafely</span><span class="p">(</span><span class="n">at</span> <span class="nv">index</span><span class="p">:</span> <span class="k">Self</span><span class="o">.</span><span class="kt">Index</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span><span class="o">.</span><span class="kt">Iterator</span><span class="o">.</span><span class="kt">Element</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:Sl11FueledUtilsE23withPositionInformationSay7ElementQz7element_Sb07isFirstF0Sb0h4LastF0tGyF"></a>
+                    <a name="//apple_ref/swift/Method/withPositionInformation()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:Sl11FueledUtilsE23withPositionInformationSay7ElementQz7element_Sb07isFirstF0Sb0h4LastF0tGyF">withPositionInformation()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns a collection with same element, and information as to whether the element is the first or the last, or both.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">withPositionInformation</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="p">[(</span><span class="nv">element</span><span class="p">:</span> <span class="k">Self</span><span class="o">.</span><span class="kt">Element</span><span class="p">,</span> <span class="nv">isFirstElement</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="nv">isLastElement</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)]</span></code></pre>
 
                         </div>
                       </div>

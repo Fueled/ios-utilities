@@ -14,7 +14,7 @@
     <a title="Extensions  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">FueledUtils Docs</a> (59% documented)</p>
+        <p><a href="index.html">FueledUtils Docs</a> (100% documented)</p>
         <p class="header-right"><a href="https://github.com/Fueled/FueledUtils"><img src="img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -33,6 +33,9 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="Classes/ButtonWithTitleAdjustment.html">ButtonWithTitleAdjustment</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/CoalescingAction.html">CoalescingAction</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/DecoratingTextFieldDelegate.html">DecoratingTextFieldDelegate</a>
@@ -64,6 +67,9 @@
               <li class="nav-group-task">
                 <a href="Classes/SignalingAlert.html">SignalingAlert</a>
               </li>
+              <li class="nav-group-task">
+                <a href="Classes/TypedSerialDisposable.html">TypedSerialDisposable</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -72,13 +78,16 @@
               <li class="nav-group-task">
                 <a href="Enums/LoadingState.html">LoadingState</a>
               </li>
+              <li class="nav-group-task">
+                <a href="Enums/TransferState.html">TransferState</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
             <a href="Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Extensions/Action.html">Action</a>
+                <a href="Extensions/ActionError.html">ActionError</a>
               </li>
               <li class="nav-group-task">
                 <a href="Extensions/Bool.html">Bool</a>
@@ -90,13 +99,22 @@
                 <a href="Extensions/Collection.html">Collection</a>
               </li>
               <li class="nav-group-task">
+                <a href="Extensions/Optional.html">Optional</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Extensions/PropertyProtocol.html">PropertyProtocol</a>
               </li>
               <li class="nav-group-task">
                 <a href="Extensions/Reactive.html">Reactive</a>
               </li>
               <li class="nav-group-task">
+                <a href="Extensions/ScopedDisposable.html">ScopedDisposable</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Extensions/Sequence.html">Sequence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/Signal.html">Signal</a>
               </li>
               <li class="nav-group-task">
                 <a href="Extensions/SignalProducer.html">SignalProducer</a>
@@ -184,6 +202,12 @@
             <a href="Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="Protocols/ActionErrorProtocol.html">ActionErrorProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/ActionProtocol.html">ActionProtocol</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Protocols/ReactiveLifetimeProvider.html">ReactiveLifetimeProvider</a>
               </li>
             </ul>
@@ -206,6 +230,37 @@
 
           </section>
           <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13ReactiveSwift11ActionErrorO"></a>
+                    <a name="//apple_ref/swift/Extension/ActionError" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13ReactiveSwift11ActionErrorO">ActionError</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                        <a href="Extensions/ActionError.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">enum</span> <span class="kt">ActionError</span><span class="o">&lt;</span><span class="kt">Error</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt">Error</span> <span class="k">where</span> <span class="kt">Error</span> <span class="p">:</span> <span class="kt">Error</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
             <div class="task-group">
               <ul>
                 <li class="item">
@@ -304,9 +359,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13ReactiveSwift6ActionC"></a>
-                    <a name="//apple_ref/swift/Extension/Action" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13ReactiveSwift6ActionC">Action</a>
+                    <a name="/s:13ReactiveSwift0A0V"></a>
+                    <a name="//apple_ref/swift/Extension/Reactive" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13ReactiveSwift0A0V">Reactive</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -315,13 +370,13 @@
                       <div class="pointer"></div>
                       <div class="abstract">
                         
-                        <a href="Extensions/Action.html" class="slightly-smaller">See more</a>
+                        <a href="Extensions/Reactive.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">final</span> <span class="kd">class</span> <span class="kt">Action</span><span class="o">&lt;</span><span class="kt">Input</span><span class="p">,</span> <span class="kt">Output</span><span class="p">,</span> <span class="kt">Error</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">Error</span> <span class="p">:</span> <span class="kt">Error</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">Reactive</span><span class="o">&lt;</span><span class="kt">Base</span><span class="o">&gt;</span></code></pre>
 
                         </div>
                       </div>
@@ -389,33 +444,6 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13ReactiveSwift14SignalProducerV"></a>
-                    <a name="//apple_ref/swift/Extension/SignalProducer" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13ReactiveSwift14SignalProducerV">SignalProducer</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        
-                        <a href="Extensions/SignalProducer.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">SignalProducer</span><span class="o">&lt;</span><span class="kt">Value</span><span class="p">,</span> <span class="kt">Error</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">Error</span> <span class="p">:</span> <span class="kt">Error</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
                     <a name="/s:13ReactiveSwift16PropertyProtocolP"></a>
                     <a name="//apple_ref/swift/Extension/PropertyProtocol" class="dashAnchor"></a>
                     <a class="token" href="#/s:13ReactiveSwift16PropertyProtocolP">PropertyProtocol</a>
@@ -443,9 +471,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13ReactiveSwift0A0V"></a>
-                    <a name="//apple_ref/swift/Extension/Reactive" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13ReactiveSwift0A0V">Reactive</a>
+                    <a name="/s:13ReactiveSwift6SignalC"></a>
+                    <a name="//apple_ref/swift/Extension/Signal" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13ReactiveSwift6SignalC">Signal</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -454,13 +482,40 @@
                       <div class="pointer"></div>
                       <div class="abstract">
                         
-                        <a href="Extensions/Reactive.html" class="slightly-smaller">See more</a>
+                        <a href="Extensions/Signal.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">Reactive</span><span class="o">&lt;</span><span class="kt">Base</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">final</span> <span class="kd">class</span> <span class="kt">Signal</span><span class="o">&lt;</span><span class="kt">Value</span><span class="p">,</span> <span class="kt">Error</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">Error</span> <span class="p">:</span> <span class="kt">Error</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13ReactiveSwift14SignalProducerV"></a>
+                    <a name="//apple_ref/swift/Extension/SignalProducer" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13ReactiveSwift14SignalProducerV">SignalProducer</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                        <a href="Extensions/SignalProducer.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">SignalProducer</span><span class="o">&lt;</span><span class="kt">Value</span><span class="p">,</span> <span class="kt">Error</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">Error</span> <span class="p">:</span> <span class="kt">Error</span></code></pre>
 
                         </div>
                       </div>
@@ -612,6 +667,65 @@
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:Sq"></a>
+                    <a name="//apple_ref/swift/Extension/Optional" class="dashAnchor"></a>
+                    <a class="token" href="#/s:Sq">Optional</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                        <a href="Extensions/Optional.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@_frozen</span>
+<span class="kd">enum</span> <span class="kt">Optional</span><span class="o">&lt;</span><span class="kt">Wrapped</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt">ExpressibleByNilLiteral</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13ReactiveSwift16ScopedDisposableC"></a>
+                    <a name="//apple_ref/swift/Extension/ScopedDisposable" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13ReactiveSwift16ScopedDisposableC">ScopedDisposable</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                        <a href="Extensions/ScopedDisposable.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">final</span> <span class="kd">class</span> <span class="kt">ScopedDisposable</span><span class="o">&lt;</span><span class="kt">Inner</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt">Disposable</span> <span class="k">where</span> <span class="kt">Inner</span> <span class="p">:</span> <span class="kt">Disposable</span></code></pre>
 
                         </div>
                       </div>

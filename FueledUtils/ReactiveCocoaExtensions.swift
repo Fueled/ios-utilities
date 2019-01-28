@@ -19,7 +19,8 @@ import ReactiveSwift
 import Result
 
 ///
-/// Use with `observe(context:)` function below to animate all changes made by observers of the signal returned from `observe(context:)`.
+/// Use with `SignalProtocol.observe(context:)` or  `SignalProducerProtocol.observe(context:)` below to animate
+/// all changes made by observers of the signal returned from `observe(context:)`.
 ///
 public func animatingContext(
 	_ duration: TimeInterval,
@@ -43,6 +44,10 @@ public func animatingContext(
 		}
 }
 
+///
+/// Use with `SignalProtocol.observe(context:)` or  `SignalProducerProtocol.observe(context:)` below to animate
+/// all changes made by observers of the signal returned from `observe(context:)`.
+///
 public func transitionContext(
 	with view: UIView,
 	duration: TimeInterval,
@@ -62,16 +67,28 @@ public func transitionContext(
 }
 
 extension Reactive where Base: NSLayoutConstraint {
+	///
+	/// Set whether the constant is active or not in its hierarchy.
+	///
 	public var isActive: BindingTarget<Bool> {
 		return makeBindingTarget { $0.isActive = $1 }
 	}
 }
 
 extension Reactive where Base: UIView {
+	///
+	/// Update the `alpha` property of the view with an animation.
+	///
 	var animatedAlpha: BindingTarget<Float> {
 		return self.animatedAlpha()
 	}
 
+	///
+	/// Update the `alpha` property of the view with an animation.
+	///
+	/// - Parameters:
+	///   - duration: The duration of the animation.
+	///
 	func animatedAlpha(duration: TimeInterval = 0.35) -> BindingTarget<Float> {
 		return makeBindingTarget { view, alpha in
 			UIView.animate(withDuration: duration) {
@@ -82,28 +99,41 @@ extension Reactive where Base: UIView {
 }
 
 extension Reactive where Base: UILabel {
+	///
+	/// Update the `text` property of the label with an animation.
+	///
 	var animatedText: BindingTarget<String> {
 		return makeBindingTarget { label, text in
 			label.setText(text, animated: true)
 		}
 	}
+	///
+	/// Update the `attributedText` property of the label with an animation.
+	///
 	var animatedAttributedText: BindingTarget<NSAttributedString> {
 		return makeBindingTarget { label, text in
 			label.setAttributedText(text, animated: true)
 		}
 	}
-}
 
-extension Reactive where Base: UILabel {
+	///
+	/// Update the `textAlignment` property of the label with an animation.
+	///
 	public var textAlignment: BindingTarget<NSTextAlignment> {
 		return makeBindingTarget { $0.textAlignment = $1 }
 	}
 }
 
 extension Reactive where Base: UIViewController {
+	///
+	/// Update the `title` property of the receiver.
+	///
 	public var title: BindingTarget<String?> {
 		return makeBindingTarget { $0.title = $1 }
 	}
+	///
+	/// Perform a segue with the specified identifier and sender.
+	///
 	public var performSegue: BindingTarget<(String, Any?)> {
 		return makeBindingTarget { $0.performSegue(withIdentifier: $1.0, sender: $1.1) }
 	}
@@ -111,6 +141,10 @@ extension Reactive where Base: UIViewController {
 
 @available(iOS 9.0, *)
 extension Reactive where Base: UIStackView {
+	///
+	/// **Deprecated**: Use `subview.reactive.isHidden <~ <Binding Source>` instead.
+	/// Add/remove/modify the order of the arranged subviews by specified the subview.
+	///
 	@available(*, deprecated, message: "Use `subview.reactive.isHidden <~ <Binding Source>` instead")
 	public func isArranged(_ subview: UIView, at index: Int) -> BindingTarget<Bool> {
 		return makeBindingTarget { stackView, isArrangedSubview in
@@ -124,30 +158,57 @@ extension Reactive where Base: UIStackView {
 }
 
 extension Reactive where Base: UINavigationItem {
+	///
+	/// Show/hide the back button, optionally with an animation.
+	///
 	public func hidesBackButton(animated: Bool) -> BindingTarget<Bool> {
 		return makeBindingTarget { $0.setHidesBackButton($1, animated: animated) }
 	}
+	///
+	/// Show/hide the right bar button item, optionally with an animation.
+	///
 	public func rightBarButtonItem(animated: Bool) -> BindingTarget<UIBarButtonItem?> {
 		return makeBindingTarget { $0.setRightBarButton($1, animated: animated) }
 	}
+	///
+	/// Show/hide the right bar button items, optionally with an animation.
+	///
 	public func rightBarButtonItems(animated: Bool) -> BindingTarget<[UIBarButtonItem]> {
 		return makeBindingTarget { $0.setRightBarButtonItems($1, animated: animated) }
 	}
+	///
+	/// Show/hide the left bar button item, optionally with an animation.
+	///
 	public func leftBarButtonItem(animated: Bool) -> BindingTarget<UIBarButtonItem?> {
 		return makeBindingTarget { $0.setLeftBarButton($1, animated: animated) }
 	}
+	///
+	/// Show/hide the left bar button items, optionally with an animation.
+	///
 	public func leftBarButtonItems(animated: Bool) -> BindingTarget<[UIBarButtonItem]> {
 		return makeBindingTarget { $0.setLeftBarButtonItems($1, animated: animated) }
 	}
+	///
+	/// Show/hide the right bar button item without any animations.
+	///
 	public var rightBarButtonItem: BindingTarget<UIBarButtonItem?> {
 		return makeBindingTarget { $0.rightBarButtonItem = $1 }
 	}
+	///
+	/// Show/hide the right bar button items without any animations.
+	///
 	public var rightBarButtonItems: BindingTarget<[UIBarButtonItem]> {
 		return makeBindingTarget { $0.rightBarButtonItems = $1 }
 	}
+	///
+	/// Show/hide the left bar button item without any animations.
+	///
 	public var leftBarButtonItem: BindingTarget<UIBarButtonItem?> {
 		return makeBindingTarget { $0.leftBarButtonItem = $1 }
 	}
+	///
+	/// Show/hide the left bar button items without any animations.
+	///
 	public var leftBarButtonItems: BindingTarget<[UIBarButtonItem]> {
 		return makeBindingTarget { $0.leftBarButtonItems = $1 }
 	}

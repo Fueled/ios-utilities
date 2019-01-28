@@ -14,7 +14,7 @@
     <a title="SignalProtocol Extension Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">FueledUtils Docs</a> (59% documented)</p>
+        <p><a href="../index.html">FueledUtils Docs</a> (100% documented)</p>
         <p class="header-right"><a href="https://github.com/Fueled/FueledUtils"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -33,6 +33,9 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Classes/ButtonWithTitleAdjustment.html">ButtonWithTitleAdjustment</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CoalescingAction.html">CoalescingAction</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/DecoratingTextFieldDelegate.html">DecoratingTextFieldDelegate</a>
@@ -64,6 +67,9 @@
               <li class="nav-group-task">
                 <a href="../Classes/SignalingAlert.html">SignalingAlert</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TypedSerialDisposable.html">TypedSerialDisposable</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -72,13 +78,16 @@
               <li class="nav-group-task">
                 <a href="../Enums/LoadingState.html">LoadingState</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TransferState.html">TransferState</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
             <a href="../Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Extensions/Action.html">Action</a>
+                <a href="../Extensions/ActionError.html">ActionError</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/Bool.html">Bool</a>
@@ -90,13 +99,22 @@
                 <a href="../Extensions/Collection.html">Collection</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Extensions/Optional.html">Optional</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Extensions/PropertyProtocol.html">PropertyProtocol</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/Reactive.html">Reactive</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Extensions/ScopedDisposable.html">ScopedDisposable</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Extensions/Sequence.html">Sequence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Signal.html">Signal</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/SignalProducer.html">SignalProducer</a>
@@ -184,6 +202,12 @@
             <a href="../Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="../Protocols/ActionErrorProtocol.html">ActionErrorProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ActionProtocol.html">ActionProtocol</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Protocols/ReactiveLifetimeProvider.html">ReactiveLifetimeProvider</a>
               </li>
             </ul>
@@ -213,6 +237,33 @@
           <section class="section task-group-section">
             <div class="task-group">
               <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13ReactiveSwift14SignalProtocolP11FueledUtilsE15promoteOptionalAA0C0Cy5ValueQzSg5ErrorQzGyF"></a>
+                    <a name="//apple_ref/swift/Method/promoteOptional()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13ReactiveSwift14SignalProtocolP11FueledUtilsE15promoteOptionalAA0C0Cy5ValueQzSg5ErrorQzGyF">promoteOptional()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Make the <code>Signal</code> output optional <code>Value</code>.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">promoteOptional</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Signal</span><span class="o">&lt;</span><span class="kt">Value</span><span class="p">?,</span> <span class="kt">Error</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
                 <li class="item">
                   <div>
                     <code>
@@ -273,9 +324,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13ReactiveSwift14SignalProtocolP11FueledUtilsE7minimum8interval2onAA0C0Cy5ValueQz5ErrorQzGSd_AA13DateScheduler_ptF"></a>
-                    <a name="//apple_ref/swift/Method/minimum(interval:on:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13ReactiveSwift14SignalProtocolP11FueledUtilsE7minimum8interval2onAA0C0Cy5ValueQz5ErrorQzGSd_AA13DateScheduler_ptF">minimum(interval:on:)</a>
+                    <a name="/s:13ReactiveSwift14SignalProtocolP11FueledUtilsE14filterMapErroryAA0C0Cy5ValueQzqd__Gqd__Sg0I0QzcsALRd__lF"></a>
+                    <a name="//apple_ref/swift/Method/filterMapError(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13ReactiveSwift14SignalProtocolP11FueledUtilsE14filterMapErroryAA0C0Cy5ValueQzqd__Gqd__Sg0I0QzcsALRd__lF">filterMapError(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -283,55 +334,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>All events (except .interrupted) are sent after the minimum interval.
-If interrupted is received, the signal is interrupted (regardless of the interval), and
-all values received beforehand are sent, after which <code>.interrupted</code> is sent.</p>
-
-<p>This is different from <code>debounce</code> in the following way: if the signal sends values/error
-before <code>interval</code> has passed, it will wait for <code>interval</code>, and then send all values in the
-order they were received.
-(With <code>debounce</code>, values received before <code>interval</code> are never sent, and errors are sent right away)</p>
-<h3 id='example' class='heading'>Example:</h3>
-<pre class="highlight swift"><code><span class="c1">// Make the action lasts at least 1.0, even if it takes less than that</span>
-<span class="k">let</span> <span class="nv">actionProducer</span> <span class="o">=</span> <span class="kt">SignalProducer</span> <span class="p">{</span> <span class="o">...</span> <span class="p">}</span>
-<span class="k">let</span> <span class="nv">fetchAction</span> <span class="o">=</span> <span class="kt">Action</span> <span class="p">{</span> <span class="n">actionProducer</span><span class="o">.</span><span class="nf">minimum</span><span class="p">(</span><span class="nv">interval</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nv">on</span><span class="p">:</span> <span class="kt">QueueScheduler</span><span class="o">.</span><span class="n">main</span><span class="p">)</span> <span class="p">}</span>
-<span class="c1">// The activity indicator will display for at least 1 second</span>
-<span class="k">self</span><span class="o">.</span><span class="n">activityIndicator</span><span class="o">.</span><span class="n">reactive</span><span class="o">.</span><span class="n">isHidden</span> <span class="o">&lt;~</span> <span class="n">fetchAction</span><span class="o">.</span><span class="n">isExecuting</span><span class="o">.</span><span class="nf">negate</span><span class="p">()</span>
-<span class="k">self</span><span class="o">.</span><span class="n">activityIndicator</span><span class="o">.</span><span class="n">reactive</span><span class="o">.</span><span class="n">isAnimating</span> <span class="o">&lt;~</span> <span class="n">fetchAction</span><span class="o">.</span><span class="n">isExecuting</span><span class="o">/</span>
-<span class="c1">// Or making sure that we don't perform segues too early</span>
-<span class="o">&lt;</span><span class="n">viewController</span><span class="o">&gt;.</span><span class="n">reactive</span><span class="o">.</span><span class="n">performSegue</span> <span class="o">&lt;~</span> <span class="n">fetchAction</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="p">(</span><span class="s">"myAwesomeSuccessSegue"</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span> <span class="p">}</span>
-<span class="o">&lt;</span><span class="n">viewController</span><span class="o">&gt;.</span><span class="n">reactive</span><span class="o">.</span><span class="n">performSegue</span> <span class="o">&lt;~</span> <span class="n">fetchAction</span><span class="o">.</span><span class="n">errors</span><span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="p">(</span><span class="s">"myAwesomeFailureSegue"</span><span class="p">,</span> <span class="kc">nil</span><span class="p">)</span> <span class="p">}</span>
-</code></pre>
-<div class="aside aside-see-also">
-    <p class="aside-title">See also</p>
-    <p><code>debounce</code>, <code>throttle</code></p>
-
-</div>
-<div class="aside aside-note">
-    <p class="aside-title">Note</p>
-    <p>If multiple values are received before the interval has elapsed,
-    they will all be sent at once.</p>
-
-</div>
-<div class="aside aside-note">
-    <p class="aside-title">Note</p>
-    <p>If the input signal terminates while a value is being debounced,
-    that value will be discarded and the returned signal will 
-    terminate immediately.</p>
-
-</div>
-<div class="aside aside-precondition">
-    <p class="aside-title">Precondition</p>
-    <p><code>interval</code> must be non-negative number.</p>
-
-</div>
+                        <p>Applies <code>transform</code> to errors from the producer and forwards errors with non <code>nil</code> results unwrapped.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">minimum</span><span class="p">(</span><span class="nv">interval</span><span class="p">:</span> <span class="kt">TimeInterval</span><span class="p">,</span> <span class="n">on</span> <span class="nv">scheduler</span><span class="p">:</span> <span class="kt">DateScheduler</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Signal</span><span class="o">&lt;</span><span class="kt">Value</span><span class="p">,</span> <span class="kt">Error</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">filterMapError</span><span class="o">&lt;</span><span class="kt">NewError</span><span class="p">:</span> <span class="kt">Swift</span><span class="o">.</span><span class="kt">Error</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">transform</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Error</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">NewError</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Signal</span><span class="o">&lt;</span><span class="kt">Value</span><span class="p">,</span> <span class="kt">NewError</span><span class="o">&gt;</span></code></pre>
 
                         </div>
                       </div>
@@ -342,24 +352,13 @@ order they were received.
                             <tr>
                               <td>
                                 <code>
-                                <em>interval</em>
+                                <em>transform</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>A number of seconds to wait before sending a value.</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>scheduler</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>A scheduler to send values on.</p>
+                                  <p>A closure that accepts an error from the <code>failed</code> event and
+       returns a new optional error.</p>
                                 </div>
                               </td>
                             </tr>
@@ -368,8 +367,122 @@ order they were received.
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>A signal that sends values that are sent from <code>self</code> at least
-       <code>interval</code> seconds apart.</p>
+                        <p>A producer that will send new errors, that are non <code>nil</code> after the transformation.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13ReactiveSwift14SignalProtocolP11FueledUtilsE11ignoreErrorAA0C0Cy5ValueQz6Result02NoH0OGyF"></a>
+                    <a name="//apple_ref/swift/Method/ignoreError()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13ReactiveSwift14SignalProtocolP11FueledUtilsE11ignoreErrorAA0C0Cy5ValueQz6Result02NoH0OGyF">ignoreError()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns a Signal which cannot fail. Errors that would be otherwise be sent in the original signal are ignored.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">ignoreError</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Signal</span><span class="o">&lt;</span><span class="kt">Value</span><span class="p">,</span> <span class="kt">NoError</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13ReactiveSwift14SignalProtocolP11FueledUtilsE13ignoreLoadingAA0C0Cyqd_0_5ErrorQzGyAD13TransferStateOyqd__qd_0_G5ValueRtzr0_lF"></a>
+                    <a name="//apple_ref/swift/Method/ignoreLoading()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13ReactiveSwift14SignalProtocolP11FueledUtilsE13ignoreLoadingAA0C0Cyqd_0_5ErrorQzGyAD13TransferStateOyqd__qd_0_G5ValueRtzr0_lF">ignoreLoading()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Converts a <code>Signal</code> that has a <code><a href="../Enums/TransferState.html">TransferState</a></code> value into a <code>Signal</code> only returning a value when <code>finished()</code> is received.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">ignoreLoading</span><span class="o">&lt;</span><span class="kt">Progress</span><span class="p">,</span> <span class="kt">Value</span><span class="o">&gt;</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">Signal</span><span class="o">&lt;</span><span class="kt">Value</span><span class="p">,</span> <span class="kt">Error</span><span class="o">&gt;</span>
+	<span class="k">where</span> <span class="k">Self</span><span class="o">.</span><span class="kt">Value</span> <span class="o">==</span> <span class="kt"><a href="../Enums/TransferState.html">TransferState</a></span><span class="o">&lt;</span><span class="kt">Progress</span><span class="p">,</span> <span class="kt">Value</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13ReactiveSwift14SignalProtocolP11FueledUtilsE11mapFinishedyAA0C0CyAD13TransferStateOyqd__qd_1_G5ErrorQzGqd_1_qd_0_cAIyqd__qd_0_G5ValueRtzr1_lF"></a>
+                    <a name="//apple_ref/swift/Method/mapFinished(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13ReactiveSwift14SignalProtocolP11FueledUtilsE11mapFinishedyAA0C0CyAD13TransferStateOyqd__qd_1_G5ErrorQzGqd_1_qd_0_cAIyqd__qd_0_G5ValueRtzr1_lF">mapFinished(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Maps a <code>Signal</code> for which each value is a <code><a href="../Enums/TransferState.html">TransferState</a></code> into a <code><a href="../Enums/TransferState.html">TransferState</a></code> returning the mapped value.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">mapFinished</span><span class="o">&lt;</span><span class="kt">Progress</span><span class="p">,</span> <span class="kt">Value</span><span class="p">,</span> <span class="kt">Mapped</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">mapper</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Value</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Mapped</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Signal</span><span class="o">&lt;</span><span class="kt"><a href="../Enums/TransferState.html">TransferState</a></span><span class="o">&lt;</span><span class="kt">Progress</span><span class="p">,</span> <span class="kt">Mapped</span><span class="o">&gt;</span><span class="p">,</span> <span class="kt">Error</span><span class="o">&gt;</span>
+	<span class="k">where</span> <span class="k">Self</span><span class="o">.</span><span class="kt">Value</span> <span class="o">==</span> <span class="kt"><a href="../Enums/TransferState.html">TransferState</a></span><span class="o">&lt;</span><span class="kt">Progress</span><span class="p">,</span> <span class="kt">Value</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:13ReactiveSwift14SignalProtocolP11FueledUtilsE15flatMapFinishedyAA0C0CyAD13TransferStateOyqd__qd_1_G5ErrorQzGAA0C8ProducerVyqd_1_ALGqd_0_cAIyqd__qd_0_G5ValueRtzr1_lF"></a>
+                    <a name="//apple_ref/swift/Method/flatMapFinished(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:13ReactiveSwift14SignalProtocolP11FueledUtilsE15flatMapFinishedyAA0C0CyAD13TransferStateOyqd__qd_1_G5ErrorQzGAA0C8ProducerVyqd_1_ALGqd_0_cAIyqd__qd_0_G5ValueRtzr1_lF">flatMapFinished(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Maps a <code>Signal</code> for which each value is a <code><a href="../Enums/TransferState.html">TransferState</a></code> into a <code><a href="../Enums/TransferState.html">TransferState</a></code> returning a <code>SignalProducer</code> returning the mapped value.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">flatMapFinished</span><span class="o">&lt;</span><span class="kt">Progress</span><span class="p">,</span> <span class="kt">Value</span><span class="p">,</span> <span class="kt">Mapped</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">mapper</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Value</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">SignalProducer</span><span class="o">&lt;</span><span class="kt">Mapped</span><span class="p">,</span> <span class="kt">Error</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Signal</span><span class="o">&lt;</span><span class="kt"><a href="../Enums/TransferState.html">TransferState</a></span><span class="o">&lt;</span><span class="kt">Progress</span><span class="p">,</span> <span class="kt">Mapped</span><span class="o">&gt;</span><span class="p">,</span> <span class="kt">Error</span><span class="o">&gt;</span>
+	<span class="k">where</span> <span class="k">Self</span><span class="o">.</span><span class="kt">Value</span> <span class="o">==</span> <span class="kt"><a href="../Enums/TransferState.html">TransferState</a></span><span class="o">&lt;</span><span class="kt">Progress</span><span class="p">,</span> <span class="kt">Value</span><span class="o">&gt;</span></code></pre>
+
+                        </div>
                       </div>
                     </section>
                   </div>

@@ -14,7 +14,7 @@
     <a title="Protocols  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">FueledUtils Docs</a> (59% documented)</p>
+        <p><a href="index.html">FueledUtils Docs</a> (100% documented)</p>
         <p class="header-right"><a href="https://github.com/Fueled/FueledUtils"><img src="img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -33,6 +33,9 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="Classes/ButtonWithTitleAdjustment.html">ButtonWithTitleAdjustment</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/CoalescingAction.html">CoalescingAction</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/DecoratingTextFieldDelegate.html">DecoratingTextFieldDelegate</a>
@@ -64,6 +67,9 @@
               <li class="nav-group-task">
                 <a href="Classes/SignalingAlert.html">SignalingAlert</a>
               </li>
+              <li class="nav-group-task">
+                <a href="Classes/TypedSerialDisposable.html">TypedSerialDisposable</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -72,13 +78,16 @@
               <li class="nav-group-task">
                 <a href="Enums/LoadingState.html">LoadingState</a>
               </li>
+              <li class="nav-group-task">
+                <a href="Enums/TransferState.html">TransferState</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
             <a href="Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="Extensions/Action.html">Action</a>
+                <a href="Extensions/ActionError.html">ActionError</a>
               </li>
               <li class="nav-group-task">
                 <a href="Extensions/Bool.html">Bool</a>
@@ -90,13 +99,22 @@
                 <a href="Extensions/Collection.html">Collection</a>
               </li>
               <li class="nav-group-task">
+                <a href="Extensions/Optional.html">Optional</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Extensions/PropertyProtocol.html">PropertyProtocol</a>
               </li>
               <li class="nav-group-task">
                 <a href="Extensions/Reactive.html">Reactive</a>
               </li>
               <li class="nav-group-task">
+                <a href="Extensions/ScopedDisposable.html">ScopedDisposable</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Extensions/Sequence.html">Sequence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/Signal.html">Signal</a>
               </li>
               <li class="nav-group-task">
                 <a href="Extensions/SignalProducer.html">SignalProducer</a>
@@ -184,6 +202,12 @@
             <a href="Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="Protocols/ActionErrorProtocol.html">ActionErrorProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/ActionProtocol.html">ActionProtocol</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Protocols/ReactiveLifetimeProvider.html">ReactiveLifetimeProvider</a>
               </li>
             </ul>
@@ -211,6 +235,66 @@
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:11FueledUtils19ActionErrorProtocolP"></a>
+                    <a name="//apple_ref/swift/Protocol/ActionErrorProtocol" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11FueledUtils19ActionErrorProtocolP">ActionErrorProtocol</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>An optional protocol for <code>ActionError</code> for use in type constraints</p>
+
+                        <a href="Protocols/ActionErrorProtocol.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">ActionErrorProtocol</span> <span class="p">:</span> <span class="kt">Error</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:11FueledUtils14ActionProtocolP"></a>
+                    <a name="//apple_ref/swift/Protocol/ActionProtocol" class="dashAnchor"></a>
+                    <a class="token" href="#/s:11FueledUtils14ActionProtocolP">ActionProtocol</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A protocol for <code>Action</code>s for generic constraints and code reuse.</p>
+
+                        <a href="Protocols/ActionProtocol.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">ActionProtocol</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:11FueledUtils24ReactiveLifetimeProviderP"></a>
                     <a name="//apple_ref/swift/Protocol/ReactiveLifetimeProvider" class="dashAnchor"></a>
                     <a class="token" href="#/s:11FueledUtils24ReactiveLifetimeProviderP">ReactiveLifetimeProvider</a>
@@ -221,7 +305,8 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The goal of this protocol is to add RAC-style <code>reactive</code> proxy to Swift objects.</p>
+                        <p><strong>Deprecated</strong>: Please just make your type conform to <code>ReactiveExtensionsProvider</code>.
+The goal of this protocol is to add RAC-style <code>reactive</code> proxy to Swift objects.</p>
 
                         <a href="Protocols/ReactiveLifetimeProvider.html" class="slightly-smaller">See more</a>
                       </div>
@@ -229,7 +314,8 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">ReactiveLifetimeProvider</span> <span class="p">:</span> <span class="kt">ReactiveExtensionsProvider</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@available(*, deprecated, renamed: "ReactiveExtensionsProvider")</span>
+<span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">ReactiveLifetimeProvider</span> <span class="p">:</span> <span class="kt">ReactiveExtensionsProvider</span></code></pre>
 
                         </div>
                       </div>

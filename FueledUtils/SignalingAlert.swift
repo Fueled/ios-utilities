@@ -19,13 +19,23 @@ import ReactiveSwift
 import Result
 import UIKit
 
-/// A UIAlertController wrapper that sends values associated with alert actions to its output signal.
+///
+/// A UIAlertController wrapper that sends values associated with alert actions to its output signal that emits values of type `T`.
+///
 public final class SignalingAlert<T> {
-
+	///
+	/// The underlying `UIAlertController` of the class is associated with.
+	///
 	public let controller: UIAlertController
+	///
+	/// The output signal the class is associated with.
+	///
 	public let signal: Signal<T, NoError>
 	fileprivate let observer: Signal<T, NoError>.Observer
 
+	///
+	/// Initialize a `SignalingAlert` with the given `title`, `message` and `preferredStyle`.
+	///
 	public init(title: String?, message: String?, preferredStyle: UIAlertController.Style) {
 		(signal, observer) = Signal<T, NoError>.pipe()
 		controller = UIAlertController(title: title, message: message, preferredStyle: preferredStyle)
@@ -34,12 +44,18 @@ public final class SignalingAlert<T> {
 		}
 	}
 
+	///
+	/// Add an action to the alert, sending the `event` when the user taps the action.
+	///
 	public func addAction(title: String, style: UIAlertAction.Style, event: Signal<T, NoError>.Event) {
 		controller.addAction(UIAlertAction(title: title, style: style) { [observer] _ in
 			observer.send(event)
 		})
 	}
 
+	///
+	/// Add an action to the alert, sending the `event` when the user taps the action.
+	///
 	public func addAction(title: String, style: UIAlertAction.Style, value: T) {
 		controller.addAction(UIAlertAction(title: title, style: style) { [observer] _ in
 			observer.send(value: value)
@@ -47,13 +63,27 @@ public final class SignalingAlert<T> {
 		})
 	}
 
+	///
+	/// Ahelper  factory method allowing to display a `SignalingAlert` on screen.
+	///
+	/// - Parameters:
+	///   - title: The title of the alert
+	///   - message: The message of the alert
+	///   - preferredStyle: The preferred style of the alert
+	///   - presentingController: The view controller to present the alert from
+	///   - sourceView: The view that presents the alert, if on ipad and wanted to use a popover style
+	///     Keep in mind that using a `sourceView` is **required** if using the `actionSheet` style.
+	///   - configure: A closure allowing to customize the `SignalingAlert`, for example to add actions.
+	/// - Returns: A `SignalProducer` that when started, will display the alert on screen.
+	///   Note that this `SignalProducer` will retain all the parameters given in `producer` until it is started.
+	///
 	public static func producer(
 		title: String? = nil,
 		message: String? = nil,
 		preferredStyle: UIAlertController.Style,
 		presentingController: UIViewController,
-		sourceView: UIView,
-		configure: @escaping (SignalingAlert) -> () = { _ in })
+		sourceView: UIView?,
+		configure: ((SignalingAlert) -> ())? = nil)
 		-> SignalProducer<T, NoError>
 	{
 		return SignalProducer { observer, disposable in
@@ -62,15 +92,15 @@ public final class SignalingAlert<T> {
 				message: message,
 				preferredStyle: preferredStyle)
 			disposable += alert.signal.observe(observer)
-			configure(alert)
-			if let ppc = alert.controller.popoverPresentationController {
-				ppc.sourceView = sourceView
-				ppc.sourceRect = sourceView.bounds
+			configure?(alert)
+			if let popoverPresentationController = alert.controller.popoverPresentationController {
+				popoverPresentationController.sourceView = sourceView
+				popoverPresentationController.sourceRect = sourceView?.bounds ?? .zero
 			}
 			presentingController.present(alert.controller, animated: true, completion: nil)
 			disposable += AnyDisposable { [weak presentingController, weak alert] in
 				if let presentingController = presentingController,
-					let alert = alert ,
+					let alert = alert,
 					alert.controller.presentingViewController == presentingController
 				{
 					presentingController.dismiss(animated: true, completion: nil)
@@ -78,5 +108,4 @@ public final class SignalingAlert<T> {
 			}
 		}
 	}
-
 }

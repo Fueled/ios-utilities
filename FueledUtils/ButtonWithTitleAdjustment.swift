@@ -45,21 +45,33 @@ open class ButtonWithTitleAdjustment: UIButton {
 		}
 	}
 
+	///
+	/// Please refer to the documentation for `UIButton.init(frame:)`
+	///
 	override public init(frame: CGRect) {
 		super.init(frame: frame)
 		self.updateAdjustedTitles()
 	}
 
+	///
+	/// Please refer to the documentation for `UIButton.init(coder:)`
+	///
 	required public init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		self.updateAdjustedTitles()
 	}
 
+	///
+	/// Please refer to the documentation for `UIButton.setTitleColor(_:, for:)`
+	///
 	override open func setTitleColor(_ color: UIColor?, for state: UIControl.State) {
 		super.setTitleColor(color, for: state)
 		self.updateAdjustedTitles()
 	}
 
+	///
+	/// Please refer to the documentation for `UIButton.setTitle(_:, for:)`
+	///
 	override open func setTitle(_ title: String?, for state: UIControl.State) {
 		super.setTitle(title, for: state)
 		self.updateAdjustedTitles()

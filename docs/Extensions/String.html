@@ -14,7 +14,7 @@
     <a title="String Extension Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">FueledUtils Docs</a> (59% documented)</p>
+        <p><a href="../index.html">FueledUtils Docs</a> (100% documented)</p>
         <p class="header-right"><a href="https://github.com/Fueled/FueledUtils"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -33,6 +33,9 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Classes/ButtonWithTitleAdjustment.html">ButtonWithTitleAdjustment</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CoalescingAction.html">CoalescingAction</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/DecoratingTextFieldDelegate.html">DecoratingTextFieldDelegate</a>
@@ -64,6 +67,9 @@
               <li class="nav-group-task">
                 <a href="../Classes/SignalingAlert.html">SignalingAlert</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TypedSerialDisposable.html">TypedSerialDisposable</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -72,13 +78,16 @@
               <li class="nav-group-task">
                 <a href="../Enums/LoadingState.html">LoadingState</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TransferState.html">TransferState</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
             <a href="../Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Extensions/Action.html">Action</a>
+                <a href="../Extensions/ActionError.html">ActionError</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/Bool.html">Bool</a>
@@ -90,13 +99,22 @@
                 <a href="../Extensions/Collection.html">Collection</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Extensions/Optional.html">Optional</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Extensions/PropertyProtocol.html">PropertyProtocol</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/Reactive.html">Reactive</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Extensions/ScopedDisposable.html">ScopedDisposable</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Extensions/Sequence.html">Sequence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Signal.html">Signal</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/SignalProducer.html">SignalProducer</a>
@@ -184,6 +202,12 @@
             <a href="../Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="../Protocols/ActionErrorProtocol.html">ActionErrorProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ActionProtocol.html">ActionProtocol</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Protocols/ReactiveLifetimeProvider.html">ReactiveLifetimeProvider</a>
               </li>
             </ul>
@@ -243,9 +267,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:SS11FueledUtilsEySSSNySiGcip"></a>
-                    <a name="//apple_ref/swift/Method/subscript(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:SS11FueledUtilsEySSSNySiGcip">subscript(_:)</a>
+                    <a name="/s:SS11FueledUtilsE9substringySSSNySiGF"></a>
+                    <a name="//apple_ref/swift/Method/substring(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:SS11FueledUtilsE9substringySSSNySiGF">substring(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -253,14 +277,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Allows to get a substring from a string using an integer range.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">subscript</span><span class="p">(</span><span class="nv">range</span><span class="p">:</span> <span class="kt">CountableClosedRange</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">substring</span><span class="p">(</span><span class="n">_</span> <span class="nv">range</span><span class="p">:</span> <span class="kt">CountableClosedRange</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
@@ -270,9 +294,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:SS11FueledUtilsEySSSnySiGcip"></a>
-                    <a name="//apple_ref/swift/Method/subscript(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:SS11FueledUtilsEySSSnySiGcip">subscript(_:)</a>
+                    <a name="/s:SS11FueledUtilsE9substringySSSnySiGF"></a>
+                    <a name="//apple_ref/swift/Method/substring(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:SS11FueledUtilsE9substringySSSnySiGF">substring(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -280,14 +304,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Allows to get a substring from a string using an integer range.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">subscript</span><span class="p">(</span><span class="nv">range</span><span class="p">:</span> <span class="kt">CountableRange</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">substring</span><span class="p">(</span><span class="n">_</span> <span class="nv">range</span><span class="p">:</span> <span class="kt">CountableRange</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
@@ -297,9 +321,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:SS11FueledUtilsEySSs19PartialRangeThroughVySiGcip"></a>
-                    <a name="//apple_ref/swift/Method/subscript(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:SS11FueledUtilsEySSs19PartialRangeThroughVySiGcip">subscript(_:)</a>
+                    <a name="/s:SS11FueledUtilsE9substringySSs19PartialRangeThroughVySiGF"></a>
+                    <a name="//apple_ref/swift/Method/substring(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:SS11FueledUtilsE9substringySSs19PartialRangeThroughVySiGF">substring(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -307,14 +331,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Allows to get a substring from a string using an integer range.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">subscript</span><span class="p">(</span><span class="nv">range</span><span class="p">:</span> <span class="kt">PartialRangeThrough</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">substring</span><span class="p">(</span><span class="n">_</span> <span class="nv">range</span><span class="p">:</span> <span class="kt">PartialRangeThrough</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
@@ -324,9 +348,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:SS11FueledUtilsEySSs16PartialRangeUpToVySiGcip"></a>
-                    <a name="//apple_ref/swift/Method/subscript(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:SS11FueledUtilsEySSs16PartialRangeUpToVySiGcip">subscript(_:)</a>
+                    <a name="/s:SS11FueledUtilsE9substringySSs16PartialRangeUpToVySiGF"></a>
+                    <a name="//apple_ref/swift/Method/substring(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:SS11FueledUtilsE9substringySSs16PartialRangeUpToVySiGF">substring(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -334,14 +358,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Allows to get a substring from a string using an integer range.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">subscript</span><span class="p">(</span><span class="nv">range</span><span class="p">:</span> <span class="kt">PartialRangeUpTo</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">substring</span><span class="p">(</span><span class="n">_</span> <span class="nv">range</span><span class="p">:</span> <span class="kt">PartialRangeUpTo</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
@@ -351,9 +375,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:SS11FueledUtilsEySSs16PartialRangeFromVySiGcip"></a>
-                    <a name="//apple_ref/swift/Method/subscript(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:SS11FueledUtilsEySSs16PartialRangeFromVySiGcip">subscript(_:)</a>
+                    <a name="/s:SS11FueledUtilsE9substringySSs16PartialRangeFromVySiGF"></a>
+                    <a name="//apple_ref/swift/Method/substring(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:SS11FueledUtilsE9substringySSs16PartialRangeFromVySiGF">substring(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -361,14 +385,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Allows to get a substring from a string using an integer range.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">subscript</span><span class="p">(</span><span class="nv">range</span><span class="p">:</span> <span class="kt">PartialRangeFrom</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">substring</span><span class="p">(</span><span class="n">_</span> <span class="nv">range</span><span class="p">:</span> <span class="kt">PartialRangeFrom</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span></code></pre>
 
                         </div>
                       </div>
@@ -388,7 +412,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Helper function to convert an integer index (0-based) into a string index.</p>
 
                       </div>
                       <div class="declaration">

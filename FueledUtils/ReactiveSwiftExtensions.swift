@@ -192,6 +192,18 @@ extension SignalProducerProtocol {
 			.flatMap(.latest) { _ in self.producer }
 	}
 
+	/// The original purpose of this method is to allow triggering animations in response to signal values.
+	///
+	/// - Parameters:
+	/// 	- context: Defines a context in which observers of the resulting signal will be called.
+	/// - Returns: A signal of which observers will receive values in the context defined by `context` function.
+	///
+	/// ## Example
+	/// The following code
+	/// ```swift
+	/// self.constraint.reactive.constant <~ viewModel.constraintConstantValue.signal.observe(context: animatingContext)
+	/// ```
+	/// will result in all changes to `constraintConstantValue` in `viewModel` to be reflected in the constraint and animated.
 	public func observe(context: @escaping (@escaping () -> Void) -> Void) -> SignalProducer<Value, Error> {
 		return self.producer.lift { $0.observe(context: context) }
 	}
@@ -213,53 +225,268 @@ extension PropertyProtocol {
 	}
 }
 
+extension Signal where Error == NoError {
+	///
+	/// Chain the receiver with another, creating a new `Signal` every time the receiver sends a value,
+	/// and returning the resulting `Signal`.
+	///
+	/// Equivalent calling `flatMap(_:, _:)` with a flatten strategy of `.latest` and the same `transform`.
+	///
+	/// - Parameters:
+	///   - transform: A closure that takes a value emitted by the receiver, and that returns a `Signal`.
+	/// - Returns: The resulting `Signal`.
+	///
+	public func chain<U>(_ transform: @escaping (Value) -> Signal<U, NoError>) -> Signal<U, NoError> {
+		return flatMap(.latest, transform)
+	}
+
+	///
+	/// Chain the receiver with another, creating a new `SignalProducer` every time the receiver sends a value,
+	/// and returning the resulting `Signal`.
+	///
+	/// Equivalent calling `flatMap(_:, _:)` with a flatten strategy of `.latest` and the same `transform`.
+	///
+	/// - Parameters:
+	///   - transform: A closure that takes a value emitted by the receiver, and that returns a `SignalProducer`.
+	/// - Returns: The resulting `Signal`.
+	///
+	public func chain<U>(_ transform: @escaping (Value) -> SignalProducer<U, NoError>) -> Signal<U, NoError> {
+		return flatMap(.latest, transform)
+	}
+
+	///
+	/// Chain the receiver with another, creating a new `Property` every time the receiver sends a value,
+	/// and returning the resulting `Signal`.
+	///
+	/// Equivalent calling `flatMap(_:, _:)` with a flatten strategy of `.latest` and the same `transform`.
+	///
+	/// - Parameters:
+	///   - transform: A closure that takes a value emitted by the receiver, and that returns a `Property`.
+	/// - Returns: The resulting `Signal`.
+	///
+	public func chain<P: PropertyProtocol>(_ transform: @escaping (Value) -> P) -> Signal<P.Value, NoError> {
+		return flatMap(.latest) { transform($0).signal }
+	}
+
+	///
+	/// Chain the receiver with another, creating a new `Signal` every time the receiver sends a value,
+	/// and returning the resulting `Signal`. If the new `Signal` is `nil`, the value is ignored.
+	///
+	/// Equivalent calling `flatMap(_:, _:)` with a flatten strategy of `.latest` and the same `transform`.
+	///
+	/// - Parameters:
+	///   - transform: A closure that takes a value emitted by the receiver, and that returns an optional `Signal`.
+	///     If the `Signal` is `nil`, the value is ignored.
+	/// - Returns: The resulting `Signal`.
+	///
+	public func chain<U>(_ transform: @escaping (Value) -> Signal<U, NoError>?) -> Signal<U, NoError> {
+		return flatMap(.latest) { transform($0) ?? Signal<U, NoError>.empty }
+	}
+
+	///
+	/// Chain the receiver with another, creating a new `SignalProducer` every time the receiver sends a value,
+	/// and returning the resulting `Signal`. If the new `Signal` is `nil`, the value is ignored.
+	///
+	/// Equivalent calling `flatMap(_:, _:)` with a flatten strategy of `.latest` and the same `transform`.
+	///
+	/// - Parameters:
+	///   - transform: A closure that takes a value emitted by the receiver, and that returns an optional `SignalProducer`.
+	///     If the `SignalProducer` is `nil`, the value is ignored.
+	/// - Returns: The resulting `Signal`.
+	///
+	public func chain<U>(_ transform: @escaping (Value) -> SignalProducer<U, NoError>?) -> Signal<U, NoError> {
+		return flatMap(.latest) { transform($0) ?? SignalProducer<U, NoError>.empty }
+	}
+
+	///
+	/// Chain the receiver with another, creating a new `Property` every time the receiver sends a value,
+	/// and returning the resulting `Signal`. If the new `Signal` is `nil`, the value is ignored.
+	///
+	/// Equivalent calling `flatMap(_:, _:)` with a flatten strategy of `.latest` and the same `transform`.
+	///
+	/// - Parameters:
+	///   - transform: A closure that takes a value emitted by the receiver, and that returns an optional `Property`.
+	///     If the `Property` is `nil`, the value is ignored.
+	/// - Returns: The resulting `Signal`.
+	///
+	public func chain<P: PropertyProtocol>(_ transform: @escaping (Value) -> P?) -> Signal<P.Value, NoError> {
+		return flatMap(.latest) { transform($0)?.signal ?? Signal<P.Value, NoError>.empty }
+	}
+}
+
 extension SignalProducer where Error == NoError {
+	///
+	/// Chain the receiver with another, creating a new `Signal` every time the receiver sends a value,
+	/// and returning the resulting `SignalProducer`.
+	///
+	/// Equivalent calling `flatMap(_:, _:)` with a flatten strategy of `.latest` and the same `transform`.
+	///
+	/// - Parameters:
+	///   - transform: A closure that takes a value emitted by the receiver, and that returns a `Signal`.
+	/// - Returns: The resulting `SignalProducer`.
+	///
 	public func chain<U>(_ transform: @escaping (Value) -> Signal<U, NoError>) -> SignalProducer<U, NoError> {
 		return flatMap(.latest, transform)
 	}
 
+	///
+	/// Chain the receiver with another, creating a new `SignalProducer` every time the receiver sends a value,
+	/// and returning the resulting `SignalProducer`.
+	///
+	/// Equivalent calling `flatMap(_:, _:)` with a flatten strategy of `.latest` and the same `transform`.
+	///
+	/// - Parameters:
+	///   - transform: A closure that takes a value emitted by the receiver, and that returns a `SignalProducer`.
+	/// - Returns: The resulting `SignalProducer`.
+	///
 	public func chain<U>(_ transform: @escaping (Value) -> SignalProducer<U, NoError>) -> SignalProducer<U, NoError> {
 		return flatMap(.latest, transform)
 	}
 
+	///
+	/// Chain the receiver with another, creating a new `Property` every time the receiver sends a value,
+	/// and returning the resulting `SignalProducer`.
+	///
+	/// Equivalent calling `flatMap(_:, _:)` with a flatten strategy of `.latest` and the same `transform`.
+	///
+	/// - Parameters:
+	///   - transform: A closure that takes a value emitted by the receiver, and that returns a `Property`.
+	/// - Returns: The resulting `SignalProducer`.
+	///
 	public func chain<P: PropertyProtocol>(_ transform: @escaping (Value) -> P) -> SignalProducer<P.Value, NoError> {
 		return flatMap(.latest) { transform($0).producer }
 	}
 
+	///
+	/// Chain the receiver with another, creating a new `Signal` every time the receiver sends a value,
+	/// and returning the resulting `SignalProducer`. If the new `Signal` is `nil`, the value is ignored.
+	///
+	/// Equivalent calling `flatMap(_:, _:)` with a flatten strategy of `.latest` and the same `transform`.
+	///
+	/// - Parameters:
+	///   - transform: A closure that takes a value emitted by the receiver, and that returns an optional `Signal`.
+	///     If the `Signal` is `nil`, the value is ignored.
+	/// - Returns: The resulting `SignalProducer`.
+	///
 	public func chain<U>(_ transform: @escaping (Value) -> Signal<U, NoError>?) -> SignalProducer<U, NoError> {
-		return flatMap(.latest) { transform($0) ?? Signal<U, NoError>.never }
+		return flatMap(.latest) { transform($0) ?? Signal<U, NoError>.empty }
 	}
 
+	///
+	/// Chain the receiver with another, creating a new `SignalProducer` every time the receiver sends a value,
+	/// and returning the resulting `SignalProducer`. If the new `Signal` is `nil`, the value is ignored.
+	///
+	/// Equivalent calling `flatMap(_:, _:)` with a flatten strategy of `.latest` and the same `transform`.
+	///
+	/// - Parameters:
+	///   - transform: A closure that takes a value emitted by the receiver, and that returns an optional `SignalProducer`.
+	///     If the `SignalProducer` is `nil`, the value is ignored.
+	/// - Returns: The resulting `SignalProducer`.
+	///
 	public func chain<U>(_ transform: @escaping (Value) -> SignalProducer<U, NoError>?) -> SignalProducer<U, NoError> {
 		return flatMap(.latest) { transform($0) ?? SignalProducer<U, NoError>.empty }
 	}
 
+	///
+	/// Chain the receiver with another, creating a new `Property` every time the receiver sends a value,
+	/// and returning the resulting `SignalProducer`. If the new `Signal` is `nil`, the value is ignored.
+	///
+	/// Equivalent calling `flatMap(_:, _:)` with a flatten strategy of `.latest` and the same `transform`.
+	///
+	/// - Parameters:
+	///   - transform: A closure that takes a value emitted by the receiver, and that returns an optional `Property`.
+	///     If the `Property` is `nil`, the value is ignored.
+	/// - Returns: The resulting `SignalProducer`.
+	///
 	public func chain<P: PropertyProtocol>(_ transform: @escaping (Value) -> P?) -> SignalProducer<P.Value, NoError> {
 		return flatMap(.latest) { transform($0)?.producer ?? SignalProducer<P.Value, NoError>.empty }
 	}
 }
 
 extension PropertyProtocol {
+	///
+	/// Chain the receiver with another, creating a new `Signal` every time the receiver sends a value,
+	/// and returning a `SignalProducer`.
+	///
+	/// Equivalent calling `flatMap(_:, _:)` with a flatten strategy of `.latest` and the same `transform`.
+	///
+	/// - Parameters:
+	///   - transform: A closure that takes a value emitted by the receiver, and that returns a `Signal`.
+	/// - Returns: The resulting `SignalProducer`.
+	///
 	public func chain<U>(_ transform: @escaping (Value) -> Signal<U, NoError>) -> SignalProducer<U, NoError> {
 		return producer.chain(transform)
 	}
 
+	///
+	/// Chain the receiver with another, creating a new `SignalProducer` every time the receiver sends a value,
+	/// and returning a `SignalProducer`.
+	///
+	/// Equivalent calling `flatMap(_:, _:)` with a flatten strategy of `.latest` and the same `transform`.
+	///
+	/// - Parameters:
+	///   - transform: A closure that takes a value emitted by the receiver, and that returns a `SignalProducer`.
+	/// - Returns: The resulting `SignalProducer`.
+	///
 	public func chain<U>(_ transform: @escaping (Value) -> SignalProducer<U, NoError>) -> SignalProducer<U, NoError> {
 		return producer.chain(transform)
 	}
 
+	///
+	/// Chain the receiver with another, creating a new `Property` every time the receiver sends a value,
+	/// and returning a `SignalProducer`.
+	///
+	/// Equivalent calling `flatMap(_:, _:)` with a flatten strategy of `.latest` and the same `transform`.
+	///
+	/// - Parameters:
+	///   - transform: A closure that takes a value emitted by the receiver, and that returns a `Property`.
+	/// - Returns: The resulting `SignalProducer`.
+	///
 	public func chain<P: PropertyProtocol>(_ transform: @escaping (Value) -> P) -> SignalProducer<P.Value, NoError> {
 		return producer.chain(transform)
 	}
 
+	///
+	/// Chain the receiver with another, creating a new `Signal` every time the receiver sends a value,
+	/// and returning a `SignalProducer`. If the new `Signal` is `nil`, the value is ignored.
+	///
+	/// Equivalent calling `flatMap(_:, _:)` with a flatten strategy of `.latest` and the same `transform`.
+	///
+	/// - Parameters:
+	///   - transform: A closure that takes a value emitted by the receiver, and that returns an optional `Signal`.
+	///     If the `Signal` is `nil`, the value is ignored.
+	/// - Returns: The resulting `SignalProducer`.
+	///
 	public func chain<U>(_ transform: @escaping (Value) -> Signal<U, NoError>?) -> SignalProducer<U, NoError> {
 		return producer.chain(transform)
 	}
 
+	///
+	/// Chain the receiver with another, creating a new `SignalProducer` every time the receiver sends a value,
+	/// and returning a `SignalProducer`. If the new `Signal` is `nil`, the value is ignored.
+	///
+	/// Equivalent calling `flatMap(_:, _:)` with a flatten strategy of `.latest` and the same `transform`.
+	///
+	/// - Parameters:
+	///   - transform: A closure that takes a value emitted by the receiver, and that returns an optional `SignalProducer`.
+	///     If the `SignalProducer` is `nil`, the value is ignored.
+	/// - Returns: The resulting `SignalProducer`.
+	///
 	public func chain<U>(_ transform: @escaping (Value) -> SignalProducer<U, NoError>?) -> SignalProducer<U, NoError> {
 		return producer.chain(transform)
 	}
 
+	///
+	/// Chain the receiver with another, creating a new `Property` every time the receiver sends a value,
+	/// and returning a `SignalProducer`. If the new `Signal` is `nil`, the value is ignored.
+	///
+	/// Equivalent calling `flatMap(_:, _:)` with a flatten strategy of `.latest` and the same `transform`.
+	///
+	/// - Parameters:
+	///   - transform: A closure that takes a value emitted by the receiver, and that returns an optional `Property`.
+	///     If the `Property` is `nil`, the value is ignored.
+	/// - Returns: The resulting `SignalProducer`.
+	///
 	public func chain<P: PropertyProtocol>(_ transform: @escaping (Value) -> P?) -> SignalProducer<P.Value, NoError> {
 		return producer.chain(transform)
 	}
@@ -313,7 +540,7 @@ extension ActionProtocol {
 	/// In other words, this sends every `Result` from every unit of work that the `Action`
 	/// executes.
 	///
-	public var results: Signal<Result<OutputType, ErrorType>, NoError> {
+	public var results: Signal<Result<Output, Error>, NoError> {
 		return Signal.merge(
 			self.values.map { .success($0) },
 			self.errors.map { .failure($0) }

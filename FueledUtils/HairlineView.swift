@@ -20,14 +20,20 @@ import UIKit
 /// A view with an intrinsic content size of 1px by 1px
 ///
 open class HairlineView: UIView {
+	///
+	/// Please refer to the documentation for `UIView.intrinsicContentSize`
+	///
 	override open var intrinsicContentSize : CGSize {
 		let pixel = 1.0 / UIScreen.main.scale
 		return CGSize(width: pixel, height: pixel)
 	}
 
-	// prevent backgroundColor becoming clearColor on parent UITableViewCell selection
+	///
+	/// Please refer to the documentation for `UIView.backgroundColor`
+	///
 	override open var backgroundColor: UIColor? {
 		set {
+			// prevent backgroundColor becoming clearColor on parent UITableViewCell selection
 			if newValue != UIColor.clear {
 				super.backgroundColor = newValue
 			}
