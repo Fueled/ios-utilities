@@ -121,6 +121,40 @@ extension SignalProtocol {
 			}
 		}
 	}
+
+	///
+	/// Applies `transform` to errors from the producer and forwards errors with non `nil` results unwrapped.
+	///
+	/// - Parameters:
+	///   - transform: A closure that accepts an error from the `failed` event and
+	///                returns a new optional error.
+	/// - Returns: A producer that will send new errors, that are non `nil` after the transformation.
+	///
+	public func filterMapError<NewError: Swift.Error>(_ transform: @escaping (Error) -> NewError?) -> Signal<Value, NewError> {
+		return Signal { observer, disposable in
+			disposable += self.signal.observe { event in
+				switch event {
+				case .value(let value):
+					observer.send(.value(value))
+				case .failed(let error):
+					if let error = transform(error) {
+						observer.send(.failed(error))
+					}
+				case .completed:
+					observer.send(.completed)
+				case .interrupted:
+					observer.send(.interrupted)
+				}
+			}
+		}
+	}
+
+	///
+	/// Returns a Signal which cannot fail. Errors that would be otherwise be sent in the original signal are ignored.
+	///
+	public func ignoreError() -> Signal<Value, NoError> {
+		return self.filterMapError { _ in nil }
+	}
 }
 
 extension SignalProducerProtocol {
@@ -142,9 +176,7 @@ extension SignalProducerProtocol {
 	/// Returns a SignalProducer which cannot fail. Errors that would be otherwise be sent in the original producer are ignored.
 	///
 	public func ignoreError() -> SignalProducer<Value, NoError> {
-		return self.producer.flatMapError { _ in
-			SignalProducer<Value, NoError>.empty
-		}
+		return self.producer.lift { $0.ignoreError() }
 	}
 
 	///
