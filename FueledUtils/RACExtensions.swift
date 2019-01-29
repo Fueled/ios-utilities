@@ -127,7 +127,7 @@ extension SignalProtocol {
 	/// - Returns: A signal that sends values that are sent from `self` at least
 	///            `interval` seconds apart.
 	///
-	func minimum(interval: TimeInterval, on scheduler: DateScheduler) -> Signal<Value, Error> {
+	public func minimum(interval: TimeInterval, on scheduler: DateScheduler) -> Signal<Value, Error> {
 		return Signal { observer, disposable in
 			let semaphore = DispatchSemaphore(value: 1)
 			var events: [Signal<Value, Error>.Event] = []
@@ -190,7 +190,7 @@ extension SignalProducerProtocol {
 	///
 	/// See `Signal.minimum` for documentation
 	///
-	func minimum(interval: TimeInterval, on scheduler: DateScheduler) -> SignalProducer<Value, Error> {
+	public func minimum(interval: TimeInterval, on scheduler: DateScheduler) -> SignalProducer<Value, Error> {
 		return self.producer.lift { $0.minimum(interval: interval, on: scheduler) }
 	}
 }
