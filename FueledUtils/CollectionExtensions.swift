@@ -13,7 +13,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-public extension Collection {
+extension Collection {
 	///
 	/// **Deprecated**: Please use `getSafely(at:)` instead.
 	///
@@ -38,5 +38,12 @@ public extension Collection {
 			return nil
 		}
 		return self[index]
+	}
+
+	///
+	/// Returns a collection with same element, and information as to whether the element is the first or the last, or both.
+	///
+	public func withPositionInformation() -> [(element: Self.Element, isFirstElement: Bool, isLastElement: Bool)] {
+		return self.enumerated().map { ($0.element, $0.offset == 0, $0.offset == self.count - 1) }
 	}
 }

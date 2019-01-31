@@ -16,7 +16,50 @@ limitations under the License.
 import Foundation
 import UIKit
 
-public extension UIColor {
+extension CGSize {
+	///
+	/// Scale the recipient to the given size, according to the specified content mode.
+	///
+	/// This methods is best use in combination of `UIImage.resized`, to make sure that the image
+	/// is scaled properly for your needs.
+	///
+	/// - Parameters:
+	///   - size: The size to scale the receiver to.
+	///   - contentMode: The content mode to use when scaling the receiver.
+	///     If `contentMode` is `.scaleAspectFill`, the method will try to maximize the lowest dimension of the receiver
+	///     to the lowest dimension of `size`.
+	///     If `contentMode` is `.scaleAspectFit`, the method will try to maximize the highest dimension of the receiver
+	///     to the lowest dimension of `size`.
+	///     If the `contentMode` is `redraw` or `scaleToFill` (the default), `size` is returned.
+	///     In all other cases, the receiver is returned and `size` is ignored.
+	/// - Returns: The scaled size as specified by the parameters.
+	///
+	func scaled(to size: CGSize, contentMode: UIView.ContentMode = .scaleToFill) -> CGSize {
+		switch contentMode {
+		case .redraw,
+				 .scaleToFill:
+			return size
+		case .scaleAspectFill:
+			let aspectRatio = self.width / self.height
+			if self.width < self.height {
+				return CGSize(width: size.width, height: size.width / aspectRatio)
+			} else {
+				return CGSize(width: size.width * aspectRatio, height: size.height)
+			}
+		case .scaleAspectFit:
+			let aspectRatio = self.width / self.height
+			if self.width < self.height {
+				return CGSize(width: size.width, height: size.width / aspectRatio)
+			} else {
+				return CGSize(width: size.width * aspectRatio, height: size.height)
+			}
+		default:
+			return self
+		}
+	}
+}
+
+extension UIColor {
 	public convenience init(hex: UInt32, alpha: CGFloat = 1) {
 		func byteColor(_ x: UInt32) -> CGFloat {
 			return CGFloat(x & 0xFF) / 255
@@ -42,7 +85,7 @@ public extension UIColor {
 	}
 }
 
-public extension UILabel {
+extension UILabel {
 	///
 	/// Add the monospaced number font descriptor to the current `font`.
 	///
@@ -92,7 +135,7 @@ public extension UILabel {
 	}
 }
 
-public extension UIActivityIndicatorView {
+extension UIActivityIndicatorView {
 	@available(*, deprecated, renamed: "animating")
 	public var fueled_animating: Bool {
 		get {
@@ -117,7 +160,7 @@ public extension UIActivityIndicatorView {
 	}
 }
 
-public extension UITextField {
+extension UITextField {
 	///
 	/// Allows to set the placeholder color by setting the `attributedPlaceholder`.
 	///
@@ -137,7 +180,7 @@ public extension UITextField {
 	}
 }
 
-public extension UIView {
+extension UIView {
 	///
 	/// Adds the given subview into the receiver, and adds constraint so that its top, bottom, left and right's edges are bounds to its superview's edges.
 	///
@@ -164,11 +207,103 @@ public extension UIView {
 			self.drawHierarchy(in: self.bounds, afterScreenUpdates: afterScreenUpdates)
 		}
 	}
+
+	///
+	/// Apply a shadow with the parameters that can be specified in the Sketch application.
+	/// This methods internally updates the following properties of the backing `CALayer` (`self.layer`):
+	/// - `CALayer.shadowColor`
+	/// - `CALayer.shadowOpacity`
+	/// - `CALayer.shadowOffset`
+	/// - `CALayer.shadowRadius`
+	/// - `CALayer.shadowPath`
+	///
+	/// When using this method, it is recommended **not** to modify any of these properties to avoid unexpected results.
+	///
+	/// - Parameters:
+	///   - color: The color of the shadow, as specified in Sketch (usually without the alpha component, specified afterwards)
+	///   - alpha: The alpha (opacity) of the shadow, as specified in Sketch
+	///   - xAxis: The X direction of the shadow, as specified in Sketch
+	///   - yAxis: The y direction of the shadow, as specified in Sketch
+	///   - blur: The blur offset of the shadow, as specified in Sketch
+	///   - spread: The spread of the shadow, as specified in Sketch.
+	///   - path: The path the shadow should use. If `nil`, it defaults to a rectangle of the size of the bounds of the receiver
+	///
+	/// - Note: It is safe to call this method multiple times without calling `removeSketchShadow` between each calls.
+	///
+	func applySketchShadow(
+		color: UIColor = .black,
+		alpha: Float = 0.5,
+		xAxis: CGFloat = 0.0,
+		yAxis: CGFloat = 2.0,
+		blur: CGFloat = 4.0,
+		spread: CGFloat = 0.0,
+		path: CGPath? = nil)
+	{
+		self.layer.shadowColor = color.cgColor
+		self.layer.shadowOpacity = alpha
+		self.layer.shadowOffset = CGSize(width: xAxis, height: yAxis)
+		self.layer.shadowRadius = blur / 2.0
+
+		if path == nil || spread == 0.0 {
+			self.layer.shadowPath = nil
+		} else {
+			let scaleFactor = (self.bounds.size.width + spread * 2.0) / self.bounds.size.width
+			let path = (path.map { UIBezierPath(cgPath: $0) } ?? UIBezierPath(rect: self.bounds))
+			path.apply(CGAffineTransform(scaleX: scaleFactor, y: scaleFactor))
+			self.layer.shadowPath = path.cgPath
+		}
+	}
+
+	///
+	/// Remove a shadow as set by `applySketchShadow`
+	/// This method will reset any shadows sets on the backing layer, _even it wasn't applied by `applySketchShadow`
+	///
+	func removeSketchShadow() {
+		self.layer.shadowColor = nil
+		self.layer.shadowOpacity = 0.0
+		self.layer.shadowOffset = .zero
+		self.layer.shadowRadius = 0.0
+		self.layer.shadowPath = nil
+	}
 }
 
-public extension UITableView {
+@available(iOS 9.0, *)
+extension UIStackView {
 	///
-	/// Deselect given rows, optionally with an animation.
+	/// Removes all of the current arranged subviews from the `UIStackView`, optionally
+	/// allowing to remove them from the `UIStackView`'s subviews as well.
+	///
+	/// - Parameters:
+	///   - removeFromHierachy: If `true`, each views is also removed from the receiver using `removeFromSuperview()`.
+	///     If `false`, `removeFromSuperview()` is not called.
+	///
+	func removeArrangedSubviews(removeFromHierachy: Bool) {
+		let arrangedSubviews = self.arrangedSubviews
+		arrangedSubviews.forEach { self.removeArrangedSubview($0, removeFromHierachy: removeFromHierachy) }
+	}
+
+	///
+	/// Removes the given arranged subview from the `UIStackView`, optionally
+	/// allowing to remove it from the `UIStackView`'s subviews as well.
+	///
+	/// - Parameters:
+	///   - view: The arranged subview to remove from the receiver.
+	///   - removeFromHierachy: If `true`, the view is also removed from the receiver using `removeFromSuperview()`.
+	///     If `false`, `removeFromSuperview()` is not called.
+	///
+	func removeArrangedSubview(_ view: UIView, removeFromHierachy: Bool) {
+		if removeFromHierachy {
+			view.removeFromSuperview()
+		} else {
+			// `removeArrangedSubview` doesn't call `removeFromSuperview` for the `view`
+			self.removeArrangedSubview(view)
+		}
+	}
+}
+
+extension UITableView {
+	///
+	/// Deselect the given rows, optionally with an animation.
 	///
 	/// - Parameters:
 	///   - indexPaths: The rows to deselect.
@@ -203,9 +338,9 @@ public extension UITableView {
 	}
 }
 
-public extension UICollectionView {
+extension UICollectionView {
 	///
-	/// Deselect given items, optionally with an animation.
+	/// Deselect the given items, optionally with an animation.
 	///
 	/// - Parameters:
 	///   - indexPaths: The items to deselect.
@@ -240,7 +375,7 @@ public extension UICollectionView {
 	}
 }
 
-public extension UIImage {
+extension UIImage {
 	///
 	/// Create a `CGContext` allowing to do custom drawing, and returns the resulting image as drawn in the context.
 	/// - Parameters:
@@ -298,11 +433,18 @@ public extension UIImage {
 
 	///
 	/// Apply the given tint to the image. The rendering mode is kept the same.
+	/// This method takes the rgb values of each pixels in the image, and replace them with the color
+	/// given as parameter. The alpha value of each pixels is kept the same.
 	/// The resulting image will be made resizable whether it was originally or not,
 	/// with `capInsets` set as the cap insets, and `resizingMode` as its resizing mode.
 	///
+	/// The behavior of this method is similar to using the `UIImage` with a `.alwaysTemplate` rendering mode
+	/// and using a `tintColor` when displaying the `UIImage` in an `UIImageView`.
+	///
+	/// - SeeAlso: `withColor(_:)`
+	///
 	/// - Parameters:
-	///   - color: The color to apply to the receiver.
+	///   - tint: The tint to apply to the receiver.
 	///
 	public func withTint(_ tint: UIColor) -> UIImage {
 		let image = UIImage.draw(size: self.size, scale: self.scale) { _ in
@@ -311,6 +453,32 @@ public extension UIImage {
 			self.draw(at: .zero, blendMode: .destinationIn, alpha: 1)
 		}
 		return image.resizableImage(withCapInsets: self.capInsets, resizingMode: self.resizingMode).withRenderingMode(self.renderingMode)
+	}
+
+	///
+	/// Apply the given color to the image. The rendering mode is kept the same.
+	/// This method keeps the brightness of all pixels the same, but updates the saturation and hue
+	/// to that of the given color.
+	///
+	/// In other words, this methods can be used to color grayscale images or tint images without loosing
+	/// contrast information.
+	///
+	/// - SeeAlso: `withTint(_:)`
+	///
+	/// - Parameters:
+	///   - color: The color to apply to the receiver.
+	///
+	public func withColor(_ color: UIColor) -> UIImage {
+		return UIImage.draw(
+			size: self.size,
+			graphics: { context in
+				let rect = CGRect(origin: .zero, size: self.size)
+				self.draw(in: rect, blendMode: .color, alpha: 1.0)
+				context.setFillColor(color.cgColor)
+				context.setBlendMode(.color)
+				context.fill(rect)
+			}
+		).withRenderingMode(self.renderingMode)
 	}
 
 	///

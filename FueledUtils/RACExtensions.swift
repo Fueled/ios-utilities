@@ -61,7 +61,7 @@ public func transitionContext(
 		}
 }
 
-public extension SignalProtocol {
+extension SignalProtocol {
 	/// The original purpose of this method is to allow triggering animations in response to signal values.
 	///
 	/// - Parameters:
@@ -127,7 +127,7 @@ public extension SignalProtocol {
 	/// - Returns: A signal that sends values that are sent from `self` at least
 	///            `interval` seconds apart.
 	///
-	func minimum(interval: TimeInterval, on scheduler: DateScheduler) -> Signal<Value, Error> {
+	public func minimum(interval: TimeInterval, on scheduler: DateScheduler) -> Signal<Value, Error> {
 		return Signal { observer, disposable in
 			let semaphore = DispatchSemaphore(value: 1)
 			var events: [Signal<Value, Error>.Event] = []
@@ -160,7 +160,7 @@ public extension SignalProtocol {
 	}
 }
 
-public extension SignalProducerProtocol {
+extension SignalProducerProtocol {
 	///
 	/// Returns a SignalProducer which cannot fail. Errors that would be otherwise be sent in the original producer are ignored.
 	///
@@ -190,12 +190,12 @@ public extension SignalProducerProtocol {
 	///
 	/// See `Signal.minimum` for documentation
 	///
-	func minimum(interval: TimeInterval, on scheduler: DateScheduler) -> SignalProducer<Value, Error> {
+	public func minimum(interval: TimeInterval, on scheduler: DateScheduler) -> SignalProducer<Value, Error> {
 		return self.producer.lift { $0.minimum(interval: interval, on: scheduler) }
 	}
 }
 
-public extension SignalProducer where Error == NoError {
+extension SignalProducer where Error == NoError {
 	public func chain<U>(_ transform: @escaping (Value) -> Signal<U, NoError>) -> SignalProducer<U, NoError> {
 		return flatMap(.latest, transform)
 	}
@@ -221,7 +221,7 @@ public extension SignalProducer where Error == NoError {
 	}
 }
 
-public extension PropertyProtocol {
+extension PropertyProtocol {
 	public func chain<U>(_ transform: @escaping (Value) -> Signal<U, NoError>) -> SignalProducer<U, NoError> {
 		return producer.chain(transform)
 	}
