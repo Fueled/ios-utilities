@@ -15,14 +15,31 @@ limitations under the License.
 */
 import UIKit
 
+///
+/// A subclass of `UIButton` allowing to easily specify line spacing and kerning.
+///
+/// This class exposes properties allowing to customize the title in Interface Builder.
+/// Internally, this class works by setting `setAttributedTitle(_:, for:)`. **Do not use**
+/// this class if you're using `setAttributedTitle(_:, for:)` anywhere.
+///
 open class ButtonWithTitleAdjustment: UIButton {
-	@IBInspectable public var adjustmentLineSpacing: CGFloat = 0 {
+	///
+	/// The line spacing to apply to the button's title.
+	///
+	/// Negative values are **unsupported**. Please refer to the documentation for `NSAttributedString.Key.lineSpacing` for more info.
+	///
+	@IBInspectable public var adjustmentLineSpacing: CGFloat = 0.0 {
 		didSet {
 			self.updateAdjustedTitles()
 		}
 	}
 
-	@IBInspectable public var adjustmentKerning: CGFloat = 0 {
+	///
+	/// The kern value to apply to the button's title.
+	///
+	/// Please refer to the documentation for `NSAttributedString.Key.kernValue` for info about the possible values.
+	///
+	@IBInspectable public var adjustmentKerning: CGFloat = 0.0 {
 		didSet {
 			self.updateAdjustedTitles()
 		}

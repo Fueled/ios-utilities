@@ -17,10 +17,26 @@ import Foundation
 import ReactiveSwift
 import Result
 
+///
+/// Represents the possible state of an `Action` in Reactive Swift.
+///
 public enum LoadingState<Error: Swift.Error> {
+	///
+	/// Represents the state of an action that has received any values, has completed successfully or was interrupted.
+	///
 	case `default`
+	///
+	/// Represents the state of an action that is loading
+	///
 	case loading
+	///
+	/// Represents the state of an action that has failed, with the `Error` it failed with.
+	///
 	case failed(error: Error)
+
+	///
+	/// If the current state is `.failed`, returns the associated error. If not, returns `nil`
+	///
 	public var error: Error? {
 		if case .failed(let error) = self {
 			return error
@@ -28,7 +44,21 @@ public enum LoadingState<Error: Swift.Error> {
 			return nil
 		}
 	}
+
+	///
+	/// **Deprecated**: Please use `isLoading` instead.
+	///
+	/// Refer to the documentation for `isLoading` for more info.
+	///
+	@available(*, deprecated, renamed: "isLoading")
 	public var loading: Bool {
+		return self.isLoading
+	}
+
+	///
+	/// If the current state is `.loading`, returns `true`. If not, returns `false`
+	///
+	public var isLoading: Bool {
 		if case .loading = self {
 			return true
 		} else {
@@ -38,17 +68,33 @@ public enum LoadingState<Error: Swift.Error> {
 }
 
 public extension Action {
-	public func loadingState() -> SignalProducer<LoadingState<Error>, NoError> {
+	///
+	/// **Deprecated**: Please use `getSafely(at:)` instead.
+	///
+	/// Refer to the documentation for `getSafely(at:)` for more info.
+	///
+	@available(*, deprecated, renamed: "loadingState")
+	// The unused parameter allows to bypass the compiler error "Invalid redeclaration of 'loadingState'",
+	// while retaining backward compatibility
+	public func loadingState(_ unused: Void = ()) -> SignalProducer<LoadingState<Error>, NoError> {
+		return self.loadingState
+	}
+
+	///
+	/// Returns a `SignalProducer` whose events corresponds to the current loading state of the action.
+	/// Please refer to `LoadingState` for more info.
+	///
+	public var loadingState: SignalProducer<LoadingState<Error>, NoError> {
 		let loading = self.isExecuting.producer
 			.filter { $0 }
 			.map { _ in LoadingState<Error>.loading }
-		let eventStates = SignalProducer(self.events).map {
+		let eventStates = self.events.map {
 			(event: Signal<Output, Error>.Event) -> LoadingState<Error> in
 			switch event {
 			case .failed(let error):
-				return LoadingState<Error>.failed(error: error)
+				return .failed(error: error)
 			default:
-				return LoadingState<Error>.default
+				return .default
 			}
 		}
 		return SignalProducer.merge(loading, eventStates)

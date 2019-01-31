@@ -17,9 +17,16 @@ import Foundation
 import UIKit
 
 public extension UIApplicationDelegate {
+	///
 	/// Switches root view controller avoiding common problems of unintended animations.
-	public func setRootViewController(_ viewController: UIViewController, setWindow: (UIWindow) -> Void, completion: @escaping () -> Void = {}) {
-		if let optionalWindow = self.window, let window = optionalWindow {
+	///
+	/// - Parameters:
+	///   - viewController: The new view controller to swift to.
+	///   - setWindow: If `self.window` is `nil`, this closure will be executed
+	///   - completion: The completion block to execute when the transition is completed.
+	///
+	public func setRootViewController(_ viewController: UIViewController, setWindow: ((UIWindow) -> Void)? = nil, completion: (() -> Void)? = nil) {
+		if let window = self.window.flatMap({ $0 }) {
 			UIView.transition(
 				with: window,
 				duration: 0.33,
@@ -33,15 +40,15 @@ public extension UIApplicationDelegate {
 					UIView.setAnimationsEnabled(true)
 				},
 				completion: { _ in
-					completion()
+					completion?()
 				}
 			)
 		} else {
 			let window = UIWindow(frame: UIScreen.main.bounds)
-			setWindow(window)
+			setWindow?(window)
 			window.rootViewController = viewController
 			window.makeKeyAndVisible()
-			completion()
+			completion?()
 		}
 	}
 }

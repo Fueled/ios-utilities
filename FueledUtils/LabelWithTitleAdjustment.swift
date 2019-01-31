@@ -16,13 +16,30 @@ limitations under the License.
 import UIKit
 import Foundation
 
+///
+/// A subclass of `UILabel` allowing to easily specify line spacing and kerning.
+///
+/// This class exposes properties allowing to customize the title in Interface Builder.
+/// Internally, this class works by setting `attributedText`. **Do not use**
+/// this class if you're using `attributedText` anywhere.
+///
 open class LabelWithTitleAdjustment: UILabel {
+	///
+	/// The line spacing to apply to the label's text.
+	///
+	/// Negative values are **unsupported**. Please refer to the documentation for `NSAttributedString.Key.lineSpacing` for more info.
+	///
 	@IBInspectable public var adjustmentLineSpacing: CGFloat = 0.0 {
 		didSet {
 			self.setAdjustedText(self.text)
 		}
 	}
 
+	///
+	/// The kern value to apply to the label's text.
+	///
+	/// Please refer to the documentation for `NSAttributedString.Key.kernValue` for info about the possible values.
+	///
 	@IBInspectable public var adjustmentKerning: CGFloat = 0.0 {
 		didSet {
 			self.setAdjustedText(self.text)

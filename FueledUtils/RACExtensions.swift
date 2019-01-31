@@ -18,7 +18,9 @@ import ReactiveCocoa
 import ReactiveSwift
 import Result
 
+///
 /// Use with `observe(context:)` function below to animate all changes made by observers of the signal returned from `observe(context:)`.
+///
 public func animatingContext(
 	_ duration: TimeInterval,
 	delay: TimeInterval = 0,
@@ -60,16 +62,18 @@ public func transitionContext(
 }
 
 public extension SignalProtocol {
-	/**
-	The original purpose of this method is to allow triggering animations in response to signal values.
-	- Returns: a signal of which observers will receive values in the context defined by `context` function.
-	- Parameters:
-		- context: defines a context in which observers of the resulting signal will be called.
-	## Example
-	The following code
-		self.constraint.reactive.constant <~ viewModel.constraintConstantValue.signal.observe(context: animatingContext)
-	will result in all changes to `constraintConstantValue` in `viewModel` to be reflected in the constraint and animated.
-	*/
+	/// The original purpose of this method is to allow triggering animations in response to signal values.
+	///
+	/// - Parameters:
+	/// 	- context: Defines a context in which observers of the resulting signal will be called.
+	/// - Returns: A signal of which observers will receive values in the context defined by `context` function.
+	///
+	/// ## Example
+	/// The following code
+	/// ```swift
+	/// self.constraint.reactive.constant <~ viewModel.constraintConstantValue.signal.observe(context: animatingContext)
+	/// ```
+	/// will result in all changes to `constraintConstantValue` in `viewModel` to be reflected in the constraint and animated.
 	public func observe(context: @escaping (@escaping () -> Void) -> Void) -> Signal<Value, Error> {
 		return Signal { observer, disposable in
 			disposable += self.signal.observe { event in
@@ -105,22 +109,22 @@ public extension SignalProtocol {
 	/// <viewController>.reactive.performSegue <~ fetchAction.errors.map { ("myAwesomeFailureSegue", nil) }
 	/// ````
 	///
-	/// - seealso: `debounce`, `throttle`
+	/// - SeeAlso: `debounce`, `throttle`
 	///
-	/// - note: If multiple values are received before the interval has elapsed,
+	/// - Note: If multiple values are received before the interval has elapsed,
 	///         they will all be sent at once.
 	///
-	/// - note: If the input signal terminates while a value is being debounced, 
+	/// - Note: If the input signal terminates while a value is being debounced,
 	///         that value will be discarded and the returned signal will 
 	///         terminate immediately.
 	///
-	/// - precondition: `interval` must be non-negative number.
+	/// - Precondition: `interval` must be non-negative number.
 	///
-	/// - parameters:
+	/// - Parameters:
 	///   - interval: A number of seconds to wait before sending a value.
 	///   - scheduler: A scheduler to send values on.
 	///
-	/// - returns: A signal that sends values that are sent from `self` at least
+	/// - Returns: A signal that sends values that are sent from `self` at least
 	///            `interval` seconds apart.
 	///
 	func minimum(interval: TimeInterval, on scheduler: DateScheduler) -> Signal<Value, Error> {
@@ -157,27 +161,41 @@ public extension SignalProtocol {
 }
 
 public extension SignalProducerProtocol {
+	///
+	/// Returns a SignalProducer which cannot fail. Errors that would be otherwise be sent in the original producer are ignored.
+	///
 	public func ignoreError() -> SignalProducer<Value, NoError> {
 		return self.producer.flatMapError { _ in
 			SignalProducer<Value, NoError>.empty
 		}
 	}
+
+	///
+	/// Returns a SignalProducer that when started will delay starting of the original producer on given scheduler.
+	///
+	/// - Parameters:
+	///   - interval: The time interval after which to start the `SignalProducer`
+	///   - scheduler: The scheduler on which to start the `SignalProducer` after the delay has passed
+	///
 	public func delayStart(_ interval: TimeInterval, on scheduler: DateScheduler) -> ReactiveSwift.SignalProducer<Value, Error> {
 		return SignalProducer<(), Error>(value: ())
 			.delay(interval, on: scheduler)
 			.flatMap(.latest) { _ in self.producer }
 	}
+
 	public func observe(context: @escaping (@escaping () -> Void) -> Void) -> SignalProducer<Value, Error> {
 		return self.producer.lift { $0.observe(context: context) }
 	}
+
+	///
 	/// See `Signal.minimum` for documentation
+	///
 	func minimum(interval: TimeInterval, on scheduler: DateScheduler) -> SignalProducer<Value, Error> {
 		return self.producer.lift { $0.minimum(interval: interval, on: scheduler) }
 	}
 }
 
 public extension SignalProducer where Error == NoError {
-
 	public func chain<U>(_ transform: @escaping (Value) -> Signal<U, NoError>) -> SignalProducer<U, NoError> {
 		return flatMap(.latest, transform)
 	}
@@ -201,11 +219,9 @@ public extension SignalProducer where Error == NoError {
 	public func chain<P: PropertyProtocol>(_ transform: @escaping (Value) -> P?) -> SignalProducer<P.Value, NoError> {
 		return flatMap(.latest) { transform($0)?.producer ?? SignalProducer<P.Value, NoError>.empty }
 	}
-
 }
 
 public extension PropertyProtocol {
-
 	public func chain<U>(_ transform: @escaping (Value) -> Signal<U, NoError>) -> SignalProducer<U, NoError> {
 		return producer.chain(transform)
 	}
@@ -229,11 +245,13 @@ public extension PropertyProtocol {
 	public func chain<P: PropertyProtocol>(_ transform: @escaping (Value) -> P?) -> SignalProducer<P.Value, NoError> {
 		return producer.chain(transform)
 	}
-
 }
 
 infix operator <~> : AssignmentPrecedence
 
+///
+/// Perform a two-way binding between 2 mutable properties.
+///
 @discardableResult public func <~> <P1: MutablePropertyProtocol, P2: MutablePropertyProtocol>(property1: P1, property2: P2) -> Disposable where P1.Value == P2.Value {
 	let disposable = CompositeDisposable()
 	var inObservation = false
@@ -320,6 +338,7 @@ extension Reactive where Base: UIViewController {
 
 @available(iOS 9.0, *)
 extension Reactive where Base: UIStackView {
+	@available(*, deprecated, message: "Use `subview.reactive.isHidden <~ <Binding Source>` instead")
 	public func isArranged(_ subview: UIView, at index: Int) -> BindingTarget<Bool> {
 		return makeBindingTarget { stackView, isArrangedSubview in
 			if isArrangedSubview {

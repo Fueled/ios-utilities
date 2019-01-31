@@ -6,6 +6,9 @@ import UIKit
 /// For examples and testing its usage, you can use the `FueledUtils` playground file provided with the workspace.
 ///
 public final class GradientView: UIView {
+	///
+	/// Defines the colors of a given type.
+	///
 	public enum Definition {
 		///
 		/// Defines a simple gradient, that has a start color and an end color

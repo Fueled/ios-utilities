@@ -16,24 +16,71 @@ limitations under the License.
 import UIKit
 
 public extension UIScrollView {
-
+	///
+	/// **Deprecated**: Please use `currentPage` instead.
+	///
+	/// Refer to the documentation for `currentPage` for more info.
+	///
+	@available(*, deprecated, renamed: "currentPage")
 	public var lsd_currentPage: Int {
-		let bw = self.bounds.size.width
-		let cx = self.contentOffset.x
-		let page = Int((cx / bw).rounded())
-		return min(max(0, page), self.lsd_numberOfPages - 1)
+		return self.currentPage
 	}
 
+	///
+	/// **Deprecated**: Please use `numberOfPages` instead.
+	///
+	/// Refer to the documentation for `numberOfPages` for more info.
+	///
+	@available(*, deprecated, renamed: "numberOfPages")
 	public var lsd_numberOfPages: Int {
-		let bw = self.bounds.size.width
-		let cw = self.contentSize.width
-		return Int((cw / bw).rounded(.up))
+		return self.numberOfPages
 	}
 
+	///
+	/// **Deprecated**: Please use `setCurrentPage(_:, animated:)` instead.
+	///
+	/// Refer to the documentation for `setCurrentPage(_:, animated:)` for more info.
+	///
+	@available(*, deprecated, renamed: "setCurrentPage(_:animated:)")
 	public func lsd_setCurrentPage(_ page: Int, animated: Bool) {
-		let bw = self.bounds.size.width
-		let offset = CGPoint(x: bw * CGFloat(page), y: 0)
+		self.setCurrentPage(page, animated: animated)
+	}
+
+	///
+	/// Gets/Sets (without animation) the current page of the scroll view, assuming a paginated scroll view of width `self.bounds.size.width`, with no left or right content insets.
+	///
+	/// To set the current page with an animation, use `setCurrentPage(_ page:, animated:)`
+	///
+	/// - Returns: Returns the current page (0-based)
+	///
+	public var currentPage: Int {
+		get {
+			let page = Int((self.bounds.size.width / self.contentOffset.x).rounded())
+			return min(max(0, page), self.numberOfPages - 1)
+		}
+		set {
+			self.setCurrentPage(newValue, animated: false)
+		}
+	}
+
+	///
+	/// Gets the total number of pages of the scroll view, assuming a paginated scroll view of width `self.bounds.size.width`, with no left or right content insets.
+	///
+	/// - Returns: Returns the number of pages.
+	///
+	public var numberOfPages: Int {
+		return Int((self.bounds.size.width / self.contentSize.width).rounded(.up))
+	}
+
+	///
+	/// Sets the current page of the scroll view, assuming a paginated scroll view of width `self.bounds.size.width`, with no left or right content insets.
+	///
+	/// - Parameters:
+	///   - page: The page to set to.
+	///   - animated: Whether to animate the change or not.
+	///
+	public func setCurrentPage(_ page: Int, animated: Bool) {
+		let offset = CGPoint(x: self.bounds.size.width * CGFloat(page), y: 0)
 		self.setContentOffset(offset, animated: animated)
 	}
-
 }

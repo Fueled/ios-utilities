@@ -106,12 +106,14 @@
 		02DE3C201D258C79002B58E2 /* FueledUtils */ = {
 			isa = PBXGroup;
 			children = (
+				02DE3C211D258C79002B58E2 /* FueledUtils.h */,
+				02DE3C231D258C79002B58E2 /* Info.plist */,
 				02DE3C4B1D259628002B58E2 /* ButtonWithTitleAdjustment.swift */,
+				F4A619541F47263100777BB2 /* CollectionExtensions.swift */,
 				02DE3C561D25A24B002B58E2 /* DecoratingTextFieldDelegate.swift */,
 				02DE3C541D259FA9002B58E2 /* DimmingButton.swift */,
-				02DE3C211D258C79002B58E2 /* FueledUtils.h */,
+				35996E0E1F55C3E1004D6AC0 /* FoundationExtensions.swift */,
 				02DE3C451D25933E002B58E2 /* HairlineView.swift */,
-				02DE3C231D258C79002B58E2 /* Info.plist */,
 				02DE3C431D25928F002B58E2 /* KeyboardInsetHelper.swift */,
 				02DE3C4C1D259628002B58E2 /* LabelWithTitleAdjustment.swift */,
 				02E626081D340F0C0041E512 /* LoadingState.swift */,
@@ -121,12 +123,10 @@
 				02DE3C481D25952A002B58E2 /* Regex.swift */,
 				0238E9341E69B53200BF26D4 /* ScrollViewPage.swift */,
 				02DE3C371D258FD1002B58E2 /* SequenceExtensions.swift */,
-				F4A619541F47263100777BB2 /* CollectionExtensions.swift */,
 				02DE3C4F1D259966002B58E2 /* SetRootViewController.swift */,
 				02DE3C381D258FD1002B58E2 /* SignalingAlert.swift */,
 				02DE3C3B1D258FD1002B58E2 /* StringExtensions.swift */,
 				02DE3C3A1D258FD1002B58E2 /* UIExtensions.swift */,
-				35996E0E1F55C3E1004D6AC0 /* FoundationExtensions.swift */,
 				DFA57F0521E7A64200467647 /* GradientView.swift */,
 			);
 			path = FueledUtils;

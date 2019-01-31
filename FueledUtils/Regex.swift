@@ -15,16 +15,50 @@ limitations under the License.
 */
 import Foundation
 
+///
 /// `NSRegularExpression` convenience wrapper.
+///
 public struct Regex {
-	fileprivate let impl: NSRegularExpression
+	private let implementation: NSRegularExpression
 
-	public init(_ pattern: String, options: NSRegularExpression.Options = []) {
-		impl = try! NSRegularExpression(pattern: pattern, options: options)
+	///
+	/// The pattern the regex was initialized with
+	///
+	var pattern: String {
+		return implementation.pattern
+	}
+	///
+	/// The options used to create the regex initially
+	///
+	var options: NSRegularExpression.Options {
+		return implementation.options
 	}
 
+	///
+	/// Create a new `Regex` with the given `pattern` and `options`.
+	///
+	/// - Parameters:
+	///   - pattern: The pattern to create the regex with.
+	///   - options: The options to use when creating the regular expression.
+	///
+	/// - Note: The initializer is an implicitely unwrapped optional for backward-compatibility reason, and will be made optional in a future release.
+	///
+	public init!(_ pattern: String, options: NSRegularExpression.Options = []) {
+		guard let implementation = try? NSRegularExpression(pattern: pattern, options: options) else {
+			return nil
+		}
+		self.implementation = implementation
+	}
+
+	///
+	/// Match the regex
+	///
+	/// - Parameters:
+	///   - pattern: The string to match the regex against.
+	///   - options: The options to use when matching the regular expressiona against the given string.
+	///
 	public func match(_ string: String, options: NSRegularExpression.MatchingOptions = []) -> Bool {
-		return impl.numberOfMatches(in: string, options: options, range: string.fullRange) != 0
+		return implementation.numberOfMatches(in: string, options: options, range: string.nsRange) != 0
 	}
 }
 
