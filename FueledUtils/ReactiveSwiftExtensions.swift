@@ -14,54 +14,17 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 import Foundation
-import ReactiveCocoa
 import ReactiveSwift
 import Result
 
-///
-/// Use with `observe(context:)` function below to animate all changes made by observers of the signal returned from `observe(context:)`.
-///
-public func animatingContext(
-	_ duration: TimeInterval,
-	delay: TimeInterval = 0,
-	options: UIView.AnimationOptions = [],
-	layoutView: UIView? = nil,
-	completion: ((Bool) -> Void)? = nil)
-	-> ((@escaping () -> Void) -> Void)
-{
-	return { [weak layoutView] animations in
-		layoutView?.layoutIfNeeded()
-		UIView.animate(
-			withDuration: duration,
-			delay: delay,
-			options: options,
-			animations: {
-				animations()
-				layoutView?.layoutIfNeeded()
-			},
-			completion: completion)
-		}
-}
-
-public func transitionContext(
-	with view: UIView,
-	duration: TimeInterval,
-	delay: TimeInterval = 0,
-	options: UIView.AnimationOptions = [],
-	completion: ((Bool) -> Void)? = nil)
-	-> ((@escaping () -> Void) -> Void)
-{
-	return { animations in
-		UIView.transition(
-			with: view,
-			duration: duration,
-			options: options,
-			animations: animations,
-			completion: completion)
-		}
-}
-
 extension SignalProtocol {
+	///
+	/// Make the `Signal` output optional `Value`.
+	///
+	public func promoteOptional() -> Signal<Value?, Error> {
+		return self.signal.map { $0 }
+	}
+
 	/// The original purpose of this method is to allow triggering animations in response to signal values.
 	///
 	/// - Parameters:
@@ -158,16 +121,62 @@ extension SignalProtocol {
 			}
 		}
 	}
+
+	///
+	/// Applies `transform` to errors from the producer and forwards errors with non `nil` results unwrapped.
+	///
+	/// - Parameters:
+	///   - transform: A closure that accepts an error from the `failed` event and
+	///                returns a new optional error.
+	/// - Returns: A producer that will send new errors, that are non `nil` after the transformation.
+	///
+	public func filterMapError<NewError: Swift.Error>(_ transform: @escaping (Error) -> NewError?) -> Signal<Value, NewError> {
+		return Signal { observer, disposable in
+			disposable += self.signal.observe { event in
+				switch event {
+				case .value(let value):
+					observer.send(.value(value))
+				case .failed(let error):
+					if let error = transform(error) {
+						observer.send(.failed(error))
+					}
+				case .completed:
+					observer.send(.completed)
+				case .interrupted:
+					observer.send(.interrupted)
+				}
+			}
+		}
+	}
+
+	///
+	/// Returns a Signal which cannot fail. Errors that would be otherwise be sent in the original signal are ignored.
+	///
+	public func ignoreError() -> Signal<Value, NoError> {
+		return self.filterMapError { _ in nil }
+	}
 }
 
 extension SignalProducerProtocol {
 	///
+	/// Make the `SignalProducer` output optional `Value`.
+	///
+	public func promoteOptional() -> SignalProducer<Value?, Error> {
+		return self.producer.lift { $0.promoteOptional() }
+	}
+
+	///
+	/// Make the `Signal` output optional `Value`, and prefix it with `nil`.
+	///
+	public func prefixNil() -> SignalProducer<Value?, Error> {
+		return self.producer.promoteOptional().prefix(value: nil)
+	}
+
+	///
 	/// Returns a SignalProducer which cannot fail. Errors that would be otherwise be sent in the original producer are ignored.
 	///
 	public func ignoreError() -> SignalProducer<Value, NoError> {
-		return self.producer.flatMapError { _ in
-			SignalProducer<Value, NoError>.empty
-		}
+		return self.producer.lift { $0.ignoreError() }
 	}
 
 	///
@@ -192,6 +201,15 @@ extension SignalProducerProtocol {
 	///
 	public func minimum(interval: TimeInterval, on scheduler: DateScheduler) -> SignalProducer<Value, Error> {
 		return self.producer.lift { $0.minimum(interval: interval, on: scheduler) }
+	}
+}
+
+extension PropertyProtocol {
+	///
+	/// Make the `Property` have an optional `Value`.
+	///
+	public func promoteOptional() -> Property<Value?> {
+		return Property(initial: self.value, then: self.signal)
 	}
 }
 
@@ -288,94 +306,17 @@ infix operator <~> : AssignmentPrecedence
 	return disposable
 }
 
-extension Reactive where Base: NSLayoutConstraint {
-	public var isActive: BindingTarget<Bool> {
-		return makeBindingTarget { $0.isActive = $1 }
-	}
-}
-
-extension Reactive where Base: UIView {
-	var animatedAlpha: BindingTarget<Float> {
-		return self.animatedAlpha()
-	}
-
-	func animatedAlpha(duration: TimeInterval = 0.35) -> BindingTarget<Float> {
-		return makeBindingTarget { view, alpha in
-			UIView.animate(withDuration: duration) {
-				view.alpha = CGFloat(alpha)
-			}
-		}
-	}
-}
-
-extension Reactive where Base: UILabel {
-	var animatedText: BindingTarget<String> {
-		return makeBindingTarget { label, text in
-			label.setText(text, animated: true)
-		}
-	}
-	var animatedAttributedText: BindingTarget<NSAttributedString> {
-		return makeBindingTarget { label, text in
-			label.setAttributedText(text, animated: true)
-		}
-	}
-}
-
-extension Reactive where Base: UILabel {
-	public var textAlignment: BindingTarget<NSTextAlignment> {
-		return makeBindingTarget { $0.textAlignment = $1 }
-	}
-}
-
-extension Reactive where Base: UIViewController {
-	public var title: BindingTarget<String?> {
-		return makeBindingTarget { $0.title = $1 }
-	}
-	public var performSegue: BindingTarget<(String, Any?)> {
-		return makeBindingTarget { $0.performSegue(withIdentifier: $1.0, sender: $1.1) }
-	}
-}
-
-@available(iOS 9.0, *)
-extension Reactive where Base: UIStackView {
-	@available(*, deprecated, message: "Use `subview.reactive.isHidden <~ <Binding Source>` instead")
-	public func isArranged(_ subview: UIView, at index: Int) -> BindingTarget<Bool> {
-		return makeBindingTarget { stackView, isArrangedSubview in
-			if isArrangedSubview {
-				stackView.insertArrangedSubview(subview, at: index)
-			} else {
-				stackView.removeArrangedSubview(subview)
-			}
-		}
-	}
-}
-
-extension Reactive where Base: UINavigationItem {
-	public func hidesBackButton(animated: Bool) -> BindingTarget<Bool> {
-		return makeBindingTarget { $0.setHidesBackButton($1, animated: animated) }
-	}
-	public func rightBarButtonItem(animated: Bool) -> BindingTarget<UIBarButtonItem?> {
-		return makeBindingTarget { $0.setRightBarButton($1, animated: animated) }
-	}
-	public func rightBarButtonItems(animated: Bool) -> BindingTarget<[UIBarButtonItem]> {
-		return makeBindingTarget { $0.setRightBarButtonItems($1, animated: animated) }
-	}
-	public func leftBarButtonItem(animated: Bool) -> BindingTarget<UIBarButtonItem?> {
-		return makeBindingTarget { $0.setLeftBarButton($1, animated: animated) }
-	}
-	public func leftBarButtonItems(animated: Bool) -> BindingTarget<[UIBarButtonItem]> {
-		return makeBindingTarget { $0.setLeftBarButtonItems($1, animated: animated) }
-	}
-	public var rightBarButtonItem: BindingTarget<UIBarButtonItem?> {
-		return makeBindingTarget { $0.rightBarButtonItem = $1 }
-	}
-	public var rightBarButtonItems: BindingTarget<[UIBarButtonItem]> {
-		return makeBindingTarget { $0.rightBarButtonItems = $1 }
-	}
-	public var leftBarButtonItem: BindingTarget<UIBarButtonItem?> {
-		return makeBindingTarget { $0.leftBarButtonItem = $1 }
-	}
-	public var leftBarButtonItems: BindingTarget<[UIBarButtonItem]> {
-		return makeBindingTarget { $0.leftBarButtonItems = $1 }
+extension ActionProtocol {
+	///
+	/// A signal of all values or errors generated from all units of work of the `Action`.
+	///
+	/// In other words, this sends every `Result` from every unit of work that the `Action`
+	/// executes.
+	///
+	public var results: Signal<Result<OutputType, ErrorType>, NoError> {
+		return Signal.merge(
+			self.values.map { .success($0) },
+			self.errors.map { .failure($0) }
+		)
 	}
 }

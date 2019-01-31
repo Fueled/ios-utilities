@@ -12,7 +12,7 @@
 		02DE3C221D258C79002B58E2 /* FueledUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 02DE3C211D258C79002B58E2 /* FueledUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		02DE3C2A1D258E02002B58E2 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02DE3C291D258E02002B58E2 /* ReactiveCocoa.framework */; };
 		02DE3C2C1D258E08002B58E2 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02DE3C2B1D258E08002B58E2 /* Result.framework */; };
-		02DE3C3C1D258FD1002B58E2 /* RACExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DE3C351D258FD1002B58E2 /* RACExtensions.swift */; };
+		02DE3C3C1D258FD1002B58E2 /* ReactiveSwiftExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DE3C351D258FD1002B58E2 /* ReactiveSwiftExtensions.swift */; };
 		02DE3C3E1D258FD1002B58E2 /* SequenceExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DE3C371D258FD1002B58E2 /* SequenceExtensions.swift */; };
 		02DE3C3F1D258FD1002B58E2 /* SignalingAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DE3C381D258FD1002B58E2 /* SignalingAlert.swift */; };
 		02DE3C411D258FD1002B58E2 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DE3C3A1D258FD1002B58E2 /* UIExtensions.swift */; };
@@ -31,6 +31,10 @@
 		35996E0F1F55C3E1004D6AC0 /* FoundationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35996E0E1F55C3E1004D6AC0 /* FoundationExtensions.swift */; };
 		DFA57F0621E7A64200467647 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA57F0521E7A64200467647 /* GradientView.swift */; };
 		F40C574821F9182B0006FB3F /* TransferState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40C574721F9182B0006FB3F /* TransferState.swift */; };
+		F40C574221F9092A0006FB3F /* ReactiveCocoaExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40C574121F909290006FB3F /* ReactiveCocoaExtensions.swift */; };
+		F40C574421F909A60006FB3F /* ActionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40C574321F909A60006FB3F /* ActionProtocol.swift */; };
+		F40C574621F90BD10006FB3F /* TypedSerialDisposable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40C574521F90BD10006FB3F /* TypedSerialDisposable.swift */; };
+		F464775D21FA3FA5005F8B7E /* CoalescingAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F464775C21FA3FA5005F8B7E /* CoalescingAction.swift */; };
 		F4A619551F47263100777BB2 /* CollectionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A619541F47263100777BB2 /* CollectionExtensions.swift */; };
 /* End PBXBuildFile section */
 
@@ -42,7 +46,7 @@
 		02DE3C231D258C79002B58E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		02DE3C291D258E02002B58E2 /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveCocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		02DE3C2B1D258E08002B58E2 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Result.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		02DE3C351D258FD1002B58E2 /* RACExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RACExtensions.swift; sourceTree = "<group>"; };
+		02DE3C351D258FD1002B58E2 /* ReactiveSwiftExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactiveSwiftExtensions.swift; sourceTree = "<group>"; };
 		02DE3C371D258FD1002B58E2 /* SequenceExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequenceExtensions.swift; sourceTree = "<group>"; };
 		02DE3C381D258FD1002B58E2 /* SignalingAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignalingAlert.swift; sourceTree = "<group>"; };
 		02DE3C3A1D258FD1002B58E2 /* UIExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIExtensions.swift; sourceTree = "<group>"; };
@@ -61,6 +65,10 @@
 		35996E0E1F55C3E1004D6AC0 /* FoundationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationExtensions.swift; sourceTree = "<group>"; };
 		DFA57F0521E7A64200467647 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		F40C574721F9182B0006FB3F /* TransferState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransferState.swift; sourceTree = "<group>"; };
+		F40C574121F909290006FB3F /* ReactiveCocoaExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactiveCocoaExtensions.swift; sourceTree = "<group>"; };
+		F40C574321F909A60006FB3F /* ActionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionProtocol.swift; sourceTree = "<group>"; };
+		F40C574521F90BD10006FB3F /* TypedSerialDisposable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypedSerialDisposable.swift; sourceTree = "<group>"; };
+		F464775C21FA3FA5005F8B7E /* CoalescingAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoalescingAction.swift; sourceTree = "<group>"; };
 		F4A619541F47263100777BB2 /* CollectionExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -110,7 +118,9 @@
 			children = (
 				02DE3C211D258C79002B58E2 /* FueledUtils.h */,
 				02DE3C231D258C79002B58E2 /* Info.plist */,
+				F40C574321F909A60006FB3F /* ActionProtocol.swift */,
 				02DE3C4B1D259628002B58E2 /* ButtonWithTitleAdjustment.swift */,
+				F464775C21FA3FA5005F8B7E /* CoalescingAction.swift */,
 				F4A619541F47263100777BB2 /* CollectionExtensions.swift */,
 				02DE3C561D25A24B002B58E2 /* DecoratingTextFieldDelegate.swift */,
 				02DE3C541D259FA9002B58E2 /* DimmingButton.swift */,
@@ -121,14 +131,16 @@
 				02DE3C4C1D259628002B58E2 /* LabelWithTitleAdjustment.swift */,
 				02E626081D340F0C0041E512 /* LoadingState.swift */,
 				02DE3C471D25952A002B58E2 /* NSDecimalNumberOperators.swift */,
-				02DE3C351D258FD1002B58E2 /* RACExtensions.swift */,
+				F40C574121F909290006FB3F /* ReactiveCocoaExtensions.swift */,
 				02DF8ECA1E6464AB009AB29C /* ReactiveLifetimeProvider.swift */,
+				02DE3C351D258FD1002B58E2 /* ReactiveSwiftExtensions.swift */,
 				02DE3C481D25952A002B58E2 /* Regex.swift */,
 				0238E9341E69B53200BF26D4 /* ScrollViewPage.swift */,
 				02DE3C371D258FD1002B58E2 /* SequenceExtensions.swift */,
 				02DE3C4F1D259966002B58E2 /* SetRootViewController.swift */,
 				02DE3C381D258FD1002B58E2 /* SignalingAlert.swift */,
 				02DE3C3B1D258FD1002B58E2 /* StringExtensions.swift */,
+				F40C574521F90BD10006FB3F /* TypedSerialDisposable.swift */,
 				02DE3C3A1D258FD1002B58E2 /* UIExtensions.swift */,
 				DFA57F0521E7A64200467647 /* GradientView.swift */,
 			);
@@ -220,19 +232,23 @@
 				02DE3C421D258FD1002B58E2 /* StringExtensions.swift in Sources */,
 				02DE3C501D259966002B58E2 /* SetRootViewController.swift in Sources */,
 				02DE3C441D25928F002B58E2 /* KeyboardInsetHelper.swift in Sources */,
-				02DE3C3C1D258FD1002B58E2 /* RACExtensions.swift in Sources */,
+				02DE3C3C1D258FD1002B58E2 /* ReactiveSwiftExtensions.swift in Sources */,
 				02DF8ECB1E6464AB009AB29C /* ReactiveLifetimeProvider.swift in Sources */,
 				0238E9351E69B53200BF26D4 /* ScrollViewPage.swift in Sources */,
 				35996E0F1F55C3E1004D6AC0 /* FoundationExtensions.swift in Sources */,
 				02DE3C4E1D259628002B58E2 /* LabelWithTitleAdjustment.swift in Sources */,
 				02DE3C461D25933E002B58E2 /* HairlineView.swift in Sources */,
 				02DE3C571D25A24B002B58E2 /* DecoratingTextFieldDelegate.swift in Sources */,
+				F40C574221F9092A0006FB3F /* ReactiveCocoaExtensions.swift in Sources */,
 				02DE3C491D25952A002B58E2 /* NSDecimalNumberOperators.swift in Sources */,
 				02DE3C411D258FD1002B58E2 /* UIExtensions.swift in Sources */,
 				F4A619551F47263100777BB2 /* CollectionExtensions.swift in Sources */,
+				F40C574421F909A60006FB3F /* ActionProtocol.swift in Sources */,
 				02E626091D340F0C0041E512 /* LoadingState.swift in Sources */,
 				02DE3C3E1D258FD1002B58E2 /* SequenceExtensions.swift in Sources */,
 				02DE3C3F1D258FD1002B58E2 /* SignalingAlert.swift in Sources */,
+				F464775D21FA3FA5005F8B7E /* CoalescingAction.swift in Sources */,
+				F40C574621F90BD10006FB3F /* TypedSerialDisposable.swift in Sources */,
 				02DE3C551D259FA9002B58E2 /* DimmingButton.swift in Sources */,
 				F40C574821F9182B0006FB3F /* TransferState.swift in Sources */,
 			);
