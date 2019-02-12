@@ -8,9 +8,10 @@ Pod::Spec.new do |s|
 	                   DESC
 
 	s.homepage         = 'https://github.com/Fueled/ios-utilities'
-	s.license          = { :type => 'MIT', :file => 'LICENSE' }
-	s.author           = { 'vadim-fueled' => 'vadim@fueled.com', 'stephane-fueled' => 'stephane@fueled.com', 'leonty-fueled' => 'leonty@fueled.com', 'bastien-fueled' => 'bastien@fueled.com', 'ivan-fueled' => 'ivan@fueled.com', 'thib4ult' => 'thibault@fueled.com', 'benoit-fueled' => 'benoit@fueled.com' }
+	s.license          = { :type => 'Apache License, Version 2.0', :file => 'LICENSE' }
+        s.author           = { 'Vadim-Yelagin' => 'vadim.yelagin@gmail.com', 'stephanecopin' => 'stephane@fueled.com', 'leontiy' => 'leonty@fueled.com', 'bastienFalcou' => 'bastien@fueled.com', 'heymansmile' => 'ivan@fueled.com', 'thib4ult' => 'thibault@fueled.com', 'notbenoit' => 'benoit@fueled.com' }
 	s.source           = { :git => 'https://github.com/Fueled/ios-utilities.git', :tag => s.version.to_s }
+	s.documentation_url = 'https://cdn.rawgit.com/Fueled/ios-utilities/master/docs/index.html'
 
 	s.ios.deployment_target = '8.0'
 

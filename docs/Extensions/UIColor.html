@@ -14,7 +14,7 @@
     <a title="UIColor Extension Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">FueledUtils Docs</a> (59% documented)</p>
+        <p><a href="../index.html">FueledUtils Docs</a> (100% documented)</p>
         <p class="header-right"><a href="https://github.com/Fueled/FueledUtils"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -33,6 +33,9 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Classes/ButtonWithTitleAdjustment.html">ButtonWithTitleAdjustment</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CoalescingAction.html">CoalescingAction</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/DecoratingTextFieldDelegate.html">DecoratingTextFieldDelegate</a>
@@ -64,6 +67,9 @@
               <li class="nav-group-task">
                 <a href="../Classes/SignalingAlert.html">SignalingAlert</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TypedSerialDisposable.html">TypedSerialDisposable</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -72,13 +78,16 @@
               <li class="nav-group-task">
                 <a href="../Enums/LoadingState.html">LoadingState</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TransferState.html">TransferState</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
             <a href="../Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Extensions/Action.html">Action</a>
+                <a href="../Extensions/ActionError.html">ActionError</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/Bool.html">Bool</a>
@@ -90,13 +99,22 @@
                 <a href="../Extensions/Collection.html">Collection</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Extensions/Optional.html">Optional</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Extensions/PropertyProtocol.html">PropertyProtocol</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/Reactive.html">Reactive</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Extensions/ScopedDisposable.html">ScopedDisposable</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Extensions/Sequence.html">Sequence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Signal.html">Signal</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/SignalProducer.html">SignalProducer</a>
@@ -184,6 +202,12 @@
             <a href="../Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="../Protocols/ActionErrorProtocol.html">ActionErrorProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ActionProtocol.html">ActionProtocol</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Protocols/ReactiveLifetimeProvider.html">ReactiveLifetimeProvider</a>
               </li>
             </ul>
@@ -226,7 +250,21 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Initialize a color using a 32-bits integr that represents a color, and an optional alpha component.
+Only the right-most 24-bits are used, the left-most 8 bits are ignored.</p>
+
+<p>It is recommended to always include the leading zeros when using a literal color, so as to prevent confusion.</p>
+<pre class="highlight swift"><code><span class="kt">UIColor</span><span class="p">(</span><span class="nv">hex</span><span class="p">:</span> <span class="mh">0x0000FF</span><span class="p">)</span> <span class="c1">// blue color</span>
+</code></pre>
+
+<p>rather than:</p>
+<pre class="highlight swift"><code><span class="kt">UIColor</span><span class="p">(</span><span class="nv">hex</span><span class="p">:</span> <span class="mh">0xFF</span><span class="p">)</span> <span class="c1">// blue color</span>
+</code></pre>
+<h2 id='examples' class='heading'>Examples</h2>
+<pre class="highlight swift"><code><span class="kt">UIColor</span><span class="p">(</span><span class="nv">hex</span><span class="p">:</span> <span class="mh">0xFF0000</span><span class="p">)</span> <span class="c1">// red color</span>
+<span class="kt">UIColor</span><span class="p">(</span><span class="nv">hex</span><span class="p">:</span> <span class="mh">0x00FF00</span><span class="p">)</span> <span class="c1">// green color</span>
+<span class="kt">UIColor</span><span class="p">(</span><span class="nv">hex</span><span class="p">:</span> <span class="mh">0x0000FF</span><span class="p">)</span> <span class="c1">// blue color</span>
+</code></pre>
 
                       </div>
                       <div class="declaration">
@@ -236,6 +274,37 @@
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">(</span><span class="nv">hex</span><span class="p">:</span> <span class="kt">UInt32</span><span class="p">,</span> <span class="nv">alpha</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>hex</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The hexadecimal value to use when initializing the color. The left-most 8 bits are ignored.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>alpha</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The alpha value to use when initializing the color. Defaults to <code>1</code></p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>
@@ -253,7 +322,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Initialize a color using a hexadecimal string (case insensitive), with an optional <code>#</code> or <code>0x</code> prefix.</p>
+<h2 id='examples' class='heading'>Examples</h2>
+<pre class="highlight swift"><code><span class="kt">UIColor</span><span class="p">(</span><span class="nv">hexString</span><span class="p">:</span> <span class="s">"FF0000"</span><span class="p">)</span> <span class="c1">// red color</span>
+<span class="kt">UIColor</span><span class="p">(</span><span class="nv">hexString</span><span class="p">:</span> <span class="s">"#00ff00"</span><span class="p">)</span> <span class="c1">// green color</span>
+<span class="kt">UIColor</span><span class="p">(</span><span class="nv">hexString</span><span class="p">:</span> <span class="s">"0x0000FF"</span><span class="p">)</span> <span class="c1">// blue color</span>
+<span class="kt">UIColor</span><span class="p">(</span><span class="nv">hexString</span><span class="p">:</span> <span class="s">"0x0000FG"</span><span class="p">)</span> <span class="c1">// nil</span>
+<span class="kt">UIColor</span><span class="p">(</span><span class="nv">hexString</span><span class="p">:</span> <span class="s">"FF000"</span><span class="p">)</span> <span class="c1">// nil</span>
+<span class="kt">UIColor</span><span class="p">(</span><span class="nv">hexString</span><span class="p">:</span> <span class="s">"#FF000"</span><span class="p">)</span> <span class="c1">// nil</span>
+<span class="kt">UIColor</span><span class="p">(</span><span class="nv">hexString</span><span class="p">:</span> <span class="s">"0xFF000"</span><span class="p">)</span> <span class="c1">// nil</span>
+</code></pre>
 
                       </div>
                       <div class="declaration">
@@ -263,6 +341,38 @@
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="n">convenience</span> <span class="nf">init</span><span class="p">?(</span><span class="nv">hexString</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">alpha</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>hexString</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The hexadecimal string to use when initializing the color. The string may start with <code>0x</code> and <code>#</code> and then must contain exactly 6 characters.
+Any invalid characters will result in the initializer failed.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>alpha</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The alpha value to use when initializing the color. Defaults to <code>1</code></p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
                     </section>
                   </div>

@@ -60,22 +60,36 @@ extension Sequence {
 		return result
 	}
 
-	public func splitBetween(_ areSeparated: (Iterator.Element, Iterator.Element) -> Bool) -> [[Iterator.Element]] {
-		var res: [[Iterator.Element]] = []
+	///
+	/// Split the sequence according to the given closure.
+	///
+	/// The sequence i
+	///
+	/// - Parameters:
+	///   - areSeparated: The closure used to separate the list.
+	///     The closure takes 2 parameters, the first is the previous element and the second is the
+	///     current element. If `true` is returned to the closure, all previous elements that weren't
+	///     added to the subsequence array are added to it.
+	/// - Returns: An array of subsequences, split according to the given closure.
+	///
+	/// - Complexity: O(*n*), where *n* is the length of the sequence.
+	///
+	public func splitBetween(_ areSeparated: (Iterator.Element, Iterator.Element) throws -> Bool) rethrows -> [[Iterator.Element]] {
+		var result: [[Iterator.Element]] = []
 		var chunk: [Iterator.Element] = []
 		var last: Iterator.Element? = nil
-		for s in self {
-			if let last = last , areSeparated(last, s) {
-				res.append(chunk)
+		for element in self {
+			if let last = last, try areSeparated(last, element) {
+				result.append(chunk)
 				chunk = []
 			}
-			chunk.append(s)
-			last = s
+			chunk.append(element)
+			last = element
 		}
 		if !chunk.isEmpty {
-			res.append(chunk)
+			result.append(chunk)
 		}
-		return res
+		return result
 	}
 
 	@available(*, deprecated, renamed: "first(where:)")

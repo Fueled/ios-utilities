@@ -42,6 +42,9 @@ public final class DimmingButton: UIButton {
 		}
 	}
 
+	///
+	/// Please refer to the documentation for `UIButton.isHighlighted`.
+	///
 	public override var isHighlighted: Bool {
 		didSet {
 			self.updateDimmedViewAmount()

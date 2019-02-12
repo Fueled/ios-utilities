@@ -18,28 +18,50 @@ import Foundation
 extension NSDecimalNumber: Comparable {
 }
 
+///
+/// Compare 2 `NSDecimalNumber`s.
+/// - Returns: `true` if the left side is lesser than the right side, `false` otherwise.
+///
 public func < (lhs: NSDecimalNumber, rhs: NSDecimalNumber) -> Bool {
 	return lhs.compare(rhs) == .orderedAscending
 }
 
+///
+/// Compare 2 `NSDecimalNumber`s.
+/// - Returns: `true` if the left side is lesser than or equal the right side, `false` otherwise.
+///
 public func <= (lhs: NSDecimalNumber, rhs: NSDecimalNumber) -> Bool {
-	let result = lhs.compare(rhs)
-	return result == .orderedAscending || result == .orderedSame
+	return lhs.compare(rhs) != .orderedDescending
 }
 
+///
+/// Compare 2 `NSDecimalNumber`s.
+/// - Returns: `true` if the left side is greater than the right side, `false` otherwise.
+///
 public func > (lhs: NSDecimalNumber, rhs: NSDecimalNumber) -> Bool {
 	return lhs.compare(rhs) == .orderedDescending
 }
 
+///
+/// Compare 2 `NSDecimalNumber`s.
+/// - Returns: `true` if the left side is greater than or equal the right side, `false` otherwise.
+///
 public func >= (lhs: NSDecimalNumber, rhs: NSDecimalNumber) -> Bool {
-	let result = lhs.compare(rhs)
-	return result == .orderedDescending || result == .orderedSame
+	return lhs.compare(rhs) != .orderedAscending
 }
 
+///
+/// Multiply 2 `NSDecimalNumber`s together.
+/// - Returns: The result of multiplying the left side with the right side.
+///
 public func * (lhs: NSDecimalNumber, rhs: NSDecimalNumber) -> NSDecimalNumber {
 	return lhs.multiplying(by: rhs)
 }
 
+///
+/// Divide one `NSDecimalNumber` with another.
+/// - Returns: The result of dividing the left side with the right side.
+///
 public func / (lhs: NSDecimalNumber, rhs: NSDecimalNumber) -> NSDecimalNumber {
 	return lhs.dividing(by: rhs)
 }

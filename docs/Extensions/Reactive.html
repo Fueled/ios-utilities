@@ -14,7 +14,7 @@
     <a title="Reactive Extension Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">FueledUtils Docs</a> (59% documented)</p>
+        <p><a href="../index.html">FueledUtils Docs</a> (100% documented)</p>
         <p class="header-right"><a href="https://github.com/Fueled/FueledUtils"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -33,6 +33,9 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Classes/ButtonWithTitleAdjustment.html">ButtonWithTitleAdjustment</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CoalescingAction.html">CoalescingAction</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/DecoratingTextFieldDelegate.html">DecoratingTextFieldDelegate</a>
@@ -64,6 +67,9 @@
               <li class="nav-group-task">
                 <a href="../Classes/SignalingAlert.html">SignalingAlert</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TypedSerialDisposable.html">TypedSerialDisposable</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -72,13 +78,16 @@
               <li class="nav-group-task">
                 <a href="../Enums/LoadingState.html">LoadingState</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TransferState.html">TransferState</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
             <a href="../Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Extensions/Action.html">Action</a>
+                <a href="../Extensions/ActionError.html">ActionError</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/Bool.html">Bool</a>
@@ -90,13 +99,22 @@
                 <a href="../Extensions/Collection.html">Collection</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Extensions/Optional.html">Optional</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Extensions/PropertyProtocol.html">PropertyProtocol</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/Reactive.html">Reactive</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Extensions/ScopedDisposable.html">ScopedDisposable</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Extensions/Sequence.html">Sequence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Signal.html">Signal</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/SignalProducer.html">SignalProducer</a>
@@ -184,6 +202,12 @@
             <a href="../Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="../Protocols/ActionErrorProtocol.html">ActionErrorProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ActionProtocol.html">ActionProtocol</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Protocols/ReactiveLifetimeProvider.html">ReactiveLifetimeProvider</a>
               </li>
             </ul>
@@ -226,7 +250,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Set whether the constant is active or not in its hierarchy.</p>
 
                       </div>
                       <div class="declaration">
@@ -257,7 +281,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Update the <code>textAlignment</code> property of the label with an animation.</p>
 
                       </div>
                       <div class="declaration">
@@ -288,7 +312,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Update the <code>title</code> property of the receiver.</p>
 
                       </div>
                       <div class="declaration">
@@ -315,7 +339,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Perform a segue with the specified identifier and sender.</p>
 
                       </div>
                       <div class="declaration">
@@ -346,14 +370,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p><strong>Deprecated</strong>: Use <code>subview.reactive.isHidden &lt;~ &lt;Binding Source&gt;</code> instead.
+Add/remove/modify the order of the arranged subviews by specified the subview.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">isArranged</span><span class="p">(</span><span class="n">_</span> <span class="nv">subview</span><span class="p">:</span> <span class="kt">UIView</span><span class="p">,</span> <span class="n">at</span> <span class="nv">index</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">BindingTarget</span><span class="o">&lt;</span><span class="kt">Bool</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@available(*, deprecated, message: "Use `subview.reactive.isHidden &lt;~ &lt;Binding Source&gt;` instead")</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">isArranged</span><span class="p">(</span><span class="n">_</span> <span class="nv">subview</span><span class="p">:</span> <span class="kt">UIView</span><span class="p">,</span> <span class="n">at</span> <span class="nv">index</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">BindingTarget</span><span class="o">&lt;</span><span class="kt">Bool</span><span class="o">&gt;</span></code></pre>
 
                         </div>
                       </div>
@@ -377,7 +403,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Show/hide the back button, optionally with an animation.</p>
 
                       </div>
                       <div class="declaration">
@@ -404,7 +430,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Show/hide the right bar button item, optionally with an animation.</p>
 
                       </div>
                       <div class="declaration">
@@ -431,7 +457,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Show/hide the right bar button items, optionally with an animation.</p>
 
                       </div>
                       <div class="declaration">
@@ -458,7 +484,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Show/hide the left bar button item, optionally with an animation.</p>
 
                       </div>
                       <div class="declaration">
@@ -485,7 +511,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Show/hide the left bar button items, optionally with an animation.</p>
 
                       </div>
                       <div class="declaration">
@@ -512,7 +538,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Show/hide the right bar button item without any animations.</p>
 
                       </div>
                       <div class="declaration">
@@ -539,7 +565,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Show/hide the right bar button items without any animations.</p>
 
                       </div>
                       <div class="declaration">
@@ -566,7 +592,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Show/hide the left bar button item without any animations.</p>
 
                       </div>
                       <div class="declaration">
@@ -593,7 +619,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Show/hide the left bar button items without any animations.</p>
 
                       </div>
                       <div class="declaration">
@@ -614,9 +640,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:13ReactiveSwift0A0V11FueledUtilsRlzCAD0A16LifetimeProviderRzlE8lifetimeAA0E0Cvp"></a>
+                    <a name="/s:13ReactiveSwift0A0V11FueledUtilsRlzClE8lifetimeAA8LifetimeCvp"></a>
                     <a name="//apple_ref/swift/Property/lifetime" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13ReactiveSwift0A0V11FueledUtilsRlzCAD0A16LifetimeProviderRzlE8lifetimeAA0E0Cvp">lifetime</a>
+                    <a class="token" href="#/s:13ReactiveSwift0A0V11FueledUtilsRlzClE8lifetimeAA8LifetimeCvp">lifetime</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -624,41 +650,16 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p><strong>Deprecated</strong>: Use <code>Lifetime.of(&lt;object&gt;)</code> instead
+Get the lifetime associated with the instance.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">lifetime</span><span class="p">:</span> <span class="kt">Lifetime</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:13ReactiveSwift0A0V11FueledUtilsRlzCAD0A16LifetimeProviderRzlE17makeBindingTarget2on_AA0hI0Vyqd__GAA9Scheduler_p_yx_qd__tctlF"></a>
-                    <a name="//apple_ref/swift/Method/makeBindingTarget(on:_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:13ReactiveSwift0A0V11FueledUtilsRlzCAD0A16LifetimeProviderRzlE17makeBindingTarget2on_AA0hI0Vyqd__GAA9Scheduler_p_yx_qd__tctlF">makeBindingTarget(on:_:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Undocumented</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">makeBindingTarget</span><span class="o">&lt;</span><span class="kt">U</span><span class="o">&gt;</span><span class="p">(</span><span class="n">on</span> <span class="nv">scheduler</span><span class="p">:</span> <span class="kt">Scheduler</span> <span class="o">=</span> <span class="kt">UIScheduler</span><span class="p">(),</span> <span class="n">_</span> <span class="nv">action</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Base</span><span class="p">,</span> <span class="kt">U</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">BindingTarget</span><span class="o">&lt;</span><span class="kt">U</span><span class="o">&gt;</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@available(*, deprecated, renamed: "Lifetime.of(﹚")</span>
+<span class="kd">public</span> <span class="k">var</span> <span class="nv">lifetime</span><span class="p">:</span> <span class="kt">Lifetime</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
 
                         </div>
                       </div>

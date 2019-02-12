@@ -14,7 +14,7 @@
     <a title="SignalingAlert Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">FueledUtils Docs</a> (59% documented)</p>
+        <p><a href="../index.html">FueledUtils Docs</a> (100% documented)</p>
         <p class="header-right"><a href="https://github.com/Fueled/FueledUtils"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -33,6 +33,9 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Classes/ButtonWithTitleAdjustment.html">ButtonWithTitleAdjustment</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CoalescingAction.html">CoalescingAction</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/DecoratingTextFieldDelegate.html">DecoratingTextFieldDelegate</a>
@@ -64,6 +67,9 @@
               <li class="nav-group-task">
                 <a href="../Classes/SignalingAlert.html">SignalingAlert</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TypedSerialDisposable.html">TypedSerialDisposable</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -72,13 +78,16 @@
               <li class="nav-group-task">
                 <a href="../Enums/LoadingState.html">LoadingState</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TransferState.html">TransferState</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
             <a href="../Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Extensions/Action.html">Action</a>
+                <a href="../Extensions/ActionError.html">ActionError</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/Bool.html">Bool</a>
@@ -90,13 +99,22 @@
                 <a href="../Extensions/Collection.html">Collection</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Extensions/Optional.html">Optional</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Extensions/PropertyProtocol.html">PropertyProtocol</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/Reactive.html">Reactive</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Extensions/ScopedDisposable.html">ScopedDisposable</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Extensions/Sequence.html">Sequence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Signal.html">Signal</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/SignalProducer.html">SignalProducer</a>
@@ -184,6 +202,12 @@
             <a href="../Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="../Protocols/ActionErrorProtocol.html">ActionErrorProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ActionProtocol.html">ActionProtocol</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Protocols/ReactiveLifetimeProvider.html">ReactiveLifetimeProvider</a>
               </li>
             </ul>
@@ -208,7 +232,7 @@
 
                 </div>
               </div>
-            <p>A UIAlertController wrapper that sends values associated with alert actions to its output signal.</p>
+            <p>A UIAlertController wrapper that sends values associated with alert actions to its output signal that emits values of type <code>T</code>.</p>
 
           </section>
           <section class="section task-group-section">
@@ -227,7 +251,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The underlying <code>UIAlertController</code> of the class is associated with.</p>
 
                       </div>
                       <div class="declaration">
@@ -254,7 +278,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The output signal the class is associated with.</p>
 
                       </div>
                       <div class="declaration">
@@ -281,7 +305,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Initialize a <code>SignalingAlert</code> with the given <code>title</code>, <code>message</code> and <code>preferredStyle</code>.</p>
 
                       </div>
                       <div class="declaration">
@@ -308,7 +332,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Add an action to the alert, sending the <code>event</code> when the user taps the action.</p>
 
                       </div>
                       <div class="declaration">
@@ -335,7 +359,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Add an action to the alert, sending the <code>event</code> when the user taps the action.</p>
 
                       </div>
                       <div class="declaration">
@@ -352,9 +376,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:11FueledUtils14SignalingAlertC8producer5title7message14preferredStyle20presentingController10sourceView9configure13ReactiveSwift14SignalProducerVyx6Result7NoErrorOGSSSg_ARSo07UIAlertkI0VSo06UIViewK0CSo0W0CyACyxGctFZ"></a>
+                    <a name="/s:11FueledUtils14SignalingAlertC8producer5title7message14preferredStyle20presentingController10sourceView9configure13ReactiveSwift14SignalProducerVyx6Result7NoErrorOGSSSg_ARSo07UIAlertkI0VSo06UIViewK0CSo0W0CSgyACyxGcSgtFZ"></a>
                     <a name="//apple_ref/swift/Method/producer(title:message:preferredStyle:presentingController:sourceView:configure:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:11FueledUtils14SignalingAlertC8producer5title7message14preferredStyle20presentingController10sourceView9configure13ReactiveSwift14SignalProducerVyx6Result7NoErrorOGSSSg_ARSo07UIAlertkI0VSo06UIViewK0CSo0W0CyACyxGctFZ">producer(title:message:preferredStyle:presentingController:sourceView:configure:)</a>
+                    <a class="token" href="#/s:11FueledUtils14SignalingAlertC8producer5title7message14preferredStyle20presentingController10sourceView9configure13ReactiveSwift14SignalProducerVyx6Result7NoErrorOGSSSg_ARSo07UIAlertkI0VSo06UIViewK0CSo0W0CSgyACyxGcSgtFZ">producer(title:message:preferredStyle:presentingController:sourceView:configure:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -362,7 +386,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Ahelper  factory method allowing to display a <code>SignalingAlert</code> on screen.</p>
 
                       </div>
                       <div class="declaration">
@@ -374,11 +398,96 @@
 	<span class="nv">message</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
 	<span class="nv">preferredStyle</span><span class="p">:</span> <span class="kt">UIAlertController</span><span class="o">.</span><span class="kt">Style</span><span class="p">,</span>
 	<span class="nv">presentingController</span><span class="p">:</span> <span class="kt">UIViewController</span><span class="p">,</span>
-	<span class="nv">sourceView</span><span class="p">:</span> <span class="kt">UIView</span><span class="p">,</span>
-	<span class="nv">configure</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">SignalingAlert</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">()</span> <span class="o">=</span> <span class="p">{</span> <span class="n">_</span> <span class="k">in</span> <span class="p">})</span>
+	<span class="nv">sourceView</span><span class="p">:</span> <span class="kt">UIView</span><span class="p">?,</span>
+	<span class="nv">configure</span><span class="p">:</span> <span class="p">((</span><span class="kt">SignalingAlert</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">())?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span>
 	<span class="o">-&gt;</span> <span class="kt">SignalProducer</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">,</span> <span class="kt">NoError</span><span class="o">&gt;</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>title</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The title of the alert</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>message</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The message of the alert</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>preferredStyle</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The preferred style of the alert</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>presentingController</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The view controller to present the alert from</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>sourceView</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The view that presents the alert, if on ipad and wanted to use a popover style
+Keep in mind that using a <code>sourceView</code> is <strong>required</strong> if using the <code>actionSheet</code> style.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>configure</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A closure allowing to customize the <code>SignalingAlert</code>, for example to add actions.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A <code>SignalProducer</code> that when started, will display the alert on screen.
+Note that this <code>SignalProducer</code> will retain all the parameters given in <code>producer</code> until it is started.</p>
                       </div>
                     </section>
                   </div>

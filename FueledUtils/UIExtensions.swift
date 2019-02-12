@@ -60,6 +60,30 @@ extension CGSize {
 }
 
 extension UIColor {
+	///
+	/// Initialize a color using a 32-bits integr that represents a color, and an optional alpha component.
+	/// Only the right-most 24-bits are used, the left-most 8 bits are ignored.
+	///
+	/// It is recommended to always include the leading zeros when using a literal color, so as to prevent confusion.
+	/// ```swift
+	/// UIColor(hex: 0x0000FF) // blue color
+	/// ```
+	/// rather than:
+	/// ```swift
+	/// UIColor(hex: 0xFF) // blue color
+	/// ```
+	///
+	/// ## Examples
+	/// ```swift
+	/// UIColor(hex: 0xFF0000) // red color
+	/// UIColor(hex: 0x00FF00) // green color
+	/// UIColor(hex: 0x0000FF) // blue color
+	/// ```
+	///
+	/// - Parameters:
+	///   - hex: The hexadecimal value to use when initializing the color. The left-most 8 bits are ignored.
+	///   - alpha: The alpha value to use when initializing the color. Defaults to `1`
+	///
 	public convenience init(hex: UInt32, alpha: CGFloat = 1) {
 		func byteColor(_ x: UInt32) -> CGFloat {
 			return CGFloat(x & 0xFF) / 255
@@ -70,8 +94,27 @@ extension UIColor {
 		self.init(red: red, green: green, blue: blue, alpha: alpha)
 	}
 
+	///
+	/// Initialize a color using a hexadecimal string (case insensitive), with an optional `#` or `0x` prefix.
+	///
+	/// ## Examples
+	/// ```swift
+	/// UIColor(hexString: "FF0000") // red color
+	/// UIColor(hexString: "#00ff00") // green color
+	/// UIColor(hexString: "0x0000FF") // blue color
+	/// UIColor(hexString: "0x0000FG") // nil
+	/// UIColor(hexString: "FF000") // nil
+	/// UIColor(hexString: "#FF000") // nil
+	/// UIColor(hexString: "0xFF000") // nil
+	/// ```
+	///
+	/// - Parameters:
+	///   - hexString: The hexadecimal string to use when initializing the color. The string may start with `0x` and `#` and then must contain exactly 6 characters.
+	///     Any invalid characters will result in the initializer failed.
+	///   - alpha: The alpha value to use when initializing the color. Defaults to `1`
+	///
 	public convenience init?(hexString: String, alpha: CGFloat = 1) {
-		let regex = try! NSRegularExpression(pattern: "\\A#?([0-9a-f][0-9a-f])([0-9a-f][0-9a-f])([0-9a-f][0-9a-f])\\Z", options: [.caseInsensitive])
+		let regex = try! NSRegularExpression(pattern: "\\A(?:0x|#)?([0-9a-f][0-9a-f])([0-9a-f][0-9a-f])([0-9a-f][0-9a-f])\\Z", options: [.caseInsensitive])
 		guard let match = regex.firstMatch(in: hexString, options: [], range: hexString.nsRange) , match.numberOfRanges == 4 else {
 			return nil
 		}
@@ -136,6 +179,11 @@ extension UILabel {
 }
 
 extension UIActivityIndicatorView {
+	///
+	/// **Deprecated**: Please use `animating` instead.
+	///
+	/// Refer to the documentation for `animating` for more info.
+	///
 	@available(*, deprecated, renamed: "animating")
 	public var fueled_animating: Bool {
 		get {
@@ -146,6 +194,9 @@ extension UIActivityIndicatorView {
 		}
 	}
 
+	///
+	/// Get/Set the animating state of the `UIActivityIndicatorView`.
+	///
 	public var animating: Bool {
 		get {
 			return self.isAnimating
@@ -522,29 +573,64 @@ extension UIImage {
 		return image
 	}
 
+	///
+	/// **Deprecated**: Please use `roundedRectStretchableImage(borderColor:, fillColor:, borderWidth:, cornerRadius:, scale:)` instead.
+	/// Create an stretchable rectangle with rounded corners image, with the given parameters.
+	///
+	/// - Parameters:
+	///   - borderColor: The border color to use for the rectangle.
+	///   - backgroundColor: The color to use to fill the rectangle.
+	///   - lineWidth: The width of the border.
+	///   - radius: The radius of the corners of the rectangle. `0` means the rectangle will not have rounded corners.
+	///   - scale: Please refer to the parameters documentation for `UIGraphicsBeginImageContextWithOptions` for more info.
+	/// - Returns: The generated stretchable rectangle with rounded corners, with the given parameters.
+	///
+	@available(*, deprecated, renamed: "roundedRectStretchableImage(borderColor:borderWidth:fillColor:cornerRadius:scale:)")
 	public static func roundedRectStretchableImage(
 		borderColor: UIColor,
 		backgroundColor: UIColor = .clear,
 		lineWidth: CGFloat,
 		radius: CGFloat,
-		scale: CGFloat = UIScreen.main.scale)
+		scale: CGFloat = 0.0)
+		-> UIImage
+	{
+		return self.roundedRectStretchableImage(borderColor: borderColor, borderWidth: lineWidth, fillColor: backgroundColor, cornerRadius: radius, scale: scale)
+	}
+
+	///
+	/// Create an stretchable rectangle with rounded corners image, with the given parameters.
+	///
+	/// - Parameters:
+	///   - borderColor: The border color to use for the rectangle.
+	///   - borderWidth: The width of the border.
+	///   - fillColor: The color to use to fill the rectangle.
+	///   - cornerRadius: The radius of the corners of the rectangle. `0` means the rectangle will not have rounded corners.
+	///   - scale: Please refer to the parameters documentation for `UIGraphicsBeginImageContextWithOptions` for more info.
+	/// - Returns: The generated stretchable rectangle with rounded corners, with the given parameters.
+	///
+	public static func roundedRectStretchableImage(
+		borderColor: UIColor,
+		borderWidth: CGFloat,
+		fillColor: UIColor = .clear,
+		cornerRadius: CGFloat,
+		scale: CGFloat = 0.0)
 		-> UIImage
 	{
 		let stretchableAreaSize: CGFloat = 1
-		let canvasSize = CGSize(width: radius * 2 + stretchableAreaSize, height: radius * 2 + stretchableAreaSize)
-		let roundedRectSize = CGSize(width: canvasSize.width - lineWidth, height: canvasSize.height - lineWidth)
+		let canvasSize = CGSize(width: cornerRadius * 2 + stretchableAreaSize, height: cornerRadius * 2 + stretchableAreaSize)
+		let roundedRectSize = CGSize(width: canvasSize.width - borderWidth, height: canvasSize.height - borderWidth)
 
 		let image = UIImage.draw(size: canvasSize, scale: scale) { _ in
-			backgroundColor.setFill()
+			fillColor.setFill()
 			borderColor.setStroke()
 
-			let bezierPath = UIBezierPath(roundedRect: CGRect(origin: CGPoint(x: lineWidth / 2, y: lineWidth / 2), size: roundedRectSize), cornerRadius: radius)
-			bezierPath.lineWidth = lineWidth
+			let bezierPath = UIBezierPath(roundedRect: CGRect(origin: CGPoint(x: borderWidth / 2, y: borderWidth / 2), size: roundedRectSize), cornerRadius: cornerRadius)
+			bezierPath.lineWidth = borderWidth
 			bezierPath.fill()
 			bezierPath.stroke()
 		}
 
-		let capInset = radius + 0.5 * lineWidth
+		let capInset = cornerRadius + borderWidth / 2
 		return image.resizableImage(withCapInsets: .init(top: capInset, left: capInset, bottom: capInset, right: capInset), resizingMode: .stretch)
 	}
 }

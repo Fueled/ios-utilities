@@ -168,11 +168,17 @@ public final class GradientView: UIView {
 		}
 	}
 
+	///
+	/// Please refer to the documentation for `UIView.init(frame:)`
+	///
 	override public init(frame: CGRect) {
 		super.init(frame: frame)
 		self.commonInit()
 	}
 
+	///
+	/// Please refer to the documentation for `UIView.init(coder:)`
+	///
 	required public init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		self.commonInit()
@@ -185,6 +191,9 @@ public final class GradientView: UIView {
 		self.backgroundColor = UIColor.clear
 	}
 
+	///
+	/// Please refer to the documentation for `UIView.draw(_:)`
+	///
 	override public func draw(_ rect: CGRect) {
 		let context = UIGraphicsGetCurrentContext()!
 		let colors = self.definition.gradientInfo.map { $0.color.cgColor }

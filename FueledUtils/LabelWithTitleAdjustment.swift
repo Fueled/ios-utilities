@@ -46,6 +46,9 @@ open class LabelWithTitleAdjustment: UILabel {
 		}
 	}
 
+	///
+	/// Please refer to the documentation for `UILabel.text`
+	///
 	override open var text: String? {
 		get {
 			return super.text
@@ -56,6 +59,9 @@ open class LabelWithTitleAdjustment: UILabel {
 		}
 	}
 
+	///
+	/// Please refer to the documentation for `UILabel.attributedText`
+	///
 	override open var attributedText: NSAttributedString? {
 		get {
 			return super.attributedText
@@ -66,11 +72,17 @@ open class LabelWithTitleAdjustment: UILabel {
 		}
 	}
 
+	///
+	/// Please refer to the documentation for `UILabel.init(frame:)`
+	///
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 		self.setAdjustedText(self.text)
 	}
 
+	///
+	/// Please refer to the documentation for `UILabel.init(coder:)`
+	///
 	required public init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		self.setAdjustedText(self.text)

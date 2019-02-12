@@ -14,7 +14,7 @@
     <a title="UIImage Extension Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">FueledUtils Docs</a> (59% documented)</p>
+        <p><a href="../index.html">FueledUtils Docs</a> (100% documented)</p>
         <p class="header-right"><a href="https://github.com/Fueled/FueledUtils"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -33,6 +33,9 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Classes/ButtonWithTitleAdjustment.html">ButtonWithTitleAdjustment</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CoalescingAction.html">CoalescingAction</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Classes/DecoratingTextFieldDelegate.html">DecoratingTextFieldDelegate</a>
@@ -64,6 +67,9 @@
               <li class="nav-group-task">
                 <a href="../Classes/SignalingAlert.html">SignalingAlert</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TypedSerialDisposable.html">TypedSerialDisposable</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -72,13 +78,16 @@
               <li class="nav-group-task">
                 <a href="../Enums/LoadingState.html">LoadingState</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Enums/TransferState.html">TransferState</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
             <a href="../Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Extensions/Action.html">Action</a>
+                <a href="../Extensions/ActionError.html">ActionError</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/Bool.html">Bool</a>
@@ -90,13 +99,22 @@
                 <a href="../Extensions/Collection.html">Collection</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Extensions/Optional.html">Optional</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Extensions/PropertyProtocol.html">PropertyProtocol</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/Reactive.html">Reactive</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Extensions/ScopedDisposable.html">ScopedDisposable</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Extensions/Sequence.html">Sequence</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/Signal.html">Signal</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Extensions/SignalProducer.html">SignalProducer</a>
@@ -183,6 +201,12 @@
           <li class="nav-group-name">
             <a href="../Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/ActionErrorProtocol.html">ActionErrorProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ActionProtocol.html">ActionProtocol</a>
+              </li>
               <li class="nav-group-task">
                 <a href="../Protocols/ReactiveLifetimeProvider.html">ReactiveLifetimeProvider</a>
               </li>
@@ -417,8 +441,18 @@ with <code>capInsets</code> set as the cap insets, and <code>resizingMode</code>
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Apply the given tint to the image. The rendering mode is kept the same.
+This method takes the rgb values of each pixels in the image, and replace them with the color
+given as parameter. The alpha value of each pixels is kept the same.
 The resulting image will be made resizable whether it was originally or not,
 with <code>capInsets</code> set as the cap insets, and <code>resizingMode</code> as its resizing mode.</p>
+
+<p>The behavior of this method is similar to using the <code>UIImage</code> with a <code>.alwaysTemplate</code> rendering mode
+and using a <code>tintColor</code> when displaying the <code>UIImage</code> in an <code>UIImageView</code>.</p>
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    <p><code><a href="../Extensions/UIImage.html#/s:So7UIImageC11FueledUtilsE9withColoryABSo7UIColorCF">withColor(_:)</a></code></p>
+
+</div>
 
                       </div>
                       <div class="declaration">
@@ -426,6 +460,62 @@ with <code>capInsets</code> set as the cap insets, and <code>resizingMode</code>
                         <div class="language">
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">withTint</span><span class="p">(</span><span class="n">_</span> <span class="nv">tint</span><span class="p">:</span> <span class="kt">UIColor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UIImage</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>tint</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The tint to apply to the receiver.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:So7UIImageC11FueledUtilsE9withColoryABSo7UIColorCF"></a>
+                    <a name="//apple_ref/swift/Method/withColor(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:So7UIImageC11FueledUtilsE9withColoryABSo7UIColorCF">withColor(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Apply the given color to the image. The rendering mode is kept the same.
+This method keeps the brightness of all pixels the same, but updates the saturation and hue
+to that of the given color.</p>
+
+<p>In other words, this methods can be used to color grayscale images or tint images without loosing
+contrast information.</p>
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    <p><code><a href="../Extensions/UIImage.html#/s:So7UIImageC11FueledUtilsE8withTintyABSo7UIColorCF">withTint(_:)</a></code></p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">withColor</span><span class="p">(</span><span class="n">_</span> <span class="nv">color</span><span class="p">:</span> <span class="kt">UIColor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UIImage</span></code></pre>
 
                         </div>
                       </div>
@@ -610,7 +700,113 @@ with <code>capInsets</code> set as the cap insets, and <code>resizingMode</code>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p><strong>Deprecated</strong>: Please use <code>roundedRectStretchableImage(borderColor:, fillColor:, borderWidth:, cornerRadius:, scale:)</code> instead.
+Create an stretchable rectangle with rounded corners image, with the given parameters.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@available(*, deprecated, renamed: "roundedRectStretchableImage(borderColor:borderWidth:fillColor:cornerRadius:scale:﹚")</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">roundedRectStretchableImage</span><span class="p">(</span>
+	<span class="nv">borderColor</span><span class="p">:</span> <span class="kt">UIColor</span><span class="p">,</span>
+	<span class="nv">backgroundColor</span><span class="p">:</span> <span class="kt">UIColor</span> <span class="o">=</span> <span class="o">.</span><span class="n">clear</span><span class="p">,</span>
+	<span class="nv">lineWidth</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span>
+	<span class="nv">radius</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span>
+	<span class="nv">scale</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">)</span>
+	<span class="o">-&gt;</span> <span class="kt">UIImage</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>borderColor</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The border color to use for the rectangle.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>backgroundColor</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The color to use to fill the rectangle.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>lineWidth</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The width of the border.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>radius</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The radius of the corners of the rectangle. <code>0</code> means the rectangle will not have rounded corners.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>scale</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Please refer to the parameters documentation for <code>UIGraphicsBeginImageContextWithOptions</code> for more info.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The generated stretchable rectangle with rounded corners, with the given parameters.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:So7UIImageC11FueledUtilsE27roundedRectStretchableImage11borderColor0H5Width04fillI012cornerRadius5scaleABSo7UIColorC_12CoreGraphics7CGFloatVAk2NtFZ"></a>
+                    <a name="//apple_ref/swift/Method/roundedRectStretchableImage(borderColor:borderWidth:fillColor:cornerRadius:scale:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:So7UIImageC11FueledUtilsE27roundedRectStretchableImage11borderColor0H5Width04fillI012cornerRadius5scaleABSo7UIColorC_12CoreGraphics7CGFloatVAk2NtFZ">roundedRectStretchableImage(borderColor:borderWidth:fillColor:cornerRadius:scale:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Create an stretchable rectangle with rounded corners image, with the given parameters.</p>
 
                       </div>
                       <div class="declaration">
@@ -619,13 +815,84 @@ with <code>capInsets</code> set as the cap insets, and <code>resizingMode</code>
                           <p class="aside-title">Swift</p>
                           <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">roundedRectStretchableImage</span><span class="p">(</span>
 	<span class="nv">borderColor</span><span class="p">:</span> <span class="kt">UIColor</span><span class="p">,</span>
-	<span class="nv">backgroundColor</span><span class="p">:</span> <span class="kt">UIColor</span> <span class="o">=</span> <span class="o">.</span><span class="n">clear</span><span class="p">,</span>
-	<span class="nv">lineWidth</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span>
-	<span class="nv">radius</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span>
-	<span class="nv">scale</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="o">=</span> <span class="kt">UIScreen</span><span class="o">.</span><span class="n">main</span><span class="o">.</span><span class="n">scale</span><span class="p">)</span>
+	<span class="nv">borderWidth</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span>
+	<span class="nv">fillColor</span><span class="p">:</span> <span class="kt">UIColor</span> <span class="o">=</span> <span class="o">.</span><span class="n">clear</span><span class="p">,</span>
+	<span class="nv">cornerRadius</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span>
+	<span class="nv">scale</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">)</span>
 	<span class="o">-&gt;</span> <span class="kt">UIImage</span></code></pre>
 
                         </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>borderColor</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The border color to use for the rectangle.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>borderWidth</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The width of the border.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>fillColor</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The color to use to fill the rectangle.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>cornerRadius</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The radius of the corners of the rectangle. <code>0</code> means the rectangle will not have rounded corners.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>scale</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Please refer to the parameters documentation for <code>UIGraphicsBeginImageContextWithOptions</code> for more info.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The generated stretchable rectangle with rounded corners, with the given parameters.</p>
                       </div>
                     </section>
                   </div>

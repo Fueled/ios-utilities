@@ -38,6 +38,7 @@ open class KeyboardInsetHelper: NSObject {
 
 	///
 	/// The minimum inset value. Inset values below this value are clamped to `minimumInset`.
+	/// Defaults to `0`
 	///
 	@IBInspectable public var minimumInset: CGFloat = 0
 	///
@@ -56,6 +57,9 @@ open class KeyboardInsetHelper: NSObject {
 	///
 	@IBOutlet public weak var constraint: NSLayoutConstraint?
 
+	///
+	/// Initializes a new KeyboardInsetHelper with default values.
+	///
 	public override init() {
 		super.init()
 		NotificationCenter.default.addObserver(

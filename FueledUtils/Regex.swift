@@ -62,6 +62,14 @@ public struct Regex {
 	}
 }
 
+///
+/// Match a regex with a string.
+///
+/// - Parameters:
+///   - pattern: The Regex to match the string against.
+///   - string: The string to try to match against the Regex.
+/// - Returns: `true` if `pattern` matches `string`, `false` otherwise.
+///
 public func ~= (pattern: Regex, string: String) -> Bool {
 	return pattern.match(string)
 }
