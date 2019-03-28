@@ -57,6 +57,8 @@ open class KeyboardInsetHelper: NSObject {
 	///
 	@IBOutlet public weak var constraint: NSLayoutConstraint?
 
+	private var isCallingDeprecatedMethod = false
+
 	///
 	/// Initializes a new KeyboardInsetHelper with default values.
 	///
@@ -112,7 +114,9 @@ open class KeyboardInsetHelper: NSObject {
 	///
 	@available(*, deprecated, renamed: "updateForInset(_:base:)")
 	@objc open func updateForInset(_ inset: CGFloat) {
-		self.updateForInset(inset, base: inset)
+		if !self.isCallingDeprecatedMethod {
+			self.updateForInset(inset, base: inset)
+		}
 	}
 
 	///
@@ -129,7 +133,9 @@ open class KeyboardInsetHelper: NSObject {
 	///
 	open func updateForInset(_ inset: CGFloat, base baseInset: CGFloat) {
 		// Just to avoid the deprecation warning that would otherwise display... and it's required for backward compatibility
+		self.isCallingDeprecatedMethod = true
 		self.perform(#selector(NoDeprecationWarningsHelper.updateForInset(_:)), with: inset as NSNumber)
+		self.isCallingDeprecatedMethod = false
 		scrollView?.contentInset.bottom = inset
 		scrollView?.scrollIndicatorInsets.bottom = inset
 		constraint?.constant = inset
