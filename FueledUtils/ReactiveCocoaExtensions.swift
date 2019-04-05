@@ -17,6 +17,7 @@ import Foundation
 import ReactiveCocoa
 import ReactiveSwift
 import Result
+import UIKit
 
 ///
 /// Use with `SignalProtocol.observe(context:)` or  `SignalProducerProtocol.observe(context:)` below to animate
@@ -157,6 +158,7 @@ extension Reactive where Base: UIStackView {
 	}
 }
 
+#if os(iOS)
 extension Reactive where Base: UINavigationItem {
 	///
 	/// Show/hide the back button, optionally with an animation.
@@ -213,3 +215,4 @@ extension Reactive where Base: UINavigationItem {
 		return makeBindingTarget { $0.leftBarButtonItems = $1 }
 	}
 }
+#endif

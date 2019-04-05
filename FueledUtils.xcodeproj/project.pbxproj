@@ -28,6 +28,8 @@
 		02DF8ECB1E6464AB009AB29C /* ReactiveLifetimeProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DF8ECA1E6464AB009AB29C /* ReactiveLifetimeProvider.swift */; };
 		02E626091D340F0C0041E512 /* LoadingState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02E626081D340F0C0041E512 /* LoadingState.swift */; };
 		35996E0F1F55C3E1004D6AC0 /* FoundationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35996E0E1F55C3E1004D6AC0 /* FoundationExtensions.swift */; };
+		991267652257405F00D39A08 /* ReactiveCocoaExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40C574121F909290006FB3F /* ReactiveCocoaExtensions.swift */; };
+		99126766225740DB00D39A08 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DE3C3A1D258FD1002B58E2 /* UIExtensions.swift */; };
 		DFA57F0621E7A64200467647 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA57F0521E7A64200467647 /* GradientView.swift */; };
 		F40C574221F9092A0006FB3F /* ReactiveCocoaExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40C574121F909290006FB3F /* ReactiveCocoaExtensions.swift */; };
 		F40C574421F909A60006FB3F /* ActionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40C574321F909A60006FB3F /* ActionProtocol.swift */; };
@@ -465,6 +467,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 02DE3C141D258C79002B58E2;
@@ -579,6 +582,7 @@
 				F463DFCC222D83060031AAA5 /* LoadingState.swift in Sources */,
 				F463DFC1222D83060031AAA5 /* ActionProtocol.swift in Sources */,
 				F463DFC7222D83060031AAA5 /* TransferState.swift in Sources */,
+				99126766225740DB00D39A08 /* UIExtensions.swift in Sources */,
 				F463DFC4222D83060031AAA5 /* CollectionExtensions.swift in Sources */,
 				F463DFCB222D83060031AAA5 /* LabelWithTitleAdjustment.swift in Sources */,
 				F463DFD4222D83060031AAA5 /* SetRootViewController.swift in Sources */,
@@ -589,6 +593,7 @@
 				F463DFC6222D83060031AAA5 /* DimmingButton.swift in Sources */,
 				F463DFD0222D83060031AAA5 /* ReactiveSwiftExtensions.swift in Sources */,
 				F463DFCF222D83060031AAA5 /* ReactiveLifetimeProvider.swift in Sources */,
+				991267652257405F00D39A08 /* ReactiveCocoaExtensions.swift in Sources */,
 				F463DFD7222D83060031AAA5 /* TypedSerialDisposable.swift in Sources */,
 				F463DFC2222D83060031AAA5 /* ButtonWithTitleAdjustment.swift in Sources */,
 				F463DFC5222D83060031AAA5 /* DecoratingTextFieldDelegate.swift in Sources */,
