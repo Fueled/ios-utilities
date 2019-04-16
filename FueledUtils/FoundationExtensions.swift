@@ -17,12 +17,12 @@ import Foundation
 
 extension Bool {
 	///
-	/// **Deprecated**: Please use `toggle()` instead.
+	/// **Unavailable**: Please use `toggle()` instead.
 	///
 	/// Refer to the documentation for `toggle()` for more info.
 	///
-	@available(*, deprecated, renamed: "toggle()")
+	@available(*, unavailable, renamed: "toggle()")
 	public mutating func flip() {
-		self.toggle()
+		fatalError()
 	}
 }

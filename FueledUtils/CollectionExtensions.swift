@@ -15,16 +15,13 @@ limitations under the License.
 */
 extension Collection {
 	///
-	/// **Deprecated**: Please use `getSafely(at:)` instead.
+	/// **Unavailable**: Please use `getSafely(at:)` instead.
 	///
 	/// Refer to the documentation for `getSafely(at:)` for more info.
 	///
-	@available(*, deprecated, renamed: "getSafely(at:)")
+	@available(*, unavailable, renamed: "getSafely(at:)")
 	public func getSafely(_ index: Self.Index) -> Self.Iterator.Element? {
-		if !self.indices.contains(index) {
-			return nil
-		}
-		return self[index]
+		fatalError()
 	}
 
 	///

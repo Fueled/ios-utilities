@@ -17,31 +17,31 @@ import UIKit
 
 extension UIScrollView {
 	///
-	/// **Deprecated**: Please use `currentPage` instead.
+	/// **Unavailable**: Please use `currentPage` instead.
 	///
 	/// Refer to the documentation for `currentPage` for more info.
 	///
-	@available(*, deprecated, renamed: "currentPage")
+	@available(*, unavailable, renamed: "currentPage")
 	public var lsd_currentPage: Int {
 		return self.currentPage
 	}
 
 	///
-	/// **Deprecated**: Please use `numberOfPages` instead.
+	/// **Unavailable**: Please use `numberOfPages` instead.
 	///
 	/// Refer to the documentation for `numberOfPages` for more info.
 	///
-	@available(*, deprecated, renamed: "numberOfPages")
+	@available(*, unavailable, renamed: "numberOfPages")
 	public var lsd_numberOfPages: Int {
 		return self.numberOfPages
 	}
 
 	///
-	/// **Deprecated**: Please use `setCurrentPage(_:, animated:)` instead.
+	/// **Unavailable**: Please use `setCurrentPage(_:, animated:)` instead.
 	///
 	/// Refer to the documentation for `setCurrentPage(_:, animated:)` for more info.
 	///
-	@available(*, deprecated, renamed: "setCurrentPage(_:animated:)")
+	@available(*, unavailable, renamed: "setCurrentPage(_:animated:)")
 	public func lsd_setCurrentPage(_ page: Int, animated: Bool) {
 		self.setCurrentPage(page, animated: animated)
 	}

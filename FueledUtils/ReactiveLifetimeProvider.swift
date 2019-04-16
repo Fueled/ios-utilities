@@ -17,10 +17,10 @@ import ReactiveCocoa
 import ReactiveSwift
 
 ///
-/// **Deprecated**: Please just make your type conform to `ReactiveExtensionsProvider`.
+/// **Unavailable**: Please just make your type conform to `ReactiveExtensionsProvider`.
 /// The goal of this protocol is to add RAC-style `reactive` proxy to Swift objects.
 ///
-@available(*, deprecated, renamed: "ReactiveExtensionsProvider")
+@available(*, unavailable, renamed: "ReactiveExtensionsProvider")
 public protocol ReactiveLifetimeProvider: ReactiveExtensionsProvider {
 	///
 	/// The lifetime token associated with the instance.
@@ -29,23 +29,19 @@ public protocol ReactiveLifetimeProvider: ReactiveExtensionsProvider {
 }
 
 ///
-/// **Deprecated**: Please just make your type a `class` that conform to `ReactiveExtensionsProvider` instead; there is no need to inherit from this anymore.
+/// **Unavailable**: Please just make your type a `class` that conform to `ReactiveExtensionsProvider` instead; there is no need to inherit from this anymore.
 /// This base class adds RAC-style `reactive` proxy to Swift objects.
 ///
-@available(*, deprecated, message: "Make your type a class that conforms to ReactiveLifetimeProvider instead")
-open class Lifetimed: ReactiveLifetimeProvider {
-	///
-	/// The lifetime token associated with the instance.
-	///
-	public let lifetimeToken = Lifetime.Token()
+@available(*, unavailable, message: "Make your type a class that conforms to ReactiveLifetimeProvider instead")
+open class Lifetimed {
 }
 
 extension Reactive where Base: AnyObject {
 	///
-	/// **Deprecated**: Use `Lifetime.of(<object>)` instead
+	/// **Unavailable**: Use `Lifetime.of(<object>)` instead
 	/// Get the lifetime associated with the instance.
 	///
-	@available(*, deprecated, renamed: "Lifetime.of()")
+	@available(*, unavailable, renamed: "Lifetime.of()")
 	public var lifetime: Lifetime {
 		return Lifetime.of(self.base)
 	}

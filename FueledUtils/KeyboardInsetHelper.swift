@@ -99,16 +99,9 @@ open class KeyboardInsetHelper: NSObject {
 	///   - baseInset: The base inset before it is clamped by `minimumInset`
 	///
 	open func updateForInset(_ inset: CGFloat, base baseInset: CGFloat) {
-		// Just to avoid the deprecation warning that would otherwise display... and it's required for backward compatibility
-		self.perform(#selector(NoDeprecationWarningsHelper.updateForInset(_:)), with: inset as NSNumber)
 		scrollView?.contentInset.bottom = inset
 		scrollView?.scrollIndicatorInsets.bottom = inset
 		constraint?.constant = inset
 		referenceView?.layoutIfNeeded()
-	}
-}
-
-@objc private final class NoDeprecationWarningsHelper: NSObject {
-	@objc func updateForInset(_ inset: CGFloat) {
 	}
 }

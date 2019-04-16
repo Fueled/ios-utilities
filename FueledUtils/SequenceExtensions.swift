@@ -92,7 +92,7 @@ extension Sequence {
 		return result
 	}
 
-	@available(*, deprecated, renamed: "first(where:)")
+	@available(*, unavailable, renamed: "first(where:)")
 	func findFirst(_ predicate: (Iterator.Element) -> Bool) -> Iterator.Element? {
 		return self.first(where: predicate)
 	}

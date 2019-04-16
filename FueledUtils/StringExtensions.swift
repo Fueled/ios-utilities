@@ -26,11 +26,11 @@ extension StringProtocol {
 	}
 
 	///
-	/// **Deprecated**: Please use `nsRange` instead.
+	/// **Unavailable**: Please use `nsRange` instead.
 	///
 	/// Refer to the documentation for `nsRange` for more info.
 	///
-	@available(*, deprecated, renamed: "nsRange")
+	@available(*, unavailable, renamed: "nsRange")
 	public var fullRange: NSRange {
 		return NSRange(location: 0, length: nsLength)
 	}
