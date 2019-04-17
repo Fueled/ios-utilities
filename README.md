@@ -2,15 +2,15 @@
 
 [![Documentation Badge](https://fueled.github.io/ios-utilities/badge.svg)](https://fueled.github.io/ios-utilities/)
 
-FueledUtils is a collection of utilities for iOS used often within project worked by [Fueled](https://fueled.com).
+FueledUtils is a collection of utilities for iOS used often within projects at [Fueled](https://fueled.com).
 
 ## Documentation
 
-The documentation for project is available [here](https://fueled.github.io/ios-utilities/).
+Documentation is available [here](https://fueled.github.io/ios-utilities/).
 
 ## Contributing
 
-Please check the [CONTRIBUTING.md](CONTRIBUTING.md) file for more info.
+If you'd like to contribute to the project, please familiarise yourself with [CONTRIBUTING.md](CONTRIBUTING.md) before creating an issue or a pull request.
 
 ## License
 

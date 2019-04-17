@@ -5,22 +5,19 @@
 
 In order to properly clone the project and be ready to submit bug fixes/new features, please follow these steps:
 
-1. Clone the project locally
-2. Go to the repository, and using your favorite shell type:  
+1. Clone the project using 
+    ```shell
+    git clone --recurse-submodules https://github.com/Fueled/ios-utilities.git
+    ```
+    This will initialize all dependencies.
 
-    ```swift
+    If you've already cloned the project without initializing submodules, please run submodules update from the project directory:
+
+    ```shell
     git submodule update --init --recursive
     ```
-
-    This will pull all the dependencies as they were checked out in git.
-    Alternatively, if you have `carthage` installed, you may type:
-    
-    ```swift
-    carthage bootstrap --use-submodules --no-build
-    ```
-
-3. Open `FueledUtils.xcworkspace`
-4. You're ready to go!
+2. Open `FueledUtils.xcworkspace`
+3. You're ready to go!
 
 ## How to contribute
 
@@ -29,9 +26,12 @@ You can contribute by:
 2. Enhance the existing features
 3. Introduce new features
 
-The Fueled team will generally accepts bugs fixes, and discuss the benefits of integrating new features/enhancements within the codebase.
+Fueled team will generally accept bugs fixes, and discuss the benefits of integrating new features and enhancements within the codebase.
 
 ## Guidelines
+
+1. All code must conform to [Fueled Swift style guide](https://github.com/Fueled/swift-style-guide). This conformance is largely ensured by our [swiftlint](https://github.com/Fueled/swiftlint-yml/blob/master/.swiftlint.yml) configuration.
+2. Additionally, all public and open constructs must be documented unless their meaning is determined clearly and unambiguousy by types and naming.
 
 ### Commit style
 
