@@ -135,7 +135,7 @@ extension String {
 	}
 }
 
-extension Optional where Wrapped: StringProtocol, Wrapped.Index == String.Index {
+extension Optional where Wrapped: StringProtocol {
 	///
 	/// If the receiver is non-`nil`, returns the result of `StringProtocol.nonBlankValue.isBlank`, otherwise returns `false.
 	///
