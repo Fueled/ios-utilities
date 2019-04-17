@@ -77,7 +77,7 @@ extension Sequence {
 	public func splitBetween(_ areSeparated: (Iterator.Element, Iterator.Element) throws -> Bool) rethrows -> [[Iterator.Element]] {
 		var result: [[Iterator.Element]] = []
 		var chunk: [Iterator.Element] = []
-		var last: Iterator.Element? = nil
+		var last: Iterator.Element?
 		for element in self {
 			if let last = last, try areSeparated(last, element) {
 				result.append(chunk)

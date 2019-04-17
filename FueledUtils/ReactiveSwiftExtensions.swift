@@ -500,8 +500,7 @@ infix operator <~> : AssignmentPrecedence
 @discardableResult public func <~> <P1: MutablePropertyProtocol, P2: MutablePropertyProtocol>(property1: P1, property2: P2) -> Disposable where P1.Value == P2.Value {
 	let disposable = CompositeDisposable()
 	var inObservation = false
-	disposable += property2.producer.start {
-		[weak property1] event in
+	disposable += property2.producer.start { [weak property1] event in
 		switch event {
 		case let .value(value):
 			if !inObservation {
@@ -515,8 +514,7 @@ infix operator <~> : AssignmentPrecedence
 			break
 		}
 	}
-	disposable += property1.producer.start {
-		[weak property2] event in
+	disposable += property1.producer.start { [weak property2] event in
 		switch event {
 		case let .value(value):
 			if !inObservation {

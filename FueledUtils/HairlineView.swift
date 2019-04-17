@@ -23,7 +23,7 @@ open class HairlineView: UIView {
 	///
 	/// Please refer to the documentation for `UIView.intrinsicContentSize`
 	///
-	override open var intrinsicContentSize : CGSize {
+	override open var intrinsicContentSize: CGSize {
 		let pixel = 1.0 / UIScreen.main.scale
 		return CGSize(width: pixel, height: pixel)
 	}

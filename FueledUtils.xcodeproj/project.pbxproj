@@ -345,6 +345,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 02DE3C261D258C79002B58E2 /* Build configuration list for PBXNativeTarget "FueledUtils-iOS" */;
 			buildPhases = (
+				35A83B012267C86100306B26 /* swiftlint */,
 				02DE3C191D258C79002B58E2 /* Sources */,
 				02DE3C1A1D258C79002B58E2 /* Frameworks */,
 				02DE3C1B1D258C79002B58E2 /* Headers */,
@@ -363,6 +364,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F463DFA4222D81D50031AAA5 /* Build configuration list for PBXNativeTarget "FueledUtils-watchOS" */;
 			buildPhases = (
+				35C495542267E3B000CFC908 /* swiftlint */,
 				F463DF9A222D81D50031AAA5 /* Headers */,
 				F463DF9B222D81D50031AAA5 /* Sources */,
 				F463DF9C222D81D50031AAA5 /* Frameworks */,
@@ -381,6 +383,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F463DFB1222D81E10031AAA5 /* Build configuration list for PBXNativeTarget "FueledUtils-tvOS" */;
 			buildPhases = (
+				35C495532267E39500CFC908 /* swiftlint */,
 				F463DFA7222D81E10031AAA5 /* Headers */,
 				F463DFA8222D81E10031AAA5 /* Sources */,
 				F463DFA9222D81E10031AAA5 /* Frameworks */,
@@ -399,6 +402,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F463DFBE222D81F10031AAA5 /* Build configuration list for PBXNativeTarget "FueledUtils-macOS" */;
 			buildPhases = (
+				35C495522267E37800CFC908 /* swiftlint */,
 				F463DFB4222D81F10031AAA5 /* Headers */,
 				F463DFB5222D81F10031AAA5 /* Sources */,
 				F463DFB6222D81F10031AAA5 /* Frameworks */,
@@ -468,6 +472,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = 02DE3C141D258C79002B58E2;
 			productRefGroup = 02DE3C1F1D258C79002B58E2 /* Products */;
@@ -520,6 +525,85 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		35A83B012267C86100306B26 /* swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/zsh;
+			shellScript = "export SWIFTLINT_BIN=`whence swiftlint`\nif [[ -n $SWIFTLINT_BIN ]]\nthen\n    $SWIFTLINT_BIN\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		35C495522267E37800CFC908 /* swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export SWIFTLINT_BIN=`whence swiftlint`\nif [[ -n $SWIFTLINT_BIN ]]\nthen\n$SWIFTLINT_BIN\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		35C495532267E39500CFC908 /* swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export SWIFTLINT_BIN=`whence swiftlint`\nif [[ -n $SWIFTLINT_BIN ]]\nthen\n$SWIFTLINT_BIN\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		35C495542267E3B000CFC908 /* swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export SWIFTLINT_BIN=`whence swiftlint`\nif [[ -n $SWIFTLINT_BIN ]]\nthen\n$SWIFTLINT_BIN\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		02DE3C191D258C79002B58E2 /* Sources */ = {

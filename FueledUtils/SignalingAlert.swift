@@ -83,7 +83,7 @@ public final class SignalingAlert<T> {
 		preferredStyle: UIAlertController.Style,
 		presentingController: UIViewController,
 		sourceView: UIView?,
-		configure: ((SignalingAlert) -> ())? = nil)
+		configure: ((SignalingAlert) -> Void)? = nil)
 		-> SignalProducer<T, NoError>
 	{
 		return SignalProducer { observer, disposable in

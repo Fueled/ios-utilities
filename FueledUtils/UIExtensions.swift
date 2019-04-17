@@ -115,7 +115,7 @@ extension UIColor {
 	///
 	public convenience init?(hexString: String, alpha: CGFloat = 1) {
 		let regex = try! NSRegularExpression(pattern: "\\A(?:0x|#)?([0-9a-f][0-9a-f])([0-9a-f][0-9a-f])([0-9a-f][0-9a-f])\\Z", options: [.caseInsensitive])
-		guard let match = regex.firstMatch(in: hexString, options: [], range: hexString.nsRange) , match.numberOfRanges == 4 else {
+		guard let match = regex.firstMatch(in: hexString, options: [], range: hexString.nsRange), match.numberOfRanges == 4 else {
 			return nil
 		}
 		let redString = (hexString as NSString).substring(with: match.range(at: 1))
@@ -135,10 +135,12 @@ extension UILabel {
 	public func useMonospacedNumbers() {
 		let fontDescriptor = self.font.fontDescriptor
 		let newFontDescriptor = fontDescriptor.addingAttributes([
-			UIFontDescriptor.AttributeName.featureSettings: [[
-				UIFontDescriptor.FeatureKey.featureIdentifier: kNumberSpacingType,
-				UIFontDescriptor.FeatureKey.typeIdentifier: kMonospacedNumbersSelector
-			]]
+			UIFontDescriptor.AttributeName.featureSettings: [
+				[
+					UIFontDescriptor.FeatureKey.featureIdentifier: kNumberSpacingType,
+					UIFontDescriptor.FeatureKey.typeIdentifier: kMonospacedNumbersSelector,
+				],
+			],
 		])
 		self.font = UIFont(descriptor: newFontDescriptor, size: self.font.pointSize)
 	}
@@ -224,7 +226,7 @@ extension UITextField {
 		set {
 			if let color = newValue, let placeholder = self.placeholder {
 				attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [
-					NSAttributedString.Key.foregroundColor: color
+					NSAttributedString.Key.foregroundColor: color,
 				])
 			}
 		}
