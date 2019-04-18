@@ -16,7 +16,6 @@ limitations under the License.
 import Foundation
 import ReactiveCocoa
 import ReactiveSwift
-import Result
 import UIKit
 
 ///

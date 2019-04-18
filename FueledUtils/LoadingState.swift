@@ -15,7 +15,6 @@ limitations under the License.
 */
 import Foundation
 import ReactiveSwift
-import Result
 
 ///
 /// Represents the possible state of an `Action` in Reactive Swift.
@@ -76,7 +75,7 @@ extension ActionProtocol {
 	@available(*, unavailable, renamed: "loadingState")
 	// The unused parameter allows to bypass the compiler error "Invalid redeclaration of 'loadingState'",
 	// while retaining backward compatibility
-	public func loadingState(_ unused: Void = ()) -> SignalProducer<LoadingState<Error>, NoError> {
+	public func loadingState(_ unused: Void = ()) -> SignalProducer<LoadingState<Error>, Never> {
 		fatalError()
 	}
 
@@ -84,7 +83,7 @@ extension ActionProtocol {
 	/// Returns a `SignalProducer` whose events corresponds to the current loading state of the action.
 	/// Please refer to `LoadingState` for more info.
 	///
-	public var loadingState: SignalProducer<LoadingState<Error>, NoError> {
+	public var loadingState: SignalProducer<LoadingState<Error>, Never> {
 		let loading = self.isExecuting.producer
 			.filter { $0 }
 			.map { _ in LoadingState<Error>.loading }

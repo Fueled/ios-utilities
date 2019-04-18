@@ -8,7 +8,6 @@
 
 import Foundation
 import ReactiveSwift
-import Result
 
 ///
 /// An optional protocol for `ActionError` for use in type constraints
@@ -84,21 +83,21 @@ public protocol ActionProtocol {
 	/// In other words, this sends every `Event` from every unit of work that the `Action`
 	/// executes.
 	///
-	var events: Signal<Signal<Output, Error>.Event, NoError> { get }
+	var events: Signal<Signal<Output, Error>.Event, Never> { get }
 	///
 	/// A signal of all values generated from all units of work of the `Action`.
 	///
 	/// In other words, this sends every value from every unit of work that the `Action`
 	/// executes.
 	///
-	var values: Signal<Output, NoError> { get }
+	var values: Signal<Output, Never> { get }
 	///
 	/// A signal of all errors generated from all units of work of the `Action`.
 	///
 	/// In other words, this sends every error from every unit of work that the `Action`
 	/// executes.
 	///
-	var errors: Signal<Error, NoError> { get }
+	var errors: Signal<Error, Never> { get }
 	///
 	/// The lifetime of the `Action`.
 	///

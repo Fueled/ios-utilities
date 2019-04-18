@@ -15,7 +15,6 @@ limitations under the License.
 */
 import Foundation
 import ReactiveSwift
-import Result
 
 extension SignalProtocol {
 	///
@@ -152,7 +151,7 @@ extension SignalProtocol {
 	///
 	/// Returns a Signal which cannot fail. Errors that would be otherwise be sent in the original signal are ignored.
 	///
-	public func ignoreError() -> Signal<Value, NoError> {
+	public func ignoreError() -> Signal<Value, Never> {
 		return self.filterMapError { _ in nil }
 	}
 }
@@ -175,7 +174,7 @@ extension SignalProducerProtocol {
 	///
 	/// Returns a SignalProducer which cannot fail. Errors that would be otherwise be sent in the original producer are ignored.
 	///
-	public func ignoreError() -> SignalProducer<Value, NoError> {
+	public func ignoreError() -> SignalProducer<Value, Never> {
 		return self.producer.lift { $0.ignoreError() }
 	}
 
@@ -225,7 +224,7 @@ extension PropertyProtocol {
 	}
 }
 
-extension Signal where Error == NoError {
+extension Signal where Error == Never {
 	///
 	/// Chain the receiver with another, creating a new `Signal` every time the receiver sends a value,
 	/// and returning the resulting `Signal`.
@@ -236,7 +235,7 @@ extension Signal where Error == NoError {
 	///   - transform: A closure that takes a value emitted by the receiver, and that returns a `Signal`.
 	/// - Returns: The resulting `Signal`.
 	///
-	public func chain<U>(_ transform: @escaping (Value) -> Signal<U, NoError>) -> Signal<U, NoError> {
+	public func chain<U>(_ transform: @escaping (Value) -> Signal<U, Never>) -> Signal<U, Never> {
 		return flatMap(.latest, transform)
 	}
 
@@ -250,7 +249,7 @@ extension Signal where Error == NoError {
 	///   - transform: A closure that takes a value emitted by the receiver, and that returns a `SignalProducer`.
 	/// - Returns: The resulting `Signal`.
 	///
-	public func chain<U>(_ transform: @escaping (Value) -> SignalProducer<U, NoError>) -> Signal<U, NoError> {
+	public func chain<U>(_ transform: @escaping (Value) -> SignalProducer<U, Never>) -> Signal<U, Never> {
 		return flatMap(.latest, transform)
 	}
 
@@ -264,7 +263,7 @@ extension Signal where Error == NoError {
 	///   - transform: A closure that takes a value emitted by the receiver, and that returns a `Property`.
 	/// - Returns: The resulting `Signal`.
 	///
-	public func chain<P: PropertyProtocol>(_ transform: @escaping (Value) -> P) -> Signal<P.Value, NoError> {
+	public func chain<P: PropertyProtocol>(_ transform: @escaping (Value) -> P) -> Signal<P.Value, Never> {
 		return flatMap(.latest) { transform($0).signal }
 	}
 
@@ -279,8 +278,8 @@ extension Signal where Error == NoError {
 	///     If the `Signal` is `nil`, the value is ignored.
 	/// - Returns: The resulting `Signal`.
 	///
-	public func chain<U>(_ transform: @escaping (Value) -> Signal<U, NoError>?) -> Signal<U, NoError> {
-		return flatMap(.latest) { transform($0) ?? Signal<U, NoError>.empty }
+	public func chain<U>(_ transform: @escaping (Value) -> Signal<U, Never>?) -> Signal<U, Never> {
+		return flatMap(.latest) { transform($0) ?? Signal<U, Never>.empty }
 	}
 
 	///
@@ -294,8 +293,8 @@ extension Signal where Error == NoError {
 	///     If the `SignalProducer` is `nil`, the value is ignored.
 	/// - Returns: The resulting `Signal`.
 	///
-	public func chain<U>(_ transform: @escaping (Value) -> SignalProducer<U, NoError>?) -> Signal<U, NoError> {
-		return flatMap(.latest) { transform($0) ?? SignalProducer<U, NoError>.empty }
+	public func chain<U>(_ transform: @escaping (Value) -> SignalProducer<U, Never>?) -> Signal<U, Never> {
+		return flatMap(.latest) { transform($0) ?? SignalProducer<U, Never>.empty }
 	}
 
 	///
@@ -309,12 +308,12 @@ extension Signal where Error == NoError {
 	///     If the `Property` is `nil`, the value is ignored.
 	/// - Returns: The resulting `Signal`.
 	///
-	public func chain<P: PropertyProtocol>(_ transform: @escaping (Value) -> P?) -> Signal<P.Value, NoError> {
-		return flatMap(.latest) { transform($0)?.signal ?? Signal<P.Value, NoError>.empty }
+	public func chain<P: PropertyProtocol>(_ transform: @escaping (Value) -> P?) -> Signal<P.Value, Never> {
+		return flatMap(.latest) { transform($0)?.signal ?? Signal<P.Value, Never>.empty }
 	}
 }
 
-extension SignalProducer where Error == NoError {
+extension SignalProducer where Error == Never {
 	///
 	/// Chain the receiver with another, creating a new `Signal` every time the receiver sends a value,
 	/// and returning the resulting `SignalProducer`.
@@ -325,7 +324,7 @@ extension SignalProducer where Error == NoError {
 	///   - transform: A closure that takes a value emitted by the receiver, and that returns a `Signal`.
 	/// - Returns: The resulting `SignalProducer`.
 	///
-	public func chain<U>(_ transform: @escaping (Value) -> Signal<U, NoError>) -> SignalProducer<U, NoError> {
+	public func chain<U>(_ transform: @escaping (Value) -> Signal<U, Never>) -> SignalProducer<U, Never> {
 		return flatMap(.latest, transform)
 	}
 
@@ -339,7 +338,7 @@ extension SignalProducer where Error == NoError {
 	///   - transform: A closure that takes a value emitted by the receiver, and that returns a `SignalProducer`.
 	/// - Returns: The resulting `SignalProducer`.
 	///
-	public func chain<U>(_ transform: @escaping (Value) -> SignalProducer<U, NoError>) -> SignalProducer<U, NoError> {
+	public func chain<U>(_ transform: @escaping (Value) -> SignalProducer<U, Never>) -> SignalProducer<U, Never> {
 		return flatMap(.latest, transform)
 	}
 
@@ -353,7 +352,7 @@ extension SignalProducer where Error == NoError {
 	///   - transform: A closure that takes a value emitted by the receiver, and that returns a `Property`.
 	/// - Returns: The resulting `SignalProducer`.
 	///
-	public func chain<P: PropertyProtocol>(_ transform: @escaping (Value) -> P) -> SignalProducer<P.Value, NoError> {
+	public func chain<P: PropertyProtocol>(_ transform: @escaping (Value) -> P) -> SignalProducer<P.Value, Never> {
 		return flatMap(.latest) { transform($0).producer }
 	}
 
@@ -368,8 +367,8 @@ extension SignalProducer where Error == NoError {
 	///     If the `Signal` is `nil`, the value is ignored.
 	/// - Returns: The resulting `SignalProducer`.
 	///
-	public func chain<U>(_ transform: @escaping (Value) -> Signal<U, NoError>?) -> SignalProducer<U, NoError> {
-		return flatMap(.latest) { transform($0) ?? Signal<U, NoError>.empty }
+	public func chain<U>(_ transform: @escaping (Value) -> Signal<U, Never>?) -> SignalProducer<U, Never> {
+		return flatMap(.latest) { transform($0) ?? Signal<U, Never>.empty }
 	}
 
 	///
@@ -383,8 +382,8 @@ extension SignalProducer where Error == NoError {
 	///     If the `SignalProducer` is `nil`, the value is ignored.
 	/// - Returns: The resulting `SignalProducer`.
 	///
-	public func chain<U>(_ transform: @escaping (Value) -> SignalProducer<U, NoError>?) -> SignalProducer<U, NoError> {
-		return flatMap(.latest) { transform($0) ?? SignalProducer<U, NoError>.empty }
+	public func chain<U>(_ transform: @escaping (Value) -> SignalProducer<U, Never>?) -> SignalProducer<U, Never> {
+		return flatMap(.latest) { transform($0) ?? SignalProducer<U, Never>.empty }
 	}
 
 	///
@@ -398,8 +397,8 @@ extension SignalProducer where Error == NoError {
 	///     If the `Property` is `nil`, the value is ignored.
 	/// - Returns: The resulting `SignalProducer`.
 	///
-	public func chain<P: PropertyProtocol>(_ transform: @escaping (Value) -> P?) -> SignalProducer<P.Value, NoError> {
-		return flatMap(.latest) { transform($0)?.producer ?? SignalProducer<P.Value, NoError>.empty }
+	public func chain<P: PropertyProtocol>(_ transform: @escaping (Value) -> P?) -> SignalProducer<P.Value, Never> {
+		return flatMap(.latest) { transform($0)?.producer ?? SignalProducer<P.Value, Never>.empty }
 	}
 }
 
@@ -414,7 +413,7 @@ extension PropertyProtocol {
 	///   - transform: A closure that takes a value emitted by the receiver, and that returns a `Signal`.
 	/// - Returns: The resulting `SignalProducer`.
 	///
-	public func chain<U>(_ transform: @escaping (Value) -> Signal<U, NoError>) -> SignalProducer<U, NoError> {
+	public func chain<U>(_ transform: @escaping (Value) -> Signal<U, Never>) -> SignalProducer<U, Never> {
 		return producer.chain(transform)
 	}
 
@@ -428,7 +427,7 @@ extension PropertyProtocol {
 	///   - transform: A closure that takes a value emitted by the receiver, and that returns a `SignalProducer`.
 	/// - Returns: The resulting `SignalProducer`.
 	///
-	public func chain<U>(_ transform: @escaping (Value) -> SignalProducer<U, NoError>) -> SignalProducer<U, NoError> {
+	public func chain<U>(_ transform: @escaping (Value) -> SignalProducer<U, Never>) -> SignalProducer<U, Never> {
 		return producer.chain(transform)
 	}
 
@@ -442,7 +441,7 @@ extension PropertyProtocol {
 	///   - transform: A closure that takes a value emitted by the receiver, and that returns a `Property`.
 	/// - Returns: The resulting `SignalProducer`.
 	///
-	public func chain<P: PropertyProtocol>(_ transform: @escaping (Value) -> P) -> SignalProducer<P.Value, NoError> {
+	public func chain<P: PropertyProtocol>(_ transform: @escaping (Value) -> P) -> SignalProducer<P.Value, Never> {
 		return producer.chain(transform)
 	}
 
@@ -457,7 +456,7 @@ extension PropertyProtocol {
 	///     If the `Signal` is `nil`, the value is ignored.
 	/// - Returns: The resulting `SignalProducer`.
 	///
-	public func chain<U>(_ transform: @escaping (Value) -> Signal<U, NoError>?) -> SignalProducer<U, NoError> {
+	public func chain<U>(_ transform: @escaping (Value) -> Signal<U, Never>?) -> SignalProducer<U, Never> {
 		return producer.chain(transform)
 	}
 
@@ -472,7 +471,7 @@ extension PropertyProtocol {
 	///     If the `SignalProducer` is `nil`, the value is ignored.
 	/// - Returns: The resulting `SignalProducer`.
 	///
-	public func chain<U>(_ transform: @escaping (Value) -> SignalProducer<U, NoError>?) -> SignalProducer<U, NoError> {
+	public func chain<U>(_ transform: @escaping (Value) -> SignalProducer<U, Never>?) -> SignalProducer<U, Never> {
 		return producer.chain(transform)
 	}
 
@@ -487,7 +486,7 @@ extension PropertyProtocol {
 	///     If the `Property` is `nil`, the value is ignored.
 	/// - Returns: The resulting `SignalProducer`.
 	///
-	public func chain<P: PropertyProtocol>(_ transform: @escaping (Value) -> P?) -> SignalProducer<P.Value, NoError> {
+	public func chain<P: PropertyProtocol>(_ transform: @escaping (Value) -> P?) -> SignalProducer<P.Value, Never> {
 		return producer.chain(transform)
 	}
 }
@@ -538,7 +537,7 @@ extension ActionProtocol {
 	/// In other words, this sends every `Result` from every unit of work that the `Action`
 	/// executes.
 	///
-	public var results: Signal<Result<Output, Error>, NoError> {
+	public var results: Signal<Result<Output, Error>, Never> {
 		return Signal.merge(
 			self.values.map { .success($0) },
 			self.errors.map { .failure($0) }

@@ -11,7 +11,6 @@
 		024E88731DA1597900826334 /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 024E88721DA1597900826334 /* ReactiveSwift.framework */; };
 		02DE3C221D258C79002B58E2 /* FueledUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 02DE3C211D258C79002B58E2 /* FueledUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		02DE3C2A1D258E02002B58E2 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02DE3C291D258E02002B58E2 /* ReactiveCocoa.framework */; };
-		02DE3C2C1D258E08002B58E2 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02DE3C2B1D258E08002B58E2 /* Result.framework */; };
 		02DE3C3C1D258FD1002B58E2 /* ReactiveSwiftExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DE3C351D258FD1002B58E2 /* ReactiveSwiftExtensions.swift */; };
 		02DE3C3E1D258FD1002B58E2 /* SequenceExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DE3C371D258FD1002B58E2 /* SequenceExtensions.swift */; };
 		02DE3C3F1D258FD1002B58E2 /* SignalingAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DE3C381D258FD1002B58E2 /* SignalingAlert.swift */; };
@@ -111,7 +110,6 @@
 		02DE3C211D258C79002B58E2 /* FueledUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FueledUtils.h; sourceTree = "<group>"; };
 		02DE3C231D258C79002B58E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		02DE3C291D258E02002B58E2 /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveCocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		02DE3C2B1D258E08002B58E2 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Result.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		02DE3C351D258FD1002B58E2 /* ReactiveSwiftExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactiveSwiftExtensions.swift; sourceTree = "<group>"; };
 		02DE3C371D258FD1002B58E2 /* SequenceExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequenceExtensions.swift; sourceTree = "<group>"; };
 		02DE3C381D258FD1002B58E2 /* SignalingAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignalingAlert.swift; sourceTree = "<group>"; };
@@ -166,7 +164,6 @@
 			files = (
 				02DE3C2A1D258E02002B58E2 /* ReactiveCocoa.framework in Frameworks */,
 				024E88731DA1597900826334 /* ReactiveSwift.framework in Frameworks */,
-				02DE3C2C1D258E08002B58E2 /* Result.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,7 +243,6 @@
 				F4CBDF162200A72400DF24DD /* FueledUtilsTests */,
 				02DE3C1F1D258C79002B58E2 /* Products */,
 				02DE3C291D258E02002B58E2 /* ReactiveCocoa.framework */,
-				02DE3C2B1D258E08002B58E2 /* Result.framework */,
 				024E88711DA1597800826334 /* Frameworks */,
 			);
 			sourceTree = "<group>";

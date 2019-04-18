@@ -16,7 +16,6 @@ limitations under the License.
 import Foundation
 import ReactiveCocoa
 import ReactiveSwift
-import Result
 import UIKit
 
 ///
@@ -30,14 +29,14 @@ public final class SignalingAlert<T> {
 	///
 	/// The output signal the class is associated with.
 	///
-	public let signal: Signal<T, NoError>
-	fileprivate let observer: Signal<T, NoError>.Observer
+	public let signal: Signal<T, Never>
+	fileprivate let observer: Signal<T, Never>.Observer
 
 	///
 	/// Initialize a `SignalingAlert` with the given `title`, `message` and `preferredStyle`.
 	///
 	public init(title: String?, message: String?, preferredStyle: UIAlertController.Style) {
-		(signal, observer) = Signal<T, NoError>.pipe()
+		(signal, observer) = Signal<T, Never>.pipe()
 		controller = UIAlertController(title: title, message: message, preferredStyle: preferredStyle)
 		Lifetime.of(controller).ended.observeCompleted { [observer] in
 			observer.sendInterrupted()
@@ -47,7 +46,7 @@ public final class SignalingAlert<T> {
 	///
 	/// Add an action to the alert, sending the `event` when the user taps the action.
 	///
-	public func addAction(title: String, style: UIAlertAction.Style, event: Signal<T, NoError>.Event) {
+	public func addAction(title: String, style: UIAlertAction.Style, event: Signal<T, Never>.Event) {
 		controller.addAction(UIAlertAction(title: title, style: style) { [observer] _ in
 			observer.send(event)
 		})
@@ -84,7 +83,7 @@ public final class SignalingAlert<T> {
 		presentingController: UIViewController,
 		sourceView: UIView?,
 		configure: ((SignalingAlert) -> Void)? = nil)
-		-> SignalProducer<T, NoError>
+		-> SignalProducer<T, Never>
 	{
 		return SignalProducer { observer, disposable in
 			let alert = SignalingAlert(
