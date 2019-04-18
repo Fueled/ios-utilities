@@ -1,9 +1,9 @@
 Pod::Spec.new do |s|
 	s.name = 'FueledUtils'
-	s.version = '1.5.2'
+	s.version = '2.0'
 	s.summary = 'A collection of utilities used at Fueled'
 	s.description = 'This is a collection of classes, extensions, methods and functions used within Fueled projects that aims at decomplexifying tasks that should be easy.'
-	s.swift_version = '4.2'
+	s.swift_version = '5'
 
 	s.homepage = 'https://github.com/Fueled/ios-utilities'
 	s.license = { :type => 'Apache License, Version 2.0', :file => 'LICENSE' }
