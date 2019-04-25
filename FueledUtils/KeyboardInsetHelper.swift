@@ -16,61 +16,30 @@ limitations under the License.
 import Foundation
 import UIKit
 
-///
-/// Binds keyboard appearance and metrics to scroll view content and scroll bar insets and/or a layout constraint
+/// Binds keyboard appearance and metrics to scroll view content and scroll bar insets and/or a layout constraint \
 /// relative to reference view. This object can be created and linked in a sotryboard.
-///
 open class KeyboardInsetHelper: NSObject {
-	///
-	/// **Deprecated**: Please use `minimumInset` instead.
-	///
-	/// Refer to the documentation for `minimumInset` for more info.
-	///
-	@available(*, deprecated, renamed: "minimumInset")
-	@IBInspectable public var baseInset: CGFloat {
-		get {
-			return minimumInset
-		}
-		set {
-			minimumInset = newValue
-		}
-	}
-
-	///
-	/// The minimum inset value. Inset values below this value are clamped to `minimumInset`.
-	/// Defaults to `0`
-	///
-	@IBInspectable public var minimumInset: CGFloat = 0
-	///
+	/// Minimum inset
+	@IBInspectable public var baseInset: CGFloat = 0
 	/// The inset and constraint constant will be calculated in the coordinates of this view.
-	/// This variable must be non-`nil`, otherwise the insets won't get updated.
-	///
 	@IBOutlet public weak var referenceView: UIView?
-	///
-	/// Scroll view to adjust content inset at. When the keyboard appears or disappears, the inset will be adjusted to
-	/// align the bottom of the scroll view's content with the top of the keyboard (`minimumInset` takes priority).
-	///
+	/// Scroll view to adjust content inset at. When the keyboard appears or disappears, the inset will be adjusted to \
+	/// align the bottom of the scroll view's content with the top of the keyboard (minimum `baseInset` takes priority).
 	@IBOutlet public weak var scrollView: UIScrollView?
-	///
-	/// When the keyboard appears or disappears, the constraint's constant will be set to the distance between the bottom of the
-	/// reference view and the top of the keyboard but no less than `minimumInset`.
-	///
+	/// When the keyboard appears or disappears, the constraint's constant will be set to the distance between the bottom of the \
+	/// reference view and the top of the keyboard but no less than `baseInset`.
 	@IBOutlet public weak var constraint: NSLayoutConstraint?
 
-	private var isCallingDeprecatedMethod = false
-
-	///
-	/// Initializes a new KeyboardInsetHelper with default values.
-	///
 	public override init() {
 		super.init()
-		NotificationCenter.default.addObserver(
+		let nc = NotificationCenter.default
+		nc.addObserver(
 			self,
 			selector: #selector(handleKeyboardNotification(_:)),
 			name: UIResponder.keyboardWillShowNotification,
 			object: nil
 		)
-		NotificationCenter.default.addObserver(
+		nc.addObserver(
 			self,
 			selector: #selector(handleKeyboardNotification(_:)),
 			name: UIResponder.keyboardWillHideNotification,
@@ -79,8 +48,9 @@ open class KeyboardInsetHelper: NSObject {
 	}
 
 	deinit {
-		NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
-		NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
+		let nc = NotificationCenter.default
+		nc.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+		nc.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
 	}
 
 	@objc fileprivate func handleKeyboardNotification(_ notification: Notification) {
@@ -93,8 +63,7 @@ open class KeyboardInsetHelper: NSObject {
 		let keyboardFrame = referenceView.convert(keyboardFrameValue.cgRectValue, from: referenceView.window)
 		let curveOption = UIView.AnimationOptions(rawValue: curve << 16)
 		let animationOptions = curveOption.union(.beginFromCurrentState)
-		let baseInset = referenceView.bounds.maxY - keyboardFrame.minY
-		let inset = max(minimumInset, baseInset)
+		let inset = max(baseInset, referenceView.bounds.maxY - keyboardFrame.minY)
 		UIView.performWithoutAnimation {
 			self.referenceView?.window?.layoutIfNeeded()
 		}
@@ -102,48 +71,15 @@ open class KeyboardInsetHelper: NSObject {
 			withDuration: duration,
 			delay: 0,
 			options: animationOptions,
-			animations: { self.updateForInset(inset, base: baseInset) },
+			animations: { self.updateForInset(inset) },
 			completion: nil
 		)
 	}
 
-	///
-	/// **Deprecated**: Please use `updateForInset(_:, base:)` instead.
-	///
-	/// Refer to the documentation for `updateForInset(_:, base:)` for more info.
-	///
-	@available(*, deprecated, renamed: "updateForInset(_:base:)")
-	@objc open func updateForInset(_ inset: CGFloat) {
-		if !self.isCallingDeprecatedMethod {
-			self.updateForInset(inset, base: inset)
-		}
-	}
-
-	///
-	/// Do the default actions when the keyboard insets change.
-	///
-	/// The default implementation of this method:
-	/// - Updates the `scrollView`'s `contentInset.bottom` and `scrollIndicatorInsets.bottom` to that of the `inset` parameter
-	/// - Sets the `constraint`'s `constant` to the `inset` parameter
-	/// - Call `layoutIfNeeded` on the reference view
-	///
-	/// - Parameter:
-	///   - inset: The current keyboard `inset`, clamped by `minimumInset`.
-	///   - baseInset: The base inset before it is clamped by `minimumInset`
-	///
-	open func updateForInset(_ inset: CGFloat, base baseInset: CGFloat) {
-		// Just to avoid the deprecation warning that would otherwise display... and it's required for backward compatibility
-		self.isCallingDeprecatedMethod = true
-		self.perform(#selector(NoDeprecationWarningsHelper.updateForInset(_:)), with: inset as NSNumber)
-		self.isCallingDeprecatedMethod = false
+	open func updateForInset(_ inset: CGFloat) {
 		scrollView?.contentInset.bottom = inset
 		scrollView?.scrollIndicatorInsets.bottom = inset
 		constraint?.constant = inset
 		referenceView?.layoutIfNeeded()
-	}
-}
-
-@objc private final class NoDeprecationWarningsHelper: NSObject {
-	@objc func updateForInset(_ inset: CGFloat) {
 	}
 }
