@@ -11,7 +11,6 @@
 		024E88731DA1597900826334 /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 024E88721DA1597900826334 /* ReactiveSwift.framework */; };
 		02DE3C221D258C79002B58E2 /* FueledUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 02DE3C211D258C79002B58E2 /* FueledUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		02DE3C2A1D258E02002B58E2 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02DE3C291D258E02002B58E2 /* ReactiveCocoa.framework */; };
-		02DE3C2C1D258E08002B58E2 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02DE3C2B1D258E08002B58E2 /* Result.framework */; };
 		02DE3C3C1D258FD1002B58E2 /* ReactiveSwiftExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DE3C351D258FD1002B58E2 /* ReactiveSwiftExtensions.swift */; };
 		02DE3C3E1D258FD1002B58E2 /* SequenceExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DE3C371D258FD1002B58E2 /* SequenceExtensions.swift */; };
 		02DE3C3F1D258FD1002B58E2 /* SignalingAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DE3C381D258FD1002B58E2 /* SignalingAlert.swift */; };
@@ -111,7 +110,6 @@
 		02DE3C211D258C79002B58E2 /* FueledUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FueledUtils.h; sourceTree = "<group>"; };
 		02DE3C231D258C79002B58E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		02DE3C291D258E02002B58E2 /* ReactiveCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ReactiveCocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		02DE3C2B1D258E08002B58E2 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Result.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		02DE3C351D258FD1002B58E2 /* ReactiveSwiftExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactiveSwiftExtensions.swift; sourceTree = "<group>"; };
 		02DE3C371D258FD1002B58E2 /* SequenceExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SequenceExtensions.swift; sourceTree = "<group>"; };
 		02DE3C381D258FD1002B58E2 /* SignalingAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignalingAlert.swift; sourceTree = "<group>"; };
@@ -166,7 +164,6 @@
 			files = (
 				02DE3C2A1D258E02002B58E2 /* ReactiveCocoa.framework in Frameworks */,
 				024E88731DA1597900826334 /* ReactiveSwift.framework in Frameworks */,
-				02DE3C2C1D258E08002B58E2 /* Result.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -246,7 +243,6 @@
 				F4CBDF162200A72400DF24DD /* FueledUtilsTests */,
 				02DE3C1F1D258C79002B58E2 /* Products */,
 				02DE3C291D258E02002B58E2 /* ReactiveCocoa.framework */,
-				02DE3C2B1D258E08002B58E2 /* Result.framework */,
 				024E88711DA1597800826334 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -345,6 +341,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 02DE3C261D258C79002B58E2 /* Build configuration list for PBXNativeTarget "FueledUtils-iOS" */;
 			buildPhases = (
+				35A83B012267C86100306B26 /* swiftlint */,
 				02DE3C191D258C79002B58E2 /* Sources */,
 				02DE3C1A1D258C79002B58E2 /* Frameworks */,
 				02DE3C1B1D258C79002B58E2 /* Headers */,
@@ -363,6 +360,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F463DFA4222D81D50031AAA5 /* Build configuration list for PBXNativeTarget "FueledUtils-watchOS" */;
 			buildPhases = (
+				35C495542267E3B000CFC908 /* swiftlint */,
 				F463DF9A222D81D50031AAA5 /* Headers */,
 				F463DF9B222D81D50031AAA5 /* Sources */,
 				F463DF9C222D81D50031AAA5 /* Frameworks */,
@@ -381,6 +379,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F463DFB1222D81E10031AAA5 /* Build configuration list for PBXNativeTarget "FueledUtils-tvOS" */;
 			buildPhases = (
+				35C495532267E39500CFC908 /* swiftlint */,
 				F463DFA7222D81E10031AAA5 /* Headers */,
 				F463DFA8222D81E10031AAA5 /* Sources */,
 				F463DFA9222D81E10031AAA5 /* Frameworks */,
@@ -399,6 +398,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F463DFBE222D81F10031AAA5 /* Build configuration list for PBXNativeTarget "FueledUtils-macOS" */;
 			buildPhases = (
+				35C495522267E37800CFC908 /* swiftlint */,
 				F463DFB4222D81F10031AAA5 /* Headers */,
 				F463DFB5222D81F10031AAA5 /* Sources */,
 				F463DFB6222D81F10031AAA5 /* Frameworks */,
@@ -437,12 +437,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1010;
-				LastUpgradeCheck = 1000;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = Fueled;
 				TargetAttributes = {
 					02DE3C1D1D258C79002B58E2 = {
 						CreatedOnToolsVersion = 7.3.1;
-						LastSwiftMigration = 1000;
+						LastSwiftMigration = 1020;
 					};
 					F463DF9E222D81D50031AAA5 = {
 						CreatedOnToolsVersion = 10.1;
@@ -464,11 +464,11 @@
 			};
 			buildConfigurationList = 02DE3C181D258C79002B58E2 /* Build configuration list for PBXProject "FueledUtils" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
+				Base,
 			);
 			mainGroup = 02DE3C141D258C79002B58E2;
 			productRefGroup = 02DE3C1F1D258C79002B58E2 /* Products */;
@@ -521,6 +521,85 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		35A83B012267C86100306B26 /* swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/zsh;
+			shellScript = "export SWIFTLINT_BIN=`whence swiftlint`\nif [[ -n $SWIFTLINT_BIN ]]\nthen\n    $SWIFTLINT_BIN\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		35C495522267E37800CFC908 /* swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export SWIFTLINT_BIN=`whence swiftlint`\nif [[ -n $SWIFTLINT_BIN ]]\nthen\n$SWIFTLINT_BIN\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		35C495532267E39500CFC908 /* swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export SWIFTLINT_BIN=`whence swiftlint`\nif [[ -n $SWIFTLINT_BIN ]]\nthen\n$SWIFTLINT_BIN\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		35C495542267E3B000CFC908 /* swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export SWIFTLINT_BIN=`whence swiftlint`\nif [[ -n $SWIFTLINT_BIN ]]\nthen\n$SWIFTLINT_BIN\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		02DE3C191D258C79002B58E2 /* Sources */ = {
@@ -641,6 +720,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -684,15 +764,18 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				TVOS_DEPLOYMENT_TARGET = 11.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Debug;
 		};
@@ -700,6 +783,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -737,15 +821,18 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				TVOS_DEPLOYMENT_TARGET = 11.0;
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Release;
 		};
@@ -771,7 +858,6 @@
 				PRODUCT_NAME = FueledUtils;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -796,7 +882,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.fueled.FueledUtils;
 				PRODUCT_NAME = FueledUtils;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
@@ -826,9 +911,7 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Debug;
 		};
@@ -856,9 +939,7 @@
 				PRODUCT_NAME = FueledUtils;
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Release;
 		};
@@ -888,9 +969,7 @@
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Debug;
 		};
@@ -918,9 +997,7 @@
 				PRODUCT_NAME = FueledUtils;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Release;
 		};
@@ -952,7 +1029,6 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -982,7 +1058,6 @@
 				PRODUCT_NAME = FueledUtils;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};

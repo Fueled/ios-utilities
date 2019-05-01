@@ -26,11 +26,11 @@ extension StringProtocol {
 	}
 
 	///
-	/// **Deprecated**: Please use `nsRange` instead.
+	/// **Unavailable**: Please use `nsRange` instead.
 	///
 	/// Refer to the documentation for `nsRange` for more info.
 	///
-	@available(*, deprecated, renamed: "nsRange")
+	@available(*, unavailable, renamed: "nsRange")
 	public var fullRange: NSRange {
 		return NSRange(location: 0, length: nsLength)
 	}
@@ -135,7 +135,7 @@ extension String {
 	}
 }
 
-extension Optional where Wrapped: StringProtocol, Wrapped.Index == String.Index {
+extension Optional where Wrapped: StringProtocol {
 	///
 	/// If the receiver is non-`nil`, returns the result of `StringProtocol.nonBlankValue.isBlank`, otherwise returns `false.
 	///

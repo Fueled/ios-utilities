@@ -115,7 +115,7 @@ extension UIColor {
 	///
 	public convenience init?(hexString: String, alpha: CGFloat = 1) {
 		let regex = try! NSRegularExpression(pattern: "\\A(?:0x|#)?([0-9a-f][0-9a-f])([0-9a-f][0-9a-f])([0-9a-f][0-9a-f])\\Z", options: [.caseInsensitive])
-		guard let match = regex.firstMatch(in: hexString, options: [], range: hexString.nsRange) , match.numberOfRanges == 4 else {
+		guard let match = regex.firstMatch(in: hexString, options: [], range: hexString.nsRange), match.numberOfRanges == 4 else {
 			return nil
 		}
 		let redString = (hexString as NSString).substring(with: match.range(at: 1))
@@ -135,10 +135,12 @@ extension UILabel {
 	public func useMonospacedNumbers() {
 		let fontDescriptor = self.font.fontDescriptor
 		let newFontDescriptor = fontDescriptor.addingAttributes([
-			UIFontDescriptor.AttributeName.featureSettings: [[
-				UIFontDescriptor.FeatureKey.featureIdentifier: kNumberSpacingType,
-				UIFontDescriptor.FeatureKey.typeIdentifier: kMonospacedNumbersSelector
-			]]
+			UIFontDescriptor.AttributeName.featureSettings: [
+				[
+					UIFontDescriptor.FeatureKey.featureIdentifier: kNumberSpacingType,
+					UIFontDescriptor.FeatureKey.typeIdentifier: kMonospacedNumbersSelector,
+				],
+			],
 		])
 		self.font = UIFont(descriptor: newFontDescriptor, size: self.font.pointSize)
 	}
@@ -180,11 +182,11 @@ extension UILabel {
 
 extension UIActivityIndicatorView {
 	///
-	/// **Deprecated**: Please use `animating` instead.
+	/// **Unavailable**: Please use `animating` instead.
 	///
 	/// Refer to the documentation for `animating` for more info.
 	///
-	@available(*, deprecated, renamed: "animating")
+	@available(*, unavailable, renamed: "animating")
 	public var fueled_animating: Bool {
 		get {
 			return self.animating
@@ -224,7 +226,7 @@ extension UITextField {
 		set {
 			if let color = newValue, let placeholder = self.placeholder {
 				attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [
-					NSAttributedString.Key.foregroundColor: color
+					NSAttributedString.Key.foregroundColor: color,
 				])
 			}
 		}
@@ -367,11 +369,11 @@ extension UITableView {
 	}
 
 	///
-	/// **Deprecated**: Please use `deselectAllRows(animated:)` instead.
+	/// **Unavailable**: Please use `deselectAllRows(animated:)` instead.
 	///
 	/// Refer to the documentation for `deselectAllRows(animated:)` for more info.
 	///
-	@available(*, deprecated, renamed: "deselectAllRows(animated:)")
+	@available(*, unavailable, renamed: "deselectAllRows(animated:)")
 	public func deselectAllRows(_ animated: Bool) {
 		self.deselectAllRows(animated: animated)
 	}
@@ -404,11 +406,11 @@ extension UICollectionView {
 	}
 
 	///
-	/// **Deprecated**: Please use `deselectAllItems(animated:)` instead.
+	/// **Unavailable**: Please use `deselectAllItems(animated:)` instead.
 	///
 	/// Refer to the documentation for `deselectAllItems(animated:)` for more info.
 	///
-	@available(*, deprecated, renamed: "deselectAllItems(animated:)")
+	@available(*, unavailable, renamed: "deselectAllItems(animated:)")
 	public func deselectAllItems(_ animated: Bool) {
 		self.deselectAllItems(animated: animated)
 	}
@@ -447,11 +449,11 @@ extension UIImage {
 	}
 
 	///
-	/// **Deprecated**: Please use `withAlpha(_:)` instead.
+	/// **Unavailable**: Please use `withAlpha(_:)` instead.
 	///
 	/// Refer to the documentation for `withAlpha(_:)` for more info.
 	///
-	@available(*, deprecated, renamed: "withAlpha(_:)")
+	@available(*, unavailable, renamed: "withAlpha(_:)")
 	public func imageWithAlpha(_ alpha: CGFloat) -> UIImage {
 		return self.withAlpha(alpha)
 	}
@@ -473,11 +475,11 @@ extension UIImage {
 	}
 
 	///
-	/// **Deprecated**: Please use `withTint(_:)` instead.
+	/// **Unavailable**: Please use `withTint(_:)` instead.
 	///
 	/// Refer to the documentation for `withTint(_:)` for more info.
 	///
-	@available(*, deprecated, renamed: "withTint(_:)")
+	@available(*, unavailable, renamed: "withTint(_:)")
 	public func imageTintedWithColor(_ color: UIColor) -> UIImage {
 		return self.withTint(color)
 	}
@@ -548,11 +550,11 @@ extension UIImage {
 	}
 
 	///
-	/// **Deprecated**: Please use `ofColor(_:)` instead.
+	/// **Unavailable**: Please use `ofColor(_:)` instead.
 	///
 	/// Refer to the documentation for `ofColor(_:)` for more info.
 	///
-	@available(*, deprecated, renamed: "ofColor(_:)")
+	@available(*, unavailable, renamed: "ofColor(_:)")
 	public static func imageWithColor(_ color: UIColor) -> UIImage {
 		return self.ofColor(color)
 	}
@@ -574,7 +576,7 @@ extension UIImage {
 	}
 
 	///
-	/// **Deprecated**: Please use `roundedRectStretchableImage(borderColor:, fillColor:, borderWidth:, cornerRadius:, scale:)` instead.
+	/// **Unavailable**: Please use `roundedRectStretchableImage(borderColor:, fillColor:, borderWidth:, cornerRadius:, scale:)` instead.
 	/// Create an stretchable rectangle with rounded corners image, with the given parameters.
 	///
 	/// - Parameters:
@@ -585,7 +587,7 @@ extension UIImage {
 	///   - scale: Please refer to the parameters documentation for `UIGraphicsBeginImageContextWithOptions` for more info.
 	/// - Returns: The generated stretchable rectangle with rounded corners, with the given parameters.
 	///
-	@available(*, deprecated, renamed: "roundedRectStretchableImage(borderColor:borderWidth:fillColor:cornerRadius:scale:)")
+	@available(*, unavailable, renamed: "roundedRectStretchableImage(borderColor:borderWidth:fillColor:cornerRadius:scale:)")
 	public static func roundedRectStretchableImage(
 		borderColor: UIColor,
 		backgroundColor: UIColor = .clear,

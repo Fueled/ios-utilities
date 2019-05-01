@@ -15,7 +15,6 @@ limitations under the License.
 */
 import Foundation
 import ReactiveSwift
-import Result
 
 ///
 /// Represents the possible state of an `Action` in Reactive Swift.
@@ -46,11 +45,11 @@ public enum LoadingState<Error: Swift.Error> {
 	}
 
 	///
-	/// **Deprecated**: Please use `isLoading` instead.
+	/// **Unavailable**: Please use `isLoading` instead.
 	///
 	/// Refer to the documentation for `isLoading` for more info.
 	///
-	@available(*, deprecated, renamed: "isLoading")
+	@available(*, unavailable, renamed: "isLoading")
 	public var loading: Bool {
 		return self.isLoading
 	}
@@ -69,22 +68,22 @@ public enum LoadingState<Error: Swift.Error> {
 
 extension ActionProtocol {
 	///
-	/// **Deprecated**: Please use `getSafely(at:)` instead.
+	/// **Unavailable**: Please use `getSafely(at:)` instead.
 	///
 	/// Refer to the documentation for `getSafely(at:)` for more info.
 	///
-	@available(*, deprecated, renamed: "loadingState")
+	@available(*, unavailable, renamed: "loadingState")
 	// The unused parameter allows to bypass the compiler error "Invalid redeclaration of 'loadingState'",
 	// while retaining backward compatibility
-	public func loadingState(_ unused: Void = ()) -> SignalProducer<LoadingState<Error>, NoError> {
-	return self.loadingState
+	public func loadingState(_ unused: Void = ()) -> SignalProducer<LoadingState<Error>, Never> {
+		fatalError()
 	}
 
 	///
 	/// Returns a `SignalProducer` whose events corresponds to the current loading state of the action.
 	/// Please refer to `LoadingState` for more info.
 	///
-	public var loadingState: SignalProducer<LoadingState<Error>, NoError> {
+	public var loadingState: SignalProducer<LoadingState<Error>, Never> {
 		let loading = self.isExecuting.producer
 			.filter { $0 }
 			.map { _ in LoadingState<Error>.loading }

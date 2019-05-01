@@ -7,7 +7,6 @@
 //
 
 import ReactiveSwift
-import Result
 
 ///
 /// Similar to `Action`, except if the action is already executing, subsequent `apply()` call will not fail,
@@ -60,7 +59,7 @@ public class CoalescingAction<Output, Error: Swift.Error>: ActionProtocol {
 	/// In other words, this sends every `Event` from every unit of work that the `Action`
 	/// executes.
 	///
-	public var events: Signal<Signal<Output, Error>.Event, NoError> {
+	public var events: Signal<Signal<Output, Error>.Event, Never> {
 		return self.action.events
 	}
 
@@ -70,7 +69,7 @@ public class CoalescingAction<Output, Error: Swift.Error>: ActionProtocol {
 	/// In other words, this sends every value from every unit of work that the `Action`
 	/// executes.
 	///
-	public var values: Signal<Output, NoError> {
+	public var values: Signal<Output, Never> {
 		return self.action.values
 	}
 
@@ -80,7 +79,7 @@ public class CoalescingAction<Output, Error: Swift.Error>: ActionProtocol {
 	/// In other words, this sends every error from every unit of work that the `Action`
 	/// executes.
 	///
-	public var errors: Signal<Error, NoError> {
+	public var errors: Signal<Error, Never> {
 		return self.action.errors
 	}
 

@@ -16,7 +16,6 @@ limitations under the License.
 import Foundation
 import ReactiveCocoa
 import ReactiveSwift
-import Result
 import UIKit
 
 ///
@@ -143,18 +142,12 @@ extension Reactive where Base: UIViewController {
 @available(iOS 9.0, *)
 extension Reactive where Base: UIStackView {
 	///
-	/// **Deprecated**: Use `subview.reactive.isHidden <~ <Binding Source>` instead.
+	/// **Unavailable**: Use `subview.reactive.isHidden <~ <Binding Source>` instead.
 	/// Add/remove/modify the order of the arranged subviews by specified the subview.
 	///
-	@available(*, deprecated, message: "Use `subview.reactive.isHidden <~ <Binding Source>` instead")
+	@available(*, unavailable, message: "Use `subview.reactive.isHidden <~ <Binding Source>` instead")
 	public func isArranged(_ subview: UIView, at index: Int) -> BindingTarget<Bool> {
-		return makeBindingTarget { stackView, isArrangedSubview in
-			if isArrangedSubview {
-				stackView.insertArrangedSubview(subview, at: index)
-			} else {
-				stackView.removeArrangedSubview(subview)
-			}
-		}
+		fatalError()
 	}
 }
 

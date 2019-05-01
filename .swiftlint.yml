@@ -1,0 +1,157 @@
+whitelist_rules:
+  - block_based_kvo
+  - class_delegate_protocol
+  - closing_brace
+  - closure_parameter_position
+  - closure_spacing
+  - colon
+  - comma
+  - conditional_returns_on_newline
+  - control_statement
+  - custom_rules
+  - discarded_notification_center_observer
+  - discouraged_direct_init
+  - dynamic_inline
+  - empty_count
+  - empty_enum_arguments
+  - empty_parameters
+  - empty_parentheses_with_trailing_closure
+  - explicit_init
+  - fallthrough
+  - file_length
+  - for_where
+  - function_body_length
+  - identifier_name
+  - implicit_getter
+  - is_disjoint
+  - leading_whitespace
+  - legacy_cggeometry_functions
+  - legacy_constant
+  - legacy_constructor
+  - legacy_nsgeometry_functions
+  - line_length
+  - mark
+  - multiple_closures_with_trailing_closure
+  - notification_center_detachment
+  - overridden_super_call
+  - private_over_fileprivate
+  - private_unit_test
+  - prohibited_super_call
+  - protocol_property_accessors_order
+  - redundant_discardable_let
+  - redundant_optional_initialization
+  - redundant_string_enum_value
+  - redundant_void_return
+  - return_arrow_whitespace
+  - shorthand_operator
+  - statement_position
+  - superfluous_disable_command
+  - switch_case_alignment
+  - switch_case_on_newline
+  - syntactic_sugar
+  - todo
+  - trailing_newline
+  - trailing_semicolon
+  - trailing_whitespace
+  - type_body_length
+  - type_name
+  - unneeded_break_in_switch
+  - unused_enumerated
+  - unused_optional_binding
+  - valid_ibinspectable
+  - vertical_parameter_alignment
+  - vertical_whitespace
+  - void_return
+  - weak_delegate
+  - xctfail_message
+  - trailing_comma
+included: # paths to include during linting. `--path` is ignored if present.
+  - FueledUtils
+  - FueledUtilsTests
+excluded: # paths to ignore during linting. Takes precedence over `included`.
+  - Carthage
+  - Pods
+type_body_length:
+  warning: 300
+  error: 400
+line_length:
+  warning: 220
+  error: 99999 # Default is 200, so swiftlint would output an error if the file length is between 200 and 220
+file_length:
+  warning: 1000
+type_name:
+  min_length: 2
+  max_length: 60
+trailing_semicolon: error
+trailing_comma:
+  mandatory_comma: true
+  severity: warning
+function_body_length:
+  warning: 150
+  error: 300
+statement_position:
+  statement_mode: default
+  severity: error
+colon:
+  severity: error
+identifier_name:
+  allowed_symbols: "_"
+  min_length:
+    warning: 3
+  max_length:
+    warning: 70
+    error: 100
+  severity: error
+  excluded:
+    - x
+    - y
+    - z
+    - i
+    - j
+    - k
+    - l
+    - id
+    - URL
+    - r
+    - g
+    - b
+    - a
+    - t
+    - v
+    - y
+    - u
+    - on
+    - no
+    - qa
+return_arrow_whitespace: error
+legacy_constructor: error
+legacy_constant: error
+leading_whitespace: error
+empty_count: warning
+shorthand_operator: warning
+reporter: "xcode"
+custom_rules:
+    protocol_conformance:
+        name: "Protocol Conformance"
+        message: "Protocol conformance should be declared in separate extensions in the same file"
+        regex: "(class|struct|extension)[[:space:]]+(?i:(?![^d]*delegate:))[^'\"()<>{},!?:]+:([^'\"<>(){},!?:]+,)+[^'\"<>(){},!?:]*\\{"
+        match_kinds:
+          - keyword
+        severity: warning
+    computed_property:
+        name: "Computed Properties"
+        message: "The get clause should be omitted if the computed property is read only"
+        regex: "var[[:space:]]+[^:]+:[^{]*\\{[[:space:]]*get[[:space:]]*\\{[^}]+\\}(?![[:space:]]*set)"
+        match_kinds:
+          - keyword
+        severity: warning
+    indentation_character:
+        name: "Indentation"
+        message: "Tabs should be used rather than spaces. This error may not be displayed exactly at the location of the violation but just above it."
+        regex: "[^\n]*\n+ +"
+        severity: error
+    nested_self_usage:
+        name: "Nested .self usage"
+        message: ".self shouldn't be used more than once on a given statement"
+        regex: "(?<!\")self\\.(?:\\p{L}+\\.)*self"
+        severity: warning
