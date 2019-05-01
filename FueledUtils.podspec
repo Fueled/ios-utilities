@@ -22,5 +22,6 @@ Pod::Spec.new do |s|
 	s.watchos.exclude_files = ['FueledUtils/FueledUtils.h', 'FueledUtils/ButtonWithTitleAdjustment.swift', 'FueledUtils/DecoratingTextFieldDelegate.swift', 'FueledUtils/DimmingButton.swift', 'FueledUtils/HairlineView.swift', 'FueledUtils/HairlineView.swift', 'FueledUtils/KeyboardInsetHelper.swift', 'FueledUtils/LabelWithTitleAdjustment.swift', 'FueledUtils/ReactiveCocoaExtensions.swift', 'FueledUtils/ScrollViewPage.swift', 'FueledUtils/SetRootViewController.swift', 'FueledUtils/SignalingAlert.swift', 'FueledUtils/UIExtensions.swift', 'FueledUtils/GradientView.swift']
 	s.tvos.exclude_files = ['FueledUtils/FueledUtils.h', 'FueledUtils/KeyboardInsetHelper.swift']
 
-	s.dependency 'ReactiveCocoa', '~> 9.0'
+	s.dependency 'ReactiveSwift', '~> 6.0'
+	s.dependency 'ReactiveCocoa', '~> 10.0'
 end
