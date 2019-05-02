@@ -83,13 +83,10 @@
 		F463E009222D83070031AAA5 /* TypedSerialDisposable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40C574521F90BD10006FB3F /* TypedSerialDisposable.swift */; };
 		F463E00D222D836E0031AAA5 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F463E00C222D836E0031AAA5 /* ReactiveCocoa.framework */; };
 		F463E00F222D836E0031AAA5 /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F463E00E222D836E0031AAA5 /* ReactiveSwift.framework */; };
-		F463E011222D836E0031AAA5 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F463E010222D836E0031AAA5 /* Result.framework */; };
 		F463E013222D837D0031AAA5 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F463E012222D837D0031AAA5 /* ReactiveCocoa.framework */; };
 		F463E017222D837D0031AAA5 /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F463E016222D837D0031AAA5 /* ReactiveSwift.framework */; };
 		F463E019222D83890031AAA5 /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F463E018222D83890031AAA5 /* ReactiveCocoa.framework */; };
 		F463E01B222D83890031AAA5 /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F463E01A222D83890031AAA5 /* ReactiveSwift.framework */; };
-		F463E01D222D83890031AAA5 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F463E01C222D83890031AAA5 /* Result.framework */; };
-		F463E01F222D83910031AAA5 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F463E01E222D83910031AAA5 /* Result.framework */; };
 		F463E020222D83C40031AAA5 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DE3C3A1D258FD1002B58E2 /* UIExtensions.swift */; };
 		F463E022222D84620031AAA5 /* ReactiveLifetimeProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DF8ECA1E6464AB009AB29C /* ReactiveLifetimeProvider.swift */; };
 		F464775D21FA3FA5005F8B7E /* CoalescingAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F464775C21FA3FA5005F8B7E /* CoalescingAction.swift */; };
@@ -173,7 +170,6 @@
 			files = (
 				F463E019222D83890031AAA5 /* ReactiveCocoa.framework in Frameworks */,
 				F463E01B222D83890031AAA5 /* ReactiveSwift.framework in Frameworks */,
-				F463E01D222D83890031AAA5 /* Result.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -181,7 +177,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F463E01F222D83910031AAA5 /* Result.framework in Frameworks */,
 				F463E013222D837D0031AAA5 /* ReactiveCocoa.framework in Frameworks */,
 				F463E017222D837D0031AAA5 /* ReactiveSwift.framework in Frameworks */,
 			);
@@ -193,7 +188,6 @@
 			files = (
 				F463E00D222D836E0031AAA5 /* ReactiveCocoa.framework in Frameworks */,
 				F463E00F222D836E0031AAA5 /* ReactiveSwift.framework in Frameworks */,
-				F463E011222D836E0031AAA5 /* Result.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
