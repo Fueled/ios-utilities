@@ -262,6 +262,22 @@ extension UIView {
 	}
 
 	///
+	/// Renders the view's layer and returns a `UIImage`.
+	///
+	/// - Parameters:
+	///   - opaque: Please refer to the parameters documentation for `UIGraphicsBeginImageContextWithOptions` for more info.
+	///   - scale: Please refer to the parameters documentation for `UIGraphicsBeginImageContextWithOptions` for more info.
+	/// - Returns: The image if it could be generated. If it couldn't, for example if the `UIView`'s width or height is 0, a crash will happen at runtime.
+	///
+	/// - Note: The returns is an implicitely unwrapped optional for backward-compatibility purpose, and will be made an optional in a future release (as well as not crash)
+	///
+	public func renderImage(opaque: Bool = false, scale: CGFloat = 0.0) -> UIImage {
+		return UIImage.draw(size: self.bounds.size, opaque: opaque, scale: scale) { context in
+			self.layer.render(in: context)
+		}
+	}
+
+	///
 	/// Apply a shadow with the parameters that can be specified in the Sketch application.
 	/// This methods internally updates the following properties of the backing `CALayer` (`self.layer`):
 	/// - `CALayer.shadowColor`
