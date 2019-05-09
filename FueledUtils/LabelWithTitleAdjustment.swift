@@ -75,7 +75,7 @@ open class LabelWithTitleAdjustment: UILabel {
 	///
 	/// Please refer to the documentation for `UILabel.init(frame:)`
 	///
-	override init(frame: CGRect) {
+	override public init(frame: CGRect) {
 		super.init(frame: frame)
 		self.setAdjustedText(self.text)
 	}

@@ -78,7 +78,7 @@ open class ButtonWithTitleAdjustment: UIButton {
 	}
 
 	private func updateAdjustedTitles() {
-		let states: [UIControl.State] = [.normal, .highlighted, .selected, .disabled, [.selected, .highlighted], [.selected, .disabled]]
+		let states: [UIControl.State] = [.normal, .focused, .highlighted, .selected, .disabled, [.selected, .highlighted], [.selected, .disabled]]
 		for state in states {
 			self.setAdjustedTitle(self.title(for: state), for: state)
 		}
@@ -88,12 +88,16 @@ open class ButtonWithTitleAdjustment: UIButton {
 		let adjustedString = title.map { title -> NSAttributedString in
 			let paragraphStyle = NSMutableParagraphStyle()
 			paragraphStyle.lineSpacing = self.adjustmentLineSpacing
+			if let titleLabel = self.titleLabel {
+				paragraphStyle.lineBreakMode = titleLabel.lineBreakMode
+				paragraphStyle.alignment = titleLabel.textAlignment
+			}
 			var attributes: [NSAttributedString.Key: Any] = [
-				NSAttributedString.Key.paragraphStyle: paragraphStyle,
-				NSAttributedString.Key.kern: self.adjustmentKerning,
+				.paragraphStyle: paragraphStyle,
+				.kern: self.adjustmentKerning
 			]
 			if let titleColor = self.titleColor(for: state) {
-				attributes[NSAttributedString.Key.foregroundColor] = titleColor
+				attributes[.foregroundColor] = titleColor
 			}
 			return NSAttributedString(string: title, attributes: attributes)
 		}
