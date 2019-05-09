@@ -262,7 +262,8 @@ extension UIView {
 	}
 
 	///
-	/// Renders the view's layer and returns a `UIImage`.
+	/// Renders the view's layer and its sublayers and returns a `UIImage`. In contrast with `snapshotImage(afterScreenUpdates:)` which works only for visible onscreen content
+	/// it works even in cases when the view's `draw(_:)` method hasn't been called yet at the moment of calling the method.
 	///
 	/// - Parameters:
 	///   - opaque: Please refer to the parameters documentation for `UIGraphicsBeginImageContextWithOptions` for more info.
@@ -271,7 +272,7 @@ extension UIView {
 	///
 	/// - Note: The returns is an implicitely unwrapped optional for backward-compatibility purpose, and will be made an optional in a future release (as well as not crash)
 	///
-	public func renderImage(opaque: Bool = false, scale: CGFloat = 0.0) -> UIImage {
+	public func renderToImage(opaque: Bool = false, scale: CGFloat = 0.0) -> UIImage {
 		return UIImage.draw(size: self.bounds.size, opaque: opaque, scale: scale) { context in
 			self.layer.render(in: context)
 		}
