@@ -78,7 +78,12 @@ open class ButtonWithTitleAdjustment: UIButton {
 	}
 
 	private func updateAdjustedTitles() {
-		let states: [UIControl.State] = [.normal, .focused, .highlighted, .selected, .disabled, [.selected, .highlighted], [.selected, .disabled]]
+		let states: [UIControl.State]
+		if #available(iOS 9.0, *) {
+			 states = [.normal, .focused, .highlighted, .selected, .disabled, [.selected, .highlighted], [.selected, .disabled]]
+		} else {
+			states = [.normal, .highlighted, .selected, .disabled, [.selected, .highlighted], [.selected, .disabled]]
+		}
 		for state in states {
 			self.setAdjustedTitle(self.title(for: state), for: state)
 		}
