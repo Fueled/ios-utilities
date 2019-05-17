@@ -79,7 +79,7 @@ extension Reactive where Base: UIView {
 	///
 	/// Update the `alpha` property of the view with an animation.
 	///
-	var animatedAlpha: BindingTarget<Float> {
+	public var animatedAlpha: BindingTarget<Float> {
 		return self.animatedAlpha()
 	}
 
@@ -89,7 +89,7 @@ extension Reactive where Base: UIView {
 	/// - Parameters:
 	///   - duration: The duration of the animation.
 	///
-	func animatedAlpha(duration: TimeInterval = 0.35) -> BindingTarget<Float> {
+	public func animatedAlpha(duration: TimeInterval = 0.35) -> BindingTarget<Float> {
 		return makeBindingTarget { view, alpha in
 			UIView.animate(withDuration: duration) {
 				view.alpha = CGFloat(alpha)
@@ -102,7 +102,7 @@ extension Reactive where Base: UILabel {
 	///
 	/// Update the `text` property of the label with an animation.
 	///
-	var animatedText: BindingTarget<String> {
+	public var animatedText: BindingTarget<String> {
 		return makeBindingTarget { label, text in
 			label.setText(text, animated: true)
 		}
@@ -110,7 +110,7 @@ extension Reactive where Base: UILabel {
 	///
 	/// Update the `attributedText` property of the label with an animation.
 	///
-	var animatedAttributedText: BindingTarget<NSAttributedString> {
+	public var animatedAttributedText: BindingTarget<NSAttributedString> {
 		return makeBindingTarget { label, text in
 			label.setAttributedText(text, animated: true)
 		}
