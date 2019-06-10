@@ -55,7 +55,7 @@ extension UIScrollView {
 	///
 	public var currentPage: Int {
 		get {
-			let page = Int((self.bounds.size.width / self.contentOffset.x).rounded())
+			let page = Int((self.contentOffset.x / self.bounds.size.width).rounded())
 			return min(max(0, page), self.numberOfPages - 1)
 		}
 		set {
@@ -69,7 +69,7 @@ extension UIScrollView {
 	/// - Returns: Returns the number of pages.
 	///
 	public var numberOfPages: Int {
-		return Int((self.bounds.size.width / self.contentSize.width).rounded(.up))
+		return Int((self.contentSize.width / self.bounds.size.width).rounded(.up))
 	}
 
 	///
