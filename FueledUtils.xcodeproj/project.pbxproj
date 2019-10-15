@@ -34,6 +34,7 @@
 		F40C574421F909A60006FB3F /* ActionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40C574321F909A60006FB3F /* ActionProtocol.swift */; };
 		F40C574621F90BD10006FB3F /* TypedSerialDisposable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40C574521F90BD10006FB3F /* TypedSerialDisposable.swift */; };
 		F40C574821F9182B0006FB3F /* TransferState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40C574721F9182B0006FB3F /* TransferState.swift */; };
+		F45268392355E83200DA9B9B /* CoalescingActionSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45268382355E83200DA9B9B /* CoalescingActionSpec.swift */; };
 		F463DFC1222D83060031AAA5 /* ActionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40C574321F909A60006FB3F /* ActionProtocol.swift */; };
 		F463DFC2222D83060031AAA5 /* ButtonWithTitleAdjustment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DE3C4B1D259628002B58E2 /* ButtonWithTitleAdjustment.swift */; };
 		F463DFC3222D83060031AAA5 /* CoalescingAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F464775C21FA3FA5005F8B7E /* CoalescingAction.swift */; };
@@ -128,6 +129,7 @@
 		F40C574321F909A60006FB3F /* ActionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionProtocol.swift; sourceTree = "<group>"; };
 		F40C574521F90BD10006FB3F /* TypedSerialDisposable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypedSerialDisposable.swift; sourceTree = "<group>"; };
 		F40C574721F9182B0006FB3F /* TransferState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransferState.swift; sourceTree = "<group>"; };
+		F45268382355E83200DA9B9B /* CoalescingActionSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoalescingActionSpec.swift; sourceTree = "<group>"; };
 		F463DF9F222D81D50031AAA5 /* FueledUtils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FueledUtils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F463DFAC222D81E10031AAA5 /* FueledUtils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FueledUtils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F463DFB9222D81F10031AAA5 /* FueledUtils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FueledUtils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -280,6 +282,7 @@
 		F4CBDF162200A72400DF24DD /* FueledUtilsTests */ = {
 			isa = PBXGroup;
 			children = (
+				F45268382355E83200DA9B9B /* CoalescingActionSpec.swift */,
 				F4CBDF172200A72400DF24DD /* ReactiveSwiftExtensionsSpec.swift */,
 				F4CBDF192200A72400DF24DD /* Info.plist */,
 			);
@@ -693,6 +696,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F45268392355E83200DA9B9B /* CoalescingActionSpec.swift in Sources */,
 				F4CBDF182200A72400DF24DD /* ReactiveSwiftExtensionsSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
