@@ -37,7 +37,7 @@
 		F45268392355E83200DA9B9B /* CoalescingActionSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45268382355E83200DA9B9B /* CoalescingActionSpec.swift */; };
 		F463DFC1222D83060031AAA5 /* ActionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40C574321F909A60006FB3F /* ActionProtocol.swift */; };
 		F463DFC2222D83060031AAA5 /* ButtonWithTitleAdjustment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DE3C4B1D259628002B58E2 /* ButtonWithTitleAdjustment.swift */; };
-		F463DFC3222D83060031AAA5 /* CoalescingAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F464775C21FA3FA5005F8B7E /* CoalescingAction.swift */; };
+		F463DFC3222D83060031AAA5 /* InputCoalescingAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F464775C21FA3FA5005F8B7E /* InputCoalescingAction.swift */; };
 		F463DFC4222D83060031AAA5 /* CollectionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A619541F47263100777BB2 /* CollectionExtensions.swift */; };
 		F463DFC5222D83060031AAA5 /* DecoratingTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DE3C561D25A24B002B58E2 /* DecoratingTextFieldDelegate.swift */; };
 		F463DFC6222D83060031AAA5 /* DimmingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DE3C541D259FA9002B58E2 /* DimmingButton.swift */; };
@@ -58,7 +58,7 @@
 		F463DFD7222D83060031AAA5 /* TypedSerialDisposable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40C574521F90BD10006FB3F /* TypedSerialDisposable.swift */; };
 		F463DFD9222D83060031AAA5 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA57F0521E7A64200467647 /* GradientView.swift */; };
 		F463DFDA222D83060031AAA5 /* ActionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40C574321F909A60006FB3F /* ActionProtocol.swift */; };
-		F463DFDC222D83060031AAA5 /* CoalescingAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F464775C21FA3FA5005F8B7E /* CoalescingAction.swift */; };
+		F463DFDC222D83060031AAA5 /* InputCoalescingAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F464775C21FA3FA5005F8B7E /* InputCoalescingAction.swift */; };
 		F463DFDD222D83060031AAA5 /* CollectionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A619541F47263100777BB2 /* CollectionExtensions.swift */; };
 		F463DFE0222D83060031AAA5 /* TransferState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40C574721F9182B0006FB3F /* TransferState.swift */; };
 		F463DFE1222D83060031AAA5 /* FoundationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35996E0E1F55C3E1004D6AC0 /* FoundationExtensions.swift */; };
@@ -71,7 +71,7 @@
 		F463DFEF222D83060031AAA5 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DE3C3B1D258FD1002B58E2 /* StringExtensions.swift */; };
 		F463DFF0222D83060031AAA5 /* TypedSerialDisposable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40C574521F90BD10006FB3F /* TypedSerialDisposable.swift */; };
 		F463DFF3222D83070031AAA5 /* ActionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40C574321F909A60006FB3F /* ActionProtocol.swift */; };
-		F463DFF5222D83070031AAA5 /* CoalescingAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F464775C21FA3FA5005F8B7E /* CoalescingAction.swift */; };
+		F463DFF5222D83070031AAA5 /* InputCoalescingAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F464775C21FA3FA5005F8B7E /* InputCoalescingAction.swift */; };
 		F463DFF6222D83070031AAA5 /* CollectionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A619541F47263100777BB2 /* CollectionExtensions.swift */; };
 		F463DFF9222D83070031AAA5 /* TransferState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40C574721F9182B0006FB3F /* TransferState.swift */; };
 		F463DFFA222D83070031AAA5 /* FoundationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35996E0E1F55C3E1004D6AC0 /* FoundationExtensions.swift */; };
@@ -90,7 +90,7 @@
 		F463E01B222D83890031AAA5 /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F463E01A222D83890031AAA5 /* ReactiveSwift.framework */; };
 		F463E020222D83C40031AAA5 /* UIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DE3C3A1D258FD1002B58E2 /* UIExtensions.swift */; };
 		F463E022222D84620031AAA5 /* ReactiveLifetimeProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DF8ECA1E6464AB009AB29C /* ReactiveLifetimeProvider.swift */; };
-		F464775D21FA3FA5005F8B7E /* CoalescingAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F464775C21FA3FA5005F8B7E /* CoalescingAction.swift */; };
+		F464775D21FA3FA5005F8B7E /* InputCoalescingAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F464775C21FA3FA5005F8B7E /* InputCoalescingAction.swift */; };
 		F4A619551F47263100777BB2 /* CollectionExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A619541F47263100777BB2 /* CollectionExtensions.swift */; };
 		F4CBDF182200A72400DF24DD /* ReactiveSwiftExtensionsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4CBDF172200A72400DF24DD /* ReactiveSwiftExtensionsSpec.swift */; };
 		F4CBDF1E2200A99A00DF24DD /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4CBDF1D2200A99A00DF24DD /* Nimble.framework */; };
@@ -140,7 +140,7 @@
 		F463E016222D837D0031AAA5 /* ReactiveSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ReactiveSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F463E018222D83890031AAA5 /* ReactiveCocoa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ReactiveCocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F463E01A222D83890031AAA5 /* ReactiveSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ReactiveSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F464775C21FA3FA5005F8B7E /* CoalescingAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoalescingAction.swift; sourceTree = "<group>"; };
+		F464775C21FA3FA5005F8B7E /* InputCoalescingAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputCoalescingAction.swift; sourceTree = "<group>"; };
 		F4A619541F47263100777BB2 /* CollectionExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionExtensions.swift; sourceTree = "<group>"; };
 		F4CBDF152200A72400DF24DD /* FueledUtilsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FueledUtilsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4CBDF172200A72400DF24DD /* ReactiveSwiftExtensionsSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactiveSwiftExtensionsSpec.swift; sourceTree = "<group>"; };
@@ -252,7 +252,7 @@
 				02DE3C231D258C79002B58E2 /* Info.plist */,
 				F40C574321F909A60006FB3F /* ActionProtocol.swift */,
 				02DE3C4B1D259628002B58E2 /* ButtonWithTitleAdjustment.swift */,
-				F464775C21FA3FA5005F8B7E /* CoalescingAction.swift */,
+				F464775C21FA3FA5005F8B7E /* InputCoalescingAction.swift */,
 				F4A619541F47263100777BB2 /* CollectionExtensions.swift */,
 				02DE3C561D25A24B002B58E2 /* DecoratingTextFieldDelegate.swift */,
 				02DE3C541D259FA9002B58E2 /* DimmingButton.swift */,
@@ -614,7 +614,7 @@
 				02E626091D340F0C0041E512 /* LoadingState.swift in Sources */,
 				02DE3C3E1D258FD1002B58E2 /* SequenceExtensions.swift in Sources */,
 				02DE3C3F1D258FD1002B58E2 /* SignalingAlert.swift in Sources */,
-				F464775D21FA3FA5005F8B7E /* CoalescingAction.swift in Sources */,
+				F464775D21FA3FA5005F8B7E /* InputCoalescingAction.swift in Sources */,
 				F40C574621F90BD10006FB3F /* TypedSerialDisposable.swift in Sources */,
 				02DE3C551D259FA9002B58E2 /* DimmingButton.swift in Sources */,
 				F40C574821F9182B0006FB3F /* TransferState.swift in Sources */,
@@ -630,7 +630,7 @@
 				F463DFE0222D83060031AAA5 /* TransferState.swift in Sources */,
 				F463DFDD222D83060031AAA5 /* CollectionExtensions.swift in Sources */,
 				F463DFEF222D83060031AAA5 /* StringExtensions.swift in Sources */,
-				F463DFDC222D83060031AAA5 /* CoalescingAction.swift in Sources */,
+				F463DFDC222D83060031AAA5 /* InputCoalescingAction.swift in Sources */,
 				F463DFEA222D83060031AAA5 /* Regex.swift in Sources */,
 				F463DFE1222D83060031AAA5 /* FoundationExtensions.swift in Sources */,
 				F463DFE9222D83060031AAA5 /* ReactiveSwiftExtensions.swift in Sources */,
@@ -653,7 +653,7 @@
 				F463DFCB222D83060031AAA5 /* LabelWithTitleAdjustment.swift in Sources */,
 				F463DFD4222D83060031AAA5 /* SetRootViewController.swift in Sources */,
 				F463DFD6222D83060031AAA5 /* StringExtensions.swift in Sources */,
-				F463DFC3222D83060031AAA5 /* CoalescingAction.swift in Sources */,
+				F463DFC3222D83060031AAA5 /* InputCoalescingAction.swift in Sources */,
 				F463DFD1222D83060031AAA5 /* Regex.swift in Sources */,
 				F463DFC8222D83060031AAA5 /* FoundationExtensions.swift in Sources */,
 				F463DFC6222D83060031AAA5 /* DimmingButton.swift in Sources */,
@@ -681,7 +681,7 @@
 				F463DFF9222D83070031AAA5 /* TransferState.swift in Sources */,
 				F463DFF6222D83070031AAA5 /* CollectionExtensions.swift in Sources */,
 				F463E008222D83070031AAA5 /* StringExtensions.swift in Sources */,
-				F463DFF5222D83070031AAA5 /* CoalescingAction.swift in Sources */,
+				F463DFF5222D83070031AAA5 /* InputCoalescingAction.swift in Sources */,
 				F463E003222D83070031AAA5 /* Regex.swift in Sources */,
 				F463DFFA222D83070031AAA5 /* FoundationExtensions.swift in Sources */,
 				F463E022222D84620031AAA5 /* ReactiveLifetimeProvider.swift in Sources */,
