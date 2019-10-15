@@ -10,7 +10,6 @@ import Quick
 import Nimble
 import FueledUtils
 import ReactiveSwift
-import Result
 import XCTest
 
 class ReactiveSwiftExtensionsSpec: QuickSpec {
@@ -18,7 +17,7 @@ class ReactiveSwiftExtensionsSpec: QuickSpec {
 		describe("Signal") {
 			describe("minimum") {
 				it("should send any values after the minimum time specified") {
-					let (signal, observer) = Signal<Void, NoError>.pipe()
+					let (signal, observer) = Signal<Void, Never>.pipe()
 					let waitScheduler = QueueScheduler(qos: .utility, name: "Observe", targeting: nil)
 					var valuesReceived = 0
 					signal.minimum(interval: 0.1, on: waitScheduler).observeValues {
@@ -50,7 +49,7 @@ class ReactiveSwiftExtensionsSpec: QuickSpec {
 					expect(errorsReceived).toEventually(equal(1), timeout: 1.0)
 				}
 				it("should send any values instantly and receive an interrupted event if interrupted before the minimum interval is met") {
-					let (signal, observer) = Signal<Void, NoError>.pipe()
+					let (signal, observer) = Signal<Void, Never>.pipe()
 					let waitScheduler = QueueScheduler(qos: .utility, name: "Observe", targeting: nil)
 					var valuesReceived = 0
 					var interruptedReceived = 0
