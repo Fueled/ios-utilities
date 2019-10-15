@@ -99,7 +99,7 @@ open class ButtonWithTitleAdjustment: UIButton {
 			}
 			var attributes: [NSAttributedString.Key: Any] = [
 				.paragraphStyle: paragraphStyle,
-				.kern: self.adjustmentKerning
+				.kern: self.adjustmentKerning,
 			]
 			if let titleColor = self.titleColor(for: state) {
 				attributes[.foregroundColor] = titleColor

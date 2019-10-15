@@ -34,6 +34,7 @@
 		F40C574421F909A60006FB3F /* ActionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40C574321F909A60006FB3F /* ActionProtocol.swift */; };
 		F40C574621F90BD10006FB3F /* TypedSerialDisposable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40C574521F90BD10006FB3F /* TypedSerialDisposable.swift */; };
 		F40C574821F9182B0006FB3F /* TransferState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40C574721F9182B0006FB3F /* TransferState.swift */; };
+		F45268392355E83200DA9B9B /* CoalescingActionSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45268382355E83200DA9B9B /* CoalescingActionSpec.swift */; };
 		F463DFC1222D83060031AAA5 /* ActionProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40C574321F909A60006FB3F /* ActionProtocol.swift */; };
 		F463DFC2222D83060031AAA5 /* ButtonWithTitleAdjustment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02DE3C4B1D259628002B58E2 /* ButtonWithTitleAdjustment.swift */; };
 		F463DFC3222D83060031AAA5 /* CoalescingAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F464775C21FA3FA5005F8B7E /* CoalescingAction.swift */; };
@@ -96,7 +97,6 @@
 		F4CBDF202200A99A00DF24DD /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4CBDF1F2200A99A00DF24DD /* Quick.framework */; };
 		F4CBDF222200A99A00DF24DD /* ReactiveCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4CBDF212200A99A00DF24DD /* ReactiveCocoa.framework */; };
 		F4CBDF242200A99A00DF24DD /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4CBDF232200A99A00DF24DD /* ReactiveSwift.framework */; };
-		F4CBDF262200A99A00DF24DD /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4CBDF252200A99A00DF24DD /* Result.framework */; };
 		F4CBDF272200A99A00DF24DD /* FueledUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02DE3C1E1D258C79002B58E2 /* FueledUtils.framework */; };
 /* End PBXBuildFile section */
 
@@ -129,19 +129,17 @@
 		F40C574321F909A60006FB3F /* ActionProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionProtocol.swift; sourceTree = "<group>"; };
 		F40C574521F90BD10006FB3F /* TypedSerialDisposable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypedSerialDisposable.swift; sourceTree = "<group>"; };
 		F40C574721F9182B0006FB3F /* TransferState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransferState.swift; sourceTree = "<group>"; };
+		F45268382355E83200DA9B9B /* CoalescingActionSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoalescingActionSpec.swift; sourceTree = "<group>"; };
 		F463DF9F222D81D50031AAA5 /* FueledUtils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FueledUtils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F463DFAC222D81E10031AAA5 /* FueledUtils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FueledUtils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F463DFB9222D81F10031AAA5 /* FueledUtils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FueledUtils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F463E00C222D836E0031AAA5 /* ReactiveCocoa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ReactiveCocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F463E00E222D836E0031AAA5 /* ReactiveSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ReactiveSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F463E010222D836E0031AAA5 /* Result.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Result.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F463E012222D837D0031AAA5 /* ReactiveCocoa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ReactiveCocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F463E014222D837D0031AAA5 /* ReactiveMapKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ReactiveMapKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F463E016222D837D0031AAA5 /* ReactiveSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ReactiveSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F463E018222D83890031AAA5 /* ReactiveCocoa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ReactiveCocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F463E01A222D83890031AAA5 /* ReactiveSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ReactiveSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F463E01C222D83890031AAA5 /* Result.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Result.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F463E01E222D83910031AAA5 /* Result.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Result.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F464775C21FA3FA5005F8B7E /* CoalescingAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoalescingAction.swift; sourceTree = "<group>"; };
 		F4A619541F47263100777BB2 /* CollectionExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionExtensions.swift; sourceTree = "<group>"; };
 		F4CBDF152200A72400DF24DD /* FueledUtilsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FueledUtilsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -151,7 +149,6 @@
 		F4CBDF1F2200A99A00DF24DD /* Quick.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Quick.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4CBDF212200A99A00DF24DD /* ReactiveCocoa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ReactiveCocoa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4CBDF232200A99A00DF24DD /* ReactiveSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ReactiveSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F4CBDF252200A99A00DF24DD /* Result.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Result.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,7 +197,6 @@
 				F4CBDF202200A99A00DF24DD /* Quick.framework in Frameworks */,
 				F4CBDF222200A99A00DF24DD /* ReactiveCocoa.framework in Frameworks */,
 				F4CBDF242200A99A00DF24DD /* ReactiveSwift.framework in Frameworks */,
-				F4CBDF262200A99A00DF24DD /* Result.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -210,21 +206,17 @@
 		024E88711DA1597800826334 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F463E01E222D83910031AAA5 /* Result.framework */,
 				F463E018222D83890031AAA5 /* ReactiveCocoa.framework */,
 				F463E01A222D83890031AAA5 /* ReactiveSwift.framework */,
-				F463E01C222D83890031AAA5 /* Result.framework */,
 				F463E012222D837D0031AAA5 /* ReactiveCocoa.framework */,
 				F463E014222D837D0031AAA5 /* ReactiveMapKit.framework */,
 				F463E016222D837D0031AAA5 /* ReactiveSwift.framework */,
 				F463E00C222D836E0031AAA5 /* ReactiveCocoa.framework */,
 				F463E00E222D836E0031AAA5 /* ReactiveSwift.framework */,
-				F463E010222D836E0031AAA5 /* Result.framework */,
 				F4CBDF1D2200A99A00DF24DD /* Nimble.framework */,
 				F4CBDF1F2200A99A00DF24DD /* Quick.framework */,
 				F4CBDF212200A99A00DF24DD /* ReactiveCocoa.framework */,
 				F4CBDF232200A99A00DF24DD /* ReactiveSwift.framework */,
-				F4CBDF252200A99A00DF24DD /* Result.framework */,
 				024E88721DA1597900826334 /* ReactiveSwift.framework */,
 			);
 			name = Frameworks;
@@ -290,6 +282,7 @@
 		F4CBDF162200A72400DF24DD /* FueledUtilsTests */ = {
 			isa = PBXGroup;
 			children = (
+				F45268382355E83200DA9B9B /* CoalescingActionSpec.swift */,
 				F4CBDF172200A72400DF24DD /* ReactiveSwiftExtensionsSpec.swift */,
 				F4CBDF192200A72400DF24DD /* Info.plist */,
 			);
@@ -431,7 +424,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1010;
-				LastUpgradeCheck = 1020;
+				LastUpgradeCheck = 1110;
 				ORGANIZATIONNAME = Fueled;
 				TargetAttributes = {
 					02DE3C1D1D258C79002B58E2 = {
@@ -703,6 +696,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F45268392355E83200DA9B9B /* CoalescingActionSpec.swift in Sources */,
 				F4CBDF182200A72400DF24DD /* ReactiveSwiftExtensionsSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -835,7 +829,7 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -860,7 +854,7 @@
 			buildSettings = {
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;

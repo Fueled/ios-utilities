@@ -21,21 +21,21 @@ public class CoalescingAction<Output, Error: Swift.Error>: ActionProtocol {
 
 	private class DisposableContainer {
 		private let disposable: Disposable
-		private var count = Atomic(0) {
-			willSet {
-				if self.count.value == 0 {
-					self.disposable.dispose()
-				}
-			}
-		}
+		private let count = Atomic(0)
 
 		init(_ disposable: Disposable) {
 			self.disposable = disposable
 		}
 
 		func add(_ lifetime: Lifetime) {
+			self.count.value += 1
 			lifetime.observeEnded {
-				self.count.value -= 1
+				self.count.modify {
+					$0 -= 1
+					if $0 == 0 {
+						self.disposable.dispose()
+					}
+				}
 			}
 		}
 	}
