@@ -69,10 +69,10 @@ private struct CocoaLock: LockImplementation {
 	}
 }
 
-final class Lock {
+public final class Lock {
 	private var lockImplementation: LockImplementation
 
-	init() {
+	public init() {
 		if #available(iOS 10.0, *) {
 			self.lockImplementation = UnfairLock()
 		} else {
@@ -80,15 +80,15 @@ final class Lock {
 		}
 	}
 
-	func lock() {
+	public func lock() {
 		self.lockImplementation.lock()
 	}
 
-	func `try`() -> Bool {
+	public func `try`() -> Bool {
 		self.lockImplementation.try()
 	}
 
-	func unlock() {
+	public func unlock() {
 		self.lockImplementation.unlock()
 	}
 }

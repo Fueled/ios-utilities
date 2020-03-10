@@ -59,18 +59,18 @@ public final class Action<Input, Output, Failure: Swift.Error> {
 		self.values = values.eraseToAnyPublisher()
 		self.errors = errors.eraseToAnyPublisher()
 
-		let isExecutingLock = DispatchSemaphore(value: 1)
+		let isExecutingLock = Lock()
 		self.execute = { action, input -> AnyPublisher<Output, ActionError<Failure>> in
-			isExecutingLock.wait()
+			isExecutingLock.lock()
 
 			if !action.isEnabled || action.isExecuting {
-				isExecutingLock.signal()
+				isExecutingLock.unlock()
 				return Fail(error: .disabled)
 					.eraseToAnyPublisher()
 			}
 
 			action.isExecuting = true
-			isExecutingLock.signal()
+			isExecutingLock.unlock()
 			return execute(input)
 				.handleEvents(
 					receiveOutput: { value in
@@ -79,9 +79,9 @@ public final class Action<Input, Output, Failure: Swift.Error> {
 					receiveCompletion: { [weak action] completion in
 						switch completion {
 						case .finished:
-							isExecutingLock.wait()
+							isExecutingLock.lock()
 							action?.isExecuting = false
-							isExecutingLock.signal()
+							isExecutingLock.unlock()
 						case .failure(let error):
 							errors.send(error)
 						}

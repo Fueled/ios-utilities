@@ -14,6 +14,7 @@ abstract_target 'Common' do
 	target 'FueledUtilsTests-SwiftUI' do
 		platform :ios, '13.0'
 
+		pod 'FueledUtils/CombineOperators', path: '../'
 		pod 'FueledUtils/SwiftUI', path: '../'
 		pod 'FueledUtils/UIKit', path: '../'
 	end

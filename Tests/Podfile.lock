@@ -1,6 +1,8 @@
 PODS:
   - FueledUtils/Combine (2.0.3):
     - FueledUtils/iOS13
+  - FueledUtils/CombineOperators (2.0.3):
+    - FueledUtils/Combine
   - FueledUtils/Core (2.0.3)
   - FueledUtils/iOS13 (2.0.3):
     - FueledUtils/Core
@@ -25,6 +27,7 @@ PODS:
   - ReactiveSwift (6.2.1)
 
 DEPENDENCIES:
+  - FueledUtils/CombineOperators (from `../`)
   - FueledUtils/ReactiveSwiftUIKit (from `../`)
   - FueledUtils/SwiftUI (from `../`)
   - FueledUtils/UIKit (from `../`)
@@ -43,12 +46,12 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  FueledUtils: d1c92d23ffadddab6302ff5cfe55b8331aaf7b9c
+  FueledUtils: 481701ad929bc05aebf62c0d8eac3c5aeaeac963
   Nimble: 4ab1aeb9b45553c75b9687196b0fa0713170a332
   Quick: 7fb19e13be07b5dfb3b90d4f9824c855a11af40e
   ReactiveCocoa: a123c42f449c552460a4ee217dd49c76a17c8204
   ReactiveSwift: 07ddf579f4eb3ee3bd656214f0461aaf2c0fd639
 
-PODFILE CHECKSUM: abdfd3aaf0821d915b1d8ec1e01f20583cd11b0f
+PODFILE CHECKSUM: 8c906577889305cc0ee68800bda92e89168239fc
 
 COCOAPODS: 1.9.1
