@@ -1,0 +1,10 @@
+platform :ios, '8.0'
+
+inhibit_all_warnings!
+use_frameworks!
+
+target 'FueledUtilsTests' do
+  pod 'FueledUtils', path: '../'
+  pod 'Quick', '~> 1.2.0'
+  pod 'Nimble', '~> 7.0'
+end
