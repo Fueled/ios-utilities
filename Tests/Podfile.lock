@@ -1,5 +1,7 @@
 PODS:
-  - FueledUtils (2.0.3):
+  - FueledUtils/Core (2.0.3)
+  - FueledUtils/ReactiveSwift (2.0.3):
+    - FueledUtils/Core
     - ReactiveCocoa (~> 10.0)
     - ReactiveSwift (~> 6.0)
   - Nimble (7.3.4)
@@ -9,7 +11,7 @@ PODS:
   - ReactiveSwift (6.2.0)
 
 DEPENDENCIES:
-  - FueledUtils (from `../`)
+  - FueledUtils/ReactiveSwift (from `../`)
   - Nimble (~> 7.0)
   - Quick (~> 1.2.0)
 
@@ -25,12 +27,12 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  FueledUtils: 560c116894478c8cd75e393e46476677008760b9
+  FueledUtils: d78f55645ec7f48564411496d6ce393e222e5ec3
   Nimble: 051e3d8912d40138fa5591c78594f95fb172af37
   Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
   ReactiveCocoa: a123c42f449c552460a4ee217dd49c76a17c8204
   ReactiveSwift: 3dc8800378110b13d40b46ab362afa9f6bcffc6c
 
-PODFILE CHECKSUM: 6df8884e9fdcb6e14d03ed551d02eafee2bc2233
+PODFILE CHECKSUM: d59d41b7968395125eb11a800df5f1e1d9affdfc
 
 COCOAPODS: 1.8.4

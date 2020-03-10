@@ -29,8 +29,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "607FACE41AFB9204008FA782"
-               BuildableName = "FueledUtilsTests.xctest"
-               BlueprintName = "FueledUtilsTests"
+               BuildableName = "FueledUtilsTests-ReactiveSwift.xctest"
+               BlueprintName = "FueledUtilsTests-ReactiveSwift"
                ReferencedContainer = "container:FueledUtils.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -56,8 +56,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "607FACE41AFB9204008FA782"
-               BuildableName = "FueledUtilsTests.xctest"
-               BlueprintName = "FueledUtilsTests"
+               BuildableName = "FueledUtilsTests-ReactiveSwift.xctest"
+               BlueprintName = "FueledUtilsTests-ReactiveSwift"
                ReferencedContainer = "container:FueledUtils.xcodeproj">
             </BuildableReference>
          </TestableReference>
