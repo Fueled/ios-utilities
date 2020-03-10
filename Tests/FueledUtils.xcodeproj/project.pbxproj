@@ -7,22 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2226E30A096757B47E86AB53 /* Pods_Common_FueledUtilsTests_ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F6FE40D407406C7CE909FA8 /* Pods_Common_FueledUtilsTests_ReactiveSwift.framework */; };
-		C2A10C8364626483B976411E /* Pods_Common_FueledUtilsTests_SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5900E02D753E34472A95FDB /* Pods_Common_FueledUtilsTests_SwiftUI.framework */; };
+		CBAC4FA461D4F6B2536EF7AB /* Pods_Common_FueledUtilsTests_SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39EF9AE56A510B26CCC488B7 /* Pods_Common_FueledUtilsTests_SwiftUI.framework */; };
 		F463C73C241835DD000A0B29 /* CoalescingActionSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F463C73A241835DD000A0B29 /* CoalescingActionSpec.swift */; };
 		F463C73D241835DD000A0B29 /* ReactiveSwiftExtensionsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F463C73B241835DD000A0B29 /* ReactiveSwiftExtensionsSpec.swift */; };
 		F463C74724183914000A0B29 /* EmptySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F463C74624183914000A0B29 /* EmptySpec.swift */; };
+		FDC158127A32ACE063DE046F /* Pods_Common_FueledUtilsTests_ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 410CDB623197A6F0D05837BE /* Pods_Common_FueledUtilsTests_ReactiveSwift.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		409C8FBD4FD224217FD8DE2C /* Pods-Common-FueledUtilsTests-SwiftUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common-FueledUtilsTests-SwiftUI.release.xcconfig"; path = "Target Support Files/Pods-Common-FueledUtilsTests-SwiftUI/Pods-Common-FueledUtilsTests-SwiftUI.release.xcconfig"; sourceTree = "<group>"; };
-		5F6FE40D407406C7CE909FA8 /* Pods_Common_FueledUtilsTests_ReactiveSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Common_FueledUtilsTests_ReactiveSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3297A6B2D4B923F8F27CD6A5 /* Pods-Common-FueledUtilsTests-SwiftUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common-FueledUtilsTests-SwiftUI.release.xcconfig"; path = "Target Support Files/Pods-Common-FueledUtilsTests-SwiftUI/Pods-Common-FueledUtilsTests-SwiftUI.release.xcconfig"; sourceTree = "<group>"; };
+		39EF9AE56A510B26CCC488B7 /* Pods_Common_FueledUtilsTests_SwiftUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Common_FueledUtilsTests_SwiftUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		410CDB623197A6F0D05837BE /* Pods_Common_FueledUtilsTests_ReactiveSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Common_FueledUtilsTests_ReactiveSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACE51AFB9204008FA782 /* FueledUtilsTests-ReactiveSwift.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FueledUtilsTests-ReactiveSwift.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		955B6BB2E31ED847762F7DCD /* Pods-Common-FueledUtilsTests-ReactiveSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common-FueledUtilsTests-ReactiveSwift.debug.xcconfig"; path = "Target Support Files/Pods-Common-FueledUtilsTests-ReactiveSwift/Pods-Common-FueledUtilsTests-ReactiveSwift.debug.xcconfig"; sourceTree = "<group>"; };
-		BA1CA64948C05D31684C23A9 /* Pods-Common-FueledUtilsTests-ReactiveSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common-FueledUtilsTests-ReactiveSwift.release.xcconfig"; path = "Target Support Files/Pods-Common-FueledUtilsTests-ReactiveSwift/Pods-Common-FueledUtilsTests-ReactiveSwift.release.xcconfig"; sourceTree = "<group>"; };
+		65B56BF0A7147538E12F737F /* Pods-Common-FueledUtilsTests-SwiftUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common-FueledUtilsTests-SwiftUI.debug.xcconfig"; path = "Target Support Files/Pods-Common-FueledUtilsTests-SwiftUI/Pods-Common-FueledUtilsTests-SwiftUI.debug.xcconfig"; sourceTree = "<group>"; };
+		ACF665E90E66C2B35C6C5C05 /* Pods-Common-FueledUtilsTests-ReactiveSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common-FueledUtilsTests-ReactiveSwift.release.xcconfig"; path = "Target Support Files/Pods-Common-FueledUtilsTests-ReactiveSwift/Pods-Common-FueledUtilsTests-ReactiveSwift.release.xcconfig"; sourceTree = "<group>"; };
 		CF40A2CC4151F8E9B373D243 /* FueledUtils.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = FueledUtils.podspec; path = ../FueledUtils.podspec; sourceTree = "<group>"; };
-		D5900E02D753E34472A95FDB /* Pods_Common_FueledUtilsTests_SwiftUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Common_FueledUtilsTests_SwiftUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D63C4DFA59B857AA08C9A57F /* Pods-Common-FueledUtilsTests-SwiftUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common-FueledUtilsTests-SwiftUI.debug.xcconfig"; path = "Target Support Files/Pods-Common-FueledUtilsTests-SwiftUI/Pods-Common-FueledUtilsTests-SwiftUI.debug.xcconfig"; sourceTree = "<group>"; };
+		D498AEE5BC8A0A514416E6DA /* Pods-Common-FueledUtilsTests-ReactiveSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common-FueledUtilsTests-ReactiveSwift.debug.xcconfig"; path = "Target Support Files/Pods-Common-FueledUtilsTests-ReactiveSwift/Pods-Common-FueledUtilsTests-ReactiveSwift.debug.xcconfig"; sourceTree = "<group>"; };
 		E7AC5BA00D7F6054AC66E468 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		F463C73A241835DD000A0B29 /* CoalescingActionSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoalescingActionSpec.swift; sourceTree = "<group>"; };
 		F463C73B241835DD000A0B29 /* ReactiveSwiftExtensionsSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactiveSwiftExtensionsSpec.swift; sourceTree = "<group>"; };
@@ -37,7 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2226E30A096757B47E86AB53 /* Pods_Common_FueledUtilsTests_ReactiveSwift.framework in Frameworks */,
+				FDC158127A32ACE063DE046F /* Pods_Common_FueledUtilsTests_ReactiveSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -45,29 +45,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C2A10C8364626483B976411E /* Pods_Common_FueledUtilsTests_SwiftUI.framework in Frameworks */,
+				CBAC4FA461D4F6B2536EF7AB /* Pods_Common_FueledUtilsTests_SwiftUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		02A127E0260A9C408A650AFD /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				5F6FE40D407406C7CE909FA8 /* Pods_Common_FueledUtilsTests_ReactiveSwift.framework */,
-				D5900E02D753E34472A95FDB /* Pods_Common_FueledUtilsTests_SwiftUI.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		29F7E676D0DA9F23C4893ECA /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				955B6BB2E31ED847762F7DCD /* Pods-Common-FueledUtilsTests-ReactiveSwift.debug.xcconfig */,
-				BA1CA64948C05D31684C23A9 /* Pods-Common-FueledUtilsTests-ReactiveSwift.release.xcconfig */,
-				D63C4DFA59B857AA08C9A57F /* Pods-Common-FueledUtilsTests-SwiftUI.debug.xcconfig */,
-				409C8FBD4FD224217FD8DE2C /* Pods-Common-FueledUtilsTests-SwiftUI.release.xcconfig */,
+				D498AEE5BC8A0A514416E6DA /* Pods-Common-FueledUtilsTests-ReactiveSwift.debug.xcconfig */,
+				ACF665E90E66C2B35C6C5C05 /* Pods-Common-FueledUtilsTests-ReactiveSwift.release.xcconfig */,
+				65B56BF0A7147538E12F737F /* Pods-Common-FueledUtilsTests-SwiftUI.debug.xcconfig */,
+				3297A6B2D4B923F8F27CD6A5 /* Pods-Common-FueledUtilsTests-SwiftUI.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -81,7 +72,7 @@
 				F463C73E241835EA000A0B29 /* Supporting Files */,
 				607FACD11AFB9204008FA782 /* Products */,
 				29F7E676D0DA9F23C4893ECA /* Pods */,
-				02A127E0260A9C408A650AFD /* Frameworks */,
+				8CF3F11B25F743ED68711CBC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -102,6 +93,15 @@
 				F7F10FE9C8384333882C2368 /* LICENSE */,
 			);
 			name = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
+		8CF3F11B25F743ED68711CBC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				410CDB623197A6F0D05837BE /* Pods_Common_FueledUtilsTests_ReactiveSwift.framework */,
+				39EF9AE56A510B26CCC488B7 /* Pods_Common_FueledUtilsTests_SwiftUI.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		F463C739241835DD000A0B29 /* ReactiveSwift */ = {
@@ -136,11 +136,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "FueledUtilsTests-ReactiveSwift" */;
 			buildPhases = (
-				B5C5ECD5F611B11872D34C4A /* [CP] Check Pods Manifest.lock */,
+				7A704080E54E9F7FB6D2806D /* [CP] Check Pods Manifest.lock */,
 				607FACE11AFB9204008FA782 /* Sources */,
 				607FACE21AFB9204008FA782 /* Frameworks */,
 				607FACE31AFB9204008FA782 /* Resources */,
-				8C7652B0CEBBDD052B99C924 /* [CP] Embed Pods Frameworks */,
+				41CB9636F71B84882C2E6A45 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -155,11 +155,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F463C74924183914000A0B29 /* Build configuration list for PBXNativeTarget "FueledUtilsTests-SwiftUI" */;
 			buildPhases = (
-				AC6F6AE7495CB52DF3C2EB32 /* [CP] Check Pods Manifest.lock */,
+				C83C49377CB4DCCA96B27625 /* [CP] Check Pods Manifest.lock */,
 				F463C74024183913000A0B29 /* Sources */,
 				F463C74124183913000A0B29 /* Frameworks */,
 				F463C74224183913000A0B29 /* Resources */,
-				E807AE5D00D79221217A1841 /* [CP] Embed Pods Frameworks */,
+				3EB0A0B44D7FAD0AAD39085B /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -228,14 +228,36 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		8C7652B0CEBBDD052B99C924 /* [CP] Embed Pods Frameworks */ = {
+		3EB0A0B44D7FAD0AAD39085B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Common-FueledUtilsTests-SwiftUI/Pods-Common-FueledUtilsTests-SwiftUI-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/FueledUtils-Combine-CombineOperators-Core-SwiftUI-UIKit/FueledUtils.framework",
+				"${BUILT_PRODUCTS_DIR}/Nimble-iOS13.0/Nimble.framework",
+				"${BUILT_PRODUCTS_DIR}/Quick-iOS13.0/Quick.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FueledUtils.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Common-FueledUtilsTests-SwiftUI/Pods-Common-FueledUtilsTests-SwiftUI-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		41CB9636F71B84882C2E6A45 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Common-FueledUtilsTests-ReactiveSwift/Pods-Common-FueledUtilsTests-ReactiveSwift-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/FueledUtils-Core-ReactiveSwift-ReactiveSwiftUIKit-UIKit-iOS8/FueledUtils.framework",
+				"${BUILT_PRODUCTS_DIR}/FueledUtils-Core-ReactiveSwift-ReactiveSwiftUIKit-UIKit/FueledUtils.framework",
 				"${BUILT_PRODUCTS_DIR}/Nimble-iOS8.0/Nimble.framework",
 				"${BUILT_PRODUCTS_DIR}/Quick-iOS8.0/Quick.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework",
@@ -254,29 +276,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Common-FueledUtilsTests-ReactiveSwift/Pods-Common-FueledUtilsTests-ReactiveSwift-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		AC6F6AE7495CB52DF3C2EB32 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Common-FueledUtilsTests-SwiftUI-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B5C5ECD5F611B11872D34C4A /* [CP] Check Pods Manifest.lock */ = {
+		7A704080E54E9F7FB6D2806D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -298,26 +298,26 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E807AE5D00D79221217A1841 /* [CP] Embed Pods Frameworks */ = {
+		C83C49377CB4DCCA96B27625 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Common-FueledUtilsTests-SwiftUI/Pods-Common-FueledUtilsTests-SwiftUI-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/FueledUtils-2d777442/FueledUtils.framework",
-				"${BUILT_PRODUCTS_DIR}/Nimble-iOS13.0/Nimble.framework",
-				"${BUILT_PRODUCTS_DIR}/Quick-iOS13.0/Quick.framework",
+			inputFileListPaths = (
 			);
-			name = "[CP] Embed Pods Frameworks";
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FueledUtils.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
+				"$(DERIVED_FILE_DIR)/Pods-Common-FueledUtilsTests-SwiftUI-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Common-FueledUtilsTests-SwiftUI/Pods-Common-FueledUtilsTests-SwiftUI-frameworks.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -450,7 +450,7 @@
 		};
 		607FACF31AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 955B6BB2E31ED847762F7DCD /* Pods-Common-FueledUtilsTests-ReactiveSwift.debug.xcconfig */;
+			baseConfigurationReference = D498AEE5BC8A0A514416E6DA /* Pods-Common-FueledUtilsTests-ReactiveSwift.debug.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
@@ -471,7 +471,7 @@
 		};
 		607FACF41AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BA1CA64948C05D31684C23A9 /* Pods-Common-FueledUtilsTests-ReactiveSwift.release.xcconfig */;
+			baseConfigurationReference = ACF665E90E66C2B35C6C5C05 /* Pods-Common-FueledUtilsTests-ReactiveSwift.release.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
@@ -488,7 +488,7 @@
 		};
 		F463C74A24183914000A0B29 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D63C4DFA59B857AA08C9A57F /* Pods-Common-FueledUtilsTests-SwiftUI.debug.xcconfig */;
+			baseConfigurationReference = 65B56BF0A7147538E12F737F /* Pods-Common-FueledUtilsTests-SwiftUI.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -518,7 +518,7 @@
 		};
 		F463C74B24183914000A0B29 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 409C8FBD4FD224217FD8DE2C /* Pods-Common-FueledUtilsTests-SwiftUI.release.xcconfig */;
+			baseConfigurationReference = 3297A6B2D4B923F8F27CD6A5 /* Pods-Common-FueledUtilsTests-SwiftUI.release.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;

@@ -1,25 +1,19 @@
 PODS:
-  - FueledUtils/Combine (2.0.3):
-    - FueledUtils/iOS13
-  - FueledUtils/CombineOperators (2.0.3):
+  - FueledUtils/Combine (3.0)
+  - FueledUtils/CombineOperators (3.0):
     - FueledUtils/Combine
-  - FueledUtils/Core (2.0.3)
-  - FueledUtils/iOS13 (2.0.3):
-    - FueledUtils/Core
-  - FueledUtils/iOS8 (2.0.3):
-    - FueledUtils/Core
-  - FueledUtils/ReactiveSwift (2.0.3):
-    - FueledUtils/iOS8
+  - FueledUtils/Core (3.0)
+  - FueledUtils/ReactiveSwift (3.0):
     - ReactiveCocoa (~> 10.0)
     - ReactiveSwift (~> 6.0)
-  - FueledUtils/ReactiveSwiftUIKit (2.0.3):
+  - FueledUtils/ReactiveSwiftUIKit (3.0):
     - FueledUtils/ReactiveSwift
     - FueledUtils/UIKit
-  - FueledUtils/SwiftUI (2.0.3):
+  - FueledUtils/SwiftUI (3.0):
     - FueledUtils/Combine
     - FueledUtils/Core
-  - FueledUtils/UIKit (2.0.3):
-    - FueledUtils/iOS8
+  - FueledUtils/UIKit (3.0):
+    - FueledUtils/Core
   - Nimble (8.0.5)
   - Quick (2.2.0)
   - ReactiveCocoa (10.2.0):
@@ -46,7 +40,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  FueledUtils: 481701ad929bc05aebf62c0d8eac3c5aeaeac963
+  FueledUtils: cb348b77e24486d5a8c2dc3d7b65bdb2cdff277d
   Nimble: 4ab1aeb9b45553c75b9687196b0fa0713170a332
   Quick: 7fb19e13be07b5dfb3b90d4f9824c855a11af40e
   ReactiveCocoa: a123c42f449c552460a4ee217dd49c76a17c8204
