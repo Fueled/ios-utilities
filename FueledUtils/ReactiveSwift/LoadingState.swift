@@ -45,16 +45,6 @@ public enum LoadingState<Error: Swift.Error> {
 	}
 
 	///
-	/// **Unavailable**: Please use `isLoading` instead.
-	///
-	/// Refer to the documentation for `isLoading` for more info.
-	///
-	@available(*, unavailable, renamed: "isLoading")
-	public var loading: Bool {
-		return self.isLoading
-	}
-
-	///
 	/// If the current state is `.loading`, returns `true`. If not, returns `false`
 	///
 	public var isLoading: Bool {
@@ -67,18 +57,6 @@ public enum LoadingState<Error: Swift.Error> {
 }
 
 extension ActionProtocol {
-	///
-	/// **Unavailable**: Please use `getSafely(at:)` instead.
-	///
-	/// Refer to the documentation for `getSafely(at:)` for more info.
-	///
-	@available(*, unavailable, renamed: "loadingState")
-	// The unused parameter allows to bypass the compiler error "Invalid redeclaration of 'loadingState'",
-	// while retaining backward compatibility
-	public func loadingState(_ unused: Void = ()) -> SignalProducer<LoadingState<Error>, Never> {
-		fatalError()
-	}
-
 	///
 	/// Returns a `SignalProducer` whose events corresponds to the current loading state of the action.
 	/// Please refer to `LoadingState` for more info.

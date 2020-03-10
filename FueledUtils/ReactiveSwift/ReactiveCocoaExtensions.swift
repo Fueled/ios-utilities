@@ -122,18 +122,6 @@ extension Reactive where Base: UIViewController {
 	}
 }
 
-@available(iOS 9.0, *)
-extension Reactive where Base: UIStackView {
-	///
-	/// **Unavailable**: Use `subview.reactive.isHidden <~ <Binding Source>` instead.
-	/// Add/remove/modify the order of the arranged subviews by specified the subview.
-	///
-	@available(*, unavailable, message: "Use `subview.reactive.isHidden <~ <Binding Source>` instead")
-	public func isArranged(_ subview: UIView, at index: Int) -> BindingTarget<Bool> {
-		fatalError()
-	}
-}
-
 #if os(iOS)
 extension Reactive where Base: UINavigationItem {
 	///

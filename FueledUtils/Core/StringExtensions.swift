@@ -26,16 +26,6 @@ extension StringProtocol {
 	}
 
 	///
-	/// **Unavailable**: Please use `nsRange` instead.
-	///
-	/// Refer to the documentation for `nsRange` for more info.
-	///
-	@available(*, unavailable, renamed: "nsRange")
-	public var fullRange: NSRange {
-		return NSRange(location: 0, length: nsLength)
-	}
-
-	///
 	/// Returns `NSRange(location: 0, length: nsLength)` for usage with Objective-C APIs.
 	///
 	public var nsRange: NSRange {
