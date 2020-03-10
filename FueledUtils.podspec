@@ -13,17 +13,30 @@ Pod::Spec.new do |s|
   s.source = { git: 'https://github.com/Fueled/ios-utilities.git', tag: s.version.to_s }
   s.documentation_url = 'https://cdn.rawgit.com/Fueled/ios-utilities/master/docs/index.html'
 
-  s.ios.deployment_target = '8.0'
-  s.osx.deployment_target = '10.9'
-  s.watchos.deployment_target = '2.0'
-  s.tvos.deployment_target = '9.0'
-
   s.subspec 'Core' do |s|
     s.source_files = 'FueledUtils/Core/**/*.swift'
   end
 
-  s.subspec 'ReactiveSwift' do |s|
+  s.subspec 'iOS8' do |s|
     s.dependency 'FueledUtils/Core'
+
+    s.ios.deployment_target = '8.0'
+    s.osx.deployment_target = '10.9'
+    s.watchos.deployment_target = '2.0'
+    s.tvos.deployment_target = '9.0'
+  end
+
+  s.subspec 'iOS13' do |s|
+    s.dependency 'FueledUtils/Core'
+
+    s.ios.deployment_target = '13.0'
+    s.osx.deployment_target = '10.15'
+    s.watchos.deployment_target = '6.0'
+    s.tvos.deployment_target = '13.0'
+  end
+
+  s.subspec 'ReactiveSwift' do |s|
+    s.dependency 'FueledUtils/iOS8'
     s.dependency 'ReactiveSwift', '~> 6.0'
     s.dependency 'ReactiveCocoa', '~> 10.0'
 
@@ -31,8 +44,28 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'UIKit' do |s|
-    s.dependency 'FueledUtils/Core'
+    s.dependency 'FueledUtils/iOS8'
     s.source_files = 'FueledUtils/UIKit/**/*.swift'
+  end
+
+  s.subspec 'ReactiveSwiftUIKit' do |s|
+    s.dependency 'FueledUtils/ReactiveSwift'
+    s.dependency 'FueledUtils/UIKit'
+
+    s.source_files = 'FueledUtils/ReactiveSwiftUIKit/**/*.swift'
+  end
+
+  s.subspec 'Combine' do |s|
+    s.dependency 'FueledUtils/iOS13'
+    
+    s.source_files = 'FueledUtils/Combine/**/*.swift'
+  end
+
+  s.subspec 'SwiftUI' do |s|
+    s.dependency 'FueledUtils/Core'
+    s.dependency 'FueledUtils/Combine'
+
+    s.source_files = 'FueledUtils/SwiftUI/**/*.swift'
   end
 
   s.osx.exclude_files = ['FueledUtils/FueledUtils.h', 'FueledUtils/ButtonWithTitleAdjustment.swift', 'FueledUtils/DecoratingTextFieldDelegate.swift', 'FueledUtils/DimmingButton.swift', 'FueledUtils/HairlineView.swift', 'FueledUtils/HairlineView.swift', 'FueledUtils/KeyboardInsetHelper.swift', 'FueledUtils/LabelWithTitleAdjustment.swift', 'FueledUtils/ReactiveCocoaExtensions.swift', 'FueledUtils/ScrollViewPage.swift', 'FueledUtils/SetRootViewController.swift', 'FueledUtils/SignalingAlert.swift', 'FueledUtils/UIExtensions.swift', 'FueledUtils/GradientView.swift']

@@ -100,23 +100,6 @@ extension Reactive where Base: UIView {
 
 extension Reactive where Base: UILabel {
 	///
-	/// Update the `text` property of the label with an animation.
-	///
-	public var animatedText: BindingTarget<String> {
-		return makeBindingTarget { label, text in
-			label.setText(text, animated: true)
-		}
-	}
-	///
-	/// Update the `attributedText` property of the label with an animation.
-	///
-	public var animatedAttributedText: BindingTarget<NSAttributedString> {
-		return makeBindingTarget { label, text in
-			label.setAttributedText(text, animated: true)
-		}
-	}
-
-	///
 	/// Update the `textAlignment` property of the label with an animation.
 	///
 	public var textAlignment: BindingTarget<NSTextAlignment> {

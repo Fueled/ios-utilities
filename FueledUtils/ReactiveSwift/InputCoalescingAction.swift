@@ -30,14 +30,14 @@ public class InputCoalescingAction<Input, Output, Error: Swift.Error>: ActionPro
 
 	private class DisposableContainer {
 		private let disposable: Disposable
-		private let count = Atomic(0)
+		private let count = AtomicValue(0)
 
 		init(_ disposable: Disposable) {
 			self.disposable = disposable
 		}
 
 		func add(_ lifetime: Lifetime) {
-			self.count.value += 1
+			self.count.modify { $0 += 1 }
 			lifetime.observeEnded {
 				self.count.modify {
 					$0 -= 1

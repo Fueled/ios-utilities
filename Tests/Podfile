@@ -1,10 +1,20 @@
 inhibit_all_warnings!
 use_frameworks!
 
-target 'FueledUtilsTests-ReactiveSwift' do
-	platform :ios, '8.0'
+abstract_target 'Common' do
+	pod 'Quick', '~> 2.0'
+	pod 'Nimble', '~> 8.0'
 
-	pod 'FueledUtils/ReactiveSwift', path: '../'
-	pod 'Quick', '~> 1.2.0'
-	pod 'Nimble', '~> 7.0'
+	target 'FueledUtilsTests-ReactiveSwift' do
+		platform :ios, '8.0'
+
+		pod 'FueledUtils/ReactiveSwiftUIKit', path: '../'
+	end
+
+	target 'FueledUtilsTests-SwiftUI' do
+		platform :ios, '13.0'
+
+		pod 'FueledUtils/SwiftUI', path: '../'
+		pod 'FueledUtils/UIKit', path: '../'
+	end
 end
