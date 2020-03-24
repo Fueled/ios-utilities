@@ -65,7 +65,7 @@ extension ObservableObject where Self.ObjectWillChangePublisher == ObservableObj
 					cancellables = Set()
 					objects.forEach { object in
 						object.objectWillChange.sink { [weak self] _ in self?.objectWillChange.send() }
-							>>> cancellables
+							.store(in: &cancellables)
 					}
 					return .unlimited
 				}

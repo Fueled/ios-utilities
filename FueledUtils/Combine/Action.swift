@@ -97,12 +97,13 @@ public final class Action<Input, Output, Failure: Swift.Error> {
 				.eraseToAnyPublisher()
 		}
 
-		self~\.isEnabled <~ Publishers.CombineLatest(
+		Publishers.CombineLatest(
 			isEnabled,
 			self.$isExecuting
 		)
-		.map { $0 && !$1 }
-		>>> self.cancellables
+			.map { $0 && !$1 }
+			.assign(to: \.isEnabled, withoutRetaining: self)
+			.store(in: &self.cancellables)
 	}
 
 	public func apply(_ input: Input) -> AnyPublisher<Output, ActionError<Failure>> {
