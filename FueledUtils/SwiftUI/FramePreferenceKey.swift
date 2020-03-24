@@ -14,8 +14,14 @@
 
 import SwiftUI
 
-public struct FramePreferenceKey: PreferenceKey {
-	public static var defaultValue: CGRect = .zero
+///
+/// Used to retrieve the frame of a view through a preference key.
+/// `TagType` is used to uniquely identify the view using the preference key.
+///
+public struct FramePreferenceKey<TagType>: PreferenceKey {
+	public static var defaultValue: CGRect {
+		.zero
+	}
 
 	public static func reduce(value: inout CGRect, nextValue: () -> CGRect) {
 		value = nextValue()
