@@ -13,7 +13,6 @@
 // limitations under the License.
 
 import Combine
-import SwiftUI
 
 public protocol ActionErrorProtocol {
 	associatedtype InnerError: Swift.Error
