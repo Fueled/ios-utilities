@@ -13,7 +13,6 @@
 // limitations under the License.
 
 import Combine
-import SwiftUI
 
 public protocol ActionErrorProtocol {
 	associatedtype InnerError: Swift.Error
@@ -58,7 +57,8 @@ public final class Action<Input, Output, Failure: Swift.Error> {
 	) where EnabledIfPublisher.Output == Bool,
 		EnabledIfPublisher.Failure == Never,
 		ExecutePublisher.Output == Output,
-		ExecutePublisher.Failure == Failure {
+		ExecutePublisher.Failure == Failure
+	{
 		let values = PassthroughSubject<Output, Never>()
 		let errors = PassthroughSubject<Failure, Never>()
 
@@ -83,11 +83,12 @@ public final class Action<Input, Output, Failure: Swift.Error> {
 						values.send(value)
 					},
 					receiveCompletion: { [weak action] completion in
+						isExecutingLock.lock()
+						action?.isExecuting = false
+						isExecutingLock.unlock()
 						switch completion {
 						case .finished:
-							isExecutingLock.lock()
-							action?.isExecuting = false
-							isExecutingLock.unlock()
+							break
 						case .failure(let error):
 							errors.send(error)
 						}
