@@ -129,3 +129,12 @@ extension Publisher where Failure: ActionErrorProtocol {
 		.eraseToAnyPublisher()
 	}
 }
+extension Action {
+	public static func constant(_ value: Output) -> Action<Input, Output, Failure> {
+		self.constant(inputType: Input.self, value: value)
+	}
+
+	public static func constant(inputType: Input.Type, value: Output) -> Action<Input, Output, Failure> {
+		Action { _ in Just(value).setFailureType(to: Failure.self) }
+	}
+}
