@@ -34,6 +34,15 @@ extension ActionError: ActionErrorProtocol {
 	}
 }
 
+extension ActionErrorProtocol {
+	public func map<NewError: Swift.Error>(_ mapper: (InnerError) -> NewError) -> ActionError<NewError> {
+		if let innerError = self.innerError {
+			return .failure(mapper(innerError))
+		}
+		return .disabled
+	}
+}
+
 public final class Action<Input, Output, Failure: Swift.Error> {
 	@Published public private(set) var isExecuting: Bool = false
 	@Published public private(set) var isEnabled: Bool = false
@@ -41,9 +50,9 @@ public final class Action<Input, Output, Failure: Swift.Error> {
 	public let values: AnyPublisher<Output, Never>
 	public let errors: AnyPublisher<Failure, Never>
 
-	private let execute: (Action, Input) -> AnyPublisher<Output, ActionError<Failure>>
+	fileprivate let execute: (Action, Input) -> AnyPublisher<Output, ActionError<Failure>>
 
-	private var cancellables = Set<AnyCancellable>([])
+	fileprivate var cancellables = Set<AnyCancellable>([])
 
 	public convenience init<ExecutePublisher: Combine.Publisher>(
 		execute: @escaping (Input) -> ExecutePublisher
@@ -54,7 +63,8 @@ public final class Action<Input, Output, Failure: Swift.Error> {
 	public init<EnabledIfPublisher: Combine.Publisher, ExecutePublisher: Combine.Publisher>(
 		enabledIf isEnabled: EnabledIfPublisher,
 		execute: @escaping (Input) -> ExecutePublisher
-	) where EnabledIfPublisher.Output == Bool,
+	) where
+		EnabledIfPublisher.Output == Bool,
 		EnabledIfPublisher.Failure == Never,
 		ExecutePublisher.Output == Output,
 		ExecutePublisher.Failure == Failure
@@ -107,6 +117,28 @@ public final class Action<Input, Output, Failure: Swift.Error> {
 			.store(in: &self.cancellables)
 	}
 
+	fileprivate init<EnabledIfPublisher: Combine.Publisher>(
+		enabledIf isEnabled: EnabledIfPublisher,
+		values: AnyPublisher<Output, Never>,
+		errors: AnyPublisher<Failure, Never>,
+		execute: @escaping (Action, Input) -> AnyPublisher<Output, ActionError<Failure>>
+	) where
+		EnabledIfPublisher.Output == Bool,
+		EnabledIfPublisher.Failure == Never
+	{
+		self.values = values
+		self.errors = errors
+		self.execute = execute
+
+		Publishers.CombineLatest(
+			isEnabled,
+			self.$isExecuting
+		)
+			.map { $0 && !$1 }
+			.assign(to: \.isEnabled, withoutRetaining: self)
+			.store(in: &self.cancellables)
+	}
+
 	public func apply(_ input: Input) -> AnyPublisher<Output, ActionError<Failure>> {
 		self.execute(self, input)
 	}
@@ -127,5 +159,65 @@ extension Publisher where Failure: ActionErrorProtocol {
 			return Empty(completeImmediately: false).eraseToAnyPublisher()
 		}
 		.eraseToAnyPublisher()
+	}
+}
+
+extension Action {
+	public static func constant(_ value: Output) -> Action<Input, Output, Failure> {
+		self.constant(inputType: Input.self, value: value)
+	}
+
+	public static func constant(inputType: Input.Type, value: Output) -> Action<Input, Output, Failure> {
+		Action { _ in Just(value).setFailureType(to: Failure.self) }
+	}
+
+	// Please note that the actions created with the `mapXxx` family are interweaved together - starting one
+	// will update the other, and vice versa.
+	// For example, on use case is to type-erase an Action.
+	public func mapInput<NewInput>(_ mapper: @escaping (NewInput) -> Input) -> Action<NewInput, Output, Failure> {
+		self.mapAll(
+			mapInput: mapper,
+			map: { $0 },
+			mapError: { $0 }
+		)
+	}
+
+	public func map<NewOutput>(_ mapper: @escaping (Output) -> NewOutput) -> Action<Input, NewOutput, Failure> {
+		self.mapAll(
+			mapInput: { $0 },
+			map: mapper,
+			mapError: { $0 }
+		)
+	}
+
+	public func mapError<NewFailure: Swift.Error>(_ mapper: @escaping (Failure) -> NewFailure) -> Action<Input, Output, NewFailure> {
+		self.mapAll(
+			mapInput: { $0 },
+			map: { $0 },
+			mapError: mapper
+		)
+	}
+
+	public func mapAll<NewInput, NewOutput, NewFailure: Swift.Error>(
+		mapInput: @escaping (NewInput) -> (Input),
+		map: @escaping (Output) -> (NewOutput),
+		mapError: @escaping (Failure) -> (NewFailure)
+	) -> Action<NewInput, NewOutput, NewFailure> {
+		let action = Action<NewInput, NewOutput, NewFailure>(
+			enabledIf: self.$isEnabled,
+			values: self.values.map(map).eraseToAnyPublisher(),
+			errors: self.errors.map(mapError).eraseToAnyPublisher()
+		) { (action, input) -> AnyPublisher<NewOutput, ActionError<NewFailure>> in
+			return self.execute(self, mapInput(input))
+				.map(map)
+				.mapError { $0.map { mapError($0) } }
+				.eraseToAnyPublisher()
+		}
+
+		self.$isExecuting
+			.assign(to: \.isExecuting, withoutRetaining: action)
+			.store(in: &action.cancellables)
+
+		return action
 	}
 }
