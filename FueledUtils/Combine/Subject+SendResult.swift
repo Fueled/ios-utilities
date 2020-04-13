@@ -9,7 +9,7 @@
 import Combine
 
 extension Subject {
-	func send(result: Result<Output, Failure>) {
+	public func send(result: Result<Output, Failure>) {
 		switch result {
 		case .failure(let error):
 			self.send(completion: .failure(error))
