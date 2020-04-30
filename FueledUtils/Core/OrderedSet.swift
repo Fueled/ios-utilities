@@ -145,3 +145,6 @@ extension OrderedSet: RandomAccessCollection {
 
 extension OrderedSet: Hashable where Element: Hashable {
 }
+
+extension OrderedSet: Codable where Element: Codable {
+}
