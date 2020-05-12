@@ -529,7 +529,7 @@ infix operator <~> : AssignmentPrecedence
 	return disposable
 }
 
-extension ActionProtocol {
+extension ReactiveActionProtocol {
 	///
 	/// A signal of all values or errors generated from all units of work of the `Action`.
 	///

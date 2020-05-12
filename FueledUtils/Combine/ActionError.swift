@@ -1,4 +1,4 @@
-// Copyright © 2020 Fueled Digital Media, LLC
+// Copyright © 2020, Fueled Digital Media, LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,16 +12,25 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Quick
-import Nimble
-import FueledUtils
+public enum ActionError<Error: Swift.Error>: Swift.Error {
+	case disabled
+	case failure(Error)
+}
 
-class CoalescingActionSpec: QuickSpec {
-	override func spec() {
-		describe("Nothing") {
-			it("should pass") {
-				expect(true) == true
-			}
+extension ActionError: ActionErrorProtocol {
+	public var innerError: Error? {
+		if case .failure(let error) = self {
+			return error
 		}
+		return nil
+	}
+}
+
+extension ActionError {
+	public func map<NewError: Swift.Error>(_ mapper: (InnerError) -> NewError) -> ActionError<NewError> {
+		if let innerError = self.innerError {
+			return .failure(mapper(innerError))
+		}
+		return .disabled
 	}
 }

@@ -26,7 +26,7 @@ class CoalescingActionSpec: QuickSpec {
 					var startCounter = 0
 					var disposeCounter = 0
 					var interruptedCounter = 0
-					let coalescingAction = CoalescingAction {
+					let coalescingAction = ReactiveCoalescingAction {
 						SignalProducer(value: 2.0)
 							.delay(1.0, on: QueueScheduler.main)
 							.on(

@@ -235,15 +235,19 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Common-FueledUtilsTests-SwiftUI/Pods-Common-FueledUtilsTests-SwiftUI-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/FueledUtils-Combine-CombineOperators-Core-SwiftUI-UIKit/FueledUtils.framework",
+				"${BUILT_PRODUCTS_DIR}/FueledUtils-51945db7/FueledUtils.framework",
 				"${BUILT_PRODUCTS_DIR}/Nimble-iOS13.0/Nimble.framework",
 				"${BUILT_PRODUCTS_DIR}/Quick-iOS13.0/Quick.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveCocoa-iOS13.0/ReactiveCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveSwift-iOS13.0/ReactiveSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FueledUtils.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -257,11 +261,11 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Common-FueledUtilsTests-ReactiveSwift/Pods-Common-FueledUtilsTests-ReactiveSwift-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/FueledUtils-Core-ReactiveSwift-ReactiveSwiftUIKit-UIKit/FueledUtils.framework",
+				"${BUILT_PRODUCTS_DIR}/FueledUtils-c6ea1015/FueledUtils.framework",
 				"${BUILT_PRODUCTS_DIR}/Nimble-iOS8.0/Nimble.framework",
 				"${BUILT_PRODUCTS_DIR}/Quick-iOS8.0/Quick.framework",
-				"${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/ReactiveSwift/ReactiveSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveCocoa-iOS8.0/ReactiveCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveSwift-iOS8.0/ReactiveSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
