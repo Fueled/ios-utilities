@@ -9,6 +9,9 @@ abstract_target 'Common' do
 		platform :ios, '13.0'
 
 		pod 'FueledUtils/ReactiveCombineBridge', path: '../'
+		pod 'FueledUtils/ReactiveSwift', path: '../'
+		pod 'FueledUtils/ReactiveSwiftUIKit', path: '../'
+		pod 'FueledUtils/SwiftUI', path: '../'
 		pod 'FueledUtils/CombineOperators', path: '../'
 	end
 end
