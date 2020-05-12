@@ -17,8 +17,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "607FACE41AFB9204008FA782"
-            BuildableName = "FueledUtilsTests-ReactiveSwift.xctest"
-            BlueprintName = "FueledUtilsTests-ReactiveSwift"
+            BuildableName = "FueledUtilsTests.xctest"
+            BlueprintName = "FueledUtilsTests"
             ReferencedContainer = "container:FueledUtils.xcodeproj">
          </BuildableReference>
          <BuildableReference

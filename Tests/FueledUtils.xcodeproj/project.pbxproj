@@ -7,28 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CBAC4FA461D4F6B2536EF7AB /* Pods_Common_FueledUtilsTests_SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39EF9AE56A510B26CCC488B7 /* Pods_Common_FueledUtilsTests_SwiftUI.framework */; };
+		EE9B3A498587AC2D3461D310 /* Pods_Common_FueledUtilsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F46CDEA885028D8DB189B3CB /* Pods_Common_FueledUtilsTests.framework */; };
 		F463C73C241835DD000A0B29 /* CoalescingActionSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F463C73A241835DD000A0B29 /* CoalescingActionSpec.swift */; };
 		F463C73D241835DD000A0B29 /* ReactiveSwiftExtensionsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F463C73B241835DD000A0B29 /* ReactiveSwiftExtensionsSpec.swift */; };
-		F463C74724183914000A0B29 /* EmptySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F463C74624183914000A0B29 /* EmptySpec.swift */; };
-		FDC158127A32ACE063DE046F /* Pods_Common_FueledUtilsTests_ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 410CDB623197A6F0D05837BE /* Pods_Common_FueledUtilsTests_ReactiveSwift.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		00B6C3B54CADD6729AF81F36 /* Pods-Common-FueledUtilsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common-FueledUtilsTests.release.xcconfig"; path = "Target Support Files/Pods-Common-FueledUtilsTests/Pods-Common-FueledUtilsTests.release.xcconfig"; sourceTree = "<group>"; };
 		3297A6B2D4B923F8F27CD6A5 /* Pods-Common-FueledUtilsTests-SwiftUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common-FueledUtilsTests-SwiftUI.release.xcconfig"; path = "Target Support Files/Pods-Common-FueledUtilsTests-SwiftUI/Pods-Common-FueledUtilsTests-SwiftUI.release.xcconfig"; sourceTree = "<group>"; };
 		39EF9AE56A510B26CCC488B7 /* Pods_Common_FueledUtilsTests_SwiftUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Common_FueledUtilsTests_SwiftUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		410CDB623197A6F0D05837BE /* Pods_Common_FueledUtilsTests_ReactiveSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Common_FueledUtilsTests_ReactiveSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		607FACE51AFB9204008FA782 /* FueledUtilsTests-ReactiveSwift.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FueledUtilsTests-ReactiveSwift.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		607FACE51AFB9204008FA782 /* FueledUtilsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FueledUtilsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		65B56BF0A7147538E12F737F /* Pods-Common-FueledUtilsTests-SwiftUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common-FueledUtilsTests-SwiftUI.debug.xcconfig"; path = "Target Support Files/Pods-Common-FueledUtilsTests-SwiftUI/Pods-Common-FueledUtilsTests-SwiftUI.debug.xcconfig"; sourceTree = "<group>"; };
 		ACF665E90E66C2B35C6C5C05 /* Pods-Common-FueledUtilsTests-ReactiveSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common-FueledUtilsTests-ReactiveSwift.release.xcconfig"; path = "Target Support Files/Pods-Common-FueledUtilsTests-ReactiveSwift/Pods-Common-FueledUtilsTests-ReactiveSwift.release.xcconfig"; sourceTree = "<group>"; };
 		CF40A2CC4151F8E9B373D243 /* FueledUtils.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = FueledUtils.podspec; path = ../FueledUtils.podspec; sourceTree = "<group>"; };
+		D43FD9799A872E88963939C1 /* Pods-Common-FueledUtilsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common-FueledUtilsTests.debug.xcconfig"; path = "Target Support Files/Pods-Common-FueledUtilsTests/Pods-Common-FueledUtilsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D498AEE5BC8A0A514416E6DA /* Pods-Common-FueledUtilsTests-ReactiveSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common-FueledUtilsTests-ReactiveSwift.debug.xcconfig"; path = "Target Support Files/Pods-Common-FueledUtilsTests-ReactiveSwift/Pods-Common-FueledUtilsTests-ReactiveSwift.debug.xcconfig"; sourceTree = "<group>"; };
 		E7AC5BA00D7F6054AC66E468 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		F463C73A241835DD000A0B29 /* CoalescingActionSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoalescingActionSpec.swift; sourceTree = "<group>"; };
 		F463C73B241835DD000A0B29 /* ReactiveSwiftExtensionsSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactiveSwiftExtensionsSpec.swift; sourceTree = "<group>"; };
 		F463C73F241835EA000A0B29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F463C74424183913000A0B29 /* FueledUtilsTests-SwiftUI.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FueledUtilsTests-SwiftUI.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F463C74624183914000A0B29 /* EmptySpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptySpec.swift; sourceTree = "<group>"; };
+		F46CDEA885028D8DB189B3CB /* Pods_Common_FueledUtilsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Common_FueledUtilsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7F10FE9C8384333882C2368 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -37,15 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FDC158127A32ACE063DE046F /* Pods_Common_FueledUtilsTests_ReactiveSwift.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F463C74124183913000A0B29 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CBAC4FA461D4F6B2536EF7AB /* Pods_Common_FueledUtilsTests_SwiftUI.framework in Frameworks */,
+				EE9B3A498587AC2D3461D310 /* Pods_Common_FueledUtilsTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -59,6 +49,8 @@
 				ACF665E90E66C2B35C6C5C05 /* Pods-Common-FueledUtilsTests-ReactiveSwift.release.xcconfig */,
 				65B56BF0A7147538E12F737F /* Pods-Common-FueledUtilsTests-SwiftUI.debug.xcconfig */,
 				3297A6B2D4B923F8F27CD6A5 /* Pods-Common-FueledUtilsTests-SwiftUI.release.xcconfig */,
+				D43FD9799A872E88963939C1 /* Pods-Common-FueledUtilsTests.debug.xcconfig */,
+				00B6C3B54CADD6729AF81F36 /* Pods-Common-FueledUtilsTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -67,8 +59,7 @@
 			isa = PBXGroup;
 			children = (
 				607FACF51AFB993E008FA782 /* Podspec Metadata */,
-				F463C739241835DD000A0B29 /* ReactiveSwift */,
-				F463C74524183914000A0B29 /* SwiftUI */,
+				F463C739241835DD000A0B29 /* Tests */,
 				F463C73E241835EA000A0B29 /* Supporting Files */,
 				607FACD11AFB9204008FA782 /* Products */,
 				29F7E676D0DA9F23C4893ECA /* Pods */,
@@ -79,8 +70,7 @@
 		607FACD11AFB9204008FA782 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				607FACE51AFB9204008FA782 /* FueledUtilsTests-ReactiveSwift.xctest */,
-				F463C74424183913000A0B29 /* FueledUtilsTests-SwiftUI.xctest */,
+				607FACE51AFB9204008FA782 /* FueledUtilsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -98,19 +88,19 @@
 		8CF3F11B25F743ED68711CBC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				410CDB623197A6F0D05837BE /* Pods_Common_FueledUtilsTests_ReactiveSwift.framework */,
 				39EF9AE56A510B26CCC488B7 /* Pods_Common_FueledUtilsTests_SwiftUI.framework */,
+				F46CDEA885028D8DB189B3CB /* Pods_Common_FueledUtilsTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		F463C739241835DD000A0B29 /* ReactiveSwift */ = {
+		F463C739241835DD000A0B29 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				F463C73A241835DD000A0B29 /* CoalescingActionSpec.swift */,
 				F463C73B241835DD000A0B29 /* ReactiveSwiftExtensionsSpec.swift */,
 			);
-			path = ReactiveSwift;
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		F463C73E241835EA000A0B29 /* Supporting Files */ = {
@@ -121,20 +111,12 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		F463C74524183914000A0B29 /* SwiftUI */ = {
-			isa = PBXGroup;
-			children = (
-				F463C74624183914000A0B29 /* EmptySpec.swift */,
-			);
-			path = SwiftUI;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		607FACE41AFB9204008FA782 /* FueledUtilsTests-ReactiveSwift */ = {
+		607FACE41AFB9204008FA782 /* FueledUtilsTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "FueledUtilsTests-ReactiveSwift" */;
+			buildConfigurationList = 607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "FueledUtilsTests" */;
 			buildPhases = (
 				7A704080E54E9F7FB6D2806D /* [CP] Check Pods Manifest.lock */,
 				607FACE11AFB9204008FA782 /* Sources */,
@@ -146,28 +128,9 @@
 			);
 			dependencies = (
 			);
-			name = "FueledUtilsTests-ReactiveSwift";
+			name = FueledUtilsTests;
 			productName = Tests;
-			productReference = 607FACE51AFB9204008FA782 /* FueledUtilsTests-ReactiveSwift.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		F463C74324183913000A0B29 /* FueledUtilsTests-SwiftUI */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F463C74924183914000A0B29 /* Build configuration list for PBXNativeTarget "FueledUtilsTests-SwiftUI" */;
-			buildPhases = (
-				C83C49377CB4DCCA96B27625 /* [CP] Check Pods Manifest.lock */,
-				F463C74024183913000A0B29 /* Sources */,
-				F463C74124183913000A0B29 /* Frameworks */,
-				F463C74224183913000A0B29 /* Resources */,
-				3EB0A0B44D7FAD0AAD39085B /* [CP] Embed Pods Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "FueledUtilsTests-SwiftUI";
-			productName = "FueledUtilsTests-Combine";
-			productReference = F463C74424183913000A0B29 /* FueledUtilsTests-SwiftUI.xctest */;
+			productReference = 607FACE51AFB9204008FA782 /* FueledUtilsTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -184,11 +147,6 @@
 						CreatedOnToolsVersion = 6.3.1;
 						LastSwiftMigration = 0900;
 					};
-					F463C74324183913000A0B29 = {
-						CreatedOnToolsVersion = 11.4;
-						DevelopmentTeam = 2GVJ6JS822;
-						ProvisioningStyle = Automatic;
-					};
 				};
 			};
 			buildConfigurationList = 607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "FueledUtils" */;
@@ -204,8 +162,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				607FACE41AFB9204008FA782 /* FueledUtilsTests-ReactiveSwift */,
-				F463C74324183913000A0B29 /* FueledUtilsTests-SwiftUI */,
+				607FACE41AFB9204008FA782 /* FueledUtilsTests */,
 			);
 		};
 /* End PBXProject section */
@@ -218,54 +175,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F463C74224183913000A0B29 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3EB0A0B44D7FAD0AAD39085B /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Common-FueledUtilsTests-SwiftUI/Pods-Common-FueledUtilsTests-SwiftUI-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/FueledUtils-51945db7/FueledUtils.framework",
-				"${BUILT_PRODUCTS_DIR}/Nimble-iOS13.0/Nimble.framework",
-				"${BUILT_PRODUCTS_DIR}/Quick-iOS13.0/Quick.framework",
-				"${BUILT_PRODUCTS_DIR}/ReactiveCocoa-iOS13.0/ReactiveCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/ReactiveSwift-iOS13.0/ReactiveSwift.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FueledUtils.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveCocoa.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveSwift.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Common-FueledUtilsTests-SwiftUI/Pods-Common-FueledUtilsTests-SwiftUI-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		41CB9636F71B84882C2E6A45 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Common-FueledUtilsTests-ReactiveSwift/Pods-Common-FueledUtilsTests-ReactiveSwift-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/FueledUtils-c6ea1015/FueledUtils.framework",
-				"${BUILT_PRODUCTS_DIR}/Nimble-iOS8.0/Nimble.framework",
-				"${BUILT_PRODUCTS_DIR}/Quick-iOS8.0/Quick.framework",
-				"${BUILT_PRODUCTS_DIR}/ReactiveCocoa-iOS8.0/ReactiveCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/ReactiveSwift-iOS8.0/ReactiveSwift.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-Common-FueledUtilsTests/Pods-Common-FueledUtilsTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/FueledUtils/FueledUtils.framework",
+				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
+				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveSwift/ReactiveSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -277,7 +201,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Common-FueledUtilsTests-ReactiveSwift/Pods-Common-FueledUtilsTests-ReactiveSwift-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Common-FueledUtilsTests/Pods-Common-FueledUtilsTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		7A704080E54E9F7FB6D2806D /* [CP] Check Pods Manifest.lock */ = {
@@ -295,29 +219,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Common-FueledUtilsTests-ReactiveSwift-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C83C49377CB4DCCA96B27625 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Common-FueledUtilsTests-SwiftUI-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Common-FueledUtilsTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -333,14 +235,6 @@
 			files = (
 				F463C73C241835DD000A0B29 /* CoalescingActionSpec.swift in Sources */,
 				F463C73D241835DD000A0B29 /* ReactiveSwiftExtensionsSpec.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F463C74024183913000A0B29 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F463C74724183914000A0B29 /* EmptySpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -395,7 +289,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -444,7 +337,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -454,7 +346,7 @@
 		};
 		607FACF31AFB9204008FA782 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D498AEE5BC8A0A514416E6DA /* Pods-Common-FueledUtilsTests-ReactiveSwift.debug.xcconfig */;
+			baseConfigurationReference = D43FD9799A872E88963939C1 /* Pods-Common-FueledUtilsTests.debug.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
@@ -475,7 +367,7 @@
 		};
 		607FACF41AFB9204008FA782 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ACF665E90E66C2B35C6C5C05 /* Pods-Common-FueledUtilsTests-ReactiveSwift.release.xcconfig */;
+			baseConfigurationReference = 00B6C3B54CADD6729AF81F36 /* Pods-Common-FueledUtilsTests.release.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
@@ -487,63 +379,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
-		F463C74A24183914000A0B29 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 65B56BF0A7147538E12F737F /* Pods-Common-FueledUtilsTests-SwiftUI.debug.xcconfig */;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_STYLE = Automatic;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 2GVJ6JS822;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.fueled.FueledUtilsTests-Combine";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TVOS_DEPLOYMENT_TARGET = 13.0;
-				WATCHOS_DEPLOYMENT_TARGET = 6.0;
-			};
-			name = Debug;
-		};
-		F463C74B24183914000A0B29 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3297A6B2D4B923F8F27CD6A5 /* Pods-Common-FueledUtilsTests-SwiftUI.release.xcconfig */;
-			buildSettings = {
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2GVJ6JS822;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = "Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.fueled.FueledUtilsTests-Combine";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TVOS_DEPLOYMENT_TARGET = 13.0;
-				WATCHOS_DEPLOYMENT_TARGET = 6.0;
 			};
 			name = Release;
 		};
@@ -559,20 +394,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "FueledUtilsTests-ReactiveSwift" */ = {
+		607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "FueledUtilsTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				607FACF31AFB9204008FA782 /* Debug */,
 				607FACF41AFB9204008FA782 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		F463C74924183914000A0B29 /* Build configuration list for PBXNativeTarget "FueledUtilsTests-SwiftUI" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F463C74A24183914000A0B29 /* Debug */,
-				F463C74B24183914000A0B29 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
