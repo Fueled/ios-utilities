@@ -12,16 +12,23 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Combine
+import SwiftUI
 
-extension Subject {
-	public func send(result: Result<Output, Failure>) {
-		switch result {
-		case .failure(let error):
-			self.send(completion: .failure(error))
-		case .success(let value):
-			self.send(value)
-			self.send(completion: .finished)
-		}
+extension EdgeInsets {
+	public static var zero: EdgeInsets {
+		EdgeInsets(top: 0.0, leading: 0.0, bottom: 0.0, trailing: 0.0)
+	}
+
+	public init(_ length: CGFloat) {
+		self.init(top: length, leading: length, bottom: length, trailing: length)
+	}
+
+	public init(_ edges: Edge.Set, _ length: CGFloat) {
+		self.init(
+			top: edges.contains(.top) ? length : 0.0,
+			leading: edges.contains(.leading) ? length : 0.0,
+			bottom: edges.contains(.bottom) ? length : 0.0,
+			trailing: edges.contains(.trailing) ? length : 0.0
+		)
 	}
 }

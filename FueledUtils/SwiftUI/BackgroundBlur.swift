@@ -12,16 +12,26 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Combine
+import SwiftUI
 
-extension Subject {
-	public func send(result: Result<Output, Failure>) {
-		switch result {
-		case .failure(let error):
-			self.send(completion: .failure(error))
-		case .success(let value):
-			self.send(value)
-			self.send(completion: .finished)
+public struct BlurView: UIViewRepresentable {
+	public let style: UIBlurEffect.Style
+
+	public func makeUIView(context: Context) -> UIVisualEffectView {
+		UIVisualEffectView(effect: UIBlurEffect(style: self.style))
+	}
+
+	public func updateUIView(_ visualEffectView: UIVisualEffectView, context: Context) {
+		visualEffectView.effect = UIBlurEffect(style: self.style)
+	}
+}
+
+extension View {
+	public func backgroundBlur(style: UIBlurEffect.Style, color: Color? = nil) -> some View {
+		ZStack {
+			color
+			BlurView(style: style)
+			self
 		}
 	}
 }
