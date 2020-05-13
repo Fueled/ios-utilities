@@ -31,13 +31,13 @@ public struct OrderedSet<E: Hashable>: Equatable, RangeReplaceableCollection {
 		self.set = Set()
 	}
 
-	/// Creates an ordered set with the contents of `array`.
+	/// Creates an ordered set with the contents of `sequence`.
 	///
-	/// If an element occurs more than once in `element`, only the first one
+	/// If an element occurs more than once in `sequence`, only the first one
 	/// will be included.
-	public init(_ array: [Element]) {
+	public init<Sequence: Swift.Sequence>(_ sequence: Sequence) where Sequence.Element == Self.Element {
 		self.init()
-		for element in array {
+		for element in sequence {
 			self.append(element)
 		}
 	}
@@ -78,9 +78,19 @@ public struct OrderedSet<E: Hashable>: Equatable, RangeReplaceableCollection {
 		return inserted
 	}
 
-	public mutating func replaceSubrange<C, R>(_ subrange: R, with newElements: C) where C: Collection, R: RangeExpression, Element == C.Element, Index == R.Bound {
-		self.array.replaceSubrange(subrange, with: newElements)
-		self.set = Set(self.array)
+	public mutating func replaceSubrange<
+		Collection: Swift.Collection,
+		Range: RangeExpression
+	>(
+		_ subrange: Range,
+		with newElements: Collection
+	) where
+		Collection.Element == Element,
+		Range.Bound == Index
+	{
+		let newElementsOrderedSet = OrderedSet(newElements)
+		self.array.replaceSubrange(subrange, with: newElementsOrderedSet)
+		self.set.formUnion(newElements)
 	}
 
 	/// Remove and return the element at the beginning of the ordered set.
@@ -144,4 +154,16 @@ extension OrderedSet: RandomAccessCollection {
 }
 
 extension OrderedSet: Hashable where Element: Hashable {
+}
+
+extension OrderedSet: Decodable where Element: Decodable {
+	public init(from decoder: Decoder) throws {
+		try self.init([Element](from: decoder))
+	}
+}
+
+extension OrderedSet: Encodable where Element: Encodable {
+	public func encode(to encoder: Encoder) throws {
+		try self.array.encode(to: encoder)
+	}
 }
