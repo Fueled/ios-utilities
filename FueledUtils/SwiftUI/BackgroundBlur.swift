@@ -32,6 +32,7 @@ extension View {
 			color
 			BlurView(style: style)
 			self
+				.eraseToAnyView()
 		}
 	}
 }
