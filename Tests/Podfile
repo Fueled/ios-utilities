@@ -5,17 +5,13 @@ abstract_target 'Common' do
 	pod 'Quick', '~> 2.0'
 	pod 'Nimble', '~> 8.0'
 
-	target 'FueledUtilsTests-ReactiveSwift' do
-		platform :ios, '8.0'
-
-		pod 'FueledUtils/ReactiveSwiftUIKit', path: '../'
-	end
-
-	target 'FueledUtilsTests-SwiftUI' do
+	target 'FueledUtilsTests' do
 		platform :ios, '13.0'
 
-		pod 'FueledUtils/CombineOperators', path: '../'
+		pod 'FueledUtils/ReactiveCombineBridge', path: '../'
+		pod 'FueledUtils/ReactiveSwift', path: '../'
+		pod 'FueledUtils/ReactiveSwiftUIKit', path: '../'
 		pod 'FueledUtils/SwiftUI', path: '../'
-		pod 'FueledUtils/UIKit', path: '../'
+		pod 'FueledUtils/CombineOperators', path: '../'
 	end
 end

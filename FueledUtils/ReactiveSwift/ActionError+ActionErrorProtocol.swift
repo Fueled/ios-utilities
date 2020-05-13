@@ -1,4 +1,4 @@
-// Copyright © 2020 Fueled Digital Media, LLC
+// Copyright © 2020, Fueled Digital Media, LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,15 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Quick
-import Nimble
+import ReactiveSwift
 
-class CoalescingActionSpec: QuickSpec {
-	override func spec() {
-		describe("Nothing") {
-			it("should pass") {
-				expect(true) == true
-			}
+extension ReactiveSwift.ActionError: ActionErrorProtocol {
+	///
+	/// The error the action protocol currently have. If `nil`, the action error is considered `disabled`.
+	///
+	public var innerError: Error? {
+		if case .producerFailed(let error) = self {
+			return error
 		}
+		return nil
 	}
 }

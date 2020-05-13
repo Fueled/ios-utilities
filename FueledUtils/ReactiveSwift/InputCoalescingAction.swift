@@ -19,19 +19,12 @@ import ReactiveSwift
 /// and will be completed with the same output when the initial executing action completes.
 /// Disposing any of the `SignalProducer` returned by 'apply()` will cancel the action.
 ///
-public typealias CoalescingAction<Output, Error: Swift.Error> = InputCoalescingAction<Void, Output, Error>
-
-///
-/// Similar to `Action`, except if the action is already executing, subsequent `apply()` call will not fail,
-/// and will be completed with the same output when the initial executing action completes.
-/// Disposing any of the `SignalProducer` returned by 'apply()` will cancel the action.
-///
 /// The `Input` is used when sending inputs to the **initial** `apply()` call - for subsequent
 /// calls to `apply()` when the action is executing, the inputs will be ignored until
 /// the action terminates.
 ///
-public class InputCoalescingAction<Input, Output, Error: Swift.Error>: ActionProtocol {
-	private let action: Action<Input, Output, Error>
+public class ReactiveCoalescingAction<Input, Output, Error: Swift.Error>: ReactiveActionProtocol {
+	private let action: ReactiveSwift.Action<Input, Output, Error>
 	private var observer: Signal<Output, Error>.Observer?
 
 	private class DisposableContainer {
@@ -117,7 +110,7 @@ public class InputCoalescingAction<Input, Output, Error: Swift.Error>: ActionPro
 	///              executed by the `Action`.
 	///
 	public init(execute: @escaping (Input) -> SignalProducer<Output, Error>) {
-		self.action = Action(execute: execute)
+		self.action = ReactiveSwift.Action(execute: execute)
 	}
 
 	///

@@ -33,7 +33,7 @@ extension CGSize {
 	///     In all other cases, the receiver is returned and `size` is ignored.
 	/// - Returns: The scaled size as specified by the parameters.
 	///
-	func scaled(to size: CGSize, contentMode: UIView.ContentMode = .scaleToFill) -> CGSize {
+	public func scaled(to size: CGSize, contentMode: UIView.ContentMode = .scaleToFill) -> CGSize {
 		switch contentMode {
 		case .redraw,
 				 .scaleToFill:
@@ -299,7 +299,7 @@ extension UIView {
 	///
 	/// - Note: It is safe to call this method multiple times without calling `removeSketchShadow` between each calls.
 	///
-	func applySketchShadow(
+	public func applySketchShadow(
 		color: UIColor = .black,
 		alpha: Float = 0.5,
 		xAxis: CGFloat = 0.0,
@@ -327,7 +327,7 @@ extension UIView {
 	/// Remove a shadow as set by `applySketchShadow`
 	/// This method will reset any shadows sets on the backing layer, _even it wasn't applied by `applySketchShadow`
 	///
-	func removeSketchShadow() {
+	public func removeSketchShadow() {
 		self.layer.shadowColor = nil
 		self.layer.shadowOpacity = 0.0
 		self.layer.shadowOffset = .zero
@@ -346,7 +346,7 @@ extension UIStackView {
 	///   - removeFromHierachy: If `true`, each views is also removed from the receiver using `removeFromSuperview()`.
 	///     If `false`, `removeFromSuperview()` is not called.
 	///
-	func removeArrangedSubviews(removeFromHierachy: Bool) {
+	public func removeArrangedSubviews(removeFromHierachy: Bool) {
 		let arrangedSubviews = self.arrangedSubviews
 		arrangedSubviews.forEach { self.removeArrangedSubview($0, removeFromHierachy: removeFromHierachy) }
 	}
@@ -360,7 +360,7 @@ extension UIStackView {
 	///   - removeFromHierachy: If `true`, the view is also removed from the receiver using `removeFromSuperview()`.
 	///     If `false`, `removeFromSuperview()` is not called.
 	///
-	func removeArrangedSubview(_ view: UIView, removeFromHierachy: Bool) {
+	public func removeArrangedSubview(_ view: UIView, removeFromHierachy: Bool) {
 		if removeFromHierachy {
 			view.removeFromSuperview()
 		} else {

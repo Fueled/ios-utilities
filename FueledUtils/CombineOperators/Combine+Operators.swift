@@ -16,6 +16,7 @@ import Combine
 
 // swiftlint:disable generic_type_name
 
+#if !canImport(ReactiveSwift)
 precedencegroup BindingPrecedence {
 	associativity: right
 
@@ -23,6 +24,9 @@ precedencegroup BindingPrecedence {
 }
 
 infix operator <~: BindingPrecedence
+#else
+import ReactiveSwift
+#endif
 
 precedencegroup AccessPrecedence {
 	associativity: right

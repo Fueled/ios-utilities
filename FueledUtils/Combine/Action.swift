@@ -14,35 +14,6 @@
 
 import Combine
 
-public protocol ActionErrorProtocol {
-	associatedtype InnerError: Swift.Error
-
-	var innerError: InnerError? { get }
-}
-
-public enum ActionError<Error: Swift.Error>: Swift.Error {
-	case disabled
-	case failure(Error)
-}
-
-extension ActionError: ActionErrorProtocol {
-	public var innerError: Error? {
-		if case .failure(let error) = self {
-			return error
-		}
-		return nil
-	}
-}
-
-extension ActionErrorProtocol {
-	public func map<NewError: Swift.Error>(_ mapper: (InnerError) -> NewError) -> ActionError<NewError> {
-		if let innerError = self.innerError {
-			return .failure(mapper(innerError))
-		}
-		return .disabled
-	}
-}
-
 public final class Action<Input, Output, Failure: Swift.Error> {
 	@Published public private(set) var isExecuting: Bool = false
 	@Published public private(set) var isEnabled: Bool = false

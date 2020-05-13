@@ -55,7 +55,7 @@ public enum LoadingState<Error: Swift.Error> {
 	}
 }
 
-extension ActionProtocol {
+extension ReactiveActionProtocol {
 	///
 	/// Returns a `SignalProducer` whose events corresponds to the current loading state of the action.
 	/// Please refer to `LoadingState` for more info.
