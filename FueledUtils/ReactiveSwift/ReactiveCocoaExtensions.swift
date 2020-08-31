@@ -15,12 +15,15 @@
 import Foundation
 import ReactiveCocoa
 import ReactiveSwift
+#if os(iOS)
 import UIKit
+#endif
 
 ///
 /// Use with `SignalProtocol.observe(context:)` or  `SignalProducerProtocol.observe(context:)` below to animate
 /// all changes made by observers of the signal returned from `observe(context:)`.
 ///
+#if os(iOS)
 public func animatingContext(
 	_ duration: TimeInterval,
 	delay: TimeInterval = 0,
@@ -64,6 +67,7 @@ public func transitionContext(
 			completion: completion)
 		}
 }
+#endif
 
 extension Reactive where Base: NSLayoutConstraint {
 	///
@@ -74,6 +78,7 @@ extension Reactive where Base: NSLayoutConstraint {
 	}
 }
 
+#if os(iOS)
 extension Reactive where Base: UIView {
 	///
 	/// Update the `alpha` property of the view with an animation.
@@ -121,7 +126,6 @@ extension Reactive where Base: UIViewController {
 	}
 }
 
-#if os(iOS)
 extension Reactive where Base: UINavigationItem {
 	///
 	/// Show/hide the back button, optionally with an animation.
