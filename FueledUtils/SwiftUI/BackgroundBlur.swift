@@ -15,6 +15,7 @@
 import SwiftUI
 
 extension View {
+	#if os(iOS)
 	public func backgroundBlur(style: UIBlurEffect.Style, color: Color? = nil) -> some View {
 		ZStack {
 			color
@@ -23,4 +24,27 @@ extension View {
 				.eraseToAnyView()
 		}
 	}
+	#else
+	public func backgroundBlur(
+		material: NSVisualEffectView.Material = .appearanceBased,
+		blendingMode: NSVisualEffectView.BlendingMode = .behindWindow,
+		state: NSVisualEffectView.State = .followsWindowActiveState,
+		maskImage: NSImage? = nil,
+		isEmphasized: Bool = false,
+		color: Color? = nil
+	) -> some View {
+		ZStack {
+			color
+			BlurView(
+				material: material,
+				blendingMode: blendingMode,
+				state: state,
+				maskImage: maskImage,
+				isEmphasized: isEmphasized
+			)
+			self
+				.eraseToAnyView()
+		}
+	}
+	#endif
 }
