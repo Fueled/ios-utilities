@@ -21,7 +21,7 @@ extension SignalProducerConvertible {
 		self.publisher.eraseToAnyPublisher()
 	}
 
-	var publisher: Publishers.SignalProducerPublisher<Value, Error> {
+	public var publisher: Publishers.SignalProducerPublisher<Value, Error> {
 		Publishers.SignalProducerPublisher(self.producer)
 	}
 }
