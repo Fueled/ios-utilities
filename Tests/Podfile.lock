@@ -5,7 +5,7 @@ PODS:
     - FueledUtils/Combine
   - FueledUtils/Core (3.0-alpha1)
   - FueledUtils/ReactiveCombineBridge (3.0-alpha1):
-    - FueledUtils/CombineOperators
+    - FueledUtils/Combine
     - FueledUtils/ReactiveSwift
   - FueledUtils/ReactiveCommon (3.0-alpha1):
     - FueledUtils/Core
@@ -48,7 +48,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  FueledUtils: 440829476734457153856d2e60eb100fff7c001b
+  FueledUtils: ac740e5dae55bc10029aa3cbcd8b533298622d7a
   Nimble: 4ab1aeb9b45553c75b9687196b0fa0713170a332
   Quick: 7fb19e13be07b5dfb3b90d4f9824c855a11af40e
   ReactiveCocoa: a123c42f449c552460a4ee217dd49c76a17c8204
