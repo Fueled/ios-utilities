@@ -13,9 +13,19 @@
 // limitations under the License.
 
 import SwiftUI
+#if os(iOS)
+import UIKit
+#else
+import AppKit
+#endif
 
+#if os(iOS)
 public struct BlurView: UIViewRepresentable {
 	public let style: UIBlurEffect.Style
+
+	public init(style: UIBlurEffect.Style) {
+		self.style = style
+	}
 
 	public func makeUIView(context: Context) -> UIVisualEffectView {
 		UIVisualEffectView(effect: UIBlurEffect(style: self.style))
@@ -25,3 +35,39 @@ public struct BlurView: UIViewRepresentable {
 		visualEffectView.effect = UIBlurEffect(style: self.style)
 	}
 }
+#else
+public struct BlurView: NSViewRepresentable {
+	public let material: NSVisualEffectView.Material
+	public let blendingMode: NSVisualEffectView.BlendingMode
+	public let state: NSVisualEffectView.State
+	public let maskImage: NSImage?
+	public let isEmphasized: Bool
+
+	public init(
+		material: NSVisualEffectView.Material = .appearanceBased,
+		blendingMode: NSVisualEffectView.BlendingMode = .behindWindow,
+		state: NSVisualEffectView.State = .followsWindowActiveState,
+		maskImage: NSImage? = nil,
+		isEmphasized: Bool = false
+	) {
+		self.material = material
+		self.blendingMode = blendingMode
+		self.state = state
+		self.maskImage = maskImage
+		self.isEmphasized = isEmphasized
+	}
+
+	public func makeNSView(context: Context) -> NSVisualEffectView {
+		NSVisualEffectView()
+	}
+
+	public func updateNSView(_ visualEffectView: NSVisualEffectView, context: Context) {
+		visualEffectView.material = self.material
+		visualEffectView.blendingMode = self.blendingMode
+		visualEffectView.state = self.state
+		visualEffectView.maskImage = self.maskImage
+		visualEffectView.isEmphasized = self.isEmphasized
+	}
+}
+
+#endif

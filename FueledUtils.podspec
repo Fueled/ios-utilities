@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'Core' do |s|
     s.ios.deployment_target = '8.0'
-    s.osx.deployment_target = '10.9'
+    s.osx.deployment_target = '10.12'
     s.watchos.deployment_target = '2.0'
     s.tvos.deployment_target = '9.0'
 
@@ -74,9 +74,9 @@ Pod::Spec.new do |s|
 
   s.subspec 'ReactiveCombineBridge' do |s|
     s.dependency 'FueledUtils/ReactiveSwift'
-    s.dependency 'FueledUtils/CombineOperators'
+    s.dependency 'FueledUtils/Combine'
 
-    s.ios.source_files = 'FueledUtils/ReactiveCombineBridge/**/*.swift'
+    s.source_files = 'FueledUtils/ReactiveCombineBridge/**/*.swift'
   end
 
   s.osx.exclude_files = ['FueledUtils/FueledUtils.h', 'FueledUtils/ButtonWithTitleAdjustment.swift', 'FueledUtils/DecoratingTextFieldDelegate.swift', 'FueledUtils/DimmingButton.swift', 'FueledUtils/HairlineView.swift', 'FueledUtils/HairlineView.swift', 'FueledUtils/KeyboardInsetHelper.swift', 'FueledUtils/LabelWithTitleAdjustment.swift', 'FueledUtils/ReactiveCocoaExtensions.swift', 'FueledUtils/ScrollViewPage.swift', 'FueledUtils/SetRootViewController.swift', 'FueledUtils/SignalingAlert.swift', 'FueledUtils/UIExtensions.swift', 'FueledUtils/GradientView.swift']
