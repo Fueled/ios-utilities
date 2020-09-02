@@ -59,6 +59,25 @@ public struct Regex {
 	public func match(_ string: String, options: NSRegularExpression.MatchingOptions = []) -> Bool {
 		return implementation.numberOfMatches(in: string, options: options, range: string.nsRange) != 0
 	}
+
+	/// Match all the captured groups if any.
+	///
+	/// - Parameters:
+	///   - pattern: The string to match the regex against.
+	///   - options: The options to use when matching the regular expression
+	/// against the given string.
+	/// - Returns: The captured groups.
+	///
+	/// - Note: By default, NSRegularExpression exposes the matching text (not the
+	/// group) as the first (index 0) element of the NSTextCheckingResult. This
+	/// is ignored in the returned value, as it is not a captured group.
+	public func groups(in string: String, options: NSRegularExpression.MatchingOptions = []) -> [[String]] {
+		let matches = implementation.matches(in: string, options: options, range: string.nsRange)
+		return matches
+			.map { match in (1..<match.numberOfRanges).map { match.range(at: $0) } }
+			.map { $0.compactMap { Range($0, in: string) } }
+			.map { $0.map { String(string[$0]) } }
+	}
 }
 
 ///
