@@ -16,7 +16,6 @@ import Quick
 import Nimble
 import FueledUtils
 import ReactiveSwift
-import XCTest
 
 class ReactiveSwiftExtensionsSpec: QuickSpec {
 	override func spec() {
