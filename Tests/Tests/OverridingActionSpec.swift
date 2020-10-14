@@ -17,14 +17,20 @@ import FueledUtils
 import Quick
 import Nimble
 
-class CoalescingActionSpec: QuickSpec {
+class OverridingActionSpec: QuickSpec {
+	private var cancellables: [AnyCancellable]!
+
 	override func spec() {
-		describe("CoalescingAction") {
-			describe("apply.dispose()") {
-				it("should dispose of all created signal producers") {
+		describe("OverridingAction") {
+			beforeEach {
+				self.cancellables = []
+			}
+			describe("apply.sink()") {
+				it("should cancel the previous work") {
 					var subscriptionCounter = 0
 					var cancelledCounter = 0
-					let coalescingAction = CoalescingAction {
+					var interruptedCounter = 0
+					let coalescingAction = OverridingAction {
 						Just(2.0)
 							.delay(for: 1.0, scheduler: DispatchQueue.main)
 							.handleEvents(
@@ -33,6 +39,9 @@ class CoalescingActionSpec: QuickSpec {
 								},
 								receiveCancel: {
 									cancelledCounter += 1
+								},
+								receiveTermination: {
+									interruptedCounter += 1
 								}
 							)
 					}
@@ -40,17 +49,14 @@ class CoalescingActionSpec: QuickSpec {
 					expect(subscriptionCounter) == 0
 
 					let publishersCount = 5
-					let cancellables = (0..<publishersCount).map { _ in coalescingAction.apply(()).sink() }
+					self.cancellables = (0..<publishersCount).map { _ in coalescingAction.apply(()).sink() }
 
-					expect(subscriptionCounter) == 1
+					expect(subscriptionCounter) == publishersCount
+					expect(cancelledCounter) == publishersCount - 1
+					expect(interruptedCounter) == publishersCount - 1
 
-					cancellables[0].cancel()
-
-					expect(cancelledCounter) == 0
-
-					cancellables[1..<publishersCount].forEach { $0.cancel() }
-
-					expect(cancelledCounter).toEventually(equal(1))
+					expect(cancelledCounter).toEventually(equal(publishersCount - 1), timeout: 2.0)
+					expect(cancelledCounter).toEventually(equal(interruptedCounter), timeout: 2.0)
 				}
 			}
 		}

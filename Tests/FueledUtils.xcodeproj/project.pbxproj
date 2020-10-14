@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		EE9B3A498587AC2D3461D310 /* Pods_Common_FueledUtilsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F46CDEA885028D8DB189B3CB /* Pods_Common_FueledUtilsTests.framework */; };
+		F429742A25378348004BFA85 /* ReactiveOverridingActionSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F429742925378348004BFA85 /* ReactiveOverridingActionSpec.swift */; };
+		F429742E25378425004BFA85 /* OverridingActionSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F429742D25378425004BFA85 /* OverridingActionSpec.swift */; };
 		F463C73C241835DD000A0B29 /* ReactiveCoalescingActionSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F463C73A241835DD000A0B29 /* ReactiveCoalescingActionSpec.swift */; };
 		F463C73D241835DD000A0B29 /* ReactiveSwiftExtensionsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F463C73B241835DD000A0B29 /* ReactiveSwiftExtensionsSpec.swift */; };
 		F46D2DA6252E4E4A00B6987A /* OrderedSetSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46D2DA5252E4E4A00B6987A /* OrderedSetSpec.swift */; };
@@ -25,6 +27,8 @@
 		D43FD9799A872E88963939C1 /* Pods-Common-FueledUtilsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common-FueledUtilsTests.debug.xcconfig"; path = "Target Support Files/Pods-Common-FueledUtilsTests/Pods-Common-FueledUtilsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D498AEE5BC8A0A514416E6DA /* Pods-Common-FueledUtilsTests-ReactiveSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common-FueledUtilsTests-ReactiveSwift.debug.xcconfig"; path = "Target Support Files/Pods-Common-FueledUtilsTests-ReactiveSwift/Pods-Common-FueledUtilsTests-ReactiveSwift.debug.xcconfig"; sourceTree = "<group>"; };
 		E7AC5BA00D7F6054AC66E468 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		F429742925378348004BFA85 /* ReactiveOverridingActionSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactiveOverridingActionSpec.swift; sourceTree = "<group>"; };
+		F429742D25378425004BFA85 /* OverridingActionSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverridingActionSpec.swift; sourceTree = "<group>"; };
 		F463C73A241835DD000A0B29 /* ReactiveCoalescingActionSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactiveCoalescingActionSpec.swift; sourceTree = "<group>"; };
 		F463C73B241835DD000A0B29 /* ReactiveSwiftExtensionsSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactiveSwiftExtensionsSpec.swift; sourceTree = "<group>"; };
 		F463C73F241835EA000A0B29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -102,9 +106,11 @@
 			isa = PBXGroup;
 			children = (
 				F499631F2537459200E2D4B5 /* CoalescingActionSpec.swift */,
+				F46D2DA5252E4E4A00B6987A /* OrderedSetSpec.swift */,
+				F429742D25378425004BFA85 /* OverridingActionSpec.swift */,
 				F463C73A241835DD000A0B29 /* ReactiveCoalescingActionSpec.swift */,
 				F463C73B241835DD000A0B29 /* ReactiveSwiftExtensionsSpec.swift */,
-				F46D2DA5252E4E4A00B6987A /* OrderedSetSpec.swift */,
+				F429742925378348004BFA85 /* ReactiveOverridingActionSpec.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -240,9 +246,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				F46D2DA6252E4E4A00B6987A /* OrderedSetSpec.swift in Sources */,
+				F429742A25378348004BFA85 /* ReactiveOverridingActionSpec.swift in Sources */,
 				F463C73C241835DD000A0B29 /* ReactiveCoalescingActionSpec.swift in Sources */,
 				F49963202537459200E2D4B5 /* CoalescingActionSpec.swift in Sources */,
 				F463C73D241835DD000A0B29 /* ReactiveSwiftExtensionsSpec.swift in Sources */,
+				F429742E25378425004BFA85 /* OverridingActionSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
