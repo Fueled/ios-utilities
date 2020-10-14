@@ -63,16 +63,18 @@ public final class Action<Input, Output, Failure: Swift.Error> {
 					receiveOutput: { value in
 						values.send(value)
 					},
-					receiveCompletion: { [weak action] completion in
-						isExecutingLock.lock()
-						action?.isExecuting = false
-						isExecutingLock.unlock()
+					receiveCompletion: { completion in
 						switch completion {
 						case .finished:
 							break
 						case .failure(let error):
 							errors.send(error)
 						}
+					},
+					receiveTermination: { [weak action] in
+						isExecutingLock.lock()
+						action?.isExecuting = false
+						isExecutingLock.unlock()
 					}
 				)
 				.mapError { .failure($0) }
@@ -115,12 +117,6 @@ public final class Action<Input, Output, Failure: Swift.Error> {
 	}
 }
 
-extension Action where Input == Void {
-	public func apply() -> AnyPublisher<Output, ActionError<Failure>> {
-		self.apply(())
-	}
-}
-
 extension Publisher where Failure: ActionErrorProtocol {
 	public func unwrappingActionError() -> AnyPublisher<Output, Failure.InnerError> {
 		self.catch { actionError -> AnyPublisher<Output, Failure.InnerError> in
@@ -145,6 +141,7 @@ extension Action {
 	// Please note that the actions created with the `mapXxx` family are interweaved together - starting one
 	// will update the other, and vice versa.
 	// For example, on use case is to type-erase an Action.
+	@available(*, deprecated, message: "Use `AnyAction` instead")
 	public func mapInput<NewInput>(_ mapper: @escaping (NewInput) -> Input) -> Action<NewInput, Output, Failure> {
 		self.mapAll(
 			mapInput: mapper,
@@ -153,6 +150,7 @@ extension Action {
 		)
 	}
 
+	@available(*, deprecated, message: "Use `AnyAction` instead")
 	public func map<NewOutput>(_ mapper: @escaping (Output) -> NewOutput) -> Action<Input, NewOutput, Failure> {
 		self.mapAll(
 			mapInput: { $0 },
@@ -161,6 +159,7 @@ extension Action {
 		)
 	}
 
+	@available(*, deprecated, message: "Use `AnyAction` instead")
 	public func mapError<NewFailure: Swift.Error>(_ mapper: @escaping (Failure) -> NewFailure) -> Action<Input, Output, NewFailure> {
 		self.mapAll(
 			mapInput: { $0 },
@@ -169,6 +168,7 @@ extension Action {
 		)
 	}
 
+	@available(*, deprecated, message: "Use `AnyAction` instead")
 	public func mapAll<NewInput, NewOutput, NewFailure: Swift.Error>(
 		mapInput: @escaping (NewInput) -> (Input),
 		map: @escaping (Output) -> (NewOutput),

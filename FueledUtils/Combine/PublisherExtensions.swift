@@ -19,16 +19,79 @@ extension Publisher {
 		self.catch { _ in Empty() }.eraseToAnyPublisher()
 	}
 
+	public func promoteOptional() -> AnyPublisher<Output?, Failure> {
+		self.map { Optional.some($0) }.eraseToAnyPublisher()
+	}
+
 	public func sink() -> AnyCancellable {
 		self.sink(receiveCompletion: { _ in }, receiveValue: { _ in })
+	}
+
+	public func then(receiveResult: @escaping ((Result<Self.Output, Self.Failure>) -> Void)) -> AnyCancellable {
+		self.sink(
+			receiveCompletion: { completion in
+				if case .failure(let error) = completion {
+					receiveResult(.failure(error))
+				}
+			},
+			receiveValue: { value in
+				receiveResult(.success(value))
+			}
+		)
+	}
+
+	public func sinkForLifetimeOf<Object: CombineExtensionsProvider>(_ object: Object) {
+		self.sink()
+			.store(in: &object.combineExtensions.cancellables)
+	}
+
+	public func sinkForLifetimeOf<Object: CombineExtensionsProvider>(_ object: Object, receiveValue: @escaping ((Self.Output) -> Void)) where Failure == Never {
+		self.sink(receiveValue: receiveValue)
+			.store(in: &object.combineExtensions.cancellables)
+	}
+
+	public func sinkForLifetimeOf<Object: CombineExtensionsProvider>(_ object: Object, receiveCompletion: @escaping ((Subscribers.Completion<Self.Failure>) -> Void), receiveValue: @escaping ((Self.Output) -> Void)) {
+		self.sink(receiveCompletion: receiveCompletion, receiveValue: receiveValue)
+			.store(in: &object.combineExtensions.cancellables)
+	}
+
+	public func thenForLifetimeOf<Object: CombineExtensionsProvider>(_ object: Object, receiveResult: @escaping ((Result<Self.Output, Self.Failure>) -> Void)) {
+		self.then(receiveResult: receiveResult)
+			.store(in: &object.combineExtensions.cancellables)
+	}
+}
+
+extension Publisher {
+	public func performDuringLifetimeOf<Object: CombineExtensionsProvider & AnyObject>(_ object: Object, action: @escaping (Object, Output) -> Void) {
+		self
+			.ignoreError()
+			.sinkForLifetimeOf(object) { [weak object] value in
+				guard let object = object else {
+					return
+				}
+				action(object, value)
+			}
+	}
+
+	public func performDuringLifetimeOf<Object: CombineExtensionsProvider & AnyObject>(_ object: Object, action: @escaping (Object) -> (Output) -> Void) {
+		self.performDuringLifetimeOf(object) { object, output in
+				action(object)(output)
+			}
 	}
 }
 
 extension Publisher where Failure == Never {
 	public func assign<Object: AnyObject>(to keyPath: ReferenceWritableKeyPath<Object, Output>, withoutRetaining object: Object) -> AnyCancellable {
-		sink { [weak object] in
+		self.sink { [weak object] in
 			object?[keyPath: keyPath] = $0
 		}
+	}
+
+	public func assign<Object: CombineExtensionsProvider & AnyObject>(to keyPath: ReferenceWritableKeyPath<Object, Output>, forLifetimeOf object: Object) -> Void {
+		self.sink { [weak object] in
+			object?[keyPath: keyPath] = $0
+		}
+			.store(in: &object.combineExtensions.cancellables)
 	}
 }
 
