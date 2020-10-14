@@ -19,7 +19,7 @@ import ReactiveSwift
 /// A type-erased Action that allows to store any `ReactiveActionProtocol`
 /// (loosing any type information at the same time)
 ///
-final class AnyAction: ReactiveActionProtocol {
+final class ReactiveAnyAction: ReactiveActionProtocol {
 	private let applyClosure: (Input) -> SignalProducer<Any, Error>
 	private let deinitToken: Lifetime.Token
 

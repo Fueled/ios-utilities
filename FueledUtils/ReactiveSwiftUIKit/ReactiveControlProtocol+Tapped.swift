@@ -25,7 +25,7 @@ extension Reactive where Base: ControlProtocol {
 	/// protocol to represents the button rather than hardcode it to classes,
 	/// allowing for any `UIControl` to use this method.
 	///
-	var tapped: TapAction<Base>? {
+	var tapped: ReactiveTapAction<Base>? {
 		get {
 			self.tapActionStorage?.tapAction
 		}
@@ -42,8 +42,8 @@ extension Reactive where Base: ControlProtocol {
 						(control as! ControlLoadingProtocol).isLoading = isExecuting
 					} <~ newValue.isExecuting
 				}
-				self.base.removeTarget(newValue, action: TapAction<Base>.selector, for: .primaryActionTriggered)
-				self.base.addTarget(newValue, action: TapAction<Base>.selector, for: .primaryActionTriggered)
+				self.base.removeTarget(newValue, action: ReactiveTapAction<Base>.selector, for: .primaryActionTriggered)
+				self.base.addTarget(newValue, action: ReactiveTapAction<Base>.selector, for: .primaryActionTriggered)
 				self.tapActionStorage = tapActionStorage
 			}
 		}
@@ -60,10 +60,10 @@ extension Reactive where Base: ControlProtocol {
 }
 
 private final class TapActionStorage<Control: ControlProtocol> {
-	let tapAction: TapAction<Control>
+	let tapAction: ReactiveTapAction<Control>
 	let disposable = ScopedDisposable(CompositeDisposable())
 
-	init(_ tapAction: TapAction<Control>) {
+	init(_ tapAction: ReactiveTapAction<Control>) {
 		self.tapAction = tapAction
 	}
 }

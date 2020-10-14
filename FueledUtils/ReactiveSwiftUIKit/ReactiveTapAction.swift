@@ -16,19 +16,19 @@ import FueledUtils
 import ReactiveSwift
 
 ///
-/// TapAction wraps a `ReactiveActionProtocol` for use by any `ButtonProtocol`
+/// `ReactiveTapAction` wraps a `ReactiveActionProtocol` for use by any `ButtonProtocol`
 /// This is a mirror of `CococaAction` in `ReactiveCocoa`, allowing to use a
 /// `ButtonProtocol` and assigin
 ///
-final class TapAction<Button: ControlProtocol>: NSObject {
+final class ReactiveTapAction<Control: ControlProtocol>: NSObject {
 	@objc static var selector: Selector {
-		#selector(userDidTapButton(_:))
+		#selector(userDidTapControl(_:))
 	}
 
 	let isExecuting: Property<Bool>
 	let isEnabled: Property<Bool>
 
-	private let executeClosure: (Button) -> Void
+	private let executeClosure: (Control) -> Void
 
 	convenience init<Action: ReactiveActionProtocol>(_ action: Action) where Action.Input == Void {
 		self.init(action, input: ())
@@ -38,7 +38,7 @@ final class TapAction<Button: ControlProtocol>: NSObject {
 		self.init(action) { _ in input }
 	}
 
-	init<Action: ReactiveActionProtocol>(_ action: Action, inputTransform: @escaping (Button) -> Action.Input) {
+	init<Action: ReactiveActionProtocol>(_ action: Action, inputTransform: @escaping (Control) -> Action.Input) {
 		self.executeClosure = {
 			action.apply(inputTransform($0)).start()
 		}
@@ -53,7 +53,7 @@ final class TapAction<Button: ControlProtocol>: NSObject {
 		)
 	}
 
-	@objc private func userDidTapButton(_ button: Any) {
-		self.executeClosure(button as! Button)
+	@objc private func userDidTapControl(_ button: Any) {
+		self.executeClosure(button as! Control)
 	}
 }

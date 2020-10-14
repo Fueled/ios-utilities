@@ -17,9 +17,9 @@ import Nimble
 import FueledUtils
 import ReactiveSwift
 
-class CoalescingActionSpec: QuickSpec {
+class ReactiveCoalescingActionSpec: QuickSpec {
 	override func spec() {
-		describe("CoalescingAction") {
+		describe("ReactiveCoalescingAction") {
 			describe("apply.dispose()") {
 				it("should dispose of all created signal producers") {
 					var startCounter = 0
