@@ -3,6 +3,9 @@ PODS:
     - FueledUtils/ReactiveCommon
   - FueledUtils/CombineOperators (3.0-alpha1):
     - FueledUtils/Combine
+  - FueledUtils/CombineUIKit (3.0-alpha1):
+    - FueledUtils/Combine
+    - FueledUtils/UIKit
   - FueledUtils/Core (3.0-alpha1)
   - FueledUtils/ReactiveCombineBridge (3.0-alpha1):
     - FueledUtils/Combine
@@ -23,12 +26,13 @@ PODS:
     - FueledUtils/Core
   - Nimble (8.0.5)
   - Quick (2.2.0)
-  - ReactiveCocoa (10.2.0):
+  - ReactiveCocoa (10.3.0):
     - ReactiveSwift (~> 6.2)
-  - ReactiveSwift (6.2.1)
+  - ReactiveSwift (6.4.0)
 
 DEPENDENCIES:
   - FueledUtils/CombineOperators (from `../`)
+  - FueledUtils/CombineUIKit (from `../`)
   - FueledUtils/ReactiveCombineBridge (from `../`)
   - FueledUtils/ReactiveSwift (from `../`)
   - FueledUtils/ReactiveSwiftUIKit (from `../`)
@@ -48,12 +52,12 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  FueledUtils: ac740e5dae55bc10029aa3cbcd8b533298622d7a
+  FueledUtils: 988e17c4f4aef059750c2e501368c24ca8172d25
   Nimble: 4ab1aeb9b45553c75b9687196b0fa0713170a332
   Quick: 7fb19e13be07b5dfb3b90d4f9824c855a11af40e
-  ReactiveCocoa: a123c42f449c552460a4ee217dd49c76a17c8204
-  ReactiveSwift: 07ddf579f4eb3ee3bd656214f0461aaf2c0fd639
+  ReactiveCocoa: 083ae559e6f588ce519cab412ea119b431c26a24
+  ReactiveSwift: 7555791a608c0679563a3f72546f971b2a06de98
 
-PODFILE CHECKSUM: aeaba40223e95702eeaff4c66b27d8c72fcee5f5
+PODFILE CHECKSUM: 32300607a3a6ea0867f9cc805c81c934b352b46c
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.10.0.rc.1

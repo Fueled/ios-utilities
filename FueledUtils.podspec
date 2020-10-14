@@ -65,6 +65,13 @@ Pod::Spec.new do |s|
     s.source_files = 'FueledUtils/CombineOperators/**/*.swift'
   end
 
+  s.subspec 'CombineUIKit' do |s|
+    s.dependency 'FueledUtils/Combine'
+    s.dependency 'FueledUtils/UIKit'
+
+    s.source_files = 'FueledUtils/CombineUIKit/**/*.swift'
+  end
+
   s.subspec 'SwiftUI' do |s|
     s.dependency 'FueledUtils/Core'
     s.dependency 'FueledUtils/Combine'
