@@ -41,11 +41,21 @@ private final class CombineLatestManySubscription<
 	PublisherCollection.Element.Failure == Subscriber.Failure,
 	Subscriber.Input == [PublisherCollection.Element.Output]
 {
-	private var currentDemand: Subscribers.Demand!
-	private var pendingValuesBuffer: [Subscriber.Input] = []
+	@Atomic private var demandsState = DemandsState()
 	private let subscriber: Subscriber
 	private let publishers: PublisherCollection
-	private var cancellables: [AnyCancellable] = []
+
+	private struct DemandsState {
+		var currentDemand: Subscribers.Demand!
+		var pendingValuesBuffer: [Subscriber.Input] = []
+		var cancellables: [AnyCancellable] = []
+
+		mutating func cancel() {
+			self.currentDemand = .none
+			self.pendingValuesBuffer = []
+			self.cancellables.forEach { $0.cancel() }
+		}
+	}
 
 	init(subscriber: Subscriber, publishers: PublisherCollection) {
 		self.subscriber = subscriber
@@ -58,22 +68,45 @@ private final class CombineLatestManySubscription<
 
 	func request(_ demand: Subscribers.Demand) {
 		if self.publishers.isEmpty {
-			self.currentDemand = demand
-			self.sendValueIfPossible([])
+			if demand > 0 {
+				self.subscriber.receive([])
+			}
 			self.subscriber.receive(completion: .finished)
 			return
 		}
 
-		if let currentDemand = self.currentDemand {
-			self.currentDemand += demand
-			while let firstValue = self.pendingValuesBuffer.first, self.currentDemand > 0 {
-				self.pendingValuesBuffer.removeFirst()
-				self.sendValueIfPossible(firstValue)
+		func sendValueIfPossible(_ value: Subscriber.Input, demandsState: inout DemandsState) {
+			if demandsState.currentDemand == nil {
+				// Cancelled
+				return
 			}
-			return
+
+			if demandsState.currentDemand == 0 {
+				demandsState.pendingValuesBuffer.append(value)
+				return
+			}
+
+			self.subscriber.receive(value)
+			demandsState.currentDemand -= 1
 		}
 
-		self.currentDemand = demand
+		let shouldReturn = self.$demandsState.modify { demandsState -> Bool in
+			if let currentDemand = demandsState.currentDemand {
+				demandsState.currentDemand += demand
+				while let firstValue = demandsState.pendingValuesBuffer.first, demandsState.currentDemand > 0 {
+					demandsState.pendingValuesBuffer.removeFirst()
+					sendValueIfPossible(firstValue, demandsState: &demandsState)
+				}
+				return true
+			}
+
+			demandsState.currentDemand = demand
+			return false
+		}
+
+		if shouldReturn {
+			return
+		}
 
 		let publishers = Array(self.publishers)
 		let cancellables = AtomicValue(
@@ -109,33 +142,25 @@ private final class CombineLatestManySubscription<
 						$0[index].latestValue = value
 						let allLatestValues = $0.compactMap { $0.latestValue }
 						if allLatestValues.count == publishers.count {
-							self.sendValueIfPossible(allLatestValues)
+							self.$demandsState.modify {
+								sendValueIfPossible(allLatestValues, demandsState: &$0)
+							}
 						}
 					}
 				}
 			)
-			cancellables.modify {
-				if !$0[index].hasCompleted {
-					$0[index].cancellable = cancellable
+			cancellables.modify { cancellables in
+				if !cancellables[index].hasCompleted {
+					cancellables[index].cancellable = cancellable
 				}
-				self.cancellables = $0.compactMap { $0.cancellable }
+				self.$demandsState.modify {
+					$0.cancellables = cancellables.compactMap { $0.cancellable }
+				}
 			}
 		}
 	}
 
 	func cancel() {
-		self.currentDemand = .none
-		self.pendingValuesBuffer = []
-		self.cancellables.forEach { $0.cancel() }
-	}
-
-	private func sendValueIfPossible(_ value: Subscriber.Input) {
-		if self.currentDemand == 0 {
-			self.pendingValuesBuffer.append(value)
-			return
-		}
-
-		self.subscriber.receive(value)
-		self.currentDemand -= 1
+		self.$demandsState.modify { $0.cancel() }
 	}
 }
