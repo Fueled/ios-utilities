@@ -235,14 +235,24 @@ extension UITextField {
 extension UIView {
 	///
 	/// Adds the given subview into the receiver, and adds constraint so that its top, bottom, left and right's edges are bounds to its superview's edges.
+	/// - Parameters:
+	///   - insets: Optionally apply an offset when adding the view.
+	/// - Returns: The image if it could be generated. If it couldn't, for example if the `UIView`'s width or height is 0, a crash will happen at runtime.
 	///
-	public func addAndFitSubview(_ view: UIView) {
+	/// - Note: The returns is an implicitely unwrapped optional for backward-compatibility purpose, and will be made an optional in a future release (as well as not crash)
+	///
+	public func addAndFitSubview(_ view: UIView, insets: UIEdgeInsets = .zero) {
 		view.translatesAutoresizingMaskIntoConstraints = false
-		view.frame = self.bounds
+		view.frame = self.bounds.inset(by: insets)
 		self.addSubview(view)
-		let views = ["view": view]
-		self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[view]|", options: [], metrics: nil, views: views))
-		self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[view]|", options: [], metrics: nil, views: views))
+		self.addConstraints(
+			[
+				NSLayoutConstraint(item: view, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1.0, constant: insets.left),
+				NSLayoutConstraint(item: view, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1.0, constant: -insets.right),
+				NSLayoutConstraint(item: view, attribute: .top, relatedBy: .equal, toItem: self, attribute: .top, multiplier: 1.0, constant: insets.top),
+				NSLayoutConstraint(item: view, attribute: .bottom, relatedBy: .equal, toItem: self, attribute: .bottom, multiplier: 1.0, constant: -insets.bottom),
+			]
+		)
 	}
 
 	///
@@ -345,8 +355,9 @@ extension UIStackView {
 	/// - Parameters:
 	///   - removeFromHierachy: If `true`, each views is also removed from the receiver using `removeFromSuperview()`.
 	///     If `false`, `removeFromSuperview()` is not called.
+	///     This parameters defaults to `true`.
 	///
-	public func removeArrangedSubviews(removeFromHierachy: Bool) {
+	public func removeArrangedSubviews(removeFromHierachy: Bool = true) {
 		let arrangedSubviews = self.arrangedSubviews
 		arrangedSubviews.forEach { self.removeArrangedSubview($0, removeFromHierachy: removeFromHierachy) }
 	}

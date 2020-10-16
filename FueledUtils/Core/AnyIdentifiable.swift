@@ -12,20 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-extension FloatingPoint {
-	func rounded(decimalPlaces: Int, rule: FloatingPointRoundingRule = .toNearestOrAwayFromZero) -> Self {
-		var this = self
-		this.round(decimalPlaces: decimalPlaces, rule: rule)
-		return this
+///
+/// A type-erased `Identifiable` object.
+///
+@available(iOS 13, *)
+struct AnyIdentifiable: Identifiable {
+	private let hashValueClosure: () -> AnyHashable
+
+	init<Identifiable: Swift.Identifiable>(_ identifiable: Identifiable) {
+		self.hashValueClosure = { AnyHashable(identifiable.id) }
 	}
 
-	mutating func round(decimalPlaces: Int, rule: FloatingPointRoundingRule = .toNearestOrAwayFromZero) {
-		var offset = Self(1)
-		for _ in (0..<decimalPlaces) {
-			offset *= Self(10)
-		}
-		self *= offset
-		self.round(rule)
-		self /= offset
+	var id: AnyHashable {
+		self.hashValueClosure()
 	}
 }

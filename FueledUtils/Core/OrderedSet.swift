@@ -17,7 +17,7 @@ import Foundation
 // From https://github.com/apple/swift-package-manager/blob/4f69f1931b5a28bcac7a41bdb1eaddcb1223eeec/TSC/Sources/TSCBasic/OrderedSet.swift
 /// An ordered set is an ordered collection of instances of `Element` in which
 /// uniqueness of the objects is guaranteed.
-public struct OrderedSet<E: Hashable>: Equatable, RangeReplaceableCollection {
+public struct OrderedSet<E: Hashable>: Equatable, RangeReplaceableCollection, SetAlgebra {
 	public typealias Element = E
 	public typealias Index = Int
 	public typealias Indices = Range<Int>
@@ -88,9 +88,27 @@ public struct OrderedSet<E: Hashable>: Equatable, RangeReplaceableCollection {
 		Collection.Element == Element,
 		Range.Bound == Index
 	{
-		let newElementsOrderedSet = OrderedSet(newElements)
-		self.array.replaceSubrange(subrange, with: newElementsOrderedSet)
+		let t = newElements.filter { newElement in
+			!zip(self.array.indices, self.array).contains { index, element in
+				if subrange.contains(index) {
+					return false
+				}
+				return element == newElement
+			}
+		}
+		self.array.replaceSubrange(
+			subrange,
+			with: t
+		)
 		self.set.formUnion(newElements)
+	}
+
+	public mutating func insert(_ newMember: E) -> (inserted: Bool, memberAfterInsert: E) {
+		let result = self.set.insert(newMember)
+		if result.inserted {
+			self.array.append(newMember)
+		}
+		return result
 	}
 
 	/// Remove and return the element at the beginning of the ordered set.
@@ -126,6 +144,49 @@ public struct OrderedSet<E: Hashable>: Equatable, RangeReplaceableCollection {
 
 	public static func == <T>(lhs: OrderedSet<T>, rhs: OrderedSet<T>) -> Bool {
 		lhs.contents == rhs.contents
+	}
+
+	public func union(_ other: OrderedSet<E>) -> OrderedSet<E> {
+		var this = self
+		this.formUnion(other)
+		return this
+	}
+
+	public func intersection(_ other: OrderedSet<E>) -> OrderedSet<E> {
+		var this = self
+		this.formIntersection(other)
+		return this
+	}
+
+	public func symmetricDifference(_ other: OrderedSet<E>) -> OrderedSet<E> {
+		var this = self
+		this.formSymmetricDifference(other)
+		return this
+	}
+
+	public mutating func update(with newMember: E) -> E? {
+		if let index = self.array.firstIndex(where: { $0 == newMember }) {
+			self.array[index] = newMember
+		} else {
+			self.array.append(newMember)
+		}
+		return self.set.update(with: newMember)
+	}
+
+	public mutating func formUnion(_ other: OrderedSet<E>) {
+		self.array += other.filter { !self.set.contains($0) }
+		self.set.formUnion(other)
+	}
+
+	public mutating func formIntersection(_ other: OrderedSet<E>) {
+		self.set.formIntersection(other)
+		self.array.removeAll { !self.set.contains($0) }
+	}
+
+	public mutating func formSymmetricDifference(_ other: OrderedSet<E>) {
+		self.array += other.filter { !self.set.contains($0) }
+		self.set.formSymmetricDifference(other)
+		self.array.removeAll { !self.set.contains($0) }
 	}
 }
 
@@ -165,5 +226,11 @@ extension OrderedSet: Decodable where Element: Decodable {
 extension OrderedSet: Encodable where Element: Encodable {
 	public func encode(to encoder: Encoder) throws {
 		try self.array.encode(to: encoder)
+	}
+}
+
+extension OrderedSet: CustomStringConvertible {
+	public var description: String {
+		self.array.description
 	}
 }
