@@ -17,13 +17,13 @@ import UIKit
 ///
 /// A protocol that represents a control, which must be a `UIControl`.
 ///
-protocol ControlProtocol: UIControl {
+public protocol ControlProtocol: UIControl {
 }
 
 ///
 /// A protocol that represents a control with a `isLoading` property.
 ///
-protocol ControlLoadingProtocol: ControlProtocol {
+public protocol ControlLoadingProtocol: ControlProtocol {
 	var isLoading: Bool { get set }
 }
 

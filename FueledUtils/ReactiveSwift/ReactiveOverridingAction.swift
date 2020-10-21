@@ -19,7 +19,7 @@ import ReactiveSwift
 /// Similar to `Action`, except if the action is already executing, subsequent `apply()` call will not fail,
 /// and will be interrupt the previous apply().
 ///
-public final class OverridingAction<Input, Output, Error: Swift.Error>: ReactiveActionProtocol {
+public final class ReactiveOverridingAction<Input, Output, Error: Swift.Error>: ReactiveActionProtocol {
 	private let action: ReactiveSwift.Action<Input, Output, Error>
 	private var observer: Signal<Output, Error>.Observer?
 

@@ -12,51 +12,45 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import Combine
 import Quick
 import Nimble
 import FueledUtils
-import ReactiveSwift
 
 class CoalescingActionSpec: QuickSpec {
 	override func spec() {
 		describe("CoalescingAction") {
 			describe("apply.dispose()") {
 				it("should dispose of all created signal producers") {
-					var startCounter = 0
-					var disposeCounter = 0
-					var interruptedCounter = 0
-					let coalescingAction = ReactiveCoalescingAction {
-						SignalProducer(value: 2.0)
-							.delay(1.0, on: QueueScheduler.main)
-							.on(
-								started: {
-									startCounter += 1
+					var subscriptionCounter = 0
+					var cancelledCounter = 0
+					let coalescingAction = CoalescingAction {
+						Just(2.0)
+							.delay(for: 1.0, scheduler: DispatchQueue.main)
+							.handleEvents(
+								receiveSubscription: { _ in
+									subscriptionCounter += 1
 								},
-								interrupted: {
-									interruptedCounter += 1
-								},
-								disposed: {
-									disposeCounter += 1
+								receiveCancel: {
+									cancelledCounter += 1
 								}
 							)
 					}
 
-					expect(startCounter) == 0
+					expect(subscriptionCounter) == 0
 
-					let producersCount = 5
-					let disposables = (0..<producersCount).map { _ in coalescingAction.apply().start() }
+					let publishersCount = 5
+					let cancellables = (0..<publishersCount).map { _ in coalescingAction.apply(()).sink() }
 
-					expect(startCounter) == 1
+					expect(subscriptionCounter) == 1
 
-					disposables[0].dispose()
+					cancellables[0].cancel()
 
-					expect(disposeCounter) == 0
-					expect(interruptedCounter) == 0
+					expect(cancelledCounter) == 0
 
-					disposables[1..<producersCount].forEach { $0.dispose() }
+					cancellables[1..<publishersCount].forEach { $0.cancel() }
 
-					expect(disposeCounter).toEventually(equal(1))
-					expect(interruptedCounter).toEventually(equal(1))
+					expect(cancelledCounter).toEventually(equal(1))
 				}
 			}
 		}

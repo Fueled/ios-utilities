@@ -28,20 +28,20 @@ public final class AtomicValue<Value> {
 		atomicValue.modify { $0 = value }
 	}
 
-	public func modify(_ modify: (inout Value) -> Void) {
+	public func modify<Return>(_ modify: (inout Value) -> Return) -> Return {
 		self.lock.lock()
 		defer {
 			self.lock.unlock()
 		}
-		modify(&self.value)
+		return modify(&self.value)
 	}
 
-	public func withValue(_ getter: (Value) -> Void) {
+	public func withValue<Return>(_ getter: (Value) -> Return) -> Return {
 		self.lock.lock()
 		defer {
 			self.lock.unlock()
 		}
-		getter(self.value)
+		return getter(self.value)
 	}
 }
 
