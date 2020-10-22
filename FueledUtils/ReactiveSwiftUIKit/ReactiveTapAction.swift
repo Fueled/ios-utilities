@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if canImport(UIKit) && !os(watchOS)
 import FueledUtils
 import ReactiveSwift
 
@@ -57,3 +58,4 @@ final class ReactiveTapAction<Control: ControlProtocol>: NSObject {
 		self.executeClosure(button as! Control)
 	}
 }
+#endif

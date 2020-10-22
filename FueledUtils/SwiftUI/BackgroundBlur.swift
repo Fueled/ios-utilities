@@ -14,8 +14,9 @@
 
 import SwiftUI
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 extension View {
-	#if os(iOS)
+	#if canImport(UIKit) && !os(watchOS)
 	public func backgroundBlur(style: UIBlurEffect.Style, color: Color? = nil) -> some View {
 		ZStack {
 			color
@@ -24,7 +25,8 @@ extension View {
 				.eraseToAnyView()
 		}
 	}
-	#else
+	#elseif canImport(AppKit)
+	@available(macOS 10.15, *)
 	public func backgroundBlur(
 		material: NSVisualEffectView.Material = .appearanceBased,
 		blendingMode: NSVisualEffectView.BlendingMode = .behindWindow,

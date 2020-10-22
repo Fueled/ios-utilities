@@ -13,12 +13,12 @@ Pod::Spec.new do |s|
   s.source = { git: 'https://github.com/Fueled/ios-utilities.git', tag: s.version.to_s }
   s.documentation_url = 'https://cdn.rawgit.com/Fueled/ios-utilities/master/docs/index.html'
 
-  s.subspec 'Core' do |s|
-    s.ios.deployment_target = '8.0'
-    s.osx.deployment_target = '10.12'
-    s.watchos.deployment_target = '2.0'
-    s.tvos.deployment_target = '9.0'
+  s.ios.deployment_target = '9.0'
+  s.osx.deployment_target = '10.12'
+  s.watchos.deployment_target = '2.0'
+  s.tvos.deployment_target = '9.0'
 
+  s.subspec 'Core' do |s|
     s.source_files = 'FueledUtils/Core/**/*.swift'
   end
 
@@ -49,10 +49,12 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'Combine' do |s|
-    s.ios.deployment_target = '13.0'
-    s.osx.deployment_target = '10.15'
-    s.watchos.deployment_target = '6.0'
-    s.tvos.deployment_target = '13.0'
+    # Update the above with the following versions when we drop support for iOS < 13.0 or
+    # uncomment below if https://github.com/CocoaPods/CocoaPods/issues/7333 is implemented
+    # s.ios.deployment_target = '13.0'
+    # s.osx.deployment_target = '10.15'
+    # s.watchos.deployment_target = '6.0'
+    # s.tvos.deployment_target = '13.0'
 
     s.dependency 'FueledUtils/ReactiveCommon'
 

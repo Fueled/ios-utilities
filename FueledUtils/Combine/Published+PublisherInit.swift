@@ -14,6 +14,7 @@
 
 import Combine
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 extension Published {
 	/// This method exists as it's currently impossible to use the projectedValue of a `@Published` property without having initialize the whole object,
 	/// which is obviously not ideal if the projectedValue is required to initialize the whole object (basically a chicken and egg problem)

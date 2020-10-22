@@ -20,7 +20,7 @@ private protocol LockImplementation {
 	mutating func unlock()
 }
 
-@available(iOS 10.0, *)
+@available(iOS 10.0, tvOS 10.0, watchOS 3.0, *)
 private struct UnfairLock: LockImplementation {
 	private var unfairLock = os_unfair_lock_s()
 
@@ -79,7 +79,7 @@ public final class Lock {
 	private var lockImplementation: LockImplementation
 
 	public init() {
-		if #available(iOS 10.0, *) {
+		if #available(iOS 10.0, tvOS 10.0, watchOS 3.0, *) {
 			self.lockImplementation = UnfairLock()
 		} else {
 			self.lockImplementation = PThreadMutexLock() ?? CocoaLock()

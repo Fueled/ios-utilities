@@ -15,8 +15,9 @@
 import Foundation
 import ReactiveCocoa
 import ReactiveSwift
-#if os(iOS)
+#if canImport(UIKit)
 import UIKit
+#elseif canImport(AppKit)
 #endif
 
 ///
@@ -69,6 +70,7 @@ public func transitionContext(
 }
 #endif
 
+#if !os(watchOS)
 extension Reactive where Base: NSLayoutConstraint {
 	///
 	/// Set whether the constant is active or not in its hierarchy.
@@ -77,6 +79,7 @@ extension Reactive where Base: NSLayoutConstraint {
 		return makeBindingTarget { $0.isActive = $1 }
 	}
 }
+#endif
 
 #if os(iOS)
 extension Reactive where Base: UIView {

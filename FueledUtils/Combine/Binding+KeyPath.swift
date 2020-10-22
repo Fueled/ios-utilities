@@ -14,6 +14,7 @@
 
 import SwiftUI
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 extension Binding {
 	public init<Type>(_ object: Type, to keyPath: ReferenceWritableKeyPath<Type, Value>) {
 		self.init(

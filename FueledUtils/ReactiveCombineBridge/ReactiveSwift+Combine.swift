@@ -16,6 +16,7 @@ import Combine
 import ReactiveSwift
 
 // From https://github.com/ReactiveCocoa/ReactiveSwift/pull/776/files#diff-d8195adf8a5f3283e072483fd9699c90
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 extension SignalProducerConvertible {
 	public func eraseToAnyPublisher() -> AnyPublisher<Value, Error> {
 		self.publisher.eraseToAnyPublisher()
@@ -26,6 +27,7 @@ extension SignalProducerConvertible {
 	}
 }
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 extension Publishers {
 	public struct SignalProducerPublisher<Output, Failure: Swift.Error>: Publisher {
 		public let base: SignalProducer<Output, Failure>
@@ -41,6 +43,7 @@ extension Publishers {
 	}
 }
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 private final class SignalProducerSubscription<Subscriber: Combine.Subscriber>: Combine.Subscription {
 	typealias Output = Subscriber.Input
 	typealias Failure = Subscriber.Failure
@@ -191,13 +194,14 @@ private final class SignalProducerSubscription<Subscriber: Combine.Subscriber>: 
 	}
 }
 
-
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 extension Cancellable {
 	var disposable: some Disposable {
 		CancellableDisposable(self)
 	}
 }
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 private final class CancellableDisposable<Cancellable: Combine.Cancellable>: Disposable {
 	private let cancellable: Cancellable
 	private(set) var isDisposed: Bool = false

@@ -14,6 +14,7 @@
 
 import Combine
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 extension Publishers {
 	public struct CombineLatestMany<PublisherCollection: Swift.Collection>: Publisher where PublisherCollection.Element: Combine.Publisher {
 		public typealias Output = [PublisherCollection.Element.Output]
@@ -33,6 +34,7 @@ extension Publishers {
 	}
 }
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 private final class CombineLatestManySubscription<
 	Subscriber: Combine.Subscriber,
 	PublisherCollection: Swift.Collection

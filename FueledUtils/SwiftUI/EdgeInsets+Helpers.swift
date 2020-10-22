@@ -14,6 +14,7 @@
 
 import SwiftUI
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 extension EdgeInsets {
 	public static var zero: EdgeInsets {
 		EdgeInsets(top: 0.0, leading: 0.0, bottom: 0.0, trailing: 0.0)

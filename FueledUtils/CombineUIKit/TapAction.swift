@@ -12,10 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if canImport(UIKit) && !os(watchOS)
 import Combine
 
 ///
 /// `TapAction` wraps a `ActionProtocol` for use by any `ControlProtocol`.
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 final class TapAction<Control: ControlProtocol>: NSObject {
 	@objc static var selector: Selector {
 		#selector(userDidTapControl(_:))
@@ -59,3 +61,4 @@ final class TapAction<Control: ControlProtocol>: NSObject {
 		#endif
 	}
 }
+#endif

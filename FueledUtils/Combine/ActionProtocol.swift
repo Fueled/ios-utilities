@@ -14,6 +14,7 @@
 
 import Combine
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 public protocol ActionProtocol {
 	///
 	/// The type of the values used as inputs to the action.
@@ -75,6 +76,7 @@ public protocol ActionProtocol {
 	func apply(_ input: Input) -> ApplyPublisher
 }
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 extension Action: ActionProtocol {
 	public typealias ApplyFailure = ActionError<Failure>
 
@@ -87,6 +89,7 @@ extension Action: ActionProtocol {
 	}
 }
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 extension ActionProtocol where Input == Void {
 	///
 	/// Create a `SignalProducer` that would attempt to create and start a unit of work of

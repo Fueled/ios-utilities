@@ -14,6 +14,7 @@
 
 import SwiftUI
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 public struct ForEachWithIndex<Data: RandomAccessCollection, ID: Hashable, Content: View>: View {
 	public var data: Data
 	public var content: (_ index: Data.Index, _ element: Data.Element) -> Content
@@ -41,15 +42,18 @@ public struct ForEachWithIndex<Data: RandomAccessCollection, ID: Hashable, Conte
 	}
 }
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 extension ForEachWithIndex where ID == Data.Element.ID, Content: View, Data.Element: Identifiable {
 	public init(_ data: Data, @ViewBuilder content: @escaping (_ index: Data.Index, _ element: Data.Element) -> Content) {
 		self.init(data, id: \.id, content: content)
 	}
 }
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 extension ForEachWithIndex: DynamicViewContent where Content: View {
 }
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 private struct IndexInfo<Index, Element, ID: Hashable>: Hashable {
 	let index: Index
 	let id: KeyPath<Element, ID>

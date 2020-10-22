@@ -18,6 +18,7 @@ import Combine
 /// Similar to `Action`, except if the action is already executing, subsequent `apply()` call will not fail,
 /// and will be interrupt the previous apply().
 ///
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 public class OverridingAction<Input, Output, Failure: Swift.Error>: ActionProtocol {
 	public typealias ApplyFailure = Failure
 

@@ -12,11 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if canImport(UIKit) && !os(watchOS)
 import Combine
 import UIKit
 
 private var publisherControlEventsProcessorsHolderKey: UInt8 = 0
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 extension ControlProtocol {
 	public func publisherForControlEvents(_ controlEvents: UIControl.Event) -> AnyPublisher<Self, Never> {
 		let passthroughSubject = PassthroughSubject<Any, Never>()
@@ -51,6 +53,7 @@ extension ControlProtocol {
 	}
 }
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 private final class PublisherControlEventsProcessorsHolder {
 	private final class PublisherControlEventsProcessor: NSObject {
 		weak var passthroughSubject: PassthroughSubject<Any, Never>!
@@ -86,3 +89,4 @@ private final class PublisherControlEventsProcessorsHolder {
 		}
 	}
 }
+#endif
