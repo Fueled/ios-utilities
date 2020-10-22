@@ -32,6 +32,10 @@
 
 ##### Bug Fixes
 
+- Fix a bug in `CombineLatestMany` where cancelling the resulting publisher would not cancel the array of publishers themselves.
+  [Stéphane Copin](https://github.com/stephanecopin)
+  [#55](https://github.com/Fueled/ios-utilities/pull/55)
+
 - Fix a bug in `Action` where a cancellation would be ignored and not set `isExecuting` to `false`
   [Stéphane Copin](https://github.com/stephanecopin)
   [#54](https://github.com/Fueled/ios-utilities/pull/54)

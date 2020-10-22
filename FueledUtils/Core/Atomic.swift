@@ -61,11 +61,20 @@ public struct Atomic<Value> {
 		self.atomicValue.value
 	}
 
-	public mutating func modify(_ modify: (inout Value) -> Void) {
+	public var projectedValue: Atomic {
+		get {
+			self
+		}
+		set {
+			self = newValue
+		}
+	}
+
+	public mutating func modify<Return>(_ modify: (inout Value) -> Return) -> Return {
 		self.atomicValue.modify(modify)
 	}
 
-	public mutating func withValue(_ getter: (Value) -> Void) {
+	public mutating func withValue<Return>(_ getter: (Value) -> Return) -> Return {
 		self.atomicValue.withValue(getter)
 	}
 
