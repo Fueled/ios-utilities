@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if canImport(Combine)
 import Combine
 
 // swiftlint:disable generic_type_name
@@ -128,3 +129,5 @@ public func >>> <CancellableCollection: RangeReplaceableCollection>(lhs: AnyCanc
 public func >>> (lhs: AnyCancellable, rhs: inout Set<AnyCancellable>) {
 	lhs.store(in: &rhs)
 }
+
+#endif

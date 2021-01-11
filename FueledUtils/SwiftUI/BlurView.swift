@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if canImport(SwiftUI)
 import SwiftUI
 #if canImport(UIKit)
 import UIKit
@@ -71,5 +72,7 @@ public struct BlurView: NSViewRepresentable {
 		visualEffectView.isEmphasized = self.isEmphasized
 	}
 }
+
+#endif
 
 #endif

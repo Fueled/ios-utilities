@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if canImport(Combine)
 import Combine
 
 @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
@@ -31,7 +32,7 @@ public protocol ActionProtocol {
 	///
 	/// The type of errors emitted when applying the action.
 	///
-	associatedtype ApplyFailure: Swift.Error
+	associatedtype ApplyFailure
 
 	associatedtype IsExecutingPublisher: Publisher where IsExecutingPublisher.Output == Bool, IsExecutingPublisher.Failure == Never
 	associatedtype IsEnabledPublisher: Publisher where IsEnabledPublisher.Output == Bool, IsEnabledPublisher.Failure == Never
@@ -104,3 +105,5 @@ extension ActionProtocol where Input == Void {
 		return self.apply(())
 	}
 }
+
+#endif

@@ -20,15 +20,21 @@
 
 /* Begin PBXFileReference section */
 		00B6C3B54CADD6729AF81F36 /* Pods-Common-FueledUtilsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common-FueledUtilsTests.release.xcconfig"; path = "Target Support Files/Pods-Common-FueledUtilsTests/Pods-Common-FueledUtilsTests.release.xcconfig"; sourceTree = "<group>"; };
+		1A3B52FAD952809D407DDA1E /* Pods_Common_asd_WatchKit_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Common_asd_WatchKit_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3297A6B2D4B923F8F27CD6A5 /* Pods-Common-FueledUtilsTests-SwiftUI.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common-FueledUtilsTests-SwiftUI.release.xcconfig"; path = "Target Support Files/Pods-Common-FueledUtilsTests-SwiftUI/Pods-Common-FueledUtilsTests-SwiftUI.release.xcconfig"; sourceTree = "<group>"; };
 		39EF9AE56A510B26CCC488B7 /* Pods_Common_FueledUtilsTests_SwiftUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Common_FueledUtilsTests_SwiftUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		48DE7B611288E2A6C99EEDAE /* Pods_Common_asd_WatchKit_App.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Common_asd_WatchKit_App.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4A32E8FB94B9CE2642794723 /* Pods-Common-asd WatchKit Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common-asd WatchKit Extension.release.xcconfig"; path = "Target Support Files/Pods-Common-asd WatchKit Extension/Pods-Common-asd WatchKit Extension.release.xcconfig"; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* FueledUtilsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FueledUtilsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		65B56BF0A7147538E12F737F /* Pods-Common-FueledUtilsTests-SwiftUI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common-FueledUtilsTests-SwiftUI.debug.xcconfig"; path = "Target Support Files/Pods-Common-FueledUtilsTests-SwiftUI/Pods-Common-FueledUtilsTests-SwiftUI.debug.xcconfig"; sourceTree = "<group>"; };
+		AB25EAABC0CDD547AE307879 /* Pods-Common-asd WatchKit App.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common-asd WatchKit App.release.xcconfig"; path = "Target Support Files/Pods-Common-asd WatchKit App/Pods-Common-asd WatchKit App.release.xcconfig"; sourceTree = "<group>"; };
 		ACF665E90E66C2B35C6C5C05 /* Pods-Common-FueledUtilsTests-ReactiveSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common-FueledUtilsTests-ReactiveSwift.release.xcconfig"; path = "Target Support Files/Pods-Common-FueledUtilsTests-ReactiveSwift/Pods-Common-FueledUtilsTests-ReactiveSwift.release.xcconfig"; sourceTree = "<group>"; };
+		C783847C92189B0968E12A16 /* Pods-Common-asd WatchKit Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common-asd WatchKit Extension.debug.xcconfig"; path = "Target Support Files/Pods-Common-asd WatchKit Extension/Pods-Common-asd WatchKit Extension.debug.xcconfig"; sourceTree = "<group>"; };
 		CF40A2CC4151F8E9B373D243 /* FueledUtils.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = FueledUtils.podspec; path = ../FueledUtils.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		D43FD9799A872E88963939C1 /* Pods-Common-FueledUtilsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common-FueledUtilsTests.debug.xcconfig"; path = "Target Support Files/Pods-Common-FueledUtilsTests/Pods-Common-FueledUtilsTests.debug.xcconfig"; sourceTree = "<group>"; };
 		D498AEE5BC8A0A514416E6DA /* Pods-Common-FueledUtilsTests-ReactiveSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common-FueledUtilsTests-ReactiveSwift.debug.xcconfig"; path = "Target Support Files/Pods-Common-FueledUtilsTests-ReactiveSwift/Pods-Common-FueledUtilsTests-ReactiveSwift.debug.xcconfig"; sourceTree = "<group>"; };
 		E7AC5BA00D7F6054AC66E468 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		E82CDABCC774F7F31D52705D /* Pods-Common-asd WatchKit App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common-asd WatchKit App.debug.xcconfig"; path = "Target Support Files/Pods-Common-asd WatchKit App/Pods-Common-asd WatchKit App.debug.xcconfig"; sourceTree = "<group>"; };
 		F429742925378348004BFA85 /* ReactiveOverridingActionSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactiveOverridingActionSpec.swift; sourceTree = "<group>"; };
 		F429742D25378425004BFA85 /* OverridingActionSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverridingActionSpec.swift; sourceTree = "<group>"; };
 		F453AA7A2538DE55008F045B /* CombineLatestManySpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineLatestManySpec.swift; sourceTree = "<group>"; };
@@ -63,6 +69,10 @@
 				3297A6B2D4B923F8F27CD6A5 /* Pods-Common-FueledUtilsTests-SwiftUI.release.xcconfig */,
 				D43FD9799A872E88963939C1 /* Pods-Common-FueledUtilsTests.debug.xcconfig */,
 				00B6C3B54CADD6729AF81F36 /* Pods-Common-FueledUtilsTests.release.xcconfig */,
+				C783847C92189B0968E12A16 /* Pods-Common-asd WatchKit Extension.debug.xcconfig */,
+				4A32E8FB94B9CE2642794723 /* Pods-Common-asd WatchKit Extension.release.xcconfig */,
+				E82CDABCC774F7F31D52705D /* Pods-Common-asd WatchKit App.debug.xcconfig */,
+				AB25EAABC0CDD547AE307879 /* Pods-Common-asd WatchKit App.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -102,6 +112,8 @@
 			children = (
 				39EF9AE56A510B26CCC488B7 /* Pods_Common_FueledUtilsTests_SwiftUI.framework */,
 				F46CDEA885028D8DB189B3CB /* Pods_Common_FueledUtilsTests.framework */,
+				1A3B52FAD952809D407DDA1E /* Pods_Common_asd_WatchKit_Extension.framework */,
+				48DE7B611288E2A6C99EEDAE /* Pods_Common_asd_WatchKit_App.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -157,7 +169,7 @@
 		607FACC81AFB9204008FA782 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1140;
+				LastSwiftUpdateCheck = 1200;
 				LastUpgradeCheck = 1140;
 				ORGANIZATIONNAME = CocoaPods;
 				TargetAttributes = {

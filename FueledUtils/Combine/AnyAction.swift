@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if canImport(Combine)
 import Combine
 
 ///
@@ -63,3 +64,5 @@ public final class AnyAction: ActionProtocol {
 		self.applyClosure(input)
 	}
 }
+
+#endif

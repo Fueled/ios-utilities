@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#if canImport(UIKit) && !os(watchOS)
+#if canImport(UIKit) && !os(watchOS) && canImport(Combine)
 import Combine
 
 ///
@@ -61,4 +61,5 @@ final class TapAction<Control: ControlProtocol>: NSObject {
 		#endif
 	}
 }
+
 #endif

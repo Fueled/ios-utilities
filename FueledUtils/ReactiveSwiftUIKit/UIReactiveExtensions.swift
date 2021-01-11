@@ -13,7 +13,6 @@
 // limitations under the License.
 
 import Foundation
-import FueledUtils
 import ReactiveSwift
 import UIKit
 

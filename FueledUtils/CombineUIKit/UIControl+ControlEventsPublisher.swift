@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#if canImport(UIKit) && !os(watchOS)
+#if canImport(UIKit) && !os(watchOS) && canImport(Combine)
 import Combine
 import UIKit
 
@@ -27,6 +27,7 @@ extension ControlProtocol {
 			in: self,
 			passthroughSubject: passthroughSubject
 		)
+		_ = cancellable
 		return passthroughSubject
 			.map {
 				$0 as! Self
@@ -89,4 +90,5 @@ private final class PublisherControlEventsProcessorsHolder {
 		}
 	}
 }
+
 #endif

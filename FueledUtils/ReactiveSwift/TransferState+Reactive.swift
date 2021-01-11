@@ -21,7 +21,7 @@ extension SignalProtocol {
 	public func ignoreLoading<Progress, Value>() -> Signal<Value, Error>
 		where Self.Value == TransferState<Progress, Value>
 	{
-		return self.signal.filterMap { status in
+		return self.signal.compactMap { status in
 			switch status {
 			case .loading:
 				return nil

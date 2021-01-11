@@ -13,7 +13,6 @@
 // limitations under the License.
 
 #if canImport(UIKit) && !os(watchOS)
-import FueledUtils
 import ReactiveSwift
 
 ///

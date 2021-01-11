@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if canImport(Combine)
 import Combine
 import FueledUtils
 import Quick
@@ -56,3 +57,5 @@ class CoalescingActionSpec: QuickSpec {
 		}
 	}
 }
+
+#endif

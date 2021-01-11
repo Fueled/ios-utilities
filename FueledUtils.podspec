@@ -71,7 +71,7 @@ Pod::Spec.new do |s|
     s.dependency 'FueledUtils/Combine'
     s.dependency 'FueledUtils/UIKit'
 
-    s.source_files = 'FueledUtils/CombineUIKit/**/*.swift'
+    s.ios.source_files = 'FueledUtils/CombineUIKit/**/*.swift'
   end
 
   s.subspec 'SwiftUI' do |s|
