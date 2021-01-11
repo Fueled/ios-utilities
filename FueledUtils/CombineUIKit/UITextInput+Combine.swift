@@ -18,11 +18,11 @@ import UIKit
 
 @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 extension CombineExtensions where Base: UITextInput, Base: ControlProtocol {
-	var textValues: AnyPublisher<String, Never> {
+	public var textValues: AnyPublisher<String, Never> {
 		self.textPublisherForControlEvents([.editingDidEnd, .editingDidEndOnExit])
 	}
 
-	var continuousTextValues: AnyPublisher<String, Never> {
+	public var continuousTextValues: AnyPublisher<String, Never> {
 		self.textPublisherForControlEvents(.allEditingEvents)
 	}
 

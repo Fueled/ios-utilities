@@ -12,13 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#if canImport(UIKit) && !os(watchOS) && canImport(Combine)
+#if canImport(UIKit) && !os(watchOS)
+#if canImport(Combine)
 import Combine
+#endif
 
 ///
 /// `TapAction` wraps a `ActionProtocol` for use by any `ControlProtocol`.
 @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
-final class TapAction<Control: ControlProtocol>: NSObject {
+public final class TapAction<Control: ControlProtocol>: NSObject {
 	@objc static var selector: Selector {
 		#selector(userDidTapControl(_:))
 	}
@@ -33,15 +35,15 @@ final class TapAction<Control: ControlProtocol>: NSObject {
 	private let action: AnyAction
 	private var cancellables = Set<AnyCancellable>()
 
-	convenience init<Action: ActionProtocol>(_ action: Action) where Action.Input == Void {
+	public convenience init<Action: ActionProtocol>(_ action: Action) where Action.Input == Void {
 		self.init(action, input: ())
 	}
 
-	convenience init<Action: ActionProtocol>(_ action: Action, input: Action.Input) {
+	public convenience init<Action: ActionProtocol>(_ action: Action, input: Action.Input) {
 		self.init(action) { _ in input }
 	}
 
-	init<Action: ActionProtocol>(_ action: Action, inputTransform: @escaping (Control) -> Action.Input) {
+	public init<Action: ActionProtocol>(_ action: Action, inputTransform: @escaping (Control) -> Action.Input) {
 		self.isEnabled = action.isEnabled
 		self.isExecuting = action.isExecuting
 		self.inputTransform = { inputTransform($0) }
@@ -61,5 +63,4 @@ final class TapAction<Control: ControlProtocol>: NSObject {
 		#endif
 	}
 }
-
 #endif

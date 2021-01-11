@@ -26,7 +26,7 @@ extension ControlProtocol {
 	/// protocol to represents the button rather than hardcode it to classes,
 	/// allowing for any `UIControl` to use this method.
 	///
-	var tapped: TapAction<Self>? {
+	public var tapped: TapAction<Self>? {
 		get {
 			self.tapActionStorage?.tapAction
 		}
