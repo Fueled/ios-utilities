@@ -12,9 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if canImport(Combine)
 import Combine
-import FueledUtils
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 extension Publisher {
 	public func ignoreRepeats(isEqual: @escaping (Output, Output) -> Bool) -> AnyPublisher<Output, Failure> {
 		self.map { Optional($0) }
@@ -33,8 +34,11 @@ extension Publisher {
 	}
 }
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 extension Publisher where Output: Equatable {
 	public func ignoreRepeats() -> AnyPublisher<Output, Failure> {
 		self.ignoreRepeats(isEqual: ==)
 	}
 }
+
+#endif

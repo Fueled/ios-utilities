@@ -12,9 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if canImport(Combine)
 import Combine
 import ReactiveSwift
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 extension Publisher {
 	public var producer: SignalProducer<Output, Failure> {
 		SignalProducer { observer, lifetime in
@@ -35,6 +37,7 @@ extension Publisher {
 	}
 }
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 extension Lifetime {
 	@discardableResult
 	public static func += <Cancellable: Combine.Cancellable>(lhs: Lifetime, rhs: Cancellable?) -> Disposable? {
@@ -42,12 +45,14 @@ extension Lifetime {
 	}
 }
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 extension Disposable {
 	public var cancellable: some Cancellable {
 		DisposableCancellable(self)
 	}
 }
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 private struct DisposableCancellable<Disposable: ReactiveSwift.Disposable>: Cancellable {
 	private let disposable: Disposable
 
@@ -59,3 +64,5 @@ private struct DisposableCancellable<Disposable: ReactiveSwift.Disposable>: Canc
 		self.disposable.dispose()
 	}
 }
+
+#endif

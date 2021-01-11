@@ -12,25 +12,30 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if canImport(Combine)
 import Combine
-import FueledUtils
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 public func >>> <CancellableCollection: RangeReplaceableCollection>(lhs: AnyCancellable?, rhs: inout CancellableCollection) where CancellableCollection.Element == AnyCancellable {
 	lhs?.store(in: &rhs)
 }
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 public func >>> (lhs: AnyCancellable?, rhs: inout Set<AnyCancellable>) {
 	lhs?.store(in: &rhs)
 }
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 public func >>> <CancellableCollection: RangeReplaceableCollection>(lhs: AnyCancellable, rhs: inout CancellableCollection?) where CancellableCollection.Element == AnyCancellable {
 	rhs?.append(lhs)
 }
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 public func >>> (lhs: AnyCancellable, rhs: inout Set<AnyCancellable>?) {
 	rhs?.insert(lhs)
 }
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 public func >>> <CancellableCollection: RangeReplaceableCollection>(lhs: AnyCancellable?, rhs: inout CancellableCollection?) where CancellableCollection.Element == AnyCancellable {
 	guard let lhs = lhs else {
 		return
@@ -38,9 +43,12 @@ public func >>> <CancellableCollection: RangeReplaceableCollection>(lhs: AnyCanc
 	lhs >>> rhs
 }
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 public func >>> (lhs: AnyCancellable?, rhs: inout Set<AnyCancellable>?) {
 	guard let lhs = lhs else {
 		return
 	}
 	lhs >>> rhs
 }
+
+#endif

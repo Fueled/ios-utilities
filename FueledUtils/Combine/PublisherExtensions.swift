@@ -12,8 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if canImport(Combine)
 import Combine
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 extension Publisher {
 	public func ignoreError() -> AnyPublisher<Output, Never> {
 		self.catch { _ in Empty() }.eraseToAnyPublisher()
@@ -61,6 +63,7 @@ extension Publisher {
 	}
 }
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 extension Publisher {
 	public func performDuringLifetimeOf<Object: CombineExtensionsProvider & AnyObject>(_ object: Object, action: @escaping (Object, Output) -> Void) {
 		self
@@ -80,6 +83,7 @@ extension Publisher {
 	}
 }
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 extension Publisher where Failure == Never {
 	public func assign<Object: AnyObject>(to keyPath: ReferenceWritableKeyPath<Object, Output>, withoutRetaining object: Object) -> AnyCancellable {
 		self.sink { [weak object] in
@@ -95,8 +99,11 @@ extension Publisher where Failure == Never {
 	}
 }
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 extension Publisher where Output: OptionalProtocol {
 	public func ignoreNil() -> AnyPublisher<Output.Wrapped, Failure> {
 		self.flatMap { ($0.wrapped.map { Just($0).eraseToAnyPublisher() } ?? Empty().eraseToAnyPublisher()).setFailureType(to: Failure.self) }.eraseToAnyPublisher()
 	}
 }
+
+#endif

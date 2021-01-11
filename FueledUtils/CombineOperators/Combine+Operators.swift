@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if canImport(Combine)
 import Combine
 
 // swiftlint:disable generic_type_name
@@ -44,15 +45,18 @@ precedencegroup InsertCancellablePrecedence {
 
 infix operator >>>: InsertCancellablePrecedence
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 public struct ObjectKeyPathReference<Root, Value> {
 	public let object: Root
 	public let keyPath: ReferenceWritableKeyPath<Root, Value>
 }
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 public func ~ <Object, Value>(lhs: Object, rhs: ReferenceWritableKeyPath<Object, Value>) -> ObjectKeyPathReference<Object, Value> {
 	ObjectKeyPathReference(object: lhs, keyPath: rhs)
 }
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 public func <~ <Object: AnyObject, Value, Publisher: Combine.Publisher>(
 	lhs: ObjectKeyPathReference<Object, Value>,
 	rhs: Publisher
@@ -60,6 +64,7 @@ public func <~ <Object: AnyObject, Value, Publisher: Combine.Publisher>(
 	rhs.assign(to: lhs.keyPath, withoutRetaining: lhs.object)
 }
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 public func <~ <ObservingObject: ObservableObject, ObservedObject: ObservableObject>(
 	lhs: ObservingObject,
 	rhs: ObservedObject
@@ -67,6 +72,7 @@ public func <~ <ObservingObject: ObservableObject, ObservedObject: ObservableObj
 	lhs.link(to: rhs)
 }
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 public func <~ <ObservingObject: ObservableObject, ObservedObjectCollection: Collection>(
 	lhs: ObservingObject,
 	rhs: ObservedObjectCollection
@@ -74,6 +80,7 @@ public func <~ <ObservingObject: ObservableObject, ObservedObjectCollection: Col
 	lhs.link(to: rhs)
 }
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 public func <~ <ObservingObject: ObservableObject, Publisher: Combine.Publisher>(
 	lhs: ObservingObject,
 	rhs: Publisher
@@ -81,6 +88,7 @@ public func <~ <ObservingObject: ObservableObject, Publisher: Combine.Publisher>
 	lhs.link(to: rhs)
 }
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 public func <~ <ObservingObject: ObservableObject, Publisher: Combine.Publisher>(
 	lhs: ObservingObject,
 	rhs: Publisher
@@ -88,6 +96,7 @@ public func <~ <ObservingObject: ObservableObject, Publisher: Combine.Publisher>
 	lhs.link(to: rhs)
 }
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 public func <~ <ObservingObject: ObservableObject, Publisher: Combine.Publisher>(
 	lhs: ObservingObject,
 	rhs: Publisher
@@ -95,6 +104,7 @@ public func <~ <ObservingObject: ObservableObject, Publisher: Combine.Publisher>
 	lhs.link(to: rhs)
 }
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 public func <~ <ObservingObject: ObservableObject, ObservedObject: ObservableObject>(
 	lhs: ObservingObject,
 	rhs: ReferenceWritableKeyPath<ObservingObject, ObservedObject>
@@ -102,6 +112,7 @@ public func <~ <ObservingObject: ObservableObject, ObservedObject: ObservableObj
 	lhs.link(to: lhs[keyPath: rhs])
 }
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 public func <~ <ObservingObject: ObservableObject, ObservedObjectCollection: Collection>(
 	lhs: ObservingObject,
 	rhs: ReferenceWritableKeyPath<ObservingObject, ObservedObjectCollection>
@@ -109,10 +120,14 @@ public func <~ <ObservingObject: ObservableObject, ObservedObjectCollection: Col
 	lhs.link(to: lhs[keyPath: rhs])
 }
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 public func >>> <CancellableCollection: RangeReplaceableCollection>(lhs: AnyCancellable, rhs: inout CancellableCollection) where CancellableCollection.Element == AnyCancellable {
 	lhs.store(in: &rhs)
 }
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 public func >>> (lhs: AnyCancellable, rhs: inout Set<AnyCancellable>) {
 	lhs.store(in: &rhs)
 }
+
+#endif

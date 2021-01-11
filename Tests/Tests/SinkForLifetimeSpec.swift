@@ -16,6 +16,7 @@ import Quick
 import Nimble
 import FueledUtils
 import ReactiveSwift
+#if canImport(Combine)
 import Combine
 
 class SinkForLifetimeSpec: QuickSpec {
@@ -49,3 +50,5 @@ class SinkForLifetimeSpec: QuickSpec {
 		}
 	}
 }
+
+#endif

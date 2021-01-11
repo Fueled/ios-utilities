@@ -12,11 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 public enum ActionError<Error: Swift.Error>: Swift.Error {
 	case disabled
 	case failure(Error)
 }
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 extension ActionError: ActionErrorProtocol {
 	public var innerError: Error? {
 		if case .failure(let error) = self {
@@ -26,6 +28,7 @@ extension ActionError: ActionErrorProtocol {
 	}
 }
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 extension ActionError {
 	public func map<NewError: Swift.Error>(_ mapper: (InnerError) -> NewError) -> ActionError<NewError> {
 		if let innerError = self.innerError {

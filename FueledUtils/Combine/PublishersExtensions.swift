@@ -12,8 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if canImport(Combine)
 import Combine
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 extension Publishers {
 	public struct CombineLatestMany<PublisherCollection: Swift.Collection>: Publisher where PublisherCollection.Element: Combine.Publisher {
 		public typealias Output = [PublisherCollection.Element.Output]
@@ -33,6 +35,7 @@ extension Publishers {
 	}
 }
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 private final class CombineLatestManySubscription<
 	Subscriber: Combine.Subscriber,
 	PublisherCollection: Swift.Collection
@@ -51,7 +54,7 @@ private final class CombineLatestManySubscription<
 		var cancellables: [AnyCancellable] = []
 
 		mutating func cancel() {
-			self.currentDemand = .none
+			self.currentDemand = Subscribers.Demand.none
 			self.pendingValuesBuffer = []
 			self.cancellables.forEach { $0.cancel() }
 		}
@@ -69,39 +72,46 @@ private final class CombineLatestManySubscription<
 	func request(_ demand: Subscribers.Demand) {
 		if self.publishers.isEmpty {
 			if demand > 0 {
-				self.subscriber.receive([])
+				_ = self.subscriber.receive([])
 			}
 			self.subscriber.receive(completion: .finished)
 			return
 		}
 
-		func sendValueIfPossible(_ value: Subscriber.Input, demandsState: inout DemandsState) {
-			if demandsState.currentDemand == nil {
-				// Cancelled
-				return
+		func sendPendingValuesIfPossible(demand: Subscribers.Demand, demandsState: inout DemandsState) -> Int? {
+			if demandsState.currentDemand != nil {
+				demandsState.currentDemand += demand
+				var valuesSent = 0
+				while let firstValue = demandsState.pendingValuesBuffer.first, demandsState.currentDemand > 0 {
+					demandsState.pendingValuesBuffer.removeFirst()
+					sendValueIfPossible(firstValue, demandsState: &demandsState)
+					valuesSent += 1
+				}
+				return valuesSent
 			}
+			return nil
+		}
 
+		func sendValueIfPossible(_ value: Subscriber.Input, demandsState: inout DemandsState) {
 			if demandsState.currentDemand == 0 {
 				demandsState.pendingValuesBuffer.append(value)
 				return
 			}
 
-			self.subscriber.receive(value)
+			let demandedValues = self.subscriber.receive(value)
+			let sentValues = sendPendingValuesIfPossible(
+				demand: demandedValues,
+				demandsState: &demandsState
+			) ?? 0
+			let remainingDemand = demandedValues - sentValues
+			demandsState.currentDemand += remainingDemand
 			demandsState.currentDemand -= 1
 		}
 
 		let shouldReturn = self.$demandsState.modify { demandsState -> Bool in
-			if let currentDemand = demandsState.currentDemand {
-				demandsState.currentDemand += demand
-				while let firstValue = demandsState.pendingValuesBuffer.first, demandsState.currentDemand > 0 {
-					demandsState.pendingValuesBuffer.removeFirst()
-					sendValueIfPossible(firstValue, demandsState: &demandsState)
-				}
-				return true
-			}
-
+			let sentValues = sendPendingValuesIfPossible(demand: demand, demandsState: &demandsState)
 			demandsState.currentDemand = demand
-			return false
+			return sentValues != nil
 		}
 
 		if shouldReturn {
@@ -164,3 +174,5 @@ private final class CombineLatestManySubscription<
 		self.$demandsState.modify { $0.cancel() }
 	}
 }
+
+#endif

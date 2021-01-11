@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if canImport(Combine)
 import Combine
 
 ///
@@ -23,6 +24,7 @@ import Combine
 /// calls to `apply()` when the action is executing, the inputs will be ignored until
 /// the action terminates.
 ///
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 public class CoalescingAction<Input, Output, Failure: Swift.Error>: ActionProtocol {
 	public typealias ApplyFailure = Failure
 
@@ -147,3 +149,5 @@ public class CoalescingAction<Input, Output, Failure: Swift.Error>: ActionProtoc
 			.eraseToAnyPublisher()
 	}
 }
+
+#endif

@@ -12,12 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if canImport(SwiftUI)
 import SwiftUI
 
 ///
 /// Used to retrieve the frame of a view through a preference key.
 /// `TagType` is used to uniquely identify the view using the preference key.
 ///
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 public struct FramePreferenceKey<TagType>: PreferenceKey {
 	public static var defaultValue: CGRect {
 		.zero
@@ -27,3 +29,5 @@ public struct FramePreferenceKey<TagType>: PreferenceKey {
 		value = nextValue()
 	}
 }
+
+#endif

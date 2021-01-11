@@ -14,9 +14,11 @@
 
 import Foundation
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 public protocol CombineExtensionsProvider {
 }
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 public final class CombineExtensions<Base> {
 	var base: Base
 
@@ -25,6 +27,7 @@ public final class CombineExtensions<Base> {
 	}
 }
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 extension CombineExtensionsProvider {
 	public var combineExtensions: CombineExtensions<Self> {
 		return CombineExtensions(self)

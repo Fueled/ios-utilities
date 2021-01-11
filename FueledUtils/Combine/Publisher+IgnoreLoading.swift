@@ -12,9 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if canImport(Combine)
 import Combine
-import FueledUtils
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 public protocol TransferStateProtocol {
 	associatedtype Progress
 	associatedtype Value
@@ -39,6 +40,7 @@ extension TransferState: TransferStateProtocol {
 	}
 }
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 extension Publisher where Output: TransferStateProtocol {
 	public func ignoreLoading() -> AnyPublisher<Output.Value, Failure> {
 		self.flatMap { transferState -> AnyPublisher<Output.Value, Failure> in
@@ -53,3 +55,5 @@ extension Publisher where Output: TransferStateProtocol {
 			.eraseToAnyPublisher()
 	}
 }
+
+#endif

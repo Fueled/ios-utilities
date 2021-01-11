@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if canImport(UIKit) && !os(watchOS)
 import UIKit
 
 ///
@@ -30,3 +31,4 @@ public protocol ControlLoadingProtocol: ControlProtocol {
 // Make all `UIControl` a `ControlProtocol` by default.
 extension UIControl: ControlProtocol {
 }
+#endif

@@ -12,8 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if canImport(Combine)
 import Combine
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 public final class Action<Input, Output, Failure: Swift.Error> {
 	@Published public private(set) var isExecuting: Bool = false
 	@Published public private(set) var isEnabled: Bool = false
@@ -117,6 +119,7 @@ public final class Action<Input, Output, Failure: Swift.Error> {
 	}
 }
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 extension Publisher where Failure: ActionErrorProtocol {
 	public func unwrappingActionError() -> AnyPublisher<Output, Failure.InnerError> {
 		self.catch { actionError -> AnyPublisher<Output, Failure.InnerError> in
@@ -129,6 +132,7 @@ extension Publisher where Failure: ActionErrorProtocol {
 	}
 }
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 extension Action {
 	public static func constant(_ value: Output) -> Action<Input, Output, Failure> {
 		self.constant(inputType: Input.self, value: value)
@@ -192,3 +196,5 @@ extension Action {
 		return action
 	}
 }
+
+#endif

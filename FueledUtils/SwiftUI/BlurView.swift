@@ -12,14 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if canImport(SwiftUI)
 import SwiftUI
-#if os(iOS)
+#if canImport(UIKit)
 import UIKit
-#else
+#elseif canImport(AppKit)
 import AppKit
 #endif
 
-#if os(iOS)
+#if canImport(UIKit) && !os(watchOS)
+@available(iOS 13.0, tvOS 13.0, *)
 public struct BlurView: UIViewRepresentable {
 	public let style: UIBlurEffect.Style
 
@@ -35,7 +37,8 @@ public struct BlurView: UIViewRepresentable {
 		visualEffectView.effect = UIBlurEffect(style: self.style)
 	}
 }
-#else
+#elseif canImport(AppKit)
+@available(macOS 10.15, *)
 public struct BlurView: NSViewRepresentable {
 	public let material: NSVisualEffectView.Material
 	public let blendingMode: NSVisualEffectView.BlendingMode
@@ -69,5 +72,7 @@ public struct BlurView: NSViewRepresentable {
 		visualEffectView.isEmphasized = self.isEmphasized
 	}
 }
+
+#endif
 
 #endif

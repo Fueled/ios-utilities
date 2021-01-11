@@ -12,11 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if canImport(UIKit) && !os(watchOS) && canImport(Combine)
 import Combine
 
 private var tapActionStorage: UInt8 = 0
 private var tapActionKey: UInt8 = 0
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 extension ControlProtocol {
 	///
 	/// The action to be triggered when the button is tapped.
@@ -24,7 +26,7 @@ extension ControlProtocol {
 	/// protocol to represents the button rather than hardcode it to classes,
 	/// allowing for any `UIControl` to use this method.
 	///
-	var tapped: TapAction<Self>? {
+	public var tapped: TapAction<Self>? {
 		get {
 			self.tapActionStorage?.tapAction
 		}
@@ -58,6 +60,7 @@ extension ControlProtocol {
 	}
 }
 
+@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 private final class TapActionStorage<Control: ControlProtocol> {
 	let tapAction: TapAction<Control>
 	var cancellables = Set<AnyCancellable>()
@@ -66,3 +69,5 @@ private final class TapActionStorage<Control: ControlProtocol> {
 		self.tapAction = tapAction
 	}
 }
+
+#endif
