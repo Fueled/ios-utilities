@@ -2,7 +2,7 @@
 
 Pod::Spec.new do |s|
   s.name = 'FueledUtils'
-  s.version = '3.0-alpha1'
+  s.version = '3.0-alpha2'
   s.summary = 'A collection of utilities used at Fueled'
   s.description = 'This is a collection of classes, extensions, methods and functions used within Fueled projects that aims at decomplexifying tasks that should be easy.'
   s.swift_version = '5'
