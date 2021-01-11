@@ -20,7 +20,7 @@ import Combine
 ///
 /// `TapAction` wraps a `ActionProtocol` for use by any `ControlProtocol`.
 @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
-public final class TapAction<Control: ControlProtocol>: NSObject {
+public final class TapAction<Control: UIControl>: NSObject {
 	@objc static var selector: Selector {
 		#selector(userDidTapControl(_:))
 	}
@@ -30,7 +30,6 @@ public final class TapAction<Control: ControlProtocol>: NSObject {
 
 	// FIXME: (Stéphane) To be retested for the next version of Swift (after 5.3)
 	// Any initializers below create a segfault when compiling with optimizations.
-	#if false
 	private let inputTransform: ((Control) -> Any)
 	private let action: AnyAction
 	private var cancellables = Set<AnyCancellable>()
@@ -54,7 +53,7 @@ public final class TapAction<Control: ControlProtocol>: NSObject {
 		self.action.isExecutingPublisher.assign(to: \.isExecuting, withoutRetaining: self)
 			.store(in: &self.cancellables)
 	}
-	#endif
+
 
 	@objc private func userDidTapControl(_ button: Any) {
 		#if false
