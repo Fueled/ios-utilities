@@ -21,11 +21,28 @@ private var cancellablesKey: UInt8 = 0
 extension CombineExtensions {
 	public var cancellables: Set<AnyCancellable> {
 		get {
-			objc_getAssociatedObject(self.base, &cancellablesKey) as? Set<AnyCancellable> ?? {
+			self.cancellablesHelper.map { Set($0.map(\.cancellable)) } ?? {
 				let cancellables = Set<AnyCancellable>()
 				self.cancellables = cancellables
 				return cancellables
 			}()
+		}
+		set {
+			self.cancellablesHelper = newValue.map { CancellableHolder($0) }
+		}
+	}
+
+	private final class CancellableHolder: NSObject {
+		let cancellable: AnyCancellable
+
+		init(_ cancellable: AnyCancellable) {
+			self.cancellable = cancellable
+		}
+	}
+
+	private var cancellablesHelper: [CancellableHolder]? {
+		get {
+			objc_getAssociatedObject(self.base, &cancellablesKey) as? [CancellableHolder]
 		}
 		set {
 			objc_setAssociatedObject(self.base, &cancellablesKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_COPY)
