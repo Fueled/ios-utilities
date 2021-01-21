@@ -56,10 +56,8 @@ public final class TapAction<Control: UIControl>: NSObject {
 
 
 	@objc private func userDidTapControl(_ button: Any) {
-		#if false
 		self.action.apply(self.inputTransform(button as! Control)).sink()
 			.store(in: &self.cancellables)
-		#endif
 	}
 }
 #endif
