@@ -20,25 +20,25 @@ import ReactiveSwift
 /// This is a mirror of `CococaAction` in `ReactiveCocoa`, allowing to use a
 /// `ButtonProtocol` and assigin
 ///
-final class ReactiveTapAction<Control: ControlProtocol>: NSObject {
+public final class ReactiveTapAction<Control: ControlProtocol>: NSObject {
 	@objc static var selector: Selector {
 		#selector(userDidTapControl(_:))
 	}
 
-	let isExecuting: Property<Bool>
-	let isEnabled: Property<Bool>
+	public let isExecuting: Property<Bool>
+	public let isEnabled: Property<Bool>
 
 	private let executeClosure: (Control) -> Void
 
-	convenience init<Action: ReactiveActionProtocol>(_ action: Action) where Action.Input == Void {
+	public convenience init<Action: ReactiveActionProtocol>(_ action: Action) where Action.Input == Void {
 		self.init(action, input: ())
 	}
 
-	convenience init<Action: ReactiveActionProtocol>(_ action: Action, input: Action.Input) {
+	public convenience init<Action: ReactiveActionProtocol>(_ action: Action, input: Action.Input) {
 		self.init(action) { _ in input }
 	}
 
-	init<Action: ReactiveActionProtocol>(_ action: Action, inputTransform: @escaping (Control) -> Action.Input) {
+	public init<Action: ReactiveActionProtocol>(_ action: Action, inputTransform: @escaping (Control) -> Action.Input) {
 		self.executeClosure = {
 			action.apply(inputTransform($0)).start()
 		}

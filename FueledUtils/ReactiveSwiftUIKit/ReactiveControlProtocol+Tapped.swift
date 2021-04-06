@@ -26,7 +26,7 @@ extension Reactive where Base: ControlProtocol {
 	/// protocol to represents the button rather than hardcode it to classes,
 	/// allowing for any `UIControl` to use this method.
 	///
-	var tapped: ReactiveTapAction<Base>? {
+	public var tapped: ReactiveTapAction<Base>? {
 		get {
 			self.tapActionStorage?.tapAction
 		}
