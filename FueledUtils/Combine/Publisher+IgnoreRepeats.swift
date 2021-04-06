@@ -17,27 +17,17 @@ import Combine
 
 @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 extension Publisher {
+	@available(*, deprecated, renamed: "removeDuplicates(by:)")
 	public func ignoreRepeats(isEqual: @escaping (Output, Output) -> Bool) -> AnyPublisher<Output, Failure> {
-		self.map { Optional($0) }
-			.combinePrevious(nil)
-			.flatMap { previous, current -> AnyPublisher<Output, Failure> in
-				let current = current!
-				if previous.map({ isEqual($0, current) }) ?? false {
-					return Empty(completeImmediately: false)
-						.eraseToAnyPublisher()
-				}
-				return Just(current)
-					.setFailureType(to: Failure.self)
-					.eraseToAnyPublisher()
-			}
-			.eraseToAnyPublisher()
+		self.removeDuplicates(by: isEqual).eraseToAnyPublisher()
 	}
 }
 
 @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 extension Publisher where Output: Equatable {
+	@available(*, deprecated, renamed: "removeDuplicates(by:)")
 	public func ignoreRepeats() -> AnyPublisher<Output, Failure> {
-		self.ignoreRepeats(isEqual: ==)
+		self.removeDuplicates(by: ==).eraseToAnyPublisher()
 	}
 }
 
