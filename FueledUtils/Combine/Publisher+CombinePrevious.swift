@@ -26,20 +26,20 @@ extension Publisher {
 	}
 
 	private func combinePreviousImplementation(_ initial: Output?) -> AnyPublisher<(previous: Output, current: Output), Failure> {
-		var previousValue = initial
 		return self
-			.flatMap { output -> AnyPublisher<(previous: Output, current: Output), Failure> in
-				defer {
-					previousValue = output
-				}
-				if let currentPreviousValue = previousValue {
-					return Just((currentPreviousValue, output))
+			.scan((Output?.none, initial)) { current, newValue in
+				(current.1, newValue)
+			}
+			.map { previous, current -> AnyPublisher<(previous: Output, current: Output), Failure> in
+				if let previous = previous {
+					return Just((previous, current!))
 						.setFailureType(to: Failure.self)
 						.eraseToAnyPublisher()
 				} else {
 					return Empty(completeImmediately: false).eraseToAnyPublisher()
 				}
 			}
+			.switchToLatest()
 			.eraseToAnyPublisher()
 	}
 }
