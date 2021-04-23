@@ -20,9 +20,9 @@ public protocol CombineExtensionsProvider {
 
 @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 public final class CombineExtensions<Base> {
-	var base: Base
+	public var base: Base
 
-	init(_ base: Base) {
+	fileprivate init(_ base: Base) {
 		self.base = base
 	}
 }
