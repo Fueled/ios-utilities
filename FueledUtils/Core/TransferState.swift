@@ -45,12 +45,12 @@ public enum TransferState<Progress, Value> {
 	///   - mapper: Mapper closure how to map the initial value to the mapped value.
 	/// - Returns: A `TransferState` with the mapped value as mapped by the given closure.
 	///
-	public func map<Mapped>(_ mapper: (Value) -> Mapped) -> TransferState<Progress, Mapped> {
+	public func map<Mapped>(_ mapper: (Value) throws -> Mapped) rethrows -> TransferState<Progress, Mapped> {
 		switch self {
 		case .loading(let progress):
 			return .loading(progress)
 		case .finished(let result):
-			return .finished(mapper(result))
+			return .finished(try mapper(result))
 		}
 	}
 }
