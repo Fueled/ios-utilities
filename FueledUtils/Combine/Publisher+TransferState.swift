@@ -16,34 +16,9 @@
 import Combine
 
 @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
-public protocol TransferStateProtocol {
-	associatedtype Progress
-	associatedtype Value
-
-	var progress: Progress? { get }
-	var value: Value? { get }
-}
-
-extension TransferState: TransferStateProtocol {
-	public var progress: Progress? {
-		if case .loading(let progress) = self {
-			return progress
-		}
-		return nil
-	}
-
-	public var value: Value? {
-		if case .finished(let value) = self {
-			return value
-		}
-		return nil
-	}
-}
-
-@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 extension Publisher where Output: TransferStateProtocol {
 	public func ignoreLoading() -> AnyPublisher<Output.Value, Failure> {
-		self.flatMap { transferState -> AnyPublisher<Output.Value, Failure> in
+		self.map { transferState -> AnyPublisher<Output.Value, Failure> in
 			guard let value = transferState.value else {
 				return Empty(completeImmediately: true)
 					.eraseToAnyPublisher()
@@ -52,6 +27,7 @@ extension Publisher where Output: TransferStateProtocol {
 				.setFailureType(to: Failure.self)
 				.eraseToAnyPublisher()
 		}
+			.switchToLatest()
 			.eraseToAnyPublisher()
 	}
 }

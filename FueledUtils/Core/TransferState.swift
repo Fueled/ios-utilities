@@ -14,6 +14,14 @@
 
 import Foundation
 
+public protocol TransferStateProtocol {
+	associatedtype Progress
+	associatedtype Value
+
+	var progress: Progress? { get }
+	var value: Value? { get }
+}
+
 ///
 /// Represents a transfer state, either loading or finished.
 /// This is useful to represent a transfer state in percentage or bytes uploaded for example.
@@ -28,7 +36,7 @@ import Foundation
 /// ```
 /// Nothing prevents you to also include the `Value` type in the `typealias`, if possible for your use case.
 ///
-public enum TransferState<Progress, Value> {
+public enum TransferState<Progress, Value>: TransferStateProtocol {
 	///
 	/// Represents a `loading` state.
 	///
@@ -38,6 +46,22 @@ public enum TransferState<Progress, Value> {
 	///
 	case finished(Value)
 
+	public var progress: Progress? {
+		if case .loading(let progress) = self {
+			return progress
+		}
+		return nil
+	}
+
+	public var value: Value? {
+		if case .finished(let value) = self {
+			return value
+		}
+		return nil
+	}
+}
+
+extension TransferStateProtocol {
 	///
 	/// Map a `TransferState` finishing with one `Value` into another, mapping it with the given closure.
 	///
@@ -46,11 +70,18 @@ public enum TransferState<Progress, Value> {
 	/// - Returns: A `TransferState` with the mapped value as mapped by the given closure.
 	///
 	public func map<Mapped>(_ mapper: (Value) throws -> Mapped) rethrows -> TransferState<Progress, Mapped> {
-		switch self {
-		case .loading(let progress):
+		if let progress = self.progress {
 			return .loading(progress)
-		case .finished(let result):
-			return .finished(try mapper(result))
 		}
+		return .finished(try mapper(self.value!))
+	}
+}
+
+extension TransferStateProtocol where Progress: Numeric {
+	public func interpolated(min: Progress, max: Progress) -> TransferState<Progress, Value> {
+		if let progress = self.progress {
+			return .loading(progress * (max - min) + min)
+		}
+		return .finished(self.value!)
 	}
 }
