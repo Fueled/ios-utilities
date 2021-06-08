@@ -31,21 +31,23 @@ public final class TapAction<Control: UIControl>: NSObject {
 	// FIXME: (Stéphane) To be retested for the next version of Swift (after 5.3)
 	// Any initializers below create a segfault when compiling with optimizations.
 	private let inputTransform: ((Control) -> Any)
+	private let confirmAction: ((@escaping () -> Void) -> Void)?
 	private let action: AnyAction
 	private var cancellables = Set<AnyCancellable>()
 
-	public convenience init<Action: ActionProtocol>(_ action: Action) where Action.Input == Void {
-		self.init(action, input: ())
+	public convenience init<Action: ActionProtocol>(_ action: Action, confirmAction: ((@escaping () -> Void) -> Void)? = nil) where Action.Input == Void {
+		self.init(action, input: (), confirmAction: confirmAction)
 	}
 
-	public convenience init<Action: ActionProtocol>(_ action: Action, input: Action.Input) {
-		self.init(action) { _ in input }
+	public convenience init<Action: ActionProtocol>(_ action: Action, input: Action.Input, confirmAction: ((@escaping () -> Void) -> Void)? = nil) {
+		self.init(action, confirmAction: confirmAction, inputTransform: { _ in input })
 	}
 
-	public init<Action: ActionProtocol>(_ action: Action, inputTransform: @escaping (Control) -> Action.Input) {
+	public init<Action: ActionProtocol>(_ action: Action, confirmAction: (((@escaping () -> Void) -> Void))? = nil, inputTransform: @escaping (Control) -> Action.Input) {
 		self.isEnabled = action.isEnabled
 		self.isExecuting = action.isExecuting
 		self.inputTransform = { inputTransform($0) }
+		self.confirmAction = confirmAction
 		self.action = AnyAction(action)
 		super.init()
 		self.action.isEnabledPublisher.assign(to: \.isEnabled, withoutRetaining: self)
@@ -54,10 +56,16 @@ public final class TapAction<Control: UIControl>: NSObject {
 			.store(in: &self.cancellables)
 	}
 
-
 	@objc private func userDidTapControl(_ button: Any) {
-		self.action.apply(self.inputTransform(button as! Control)).sink()
-			.store(in: &self.cancellables)
+		let confirmAction = self.confirmAction ?? { $0() }
+		confirmAction { [weak self] in
+			guard let self = self else {
+				return
+			}
+
+			self.action.apply(self.inputTransform(button as! Control)).sink()
+				.store(in: &self.cancellables)
+		}
 	}
 }
 #endif
