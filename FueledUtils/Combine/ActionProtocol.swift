@@ -101,7 +101,7 @@ extension ActionProtocol where Input == Void {
 	///   or returns an appropriate `ApplyError` indicating the specific error
 	///   that happened.
 	///
-	func apply() -> ApplyPublisher {
+	public func apply() -> ApplyPublisher {
 		return self.apply(())
 	}
 }
