@@ -18,7 +18,22 @@ infix operator .=: AssignmentPrecedence
 
 public final class AtomicValue<Value> {
 	private var valueStorage: Value
-	private(set) var value: Value {
+
+	/// If modifying the `value`, consider that the operation might not be atomic. Consider the following examples:
+	/// ```
+	/// let atomicValue = AtomicValue(0)
+	/// atomicValue.value = 1
+	/// ```
+	/// This is an atomic operation as the original value is overriden.
+	/// ```
+	/// let atomicValue = AtomicValue(0)
+	/// atomicValue.value += 1
+	/// ```
+	/// This is _not_ an atomic operation, as this will be translated as:
+	/// atomicValue.value = atomicValue.value + 1
+	/// Resulting in the internal lock being acquired twice, resulting in potential undesired behavior.
+	/// If modifying the value, `modify()` is recommended to avoid such behavior.
+	public var value: Value {
 		get {
 			self.lock.lock()
 			defer {
@@ -74,7 +89,12 @@ public struct Atomic<Value> {
 	}
 
 	public var wrappedValue: Value {
-		self.atomicValue.value
+		get {
+			self.atomicValue.value
+		}
+		set {
+			self.atomicValue.value = newValue
+		}
 	}
 
 	public var projectedValue: Atomic {
