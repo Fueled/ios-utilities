@@ -17,11 +17,27 @@ import Foundation
 infix operator .=: AssignmentPrecedence
 
 public final class AtomicValue<Value> {
-	private(set) var value: Value
+	private var valueStorage: Value
+	private(set) var value: Value {
+		get {
+			self.lock.lock()
+			defer {
+				self.lock.unlock()
+			}
+			return self.valueStorage
+		}
+		set {
+			self.lock.lock()
+			defer {
+				self.lock.unlock()
+			}
+			self.valueStorage = newValue
+		}
+	}
 	private let lock = Lock()
 
 	public init(_ value: Value) {
-		self.value = value
+		self.valueStorage = value
 	}
 
 	public static func .= (atomicValue: AtomicValue, value: Value) {
@@ -33,7 +49,7 @@ public final class AtomicValue<Value> {
 		defer {
 			self.lock.unlock()
 		}
-		return modify(&self.value)
+		return modify(&self.valueStorage)
 	}
 
 	public func withValue<Return>(_ getter: (Value) -> Return) -> Return {
@@ -41,7 +57,7 @@ public final class AtomicValue<Value> {
 		defer {
 			self.lock.unlock()
 		}
-		return getter(self.value)
+		return getter(self.valueStorage)
 	}
 }
 
