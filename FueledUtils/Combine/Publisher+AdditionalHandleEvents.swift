@@ -71,7 +71,17 @@ extension Publisher {
 		receiveResult: ((Result<Output, Failure>) -> Void)?,
 		receiveRequest: ((Subscribers.Demand) -> Void)? = nil
 	) -> Publishers.HandleEvents<Self> {
-		self.handleEvents(
+		var hasTerminated = false
+		let receiveTermination = receiveTermination.map { receiveTermination in
+			{
+				if hasTerminated {
+					return
+				}
+				hasTerminated = true
+				receiveTermination()
+			}
+		}
+		return self.handleEvents(
 			receiveSubscription: receiveSubscription,
 			receiveOutput: {
 				receiveOutput?($0)
