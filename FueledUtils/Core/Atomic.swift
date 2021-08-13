@@ -17,11 +17,42 @@ import Foundation
 infix operator .=: AssignmentPrecedence
 
 public final class AtomicValue<Value> {
-	private(set) var value: Value
+	private var valueStorage: Value
+
+	/// If modifying the `value`, consider that the operation might not be atomic. Consider the following examples:
+	/// ```
+	/// let atomicValue = AtomicValue(0)
+	/// atomicValue.value = 1
+	/// ```
+	/// This is an atomic operation as the original value is overriden.
+	/// ```
+	/// let atomicValue = AtomicValue(0)
+	/// atomicValue.value += 1
+	/// ```
+	/// This is _not_ an atomic operation, as this will be translated as:
+	/// atomicValue.value = atomicValue.value + 1
+	/// Resulting in the internal lock being acquired twice, resulting in potential undesired behavior.
+	/// If modifying the value, `modify()` is recommended to avoid such behavior.
+	public var value: Value {
+		get {
+			self.lock.lock()
+			defer {
+				self.lock.unlock()
+			}
+			return self.valueStorage
+		}
+		set {
+			self.lock.lock()
+			defer {
+				self.lock.unlock()
+			}
+			self.valueStorage = newValue
+		}
+	}
 	private let lock = Lock()
 
 	public init(_ value: Value) {
-		self.value = value
+		self.valueStorage = value
 	}
 
 	public static func .= (atomicValue: AtomicValue, value: Value) {
@@ -33,7 +64,7 @@ public final class AtomicValue<Value> {
 		defer {
 			self.lock.unlock()
 		}
-		return modify(&self.value)
+		return modify(&self.valueStorage)
 	}
 
 	public func withValue<Return>(_ getter: (Value) -> Return) -> Return {
@@ -41,7 +72,7 @@ public final class AtomicValue<Value> {
 		defer {
 			self.lock.unlock()
 		}
-		return getter(self.value)
+		return getter(self.valueStorage)
 	}
 }
 
@@ -58,7 +89,12 @@ public struct Atomic<Value> {
 	}
 
 	public var wrappedValue: Value {
-		self.atomicValue.value
+		get {
+			self.atomicValue.value
+		}
+		set {
+			self.atomicValue.value = newValue
+		}
 	}
 
 	public var projectedValue: Atomic {
