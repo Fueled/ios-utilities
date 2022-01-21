@@ -14,7 +14,12 @@
 
 import Quick
 import Nimble
+#if canImport(FueledUtilsCombine)
+import FueledUtilsCombine
+#elseif canImport(FueledUtils)
 import FueledUtils
+#endif
+import Foundation
 import ReactiveSwift
 #if canImport(Combine)
 import Combine
