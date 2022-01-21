@@ -16,6 +16,7 @@
 		F453AA832538E05E008F045B /* ReactiveCoalescingActionSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F463C73A241835DD000A0B29 /* ReactiveCoalescingActionSpec.swift */; };
 		F453AA842538E05E008F045B /* ReactiveOverridingActionSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F429742925378348004BFA85 /* ReactiveOverridingActionSpec.swift */; };
 		F453AA892538EF16008F045B /* SinkForLifetimeSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F453AA882538EF16008F045B /* SinkForLifetimeSpec.swift */; };
+		FC204075279EE4C9001A767C /* AnyCurrentValuePublisherSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC204074279EE4C9001A767C /* AnyCurrentValuePublisherSpec.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		F46D2DA5252E4E4A00B6987A /* OrderedSetSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderedSetSpec.swift; sourceTree = "<group>"; };
 		F499631F2537459200E2D4B5 /* CoalescingActionSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoalescingActionSpec.swift; sourceTree = "<group>"; };
 		F7F10FE9C8384333882C2368 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		FC204074279EE4C9001A767C /* AnyCurrentValuePublisherSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyCurrentValuePublisherSpec.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 		F463C739241835DD000A0B29 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				FC204074279EE4C9001A767C /* AnyCurrentValuePublisherSpec.swift */,
 				F499631F2537459200E2D4B5 /* CoalescingActionSpec.swift */,
 				F46D2DA5252E4E4A00B6987A /* OrderedSetSpec.swift */,
 				F429742D25378425004BFA85 /* OverridingActionSpec.swift */,
@@ -265,6 +268,7 @@
 			files = (
 				F453AA7B2538DE55008F045B /* CombineLatestManySpec.swift in Sources */,
 				F453AA802538E05E008F045B /* OrderedSetSpec.swift in Sources */,
+				FC204075279EE4C9001A767C /* AnyCurrentValuePublisherSpec.swift in Sources */,
 				F453AA892538EF16008F045B /* SinkForLifetimeSpec.swift in Sources */,
 				F453AA822538E05E008F045B /* OverridingActionSpec.swift in Sources */,
 				F453AA832538E05E008F045B /* ReactiveCoalescingActionSpec.swift in Sources */,

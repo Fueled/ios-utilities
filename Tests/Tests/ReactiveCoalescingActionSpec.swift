@@ -14,7 +14,12 @@
 
 import Quick
 import Nimble
+#if canImport(FueledUtilsReactiveSwift)
+import FueledUtilsReactiveSwift
+#elseif canImport(FueledUtils)
 import FueledUtils
+#endif
+import Foundation
 import ReactiveSwift
 
 class ReactiveCoalescingActionSpec: QuickSpec {

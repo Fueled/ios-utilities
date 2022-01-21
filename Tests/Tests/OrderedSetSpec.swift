@@ -14,7 +14,11 @@
 
 import Quick
 import Nimble
+#if canImport(FueledUtilsCore)
+import FueledUtilsCore
+#elseif canImport(FueledUtils)
 import FueledUtils
+#endif
 import XCTest
 
 class OrderedSetSpec: QuickSpec {

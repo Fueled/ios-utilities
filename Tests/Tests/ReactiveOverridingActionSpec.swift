@@ -13,7 +13,12 @@
 // limitations under the License.
 
 import Quick
+#if canImport(FueledUtilsReactiveSwift)
+import FueledUtilsReactiveSwift
+#elseif canImport(FueledUtils)
 import FueledUtils
+#endif
+import Foundation
 import Nimble
 import ReactiveSwift
 

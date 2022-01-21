@@ -19,7 +19,7 @@ import FueledUtilsReactiveCommon
 #endif
 import ReactiveCocoa
 import ReactiveSwift
-#if canImport(UIKit)
+#if canImport(UIKit) && !os(watchOS)
 import UIKit
 #elseif canImport(AppKit)
 import AppKit
