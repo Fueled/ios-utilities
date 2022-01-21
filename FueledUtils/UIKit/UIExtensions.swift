@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if canImport(UIKit)
 import Foundation
 import UIKit
 
@@ -663,3 +664,4 @@ extension UIImage {
 		return image.resizableImage(withCapInsets: .init(top: capInset, left: capInset, bottom: capInset, right: capInset), resizingMode: .stretch)
 	}
 }
+#endif

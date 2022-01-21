@@ -14,6 +14,12 @@
 
 #if canImport(Combine)
 import Combine
+#if canImport(FueledUtilsCombine)
+import FueledUtilsCombine
+import FueledUtilsCore
+import FueledUtilsReactiveCommon
+public typealias OptionalProtocol = FueledUtilsCore.OptionalProtocol
+#endif
 
 // swiftlint:disable generic_type_name
 
