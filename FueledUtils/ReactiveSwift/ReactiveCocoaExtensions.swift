@@ -13,11 +13,16 @@
 // limitations under the License.
 
 import Foundation
+#if canImport(FueledUtilsReactiveCommon)
+import FueledUtilsCore
+import FueledUtilsReactiveCommon
+#endif
 import ReactiveCocoa
 import ReactiveSwift
 #if canImport(UIKit)
 import UIKit
 #elseif canImport(AppKit)
+import AppKit
 #endif
 
 ///
