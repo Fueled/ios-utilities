@@ -14,7 +14,12 @@
 
 #if canImport(Combine)
 import Combine
+#if canImport(FueledUtilsCombine)
+import FueledUtilsCombine
+#elseif canImport(FueledUtils)
 import FueledUtils
+#endif
+import Foundation
 import Quick
 import Nimble
 

@@ -12,48 +12,32 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Quick
-import Nimble
+#if canImport(Combine)
+import Combine
 #if canImport(FueledUtilsCombine)
 import FueledUtilsCombine
 #elseif canImport(FueledUtils)
 import FueledUtils
 #endif
 import Foundation
-import ReactiveSwift
-#if canImport(Combine)
-import Combine
+import Quick
+import Nimble
 
-class SinkForLifetimeSpec: QuickSpec {
+class AnyCurrentValuePublisherSpec: QuickSpec {
 	override func spec() {
-		describe("sinkForLifeTimeOf()") {
-			it("should cancel itself automatically when the object becomes out of scope") {
-				var object: NSObject!
-				var valueCount = 0
-				var cancelCount = 0
-				do {
-					object = NSObject()
-					Timer.publish(every: 0.42, on: .current, in: .common)
-						.autoconnect()
-						.handleEvents(
-							receiveCancel: {
-								cancelCount += 1
-							}
-						)
-						.sinkForLifetimeOf(object) { _ in
-							valueCount += 1
-						}
+		describe("AnyCurrentValuePublisherSpec") {
+			describe("Initialization") {
+				it("Should initialize with a stored value") {
+					let publisher = AnyCurrentValuePublisher<Int, Never>(1)
+					expect(publisher.value) == 1
 				}
-
-				DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-					object = nil
+				it("Should initialize with a nested CurrentValueSubject") {
+					let subject = CurrentValueSubject<Int, Never>(2)
+					let publisher = AnyCurrentValuePublisher(subject)
+					expect(publisher.value) == 2
 				}
-
-				expect(valueCount).toEventually(equal(2))
-				expect(cancelCount).toEventually(equal(1), timeout: .seconds(2))
 			}
 		}
 	}
 }
-
 #endif
