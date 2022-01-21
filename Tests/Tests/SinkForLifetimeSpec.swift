@@ -45,7 +45,7 @@ class SinkForLifetimeSpec: QuickSpec {
 				}
 
 				expect(valueCount).toEventually(equal(2))
-				expect(cancelCount).toEventually(equal(1), timeout: 2.0)
+				expect(cancelCount).toEventually(equal(1), timeout: .seconds(2))
 			}
 		}
 	}
