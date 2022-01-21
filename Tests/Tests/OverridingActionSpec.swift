@@ -56,8 +56,8 @@ class OverridingActionSpec: QuickSpec {
 					expect(cancelledCounter) == publishersCount - 1
 					expect(interruptedCounter) == publishersCount - 1
 
-					expect(cancelledCounter).toEventually(equal(publishersCount - 1), timeout: 2.0)
-					expect(cancelledCounter).toEventually(equal(interruptedCounter), timeout: 2.0)
+					expect(cancelledCounter).toEventually(equal(publishersCount - 1), timeout: .seconds(2))
+					expect(cancelledCounter).toEventually(equal(interruptedCounter), timeout: .seconds(2))
 				}
 			}
 		}

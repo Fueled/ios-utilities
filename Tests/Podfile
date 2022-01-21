@@ -5,7 +5,7 @@ abstract_target 'Common' do
 		platform :ios, '13.0'
 
 		pod 'Quick', '~> 2.0'
-		pod 'Nimble', '~> 8.0'
+		pod 'Nimble', '~> 9.0'
 
 		pod 'FueledUtils/ReactiveCombineBridge', path: '../'
 		pod 'FueledUtils/ReactiveSwift', path: '../'
