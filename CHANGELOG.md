@@ -1,6 +1,9 @@
 ## Master
 
 ##### New Features/Enhancements
+- Add Swift Package Manager Support
+  [notbenoit](https://github.com/notbenoit)
+  [#71](https://github.com/Fueled/ios-utilities/pulls/71)
 
 - Add `ActionProtocol`
 - Add `AnyAction`, allowing to type-erase any actions represented by a `ActionProtocol`
