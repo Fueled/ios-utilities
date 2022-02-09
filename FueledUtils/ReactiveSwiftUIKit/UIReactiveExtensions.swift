@@ -16,6 +16,9 @@
 import Foundation
 import ReactiveSwift
 import UIKit
+#if canImport(FueledUtilsUIKit)
+import FueledUtilsUIKit
+#endif
 
 extension Reactive where Base: UILabel {
 	///

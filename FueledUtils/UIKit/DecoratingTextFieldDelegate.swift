@@ -15,6 +15,9 @@
 #if canImport(UIKit) && !os(watchOS)
 import UIKit
 import Foundation
+#if canImport(FueledUtilsCore)
+import FueledUtilsCore
+#endif
 
 ///
 /// Adds formatting (decoration) characters to text field's content according to a variable pattern. Can be used for

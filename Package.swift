@@ -59,7 +59,10 @@ let package = Package(
 	targets: [
 		.target(
 			name: "FueledUtilsCore",
-			path: "FueledUtils/Core"
+			path: "FueledUtils/Core",
+			linkerSettings: [
+                .linkedFramework("Foundation")
+            ]
 		),
 		.target(
 			name: "FueledUtilsReactiveCommon",
@@ -74,12 +77,22 @@ let package = Package(
 		.target(
 			name: "FueledUtilsUIKit",
 			dependencies: ["FueledUtilsCore"],
-			path: "FueledUtils/UIKit"
+			path: "FueledUtils/UIKit",
+			linkerSettings: [
+                .linkedFramework("Foundation"),
+                .linkedFramework("UIKit", .when(platforms: [.iOS, .tvOS])),
+                .linkedFramework("AppKit", .when(platforms: [.macOS])),
+            ]
 		),
 		.target(
 			name: "FueledUtilsReactiveSwiftUIKit",
 			dependencies: ["FueledUtilsReactiveSwift", "FueledUtilsUIKit"],
-			path: "FueledUtils/ReactiveSwiftUIKit"
+			path: "FueledUtils/ReactiveSwiftUIKit",
+			linkerSettings: [
+                .linkedFramework("Foundation"),
+                .linkedFramework("UIKit", .when(platforms: [.iOS, .tvOS])),
+                .linkedFramework("AppKit", .when(platforms: [.macOS])),
+            ]
 		),
 		.target(
 			name: "FueledUtilsCombine",
@@ -99,7 +112,10 @@ let package = Package(
 		.target(
 			name: "FueledUtilsSwiftUI",
 			dependencies: ["FueledUtilsCombine", "FueledUtilsCore"],
-			path: "FueledUtils/SwiftUI"
+			path: "FueledUtils/SwiftUI",
+			linkerSettings: [
+                .linkedFramework("SwiftUI", .when(platforms: [.iOS, .tvOS, .macOS])),
+            ]
 		),
 		.target(
 			name: "FueledUtilsReactiveCombineBridge",

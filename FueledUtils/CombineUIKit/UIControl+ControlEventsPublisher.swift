@@ -15,6 +15,10 @@
 #if canImport(UIKit) && !os(watchOS) && canImport(Combine)
 import Combine
 import UIKit
+#if canImport(FueledUtilsUIKit)
+import Foundation
+import FueledUtilsUIKit
+#endif
 
 private var publisherControlEventsProcessorsHolderKey: UInt8 = 0
 
