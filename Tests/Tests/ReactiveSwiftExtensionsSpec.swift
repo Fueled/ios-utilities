@@ -14,7 +14,12 @@
 
 import Quick
 import Nimble
+#if canImport(FueledUtilsReactiveSwift)
+import FueledUtilsReactiveSwift
+#elseif canImport(FueledUtils)
 import FueledUtils
+#endif
+import Foundation
 import ReactiveSwift
 
 class ReactiveSwiftExtensionsSpec: QuickSpec {
@@ -33,7 +38,7 @@ class ReactiveSwiftExtensionsSpec: QuickSpec {
 
 					expect(valuesReceived) == 0
 
-					expect(valuesReceived).toEventually(equal(1), timeout: 1.0)
+					expect(valuesReceived).toEventually(equal(1), timeout: .seconds(1))
 
 					observer.send(value: ())
 
@@ -51,7 +56,7 @@ class ReactiveSwiftExtensionsSpec: QuickSpec {
 
 					expect(errorsReceived) == 0
 
-					expect(errorsReceived).toEventually(equal(1), timeout: 1.0)
+					expect(errorsReceived).toEventually(equal(1), timeout: .seconds(1))
 				}
 				it("should send any values instantly and receive an interrupted event if interrupted before the minimum interval is met") {
 					let (signal, observer) = Signal<Void, Never>.pipe()

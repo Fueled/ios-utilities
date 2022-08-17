@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if canImport(UIKit) && !os(watchOS)
 import Foundation
 import UIKit
 
@@ -58,3 +59,4 @@ public final class DimmingButton: UIButton {
 		(view ?? self).alpha = dimmedAlpha
 	}
 }
+#endif

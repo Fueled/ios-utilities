@@ -12,9 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import Foundation
 #if canImport(UIKit) && !os(watchOS)
 import ReactiveCocoa
 import ReactiveSwift
+#if canImport(FueledUtilsUIKit)
+import FueledUtilsUIKit
+#endif
 
 private var tapActionStorage: UInt8 = 0
 private var tapActionKey: UInt8 = 0

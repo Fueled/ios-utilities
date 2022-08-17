@@ -14,6 +14,11 @@
 
 #if canImport(Combine)
 import Combine
+#if canImport(FueledUtilsReactiveCommon)
+import Foundation
+import FueledUtilsCore
+import FueledUtilsReactiveCommon
+#endif
 
 private var cancellablesKey: UInt8 = 0
 

@@ -14,6 +14,11 @@
 
 #if canImport(UIKit) && !os(watchOS)
 import ReactiveSwift
+import Foundation
+#if canImport(FueledUtilsUIKit)
+import FueledUtilsUIKit
+import FueledUtilsReactiveSwift
+#endif
 
 ///
 /// `ReactiveTapAction` wraps a `ReactiveActionProtocol` for use by any `ButtonProtocol`

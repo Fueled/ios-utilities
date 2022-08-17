@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if canImport(UIKit) && !os(watchOS)
 import UIKit
 
 ///
@@ -274,3 +275,4 @@ extension CGPoint {
 		return CGPoint(x: 1.0, y: 0.0)
 	}
 }
+#endif

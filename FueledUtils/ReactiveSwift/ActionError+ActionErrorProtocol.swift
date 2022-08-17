@@ -12,6 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if canImport(FueledUtilsReactiveCommon)
+import FueledUtilsReactiveCommon
+#endif
 import ReactiveSwift
 
 extension ReactiveSwift.ActionError: ActionErrorProtocol {
