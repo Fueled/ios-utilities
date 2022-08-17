@@ -16,7 +16,7 @@ In order to properly clone the project and be ready to submit bug fixes/new feat
     ```shell
     git submodule update --init --recursive
     ```
-2. Open `FueledUtils.xcworkspace`
+2. Open `Test/FueledUtils.xcworkspace` and update the *FueledUtils* Pod in `Development Pods`
 3. You're ready to go!
 
 ## How to contribute
