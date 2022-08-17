@@ -1,0 +1,22 @@
+name: PR Check
+on: [pull_request]
+concurrency: 
+  group: ${{ github.head_ref }}
+  cancel-in-progress: true
+jobs:
+  pr_check:
+    runs-on: macOS-11
+    if: github.event.pull_request.draft == false
+    steps:
+      - name: Checkout Project
+        uses: actions/checkout@v2
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - name: Danger
+        env:
+          DANGER_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: bundle exec danger --base=main
+      - name: Test
+        run: swift test
+
