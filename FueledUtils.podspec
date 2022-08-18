@@ -2,7 +2,7 @@
 
 Pod::Spec.new do |s|
   s.name = 'FueledUtils'
-  s.version = '3.1.0'
+  s.version = '4.0.0'
   s.summary = 'A collection of utilities used at Fueled'
   s.description = 'This is a collection of classes, extensions, methods and functions used within Fueled projects that aims at decomplexifying tasks that should be easy.'
   s.swift_version = '5'
@@ -28,24 +28,9 @@ Pod::Spec.new do |s|
     s.dependency 'FueledUtils/Core'
   end
 
-  s.subspec 'ReactiveSwift' do |s|
-    s.dependency 'FueledUtils/ReactiveCommon'
-    s.dependency 'ReactiveSwift', '~> 6.0'
-    s.dependency 'ReactiveCocoa', '~> 10.0'
-
-    s.source_files = 'FueledUtils/ReactiveSwift/**/*.swift'
-  end
-
   s.subspec 'UIKit' do |s|
     s.dependency 'FueledUtils/Core'
     s.ios.source_files = 'FueledUtils/UIKit/**/*.swift'
-  end
-
-  s.subspec 'ReactiveSwiftUIKit' do |s|
-    s.dependency 'FueledUtils/ReactiveSwift'
-    s.dependency 'FueledUtils/UIKit'
-
-    s.ios.source_files = 'FueledUtils/ReactiveSwiftUIKit/**/*.swift'
   end
 
   s.subspec 'Combine' do |s|
