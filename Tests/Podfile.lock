@@ -1,28 +1,28 @@
 PODS:
-  - FueledUtils/Combine (3.0.0):
+  - FueledUtils/Combine (3.1.0):
     - FueledUtils/ReactiveCommon
-  - FueledUtils/CombineOperators (3.0.0):
+  - FueledUtils/CombineOperators (3.1.0):
     - FueledUtils/Combine
-  - FueledUtils/CombineUIKit (3.0.0):
+  - FueledUtils/CombineUIKit (3.1.0):
     - FueledUtils/Combine
     - FueledUtils/UIKit
-  - FueledUtils/Core (3.0.0)
-  - FueledUtils/ReactiveCombineBridge (3.0.0):
+  - FueledUtils/Core (3.1.0)
+  - FueledUtils/ReactiveCombineBridge (3.1.0):
     - FueledUtils/Combine
     - FueledUtils/ReactiveSwift
-  - FueledUtils/ReactiveCommon (3.0.0):
+  - FueledUtils/ReactiveCommon (3.1.0):
     - FueledUtils/Core
-  - FueledUtils/ReactiveSwift (3.0.0):
+  - FueledUtils/ReactiveSwift (3.1.0):
     - FueledUtils/ReactiveCommon
     - ReactiveCocoa (~> 10.0)
     - ReactiveSwift (~> 6.0)
-  - FueledUtils/ReactiveSwiftUIKit (3.0.0):
+  - FueledUtils/ReactiveSwiftUIKit (3.1.0):
     - FueledUtils/ReactiveSwift
     - FueledUtils/UIKit
-  - FueledUtils/SwiftUI (3.0.0):
+  - FueledUtils/SwiftUI (3.1.0):
     - FueledUtils/Combine
     - FueledUtils/Core
-  - FueledUtils/UIKit (3.0.0):
+  - FueledUtils/UIKit (3.1.0):
     - FueledUtils/Core
   - Nimble (9.2.1)
   - Quick (2.2.0)
@@ -52,7 +52,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  FueledUtils: c5b52ea378fe4eb7dd0f746d31c55d2e9facef0a
+  FueledUtils: b0c089ddab7e706669f31c45325c399eabd52868
   Nimble: e7e615c0335ee4bf5b0d786685451e62746117d5
   Quick: 7fb19e13be07b5dfb3b90d4f9824c855a11af40e
   ReactiveCocoa: 083ae559e6f588ce519cab412ea119b431c26a24
