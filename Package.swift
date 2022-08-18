@@ -18,16 +18,8 @@ let package = Package(
 			targets: ["FueledUtilsReactiveCommon"]
 		),
 		.library(
-			name: "FueledUtilsReactiveSwift",
-			targets: ["FueledUtilsReactiveSwift"]
-		),
-		.library(
 			name: "FueledUtilsUIKit",
 			targets: ["FueledUtilsUIKit"]
-		),
-		.library(
-			name: "FueledUtilsReactiveSwiftUIKit",
-			targets: ["FueledUtilsReactiveSwiftUIKit"]
 		),
 		.library(
 			name: "FueledUtilsCombine",
@@ -45,14 +37,8 @@ let package = Package(
 			name: "FueledUtilsSwiftUI",
 			targets: ["FueledUtilsSwiftUI"]
 		),
-		.library(
-			name: "FueledUtilsReactiveCombineBridge",
-			targets: ["FueledUtilsReactiveCombineBridge"]
-		),
 	],
 	dependencies: [
-		.package(url: "https://github.com/ReactiveCocoa/ReactiveSwift.git", from: "7.0.0"),
-		.package(url: "https://github.com/ReactiveCocoa/ReactiveCocoa.git", from: "12.0.0"),
 		.package(url: "https://github.com/Quick/Quick.git", from: "4.0.0"),
 		.package(url: "https://github.com/Quick/Nimble.git", from: "9.0.0"),
 	],
@@ -70,24 +56,9 @@ let package = Package(
 			path: "FueledUtils/ReactiveCommon"
 		),
 		.target(
-			name: "FueledUtilsReactiveSwift",
-			dependencies: ["FueledUtilsReactiveCommon", "ReactiveSwift", "ReactiveCocoa"],
-			path: "FueledUtils/ReactiveSwift"
-		),
-		.target(
 			name: "FueledUtilsUIKit",
 			dependencies: ["FueledUtilsCore"],
 			path: "FueledUtils/UIKit",
-			linkerSettings: [
-                .linkedFramework("Foundation"),
-                .linkedFramework("UIKit", .when(platforms: [.iOS, .tvOS])),
-                .linkedFramework("AppKit", .when(platforms: [.macOS])),
-            ]
-		),
-		.target(
-			name: "FueledUtilsReactiveSwiftUIKit",
-			dependencies: ["FueledUtilsReactiveSwift", "FueledUtilsUIKit"],
-			path: "FueledUtils/ReactiveSwiftUIKit",
 			linkerSettings: [
                 .linkedFramework("Foundation"),
                 .linkedFramework("UIKit", .when(platforms: [.iOS, .tvOS])),
@@ -117,16 +88,10 @@ let package = Package(
                 .linkedFramework("SwiftUI", .when(platforms: [.iOS, .tvOS, .macOS])),
             ]
 		),
-		.target(
-			name: "FueledUtilsReactiveCombineBridge",
-			dependencies: ["FueledUtilsCombine", "FueledUtilsReactiveSwift"],
-			path: "FueledUtils/ReactiveCombineBridge"
-		),
 		.testTarget(
 				name: "FueledUtils",
 				dependencies: [
 					"FueledUtilsCombineUIKit",
-					"FueledUtilsReactiveSwiftUIKit",
 					"Quick",
 					"Nimble",
 				],
