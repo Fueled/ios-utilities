@@ -14,6 +14,10 @@
 
 #if canImport(Combine)
 import Combine
+#if canImport(FueledUtilsReactiveCommon)
+import FueledUtilsCore
+import FueledUtilsReactiveCommon
+#endif
 
 ///
 /// Similar to `Action`, except if the action is already executing, subsequent `apply()` call will not fail,

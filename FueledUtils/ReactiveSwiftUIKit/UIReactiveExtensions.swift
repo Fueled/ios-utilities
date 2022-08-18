@@ -12,9 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if canImport(UIKit)
 import Foundation
 import ReactiveSwift
 import UIKit
+#if canImport(FueledUtilsUIKit)
+import FueledUtilsUIKit
+#endif
 
 extension Reactive where Base: UILabel {
 	///
@@ -34,3 +38,4 @@ extension Reactive where Base: UILabel {
 		}
 	}
 }
+#endif

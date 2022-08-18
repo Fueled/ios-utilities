@@ -13,7 +13,12 @@
 // limitations under the License.
 
 import Quick
+#if canImport(FueledUtilsReactiveSwift)
+import FueledUtilsReactiveSwift
+#elseif canImport(FueledUtils)
 import FueledUtils
+#endif
+import Foundation
 import Nimble
 import ReactiveSwift
 
@@ -50,11 +55,11 @@ class ReactiveOverridingActionSpec: QuickSpec {
 					}
 
 					expect(startCounter) == producersCount
-					expect(disposeCounter).toEventually(equal(producersCount - 1), timeout: 0.01)
-					expect(interruptedCounter).toEventually(equal(producersCount - 1), timeout: 0.01)
+					expect(disposeCounter).toEventually(equal(producersCount - 1), timeout: .milliseconds(10))
+					expect(interruptedCounter).toEventually(equal(producersCount - 1), timeout: .milliseconds(10))
 
-					expect(disposeCounter).toEventually(equal(producersCount), timeout: 2.0)
-					expect(interruptedCounter).toEventually(equal(producersCount - 1), timeout: 2.0)
+					expect(disposeCounter).toEventually(equal(producersCount), timeout: .seconds(2))
+					expect(interruptedCounter).toEventually(equal(producersCount - 1), timeout: .seconds(2))
 				}
 			}
 		}

@@ -14,7 +14,12 @@
 
 #if canImport(Combine)
 import Combine
+#if canImport(FueledUtilsCombine)
+import FueledUtilsCombine
+#elseif canImport(FueledUtils)
 import FueledUtils
+#endif
+import Foundation
 import Quick
 import Nimble
 
@@ -56,8 +61,8 @@ class OverridingActionSpec: QuickSpec {
 					expect(cancelledCounter) == publishersCount - 1
 					expect(interruptedCounter) == publishersCount - 1
 
-					expect(cancelledCounter).toEventually(equal(publishersCount - 1), timeout: 2.0)
-					expect(cancelledCounter).toEventually(equal(interruptedCounter), timeout: 2.0)
+					expect(cancelledCounter).toEventually(equal(publishersCount - 1), timeout: .seconds(2))
+					expect(cancelledCounter).toEventually(equal(interruptedCounter), timeout: .seconds(2))
 				}
 			}
 		}

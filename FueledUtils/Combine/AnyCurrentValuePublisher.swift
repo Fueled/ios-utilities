@@ -14,6 +14,9 @@
 
 #if canImport(Combine)
 import Combine
+#if canImport(FueledUtilsReactiveCommon)
+import FueledUtilsReactiveCommon
+#endif
 
 ///
 /// A type-erasing current value publisher.
@@ -35,7 +38,7 @@ public struct AnyCurrentValuePublisher<Output, Failure: Swift.Error>: CurrentVal
 		self.receiveSubcriberClosure = { _ = $0.receive(value) }
 	}
 
-	public init<CurrentValuePublisher: FueledUtils.CurrentValuePublisher>(_ publisher: CurrentValuePublisher) where CurrentValuePublisher.Output == Output, CurrentValuePublisher.Failure == Failure {
+	public init<Publisher: CurrentValuePublisher>(_ publisher: Publisher) where Publisher.Output == Output, Publisher.Failure == Failure {
 		self.valueGetter = { publisher.value }
 		self.receiveSubcriberClosure = { publisher.receive(subscriber: $0) }
 	}

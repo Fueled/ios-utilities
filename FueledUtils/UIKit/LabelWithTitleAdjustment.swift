@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#if canImport(UIKit) && !os(watchOS)
 import UIKit
 import Foundation
 
@@ -111,3 +112,4 @@ open class LabelWithTitleAdjustment: UILabel {
 		self.setAdjustedAttributedText(text.map { NSAttributedString(string: $0) })
 	}
 }
+#endif

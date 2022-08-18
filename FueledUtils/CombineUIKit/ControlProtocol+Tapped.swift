@@ -14,6 +14,10 @@
 
 #if canImport(UIKit) && !os(watchOS) && canImport(Combine)
 import Combine
+#if canImport(FueledUtilsUIKit)
+import Foundation
+import FueledUtilsUIKit
+#endif
 
 private var tapActionStorage: UInt8 = 0
 private var tapActionKey: UInt8 = 0

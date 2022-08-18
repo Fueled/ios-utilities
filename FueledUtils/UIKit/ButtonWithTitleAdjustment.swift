@@ -11,7 +11,7 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
+#if canImport(UIKit) && !os(watchOS)
 import UIKit
 
 ///
@@ -108,3 +108,4 @@ open class ButtonWithTitleAdjustment: UIButton {
 		self.setAttributedTitle(adjustedString, for: state)
 	}
 }
+#endif

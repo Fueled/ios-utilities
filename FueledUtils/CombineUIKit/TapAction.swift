@@ -13,8 +13,13 @@
 // limitations under the License.
 
 #if canImport(UIKit) && !os(watchOS)
+import Foundation
+import UIKit
 #if canImport(Combine)
 import Combine
+#endif
+#if canImport(FueledUtilsCombine)
+import FueledUtilsCombine
 #endif
 
 ///
