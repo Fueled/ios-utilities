@@ -1,7 +1,7 @@
-## Upcoming (4.0.0)
+## 4.0.0
 
 ### Breaking changes
-- Dropping support for `ReactiveSwift/Cocoa`
+- Drop support for `ReactiveSwift/Cocoa`
   [notbenoit](https://github.com/notbenoit)
   [#76](https://github.com/Fueled/ios-utilities/pulls/76)
 
