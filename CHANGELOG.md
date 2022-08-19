@@ -1,10 +1,20 @@
-## Main
+## 4.0.0
 
-##### New Features/Enhancements
+### Breaking changes
+- Drop support for `ReactiveSwift/Cocoa`
+  [notbenoit](https://github.com/notbenoit)
+  [#76](https://github.com/Fueled/ios-utilities/pulls/76)
+
+## 3.1.0
+
+### New Features/Enhancements
 - Add Swift Package Manager Support
   [notbenoit](https://github.com/notbenoit)
   [#73](https://github.com/Fueled/ios-utilities/pulls/73)
 
+## 3.0.0
+
+### New Features/Enhancements
 - Add `ActionProtocol`
 - Add `AnyAction`, allowing to type-erase any actions represented by a `ActionProtocol`
 - Add `CoalescingAction` & `OverridingAction`
@@ -33,7 +43,7 @@
   [Stéphane Copin](https://github.com/stephanecopin)
   [#53](https://github.com/Fueled/ios-utilities/pull/53)
 
-##### Bug Fixes
+### Bug Fixes
 
 - Fix a bug in `CombineLatestMany` where cancelling the resulting publisher would not cancel the array of publishers themselves.
   [Stéphane Copin](https://github.com/stephanecopin)
@@ -47,7 +57,7 @@
   [Stéphane Copin](https://github.com/stephanecopin)
   [#53](https://github.com/Fueled/ios-utilities/pull/53)
 
-##### Breaking changes
+### Breaking changes
 
 - The original `TapAction`, `OverridingAction` and `AnyAction` were all prefixed with `Reactive`.
   [Stéphane Copin](https://github.com/stephanecopin)

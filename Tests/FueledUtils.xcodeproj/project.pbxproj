@@ -9,12 +9,9 @@
 /* Begin PBXBuildFile section */
 		EE9B3A498587AC2D3461D310 /* Pods_Common_FueledUtilsTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F46CDEA885028D8DB189B3CB /* Pods_Common_FueledUtilsTests.framework */; };
 		F453AA7B2538DE55008F045B /* CombineLatestManySpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F453AA7A2538DE55008F045B /* CombineLatestManySpec.swift */; };
-		F453AA7F2538E05E008F045B /* ReactiveSwiftExtensionsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F463C73B241835DD000A0B29 /* ReactiveSwiftExtensionsSpec.swift */; };
 		F453AA802538E05E008F045B /* OrderedSetSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F46D2DA5252E4E4A00B6987A /* OrderedSetSpec.swift */; };
 		F453AA812538E05E008F045B /* CoalescingActionSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F499631F2537459200E2D4B5 /* CoalescingActionSpec.swift */; };
 		F453AA822538E05E008F045B /* OverridingActionSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F429742D25378425004BFA85 /* OverridingActionSpec.swift */; };
-		F453AA832538E05E008F045B /* ReactiveCoalescingActionSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F463C73A241835DD000A0B29 /* ReactiveCoalescingActionSpec.swift */; };
-		F453AA842538E05E008F045B /* ReactiveOverridingActionSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F429742925378348004BFA85 /* ReactiveOverridingActionSpec.swift */; };
 		F453AA892538EF16008F045B /* SinkForLifetimeSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F453AA882538EF16008F045B /* SinkForLifetimeSpec.swift */; };
 		FC204075279EE4C9001A767C /* AnyCurrentValuePublisherSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC204074279EE4C9001A767C /* AnyCurrentValuePublisherSpec.swift */; };
 /* End PBXBuildFile section */
@@ -36,12 +33,9 @@
 		D498AEE5BC8A0A514416E6DA /* Pods-Common-FueledUtilsTests-ReactiveSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common-FueledUtilsTests-ReactiveSwift.debug.xcconfig"; path = "Target Support Files/Pods-Common-FueledUtilsTests-ReactiveSwift/Pods-Common-FueledUtilsTests-ReactiveSwift.debug.xcconfig"; sourceTree = "<group>"; };
 		E7AC5BA00D7F6054AC66E468 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		E82CDABCC774F7F31D52705D /* Pods-Common-asd WatchKit App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Common-asd WatchKit App.debug.xcconfig"; path = "Target Support Files/Pods-Common-asd WatchKit App/Pods-Common-asd WatchKit App.debug.xcconfig"; sourceTree = "<group>"; };
-		F429742925378348004BFA85 /* ReactiveOverridingActionSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactiveOverridingActionSpec.swift; sourceTree = "<group>"; };
 		F429742D25378425004BFA85 /* OverridingActionSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverridingActionSpec.swift; sourceTree = "<group>"; };
 		F453AA7A2538DE55008F045B /* CombineLatestManySpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineLatestManySpec.swift; sourceTree = "<group>"; };
 		F453AA882538EF16008F045B /* SinkForLifetimeSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinkForLifetimeSpec.swift; sourceTree = "<group>"; };
-		F463C73A241835DD000A0B29 /* ReactiveCoalescingActionSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactiveCoalescingActionSpec.swift; sourceTree = "<group>"; };
-		F463C73B241835DD000A0B29 /* ReactiveSwiftExtensionsSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactiveSwiftExtensionsSpec.swift; sourceTree = "<group>"; };
 		F463C73F241835EA000A0B29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F46CDEA885028D8DB189B3CB /* Pods_Common_FueledUtilsTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Common_FueledUtilsTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F46D2DA5252E4E4A00B6987A /* OrderedSetSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderedSetSpec.swift; sourceTree = "<group>"; };
@@ -127,9 +121,6 @@
 				F499631F2537459200E2D4B5 /* CoalescingActionSpec.swift */,
 				F46D2DA5252E4E4A00B6987A /* OrderedSetSpec.swift */,
 				F429742D25378425004BFA85 /* OverridingActionSpec.swift */,
-				F463C73A241835DD000A0B29 /* ReactiveCoalescingActionSpec.swift */,
-				F463C73B241835DD000A0B29 /* ReactiveSwiftExtensionsSpec.swift */,
-				F429742925378348004BFA85 /* ReactiveOverridingActionSpec.swift */,
 				F453AA7A2538DE55008F045B /* CombineLatestManySpec.swift */,
 				F453AA882538EF16008F045B /* SinkForLifetimeSpec.swift */,
 			);
@@ -221,16 +212,12 @@
 				"${BUILT_PRODUCTS_DIR}/FueledUtils/FueledUtils.framework",
 				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
 				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
-				"${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework",
-				"${BUILT_PRODUCTS_DIR}/ReactiveSwift/ReactiveSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FueledUtils.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveCocoa.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -271,10 +258,7 @@
 				FC204075279EE4C9001A767C /* AnyCurrentValuePublisherSpec.swift in Sources */,
 				F453AA892538EF16008F045B /* SinkForLifetimeSpec.swift in Sources */,
 				F453AA822538E05E008F045B /* OverridingActionSpec.swift in Sources */,
-				F453AA832538E05E008F045B /* ReactiveCoalescingActionSpec.swift in Sources */,
 				F453AA812538E05E008F045B /* CoalescingActionSpec.swift in Sources */,
-				F453AA7F2538E05E008F045B /* ReactiveSwiftExtensionsSpec.swift in Sources */,
-				F453AA842538E05E008F045B /* ReactiveOverridingActionSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

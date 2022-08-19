@@ -20,7 +20,6 @@ import FueledUtilsCombine
 import FueledUtils
 #endif
 import Foundation
-import ReactiveSwift
 #if canImport(Combine)
 import Combine
 
