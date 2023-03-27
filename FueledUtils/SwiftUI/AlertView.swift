@@ -76,7 +76,9 @@ public struct AlertModifier: ViewModifier {
 					Button(button.title, action: button.action)
 				}
 			} message: {
-				Text(alertModel.message ?? "")
+				if let message = alertModel.message {
+					Text(message)
+				}
 			}
 	}
 
@@ -123,7 +125,8 @@ extension AlertModifier {
 		}
 	}
 
-	public struct AlertButton {
+	public struct AlertButton: Identifiable {
+		public let id = UUID()
 		public let title: String
 		public let action: ActionHandler
 
@@ -131,13 +134,6 @@ extension AlertModifier {
 			self.title = title
 			self.action = action
 		}
-	}
-}
-
-@available(iOS 15.0, *)
-extension AlertButton: Identifiable {
-	public var id: String {
-		title
 	}
 }
 
