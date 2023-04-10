@@ -20,6 +20,7 @@ public struct NavigationBarButton {
 	public let leftIcon: NavigationButtonIcon?
 	public let rightIcon: NavigationButtonIcon?
 	public let isDismissButton: Bool
+	public let padding: (edges: Edge.Set, length: CGFloat)
 	public let onTap: NavigationActionHandler
 
 	public init(
@@ -29,6 +30,7 @@ public struct NavigationBarButton {
 		leftIcon: NavigationButtonIcon? = nil,
 		rightIcon: NavigationButtonIcon? = nil,
 		isDismissButton: Bool = false,
+		padding: (edges: Edge.Set, length: CGFloat),
 		onTap: @escaping NavigationActionHandler = {}
 	) {
 		self.title = title
@@ -37,6 +39,7 @@ public struct NavigationBarButton {
 		self.rightIcon = rightIcon
 		self.foregroundColor = foregroundColor
 		self.isDismissButton = isDismissButton
+		self.padding = padding
 		self.onTap = onTap
 	}
 }

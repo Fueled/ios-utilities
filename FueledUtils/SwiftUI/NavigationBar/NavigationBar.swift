@@ -67,12 +67,14 @@ extension NavigationBar {
 	@ViewBuilder private var leftButtonView: some View {
 		if let leftButton = viewModel.leftButton {
 			buttonView(model: leftButton)
+				.padding(leftButton.padding.edges, leftButton.padding.length)
 		}
 	}
 
 	private var rightButtonsView: some View {
 		ForEach(viewModel.rightButtons) {
 			buttonView(model: $0)
+				.padding($0.padding.edges, $0.padding.length)
 		}
 	}
 
