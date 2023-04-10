@@ -12,7 +12,6 @@ import SwiftUI
 public struct NavigationBar: View {
 	@ObservedObject var viewModel: NavigationBarViewModel
 	@Environment(\.dismiss) private var dismissView
-	@Environment(\.safeAreaInsets) private var safeAreaInsets
 
 	public init(viewModel: NavigationBarViewModel) {
 		self.viewModel = viewModel
@@ -24,13 +23,14 @@ public struct NavigationBar: View {
 				.addShadow(shadow: bottomShadow)
 		} else {
 			parentView
+				.background(viewModel.backgroundColor)
 		}
 	}
 
 	private var parentView: some View {
 		VStack(spacing: .zero) {
 			viewModel.statusBarBackgroundColor
-				.frame(height: safeAreaInsets.top)
+				.frame(height: viewModel.safeAreaHeight)
 			HStack(spacing: .zero) {
 				HStack(spacing: .zero) {
 					leftButtonView

@@ -13,6 +13,7 @@ import SwiftUI
 public final class NavigationBarViewModel: ObservableObject {
 	public let titleFont: Font
 	public let titleColor: Color
+	public let safeAreaHeight: CGFloat
 	public let backgroundColor: Color
 	public let leftButton: NavigationBarButton?
 	public let rightButtons: [NavigationBarButton]
@@ -26,6 +27,7 @@ public final class NavigationBarViewModel: ObservableObject {
 	public init(
 		title: String = "",
 		titleColor: Color = .black,
+		safeAreaHeight: CGFloat = .zero,
 		titleFont: Font = .system(size: 18, weight: .semibold),
 		titleIcon: Image? = nil,
 		backgroundColor: Color = .white,
@@ -37,6 +39,7 @@ public final class NavigationBarViewModel: ObservableObject {
 	) {
 		self.title = title
 		self.titleColor = titleColor
+		self.safeAreaHeight = safeAreaHeight
 		self.titleFont = titleFont
 		self.titleIcon = titleIcon
 		self.backgroundColor = backgroundColor

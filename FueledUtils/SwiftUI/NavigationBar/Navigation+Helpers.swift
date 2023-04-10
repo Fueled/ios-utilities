@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-var appWindows: [UIWindow]? {
+public var appWindows: [UIWindow]? {
 	// Get connected scenes
 	UIApplication.shared.connectedScenes
 	// Keep only active scenes, onscreen and visible to the user
@@ -18,20 +18,20 @@ var appWindows: [UIWindow]? {
 		.flatMap({ $0 as? UIWindowScene })?.windows
 }
 
-var keyWindow: UIWindow? {
+public var keyWindow: UIWindow? {
 	appWindows?
 		.first(where: \.isKeyWindow)
 }
 
 // MARK: - Safe Area Insets Injecting in Environment Variables
 extension EnvironmentValues {
-	var safeAreaInsets: EdgeInsets {
+	public var safeAreaInsets: EdgeInsets {
 		self[SafeAreaInsetsKey.self]
 	}
 }
 
-private struct SafeAreaInsetsKey: EnvironmentKey {
-	static var defaultValue: EdgeInsets {
+public struct SafeAreaInsetsKey: EnvironmentKey {
+	public static var defaultValue: EdgeInsets {
 		let insets = keyWindow?.safeAreaInsets ?? .zero
 		return EdgeInsets(top: insets.top, leading: insets.left, bottom: insets.bottom, trailing: insets.right)
 	}
