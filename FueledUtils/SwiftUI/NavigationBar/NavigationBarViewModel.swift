@@ -34,7 +34,7 @@ public final class NavigationBarViewModel: ObservableObject {
 		leftButton: NavigationBarButton? = nil,
 		rightButtons: [NavigationBarButton] = [],
 		bottomShadow: NavigationBarShadow? = nil,
-		statusBarBackgroundColor: Color,
+		statusBarBackgroundColor: Color = .clear,
 		onTapTitle: NavigationActionHandler? = nil
 	) {
 		self.title = title
