@@ -17,6 +17,8 @@ public final class NavigationBarViewModel: ObservableObject {
 	public let backgroundColor: Color
 	public let leftButton: NavigationBarButton?
 	public let rightButtons: [NavigationBarButton]
+	public let rightButtonsSpacing: CGFloat
+	public let horizontalPadding: CGFloat
 	public let bottomShadow: NavigationBarShadow?
 	public let statusBarBackgroundColor: Color
 	public let onTapTitle: NavigationActionHandler?
@@ -33,6 +35,8 @@ public final class NavigationBarViewModel: ObservableObject {
 		backgroundColor: Color = .white,
 		leftButton: NavigationBarButton? = nil,
 		rightButtons: [NavigationBarButton] = [],
+		rightButtonsSpacing: CGFloat = 5,
+		horizontalPadding: CGFloat = 10,
 		bottomShadow: NavigationBarShadow? = nil,
 		statusBarBackgroundColor: Color = .clear,
 		onTapTitle: NavigationActionHandler? = nil
@@ -45,6 +49,8 @@ public final class NavigationBarViewModel: ObservableObject {
 		self.backgroundColor = backgroundColor
 		self.leftButton = leftButton
 		self.rightButtons = rightButtons
+		self.rightButtonsSpacing = rightButtonsSpacing
+		self.horizontalPadding = horizontalPadding
 		self.bottomShadow = bottomShadow
 		self.statusBarBackgroundColor = statusBarBackgroundColor
 		self.onTapTitle = onTapTitle

@@ -43,13 +43,14 @@ public struct NavigationBar: View {
 					Spacer()
 				}
 				.frame(maxWidth: .infinity)
-				HStack(spacing: .zero) {
+				HStack(spacing: viewModel.rightButtonsSpacing) {
 					Spacer()
 					rightButtonsView
 				}
 				.frame(maxWidth: .infinity)
 			}
 			.frame(height: 44)
+			.padding(.horizontal, viewModel.horizontalPadding)
 		}
 	}
 }
