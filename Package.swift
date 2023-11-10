@@ -14,24 +14,8 @@ let package = Package(
 			targets: ["FueledUtilsCore"]
 		),
 		.library(
-			name: "FueledUtilsReactiveCommon",
-			targets: ["FueledUtilsReactiveCommon"]
-		),
-		.library(
-			name: "FueledUtilsUIKit",
-			targets: ["FueledUtilsUIKit"]
-		),
-		.library(
 			name: "FueledUtilsCombine",
 			targets: ["FueledUtilsCombine"]
-		),
-		.library(
-			name: "FueledUtilsCombineOperators",
-			targets: ["FueledUtilsCombineOperators"]
-		),
-		.library(
-			name: "FueledUtilsCombineUIKit",
-			targets: ["FueledUtilsCombineUIKit"]
 		),
 		.library(
 			name: "FueledUtilsSwiftUI",
@@ -45,57 +29,43 @@ let package = Package(
 	targets: [
 		.target(
 			name: "FueledUtilsCore",
-			path: "FueledUtils/Core",
+			path: "Sources/FueledUtils/Core",
 			linkerSettings: [
                 .linkedFramework("Foundation")
             ]
 		),
 		.target(
-			name: "FueledUtilsReactiveCommon",
-			dependencies: ["FueledUtilsCore"],
-			path: "FueledUtils/ReactiveCommon"
-		),
-		.target(
-			name: "FueledUtilsUIKit",
-			dependencies: ["FueledUtilsCore"],
-			path: "FueledUtils/UIKit",
-			linkerSettings: [
-                .linkedFramework("Foundation"),
-                .linkedFramework("UIKit", .when(platforms: [.iOS, .tvOS])),
-                .linkedFramework("AppKit", .when(platforms: [.macOS])),
-            ]
-		),
-		.target(
 			name: "FueledUtilsCombine",
-			dependencies: ["FueledUtilsReactiveCommon"],
-			path: "FueledUtils/Combine"
-		),
-		.target(
-			name: "FueledUtilsCombineOperators",
-			dependencies: ["FueledUtilsCombine"],
-			path: "FueledUtils/CombineOperators"
-		),
-		.target(
-			name: "FueledUtilsCombineUIKit",
-			dependencies: ["FueledUtilsCombine", "FueledUtilsUIKit"],
-			path: "FueledUtils/CombineUIKit"
+			dependencies: [
+				"FueledUtilsCore"
+			],
+			path: "Sources/FueledUtils/Combine"
 		),
 		.target(
 			name: "FueledUtilsSwiftUI",
 			dependencies: ["FueledUtilsCombine", "FueledUtilsCore"],
-			path: "FueledUtils/SwiftUI",
+			path: "Sources/FueledUtils/SwiftUI",
 			linkerSettings: [
                 .linkedFramework("SwiftUI", .when(platforms: [.iOS, .tvOS, .macOS])),
             ]
 		),
 		.testTarget(
-				name: "FueledUtils",
+				name: "FueledUtilsCoreTests",
 				dependencies: [
-					"FueledUtilsCombineUIKit",
+					"FueledUtilsCore",
 					"Quick",
 					"Nimble",
 				],
-				path: "Tests/Tests"
+				path: "Tests/FueledUtils/CoreTests"
+		),
+		.testTarget(
+			name: "FueledUtilsCombineTests",
+			dependencies: [
+				"FueledUtilsCombine",
+				"Quick",
+				"Nimble",
+			],
+			path: "Tests/FueledUtils/CombineTests"
 		),
 	]
 )
