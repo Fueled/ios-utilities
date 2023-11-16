@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#if canImport(SwiftUI)
 import SwiftUI
 
 ///
@@ -29,5 +28,3 @@ public struct FramePreferenceKey<TagType>: PreferenceKey {
 		value = nextValue()
 	}
 }
-
-#endif

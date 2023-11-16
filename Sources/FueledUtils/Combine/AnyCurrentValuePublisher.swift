@@ -12,11 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#if canImport(Combine)
 import Combine
-#if canImport(FueledUtilsReactiveCommon)
-import FueledUtilsReactiveCommon
-#endif
 
 ///
 /// A type-erasing current value publisher.
@@ -27,7 +23,7 @@ import FueledUtilsReactiveCommon
 @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 public struct AnyCurrentValuePublisher<Output, Failure: Swift.Error>: CurrentValuePublisher {
 	private let valueGetter: () -> Output
-	private let receiveSubcriberClosure: (AnySubscriber<Output, Failure>) -> Void
+	private let receiveSubscriberClosure: (AnySubscriber<Output, Failure>) -> Void
 
 	public var value: Output {
 		self.valueGetter()
@@ -35,16 +31,16 @@ public struct AnyCurrentValuePublisher<Output, Failure: Swift.Error>: CurrentVal
 
 	public init(_ value: Output) {
 		self.valueGetter = { value }
-		self.receiveSubcriberClosure = { _ = $0.receive(value) }
+		self.receiveSubscriberClosure = { _ = $0.receive(value) }
 	}
 
 	public init<Publisher: CurrentValuePublisher>(_ publisher: Publisher) where Publisher.Output == Output, Publisher.Failure == Failure {
 		self.valueGetter = { publisher.value }
-		self.receiveSubcriberClosure = { publisher.receive(subscriber: $0) }
+		self.receiveSubscriberClosure = { publisher.receive(subscriber: $0) }
 	}
 
 	public func receive<Subscriber: Combine.Subscriber>(subscriber: Subscriber) where Subscriber.Input == Output, Subscriber.Failure == Failure {
-		self.receiveSubcriberClosure(subscriber.eraseToAnySubscriber())
+		self.receiveSubscriberClosure(subscriber.eraseToAnySubscriber())
 	}
 }
 
@@ -66,5 +62,3 @@ public protocol CurrentValuePublisher: Publisher {
 @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 extension CurrentValueSubject: CurrentValuePublisher {
 }
-
-#endif
