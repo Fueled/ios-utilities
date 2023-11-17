@@ -50,15 +50,6 @@ let package = Package(
             ]
 		),
 		.testTarget(
-				name: "FueledUtilsCoreTests",
-				dependencies: [
-					"FueledUtilsCore",
-					"Quick",
-					"Nimble",
-				],
-				path: "Tests/FueledUtils/CoreTests"
-		),
-		.testTarget(
 			name: "FueledUtilsCombineTests",
 			dependencies: [
 				"FueledUtilsCombine",
