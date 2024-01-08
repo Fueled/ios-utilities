@@ -5,7 +5,6 @@
 //  Created by Stéphane Copin on 10/14/20.
 //
 
-#if canImport(Combine)
 import Combine
 
 @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
@@ -102,5 +101,3 @@ extension Publisher {
 		)
 	}
 }
-
-#endif

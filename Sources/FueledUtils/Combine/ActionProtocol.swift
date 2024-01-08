@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#if canImport(Combine)
 import Combine
 
 @available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
@@ -105,5 +104,3 @@ extension ActionProtocol where Input == Void {
 		return self.apply(())
 	}
 }
-
-#endif
