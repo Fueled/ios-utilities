@@ -1,4 +1,4 @@
-// Copyright © 2020 Fueled Digital Media, LLC
+// Copyright © 2024 Fueled Digital Media, LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,23 +15,20 @@
 @testable import FueledUtilsCombine
 
 import Combine
-import Quick
-import Nimble
+import Testing
 
-class AnyCurrentValuePublisherSpec: QuickSpec {
-	override func spec() {
-		describe("AnyCurrentValuePublisherSpec") {
-			describe("Initialization") {
-				it("Should initialize with a stored value") {
-					let publisher = AnyCurrentValuePublisher<Int, Never>(1)
-					expect(publisher.value) == 1
-				}
-				it("Should initialize with a nested CurrentValueSubject") {
-					let subject = CurrentValueSubject<Int, Never>(2)
-					let publisher = AnyCurrentValuePublisher(subject)
-					expect(publisher.value) == 2
-				}
-			}
-		}
+@Suite("AnyCurrentValuePluisher Initialization")
+struct AnyCurrentValuePublisherTests {
+	@Test("Should initialize with a stored value")
+	func withAStoredValue() {
+		let publisher = AnyCurrentValuePublisher<Int, Never>(1)
+		#expect(publisher.value == 1)
+	}
+
+	@Test("Should initialize with a nested CurrentValueSubject")
+	func withNestedCurrentValueSubject() {
+		let subject = CurrentValueSubject<Int, Never>(2)
+		let publisher = AnyCurrentValuePublisher(subject)
+		#expect(publisher.value == 2)
 	}
 }
