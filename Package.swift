@@ -1,4 +1,4 @@
-// swift-tools-version:5.5
+// swift-tools-version:6.0
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
 	name: "FueledUtils",
 	platforms: [
-		.macOS(.v10_12), .iOS(.v13), .tvOS(.v13), .watchOS(.v6)
+		.macOS(.v13), .iOS(.v16), .tvOS(.v16), .watchOS(.v8)
 	],
 	products: [
 		.library(
