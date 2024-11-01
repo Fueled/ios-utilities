@@ -1,4 +1,4 @@
-// Copyright © 2020, Fueled Digital Media, LLC
+// Copyright © 2024 Fueled Digital Media, LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,20 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-extension FloatingPoint {
-	func rounded(decimalPlaces: Int, rule: FloatingPointRoundingRule = .toNearestOrAwayFromZero) -> Self {
-		var this = self
-		this.round(decimalPlaces: decimalPlaces, rule: rule)
-		return this
-	}
+import Combine
 
-	mutating func round(decimalPlaces: Int, rule: FloatingPointRoundingRule = .toNearestOrAwayFromZero) {
-		var offset = Self(1)
-		for _ in (0..<decimalPlaces) {
-			offset *= Self(10)
+extension Subject {
+	public func send(result: Result<Output, Failure>) {
+		switch result {
+		case .failure(let error):
+			send(completion: .failure(error))
+		case .success(let value):
+			send(value)
+			send(completion: .finished)
 		}
-		self *= offset
-		self.round(rule)
-		self /= offset
 	}
 }

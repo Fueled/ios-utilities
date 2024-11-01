@@ -1,4 +1,4 @@
-// Copyright © 2020 Fueled Digital Media, LLC
+// Copyright © 2024 Fueled Digital Media, LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,8 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
+import SwiftUI
 
-@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
-extension NSObject: CombineExtensionsProvider {
+
+extension View {
+	public func eraseToAnyView() -> AnyView {
+		AnyView(self)
+	}
 }

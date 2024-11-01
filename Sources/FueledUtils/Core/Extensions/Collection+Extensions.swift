@@ -1,4 +1,4 @@
-// Copyright © 2020, Fueled Digital Media, LLC
+// Copyright © 2024 Fueled Digital Media, LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,34 +12,21 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-extension Collection {
-	///
-	/// **Unavailable**: Please use `getSafely(at:)` instead.
-	///
-	/// Refer to the documentation for `getSafely(at:)` for more info.
-	///
-	@available(*, unavailable, renamed: "getSafely(at:)")
-	public func getSafely(_ index: Self.Index) -> Self.Iterator.Element? {
-		fatalError()
-	}
-
+public extension Collection {
 	///
 	/// Try to get the item at index `index`. If the index is out of bounds, `nil` is returned.
 	///
 	/// Parameter index: The index of the item to tentatively get.
 	/// Returns: The element as a wrapped optional if the `index` is in the `indices` of the collection, `nil` otherwise
 	///
-	public func getSafely(at index: Self.Index) -> Self.Iterator.Element? {
-		if !self.indices.contains(index) {
-			return nil
-		}
-		return self[index]
+	func getSafely(at index: Self.Index) -> Self.Iterator.Element? {
+		indices.contains(index) ? self[index] : nil
 	}
 
 	///
 	/// Returns a collection with same element, and information as to whether the element is the first or the last, or both.
 	///
-	public func withPositionInformation() -> [(element: Self.Element, isFirstElement: Bool, isLastElement: Bool)] {
-		return self.enumerated().map { ($0.element, $0.offset == 0, $0.offset == self.count - 1) }
+	func withPositionInformation() -> [(element: Self.Element, isFirstElement: Bool, isLastElement: Bool)] {
+		enumerated().map { ($0.element, $0.offset == 0, $0.offset == count - 1) }
 	}
 }

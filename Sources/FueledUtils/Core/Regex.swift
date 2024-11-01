@@ -1,4 +1,4 @@
-// Copyright © 2020, Fueled Digital Media, LLC
+// Copyright © 2024 Fueled Digital Media, LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -24,13 +24,13 @@ public struct Regex {
 	/// The pattern the regex was initialized with
 	///
 	var pattern: String {
-		return implementation.pattern
+		implementation.pattern
 	}
 	///
 	/// The options used to create the regex initially
 	///
 	var options: NSRegularExpression.Options {
-		return implementation.options
+		implementation.options
 	}
 
 	///
@@ -57,7 +57,7 @@ public struct Regex {
 	///   - options: The options to use when matching the regular expressiona against the given string.
 	///
 	public func match(_ string: String, options: NSRegularExpression.MatchingOptions = []) -> Bool {
-		return implementation.numberOfMatches(in: string, options: options, range: string.nsRange) != 0
+		implementation.numberOfMatches(in: string, options: options, range: string.nsRange) != 0
 	}
 
 	/// Match all the captured groups if any.
@@ -89,5 +89,5 @@ public struct Regex {
 /// - Returns: `true` if `pattern` matches `string`, `false` otherwise.
 ///
 public func ~= (pattern: Regex, string: String) -> Bool {
-	return pattern.match(string)
+	pattern.match(string)
 }

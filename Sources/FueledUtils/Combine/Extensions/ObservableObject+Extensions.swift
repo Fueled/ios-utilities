@@ -1,4 +1,4 @@
-// Copyright © 2020, Fueled Digital Media, LLC
+// Copyright © 2024 Fueled Digital Media, LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -16,7 +16,6 @@ import Combine
 import Foundation
 import FueledUtilsCore
 
-@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 extension ObservableObject where Self.ObjectWillChangePublisher == ObservableObjectPublisher {
 	// Perform a one-way link, where the receiver will listen for changes on the object and automatically trigger its `objectWillChange` publisher
 	public func link<Object: ObservableObject>(to object: Object) {
@@ -77,7 +76,6 @@ extension ObservableObject where Self.ObjectWillChangePublisher == ObservableObj
 	}
 }
 
-@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 extension ObservableObject {
 	public var objectDidChange: AnyPublisher<Self.ObjectWillChangePublisher.Output, Never> {
 		// The delay of 0.0 allows the will to transform into a Did, by waiting for exactly one run loop cycle
@@ -89,7 +87,6 @@ extension ObservableObject {
 	}
 }
 
-@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 extension Publisher where Output: Collection, Failure == Never, Output.Element: ObservableObject {
 	public func onAnyChanges() -> AnyPublisher<[Output.Element], Never> {
 		self.flatMap { Publishers.CombineLatestMany($0.map { $0.publisher }) }.eraseToAnyPublisher()

@@ -1,4 +1,4 @@
-// Copyright © 2020 Fueled Digital Media, LLC
+// Copyright © 2024 Fueled Digital Media, LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,22 +14,20 @@
 
 import Combine
 import Foundation
-import FueledUtilsCore
 
-private var cancellablesKey: UInt8 = 0
+nonisolated(unsafe) private var cancellablesKey: UInt8 = 0
 
-@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 extension CombineExtensions {
 	public var cancellables: Set<AnyCancellable> {
 		get {
-			self.cancellablesHelper.map { Set($0.map(\.cancellable)) } ?? {
+			cancellablesHelper.map { Set($0.map(\.cancellable)) } ?? {
 				let cancellables = Set<AnyCancellable>()
 				self.cancellables = cancellables
 				return cancellables
 			}()
 		}
 		set {
-			self.cancellablesHelper = newValue.map { CancellableHolder($0) }
+			cancellablesHelper = newValue.map(CancellableHolder.init)
 		}
 	}
 
@@ -43,10 +41,10 @@ extension CombineExtensions {
 
 	private var cancellablesHelper: [CancellableHolder]? {
 		get {
-			objc_getAssociatedObject(self.base, &cancellablesKey) as? [CancellableHolder]
+			objc_getAssociatedObject(base, &cancellablesKey) as? [CancellableHolder]
 		}
 		set {
-			objc_setAssociatedObject(self.base, &cancellablesKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_COPY)
+			objc_setAssociatedObject(base, &cancellablesKey, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_COPY)
 		}
 	}
 }

@@ -1,4 +1,4 @@
-// Copyright © 2024 Fueled Digital Media, LLC
+// Copyright © 2020 Fueled Digital Media, LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,17 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-///
-/// A type-erased `Identifiable` object.
-///
-struct AnyIdentifiable: Identifiable {
-	private let hashValueClosure: () -> AnyHashable
+import Foundation
 
-	init<Identifiable: Swift.Identifiable>(_ identifiable: Identifiable) {
-		self.hashValueClosure = { AnyHashable(identifiable.id) }
-	}
-
-	var id: AnyHashable {
-		self.hashValueClosure()
-	}
+extension NSObject: CombineExtensionsProvider {
 }

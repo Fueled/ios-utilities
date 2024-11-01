@@ -1,4 +1,4 @@
-// Copyright © 2020, Fueled Digital Media, LLC
+// Copyright © 2024 Fueled Digital Media, LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,16 +14,22 @@
 
 import SwiftUI
 
-@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
-extension Binding {
-	public init<Type>(_ object: Type, to keyPath: ReferenceWritableKeyPath<Type, Value>) {
+
+extension EdgeInsets {
+	public static var zero: EdgeInsets {
+		EdgeInsets(top: .zero, leading: .zero, bottom: .zero, trailing: .zero)
+	}
+
+	public init(_ length: CGFloat) {
+		self.init(top: length, leading: length, bottom: length, trailing: length)
+	}
+
+	public init(_ edges: Edge.Set, _ length: CGFloat) {
 		self.init(
-			get: {
-				object[keyPath: keyPath]
-			},
-			set: {
-				object[keyPath: keyPath] = $0
-			}
+			top: edges.contains(.top) ? length : .zero,
+			leading: edges.contains(.leading) ? length : .zero,
+			bottom: edges.contains(.bottom) ? length : .zero,
+			trailing: edges.contains(.trailing) ? length : .zero
 		)
 	}
 }

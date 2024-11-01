@@ -1,4 +1,4 @@
-// Copyright © 2020, Fueled Digital Media, LLC
+// Copyright © 2024 Fueled Digital Media, LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,9 +14,21 @@
 
 import SwiftUI
 
-@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
-extension View {
-	public func eraseToAnyView() -> AnyView {
-		AnyView(self)
+
+extension Binding {
+	public init<Type: Sendable>(
+		_ object: Type,
+		to keyPath: ReferenceWritableKeyPath<Type, Value>
+	) {
+		self.init(
+			get: {
+				object[keyPath: keyPath]
+			},
+			set: {
+				object[keyPath: keyPath] = $0
+			}
+		)
 	}
 }
+
+extension ReferenceWritableKeyPath: @retroactive @unchecked Sendable {}

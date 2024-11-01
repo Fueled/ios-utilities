@@ -1,4 +1,4 @@
-// Copyright © 2020, Fueled Digital Media, LLC
+// Copyright © 2024 Fueled Digital Media, LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -20,7 +20,6 @@ import Combine
 /// Use an `AnyCurrentValuePublisher` to wrap an existing current value publisher whose details you don’t want to expose.
 /// For example, this is useful if you want to use a `CurrentValueSubject` internally, but don't want to expose the setter/its send() method
 ///
-@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 public struct AnyCurrentValuePublisher<Output, Failure: Swift.Error>: CurrentValuePublisher {
 	private let valueGetter: () -> Output
 	private let receiveSubscriberClosure: (AnySubscriber<Output, Failure>) -> Void
@@ -44,7 +43,6 @@ public struct AnyCurrentValuePublisher<Output, Failure: Swift.Error>: CurrentVal
 	}
 }
 
-@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 extension CurrentValuePublisher {
 	public func eraseToAnyCurrentValuePublisher() -> AnyCurrentValuePublisher<Output, Failure> {
 		AnyCurrentValuePublisher(self)
@@ -54,11 +52,9 @@ extension CurrentValuePublisher {
 ///
 /// A publisher that also stores the last value it sent
 ///
-@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 public protocol CurrentValuePublisher: Publisher {
 	var value: Output { get }
 }
 
-@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 extension CurrentValueSubject: CurrentValuePublisher {
 }

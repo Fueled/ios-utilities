@@ -1,4 +1,4 @@
-// Copyright © 2020, Fueled Digital Media, LLC
+// Copyright © 2024 Fueled Digital Media, LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -12,17 +12,21 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Combine
+import Foundation
 
-@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
-extension Subject {
-	public func send(result: Result<Output, Failure>) {
-		switch result {
-		case .failure(let error):
-			self.send(completion: .failure(error))
-		case .success(let value):
-			self.send(value)
-			self.send(completion: .finished)
-		}
+public protocol CombineExtensionsProvider {
+}
+
+public final class CombineExtensions<Base> {
+	public let base: Base
+
+	fileprivate init(_ base: Base) {
+		self.base = base
+	}
+}
+
+extension CombineExtensionsProvider {
+	public var combineExtensions: CombineExtensions<Self> {
+		CombineExtensions(self)
 	}
 }

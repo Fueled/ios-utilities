@@ -1,4 +1,4 @@
-// Copyright © 2020, Fueled Digital Media, LLC
+// Copyright © 2024 Fueled Digital Media, LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -14,27 +14,22 @@
 
 import Combine
 
-@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 public func >>> <CancellableCollection: RangeReplaceableCollection>(lhs: AnyCancellable?, rhs: inout CancellableCollection) where CancellableCollection.Element == AnyCancellable {
 	lhs?.store(in: &rhs)
 }
 
-@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 public func >>> (lhs: AnyCancellable?, rhs: inout Set<AnyCancellable>) {
 	lhs?.store(in: &rhs)
 }
 
-@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 public func >>> <CancellableCollection: RangeReplaceableCollection>(lhs: AnyCancellable, rhs: inout CancellableCollection?) where CancellableCollection.Element == AnyCancellable {
 	rhs?.append(lhs)
 }
 
-@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 public func >>> (lhs: AnyCancellable, rhs: inout Set<AnyCancellable>?) {
 	rhs?.insert(lhs)
 }
 
-@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 public func >>> <CancellableCollection: RangeReplaceableCollection>(lhs: AnyCancellable?, rhs: inout CancellableCollection?) where CancellableCollection.Element == AnyCancellable {
 	guard let lhs = lhs else {
 		return
@@ -42,7 +37,6 @@ public func >>> <CancellableCollection: RangeReplaceableCollection>(lhs: AnyCanc
 	lhs >>> rhs
 }
 
-@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
 public func >>> (lhs: AnyCancellable?, rhs: inout Set<AnyCancellable>?) {
 	guard let lhs = lhs else {
 		return
