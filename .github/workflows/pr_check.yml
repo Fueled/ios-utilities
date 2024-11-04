@@ -5,13 +5,14 @@ concurrency:
   cancel-in-progress: true
 jobs:
   pr_check:
-    runs-on: macOS-11
+    runs-on: macos-15
     if: github.event.pull_request.draft == false
     steps:
       - name: Checkout Project
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
       - uses: ruby/setup-ruby@v1
         with:
+          ruby-version: '3.3'
           bundler-cache: true
       - name: Danger
         env:
