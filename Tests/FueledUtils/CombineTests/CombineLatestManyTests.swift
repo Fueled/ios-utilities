@@ -20,10 +20,10 @@ import Testing
 
 @Suite("Combine Latest Many")
 struct CombineLatestManyTests {
-	private var cancellables = [AnyCancellable]()
-
 	@Test("With zero elements it should complete with an empty array and no errors")
-	mutating func withZeroElements() {
+	func withZeroElements() {
+		var cancellables = [AnyCancellable]()
+
 		var completionCount = 0
 		var valueCount = 0
 		let publishers: [AnyPublisher<Void, Never>] = []
@@ -44,14 +44,15 @@ struct CombineLatestManyTests {
 				valueCount += 1
 			}
 		)
-		.store(in: &self.cancellables)
+		.store(in: &cancellables)
 
 		#expect(completionCount == 1)
 		#expect(valueCount == 1)
 	}
 
 	@Test("With two elements should match the native CombineLatest behavior")
-	mutating func withTwoElements() async {
+	func withTwoElements() async {
+		var cancellables = [AnyCancellable]()
 		var completionCount = 0
 		var valueCount = 0
 		var nativeValues: [Int] = []
@@ -59,7 +60,7 @@ struct CombineLatestManyTests {
 
 		func publisher(_ value: Int) -> AnyPublisher<Int, Never> {
 			Just(value)
-				.delay(for: 0.1, scheduler: DispatchQueue.main)
+				.delay(for: 0.3, scheduler: DispatchQueue.main)
 				.eraseToAnyPublisher()
 		}
 
@@ -84,7 +85,7 @@ struct CombineLatestManyTests {
 				valueCount += 1
 			}
 		)
-		.store(in: &self.cancellables)
+		.store(in: &cancellables)
 
 		Publishers.CombineLatestMany(
 			[
@@ -109,9 +110,9 @@ struct CombineLatestManyTests {
 				valueCount += 1
 			}
 		)
-		.store(in: &self.cancellables)
+		.store(in: &cancellables)
 
-		try? await Task.sleep(for: .seconds(0.3))
+		try? await Task.sleep(for: .seconds(1))
 
 		#expect(completionCount == 2)
 		#expect(valueCount == 4)
@@ -121,7 +122,7 @@ struct CombineLatestManyTests {
 	}
 
 	@Test("With two publishers should correctly interrupt the publishers when interrupted")
-	mutating func withTwoPublishers() async {
+	func withTwoPublishers() async {
 		var subscriptionCount = 0
 		var cancelCount = 0
 		var nativeValueCount = 0
