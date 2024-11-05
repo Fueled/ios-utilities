@@ -12,17 +12,24 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-///
-/// A type-erased `Identifiable` object.
-///
-struct AnyIdentifiable: Identifiable {
-	private let hashValueClosure: () -> AnyHashable
+import SwiftUI
 
-	init<Identifiable: Swift.Identifiable>(_ identifiable: Identifiable) {
-		self.hashValueClosure = { AnyHashable(identifiable.id) }
+
+extension EdgeInsets {
+	public static var zero: EdgeInsets {
+		EdgeInsets(top: .zero, leading: .zero, bottom: .zero, trailing: .zero)
 	}
 
-	var id: AnyHashable {
-		self.hashValueClosure()
+	public init(_ length: CGFloat) {
+		self.init(top: length, leading: length, bottom: length, trailing: length)
+	}
+
+	public init(_ edges: Edge.Set, _ length: CGFloat) {
+		self.init(
+			top: edges.contains(.top) ? length : .zero,
+			leading: edges.contains(.leading) ? length : .zero,
+			bottom: edges.contains(.bottom) ? length : .zero,
+			trailing: edges.contains(.trailing) ? length : .zero
+		)
 	}
 }

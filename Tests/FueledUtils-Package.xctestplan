@@ -1,0 +1,25 @@
+{
+  "configurations" : [
+    {
+      "id" : "81D0F831-C9D6-4678-92BF-A02E2F8399DD",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : false,
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "FueledUtilsCombineTests",
+        "name" : "FueledUtilsCombineTests"
+      }
+    }
+  ],
+  "version" : 1
+}

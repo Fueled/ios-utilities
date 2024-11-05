@@ -7,15 +7,14 @@
 
 import Combine
 
-@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
-extension Publisher {
+public extension Publisher {
 	/// - Parameters:
 	///   - receiveTermination: Sent when the publisher either a completion event or is cancelled.
 	///   - receiveResult: Sent when the publisher send values, or an error.
 	/// - Please refer to the documentation for
 	/// `Publisher.self.handleEvents(receiveSubscription:receiveOutput:receiveCompletion:receiveCancel:receiveRequest:)`
 	/// for more information about the other parameters.
-	public func handleEvents(
+	func handleEvents(
 		receiveSubscription: ((Subscription) -> Void)? = nil,
 		receiveOutput: ((Output) -> Void)? = nil,
 		receiveCompletion: ((Subscribers.Completion<Failure>) -> Void)? = nil,
@@ -24,7 +23,7 @@ extension Publisher {
 		receiveResult: ((Result<Output, Failure>) -> Void)? = nil,
 		receiveRequest: ((Subscribers.Demand) -> Void)? = nil
 	) -> Publishers.HandleEvents<Self> {
-		self.extendedHandleEvents(
+		extendedHandleEvents(
 			receiveSubscription: receiveSubscription,
 			receiveOutput: receiveOutput,
 			receiveCompletion: receiveCompletion,
@@ -41,7 +40,7 @@ extension Publisher {
 	/// - Please refer to the documentation for
 	/// `Publisher.self.handleEvents(receiveSubscription:receiveOutput:receiveCompletion:receiveCancel:receiveRequest:)`
 	/// for more information about the other parameters.
-	public func handleEvents(
+	func handleEvents(
 		receiveSubscription: ((Subscription) -> Void)? = nil,
 		receiveOutput: ((Output) -> Void)? = nil,
 		receiveCompletion: ((Subscribers.Completion<Failure>) -> Void)? = nil,
@@ -60,8 +59,10 @@ extension Publisher {
 			receiveRequest: receiveRequest
 		)
 	}
+}
 
-	private func extendedHandleEvents(
+private extension Publisher {
+	func extendedHandleEvents(
 		receiveSubscription: ((Subscription) -> Void)? = nil,
 		receiveOutput: ((Output) -> Void)? = nil,
 		receiveCompletion: ((Subscribers.Completion<Failure>) -> Void)? = nil,
@@ -80,7 +81,7 @@ extension Publisher {
 				receiveTermination()
 			}
 		}
-		return self.handleEvents(
+		return handleEvents(
 			receiveSubscription: receiveSubscription,
 			receiveOutput: {
 				receiveOutput?($0)

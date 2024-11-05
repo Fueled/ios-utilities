@@ -12,17 +12,21 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-///
-/// A type-erased `Identifiable` object.
-///
-struct AnyIdentifiable: Identifiable {
-	private let hashValueClosure: () -> AnyHashable
+import Foundation
 
-	init<Identifiable: Swift.Identifiable>(_ identifiable: Identifiable) {
-		self.hashValueClosure = { AnyHashable(identifiable.id) }
+public protocol CombineExtensionsProvider {
+}
+
+public final class CombineExtensions<Base> {
+	public let base: Base
+
+	fileprivate init(_ base: Base) {
+		self.base = base
 	}
+}
 
-	var id: AnyHashable {
-		self.hashValueClosure()
+extension CombineExtensionsProvider {
+	public var combineExtensions: CombineExtensions<Self> {
+		CombineExtensions(self)
 	}
 }

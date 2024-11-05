@@ -12,17 +12,23 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-///
-/// A type-erased `Identifiable` object.
-///
-struct AnyIdentifiable: Identifiable {
-	private let hashValueClosure: () -> AnyHashable
+import SwiftUI
 
-	init<Identifiable: Swift.Identifiable>(_ identifiable: Identifiable) {
-		self.hashValueClosure = { AnyHashable(identifiable.id) }
-	}
 
-	var id: AnyHashable {
-		self.hashValueClosure()
+extension Binding {
+	public init<Type: Sendable>(
+		_ object: Type,
+		to keyPath: ReferenceWritableKeyPath<Type, Value>
+	) {
+		self.init(
+			get: {
+				object[keyPath: keyPath]
+			},
+			set: {
+				object[keyPath: keyPath] = $0
+			}
+		)
 	}
 }
+
+extension ReferenceWritableKeyPath: @retroactive @unchecked Sendable {}

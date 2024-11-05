@@ -12,17 +12,23 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-///
-/// A type-erased `Identifiable` object.
-///
-struct AnyIdentifiable: Identifiable {
-	private let hashValueClosure: () -> AnyHashable
+@testable import FueledUtilsCombine
 
-	init<Identifiable: Swift.Identifiable>(_ identifiable: Identifiable) {
-		self.hashValueClosure = { AnyHashable(identifiable.id) }
+import Combine
+import Testing
+
+@Suite("AnyCurrentValuePluisher Initialization")
+struct AnyCurrentValuePublisherTests {
+	@Test("Should initialize with a stored value")
+	func withAStoredValue() {
+		let publisher = AnyCurrentValuePublisher<Int, Never>(1)
+		#expect(publisher.value == 1)
 	}
 
-	var id: AnyHashable {
-		self.hashValueClosure()
+	@Test("Should initialize with a nested CurrentValueSubject")
+	func withNestedCurrentValueSubject() {
+		let subject = CurrentValueSubject<Int, Never>(2)
+		let publisher = AnyCurrentValuePublisher(subject)
+		#expect(publisher.value == 2)
 	}
 }

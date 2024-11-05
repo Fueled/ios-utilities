@@ -12,17 +12,22 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-///
-/// A type-erased `Identifiable` object.
-///
-struct AnyIdentifiable: Identifiable {
-	private let hashValueClosure: () -> AnyHashable
+import Combine
 
-	init<Identifiable: Swift.Identifiable>(_ identifiable: Identifiable) {
-		self.hashValueClosure = { AnyHashable(identifiable.id) }
-	}
+extension Publishers {
+	/// Combine many publishers into a single publisher
+	static func CombineLatestMany<Output, Failure>(_ publishers: [AnyPublisher<Output, Failure>]) -> AnyPublisher<[Output], Failure> {
+		guard !publishers.isEmpty else {
+			return Just([])
+				.setFailureType(to: Failure.self)
+				.eraseToAnyPublisher()
+		}
 
-	var id: AnyHashable {
-		self.hashValueClosure()
+		let firstPublisherArray = publishers[0].map { [$0] }.eraseToAnyPublisher()
+		return publishers
+			.dropFirst()
+			.reduce(firstPublisherArray) { combined, publisher in
+				combined.combineLatest(publisher) { $0 + [$1] }.eraseToAnyPublisher()
+			}
 	}
 }

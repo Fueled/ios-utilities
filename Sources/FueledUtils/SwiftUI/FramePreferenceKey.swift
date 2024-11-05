@@ -1,4 +1,4 @@
-// Copyright © 2020, Fueled Digital Media, LLC
+// Copyright © 2024 Fueled Digital Media, LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@ import SwiftUI
 /// Used to retrieve the frame of a view through a preference key.
 /// `TagType` is used to uniquely identify the view using the preference key.
 ///
-@available(iOS 13.0, macOS 10.15, tvOS 13.0, watchOS 6.0, *)
+
 public struct FramePreferenceKey<TagType>: PreferenceKey {
 	public static var defaultValue: CGRect {
 		.zero
