@@ -14,7 +14,6 @@
 
 import Combine
 
-
 public extension Publisher {
 	/// A tuple type that holds the previous and current output values of a publisher.
 	typealias CombinePreviousOutput = (previous: Output, current: Output)

@@ -5,19 +5,29 @@
 
 In order to properly clone the project and be ready to submit bug fixes/new features, please follow these steps:
 
-1. Clone the project using 
+1. Clone the project:
     ```shell
-    git clone --recurse-submodules https://github.com/Fueled/ios-utilities.git
+    git clone https://github.com/Fueled/ios-utilities.git
+    cd ios-utilities
     ```
-    This will initialize all dependencies.
 
-    If you've already cloned the project without initializing submodules, please run submodules update from the project directory:
-
+2. Open the project in Xcode:
     ```shell
-    git submodule update --init --recursive
+    open Package.swift
     ```
-2. Open `Test/FueledUtils.xcworkspace` and update the *FueledUtils* Pod in `Development Pods`
-3. You're ready to go!
+    Or open it directly in Xcode by double-clicking `Package.swift`.
+
+3. Build the project to ensure everything is set up correctly:
+    ```shell
+    swift build
+    ```
+
+4. Run tests:
+    ```shell
+    swift test
+    ```
+
+5. You're ready to go!
 
 ## How to contribute
 
@@ -61,15 +71,15 @@ The type may be one of:
 - `style`: style change (update indentation, change spaces to tabs, …)
 - `chore`: configuration update, code signing change, …
 
-The scope must reference what part of the library was changed, and can be made specific using slashes, for example `reactive/swift-extensions`. The scope can also reference one or multiple GitHub issues.  
+The scope must reference what part of the library was changed, and can be made specific using slashes, for example `combine/publisher-extensions` or `core/string-extensions`. The scope can also reference one or multiple GitHub issues.  
 The short description must describe in as few words as possible what the commit does. It must be written in imperative tense and can reference a GitHub issue.  
 The long description may go further into explaining why some changes were necessary (e.g. if a feature is done through a refactoring).  
 
 For example, you may do something like:
 ```shell
 git commit \
-    -m "fix(reactive/ui-extensions/#123,#124): fix issue in SignalProducer.minimum sometimes triggered before the interval elapses" \ # The type, scope + short description
-    -m "This issue works around an internal issue in iOS." # The long description
+    -m "fix(combine/publisher-extensions/#123): fix issue in Publisher extension" \
+    -m "This fixes a bug where the publisher would sometimes fail to emit values correctly."
 ```
 
 You can find more info on our commit format and its purpose [in this Medium article](https://medium.com/fueled-engineering/automated-changelog-generation-at-fueled-1c06306f3b06).

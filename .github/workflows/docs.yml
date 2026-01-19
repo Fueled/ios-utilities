@@ -1,0 +1,59 @@
+name: Generate Documentation
+
+on:
+  push:
+    branches:
+      - main
+      - master
+    paths:
+      - 'Sources/**'
+      - 'Package.swift'
+      - 'docs-script.sh'
+  workflow_dispatch:  # Allow manual triggering
+
+jobs:
+  generate-docs:
+    name: Generate Swift-DocC Documentation
+    runs-on: macos-15
+    
+    steps:
+      - name: Checkout Project
+        uses: actions/checkout@v4
+      
+      - name: Setup Swift
+        uses: swift-actions/setup-swift@v2
+        with:
+          swift-version: "6.0"
+      
+      - name: Install jq
+        run: brew install jq
+      
+      - name: Generate Documentation
+        run: ./docs-script.sh
+      
+      - name: Check for documentation changes
+        id: docs_changed
+        run: |
+          if git diff --quiet docs/; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+      
+      - name: Upload documentation artifacts
+        if: steps.docs_changed.outputs.changed == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: documentation
+          path: docs/
+          retention-days: 30
+      
+      - name: Summary
+        if: always()
+        run: |
+          if [ "${{ steps.docs_changed.outputs.changed }}" == "true" ]; then
+            echo "✅ Documentation generated successfully"
+            echo "📁 Documentation artifacts are available for download"
+          else
+            echo "ℹ️ No documentation changes detected"
+          fi

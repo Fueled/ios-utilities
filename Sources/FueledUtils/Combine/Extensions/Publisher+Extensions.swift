@@ -255,7 +255,7 @@ public extension Publisher where Failure == Never {
 	func assign<Object: CombineExtensionsProvider & AnyObject>(
 		to keyPath: ReferenceWritableKeyPath<Object, Output>,
 		forLifetimeOf object: Object
-	) -> Void {
+	) {
 		sink { [weak object] in
 			object?[keyPath: keyPath] = $0
 		}

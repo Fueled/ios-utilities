@@ -14,7 +14,6 @@
 
 import SwiftUI
 
-
 extension EdgeInsets {
 	public static var zero: EdgeInsets {
 		EdgeInsets(top: .zero, leading: .zero, bottom: .zero, trailing: .zero)
