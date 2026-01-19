@@ -13,9 +13,9 @@
 // limitations under the License.
 
 import Combine
-import FueledUtilsCore
+import FueledCore
 
-public typealias OptionalProtocol = FueledUtilsCore.OptionalProtocol
+public typealias OptionalProtocol = FueledCore.OptionalProtocol
 
 // swiftlint:disable generic_type_name
 

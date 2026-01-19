@@ -14,7 +14,7 @@
 
 import Combine
 import Foundation
-import FueledUtilsCore
+import FueledCore
 
 extension ObservableObject where Self.ObjectWillChangePublisher == ObservableObjectPublisher {
 	// Perform a one-way link, where the receiver will listen for changes on the object and automatically trigger its `objectWillChange` publisher
