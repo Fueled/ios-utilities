@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import Combine
-import FueledUtilsCore
+import FueledCore
 
 // MARK: - Helpers Functions
 public extension Publisher {

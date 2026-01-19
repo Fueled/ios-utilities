@@ -13,11 +13,18 @@
   },
   "testTargets" : [
     {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "FueledSwiftConcurrencyTests",
+        "name" : "FueledSwiftConcurrencyTests"
+      }
+    },
+    {
       "parallelizable" : false,
       "target" : {
         "containerPath" : "container:",
-        "identifier" : "FueledUtilsCombineTests",
-        "name" : "FueledUtilsCombineTests"
+        "identifier" : "FueledCombineTests",
+        "name" : "FueledCombineTests"
       }
     }
   ],
