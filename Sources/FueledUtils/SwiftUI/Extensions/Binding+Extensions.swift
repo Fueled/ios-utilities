@@ -14,7 +14,6 @@
 
 import SwiftUI
 
-
 extension Binding {
 	public init<Type: Sendable>(
 		_ object: Type,

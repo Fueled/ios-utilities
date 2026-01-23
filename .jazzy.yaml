@@ -1,7 +1,0 @@
-author: Fueled
-author_url: https://fueled.com
-module: FueledUtils
-github_url: https://github.com/Fueled/FueledUtils
-copyright: 'Copyright © 2019 Fueled. All rights reserved.'
-output: docs
-xcodebuild_arguments: ["-workspace","FueledUtils.xcworkspace","-scheme","FueledUtils"]

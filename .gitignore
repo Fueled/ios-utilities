@@ -69,7 +69,7 @@ fastlane/Preview.html
 fastlane/screenshots
 fastlane/test_output
 
-# jazzy
-docs/docsets
-docs/undocumented.json
+# Swift-DocC (documentation is generated and committed)
+# Uncomment the following line if you want to ignore generated docs:
+# docs/
 

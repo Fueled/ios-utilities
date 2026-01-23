@@ -14,7 +14,6 @@
 
 import Combine
 
-
 extension Published {
 	/// This method exists as it's currently impossible to use the projectedValue of a `@Published` property without having initialize the whole object,
 	/// which is obviously not ideal if the projectedValue is required to initialize the whole object (basically a chicken and egg problem)

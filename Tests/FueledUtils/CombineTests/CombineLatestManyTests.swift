@@ -90,7 +90,7 @@ struct CombineLatestManyTests {
 		Publishers.CombineLatestMany(
 			[
 				publisher(1).append(publisher(3)).eraseToAnyPublisher(),
-				publisher(2).eraseToAnyPublisher()
+				publisher(2).eraseToAnyPublisher(),
 			]
 		)
 		.sink(
@@ -163,7 +163,7 @@ struct CombineLatestManyTests {
 		cancellable = Publishers.CombineLatestMany(
 			[
 				publisher(1),
-				publisher(2)
+				publisher(2),
 			]
 		)
 		.handleEvents(
@@ -184,9 +184,9 @@ struct CombineLatestManyTests {
 		#expect(cancelCount == 6)
 
 		#expect(nativeValueCount == 0)
-		#expect(nativeValues.count == 0)
+		#expect(nativeValues.isEmpty)
 
 		#expect(manyValueCount == 0)
-		#expect(manyValues.count == 0)
+		#expect(manyValues.isEmpty)
 	}
 }
