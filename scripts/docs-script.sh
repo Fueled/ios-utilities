@@ -1,3 +1,48 @@
+#!/bin/bash
+set -e
+
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+RED='\033[0;31m'
+NC='\033[0m'
+
+DOCS_DIR="./docs"
+HOSTING_BASE_PATH="ios-utilities"
+
+command -v jq &> /dev/null || { echo -e "${RED}Error: jq is required. Install with: brew install jq${NC}"; exit 1; }
+command -v swift &> /dev/null || { echo -e "${RED}Error: Swift is not available${NC}"; exit 1; }
+
+get_products() {
+    swift package dump-package | jq -r '
+        . as $data | $data.targets[]
+        | select(.type == "regular" and any($data.products[]; .targets | index(.)))
+        | .name
+    '
+}
+
+generate_index() {
+    local products=$(get_products)
+    local product_links=""
+    
+    for product in $products; do
+        local lowercase=$(echo "$product" | tr '[:upper:]' '[:lower:]')
+        product_links+="<a href=\"./documentation/$lowercase/\" class=\"module-link\">
+            <div class=\"module-icon\">
+                <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">
+                    <path d=\"M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4\"/>
+                </svg>
+            </div>
+            <div class=\"module-info\">
+                <span class=\"module-name\">$product</span>
+                <span class=\"module-desc\">API Reference</span>
+            </div>
+            <svg class=\"chevron\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">
+                <path d=\"M9 18l6-6-6-6\"/>
+            </svg>
+        </a>"
+    done
+
+    cat > "$DOCS_DIR/index.html" << 'HTMLEOF'
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -151,6 +196,17 @@
             font-weight: 500;
         }
         .footer a:hover { text-decoration: underline; }
+        .footer .fueled-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 12px;
+            color: var(--fueled-gray);
+        }
+        .footer .fueled-link svg {
+            height: 16px;
+            width: auto;
+        }
         @media (max-width: 640px) {
             .header { padding: 32px 20px 48px; }
             .header h1 { font-size: 2rem; }
@@ -173,59 +229,11 @@
                 <h2>Modules</h2>
             </div>
             <div class="modules">
-<a href="./documentation/fueledcore/" class="module-link">
-            <div class="module-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
-                </svg>
-            </div>
-            <div class="module-info">
-                <span class="module-name">FueledCore</span>
-                <span class="module-desc">API Reference</span>
-            </div>
-            <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M9 18l6-6-6-6"/>
-            </svg>
-        </a><a href="./documentation/fueledcombine/" class="module-link">
-            <div class="module-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
-                </svg>
-            </div>
-            <div class="module-info">
-                <span class="module-name">FueledCombine</span>
-                <span class="module-desc">API Reference</span>
-            </div>
-            <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M9 18l6-6-6-6"/>
-            </svg>
-        </a><a href="./documentation/fueledswiftui/" class="module-link">
-            <div class="module-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
-                </svg>
-            </div>
-            <div class="module-info">
-                <span class="module-name">FueledSwiftUI</span>
-                <span class="module-desc">API Reference</span>
-            </div>
-            <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M9 18l6-6-6-6"/>
-            </svg>
-        </a><a href="./documentation/fueledswiftconcurrency/" class="module-link">
-            <div class="module-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
-                </svg>
-            </div>
-            <div class="module-info">
-                <span class="module-name">FueledSwiftConcurrency</span>
-                <span class="module-desc">API Reference</span>
-            </div>
-            <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M9 18l6-6-6-6"/>
-            </svg>
-        </a>
+HTMLEOF
+
+    echo "$product_links" >> "$DOCS_DIR/index.html"
+
+    cat >> "$DOCS_DIR/index.html" << 'HTMLEOF'
             </div>
         </div>
     </div>
@@ -234,3 +242,34 @@
     </footer>
 </body>
 </html>
+HTMLEOF
+}
+
+main() {
+    [ -f "Package.swift" ] || { echo -e "${RED}Error: Package.swift not found${NC}"; exit 1; }
+    
+    mkdir -p "$DOCS_DIR"
+    
+    echo -e "${BLUE}Generating documentation...${NC}"
+    
+    swift package --allow-writing-to-directory "$DOCS_DIR" \
+        generate-documentation \
+        --disable-indexing \
+        --transform-for-static-hosting \
+        --hosting-base-path "$HOSTING_BASE_PATH" \
+        --output-path "$DOCS_DIR" \
+        --enable-experimental-combined-documentation
+    
+    generate_index
+    
+    # Copy logo if it exists
+    [ -f "logo.png" ] && cp logo.png "$DOCS_DIR/"
+    
+    echo -e "${GREEN}Documentation generated successfully${NC}"
+    echo ""
+    echo -e "${BLUE}To preview locally, run:${NC}"
+    echo "  cd docs && python3 -m http.server 8000"
+    echo "  Then open: http://localhost:8000"
+}
+
+main
