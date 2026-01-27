@@ -11,21 +11,7 @@ FueledUtils is a collection of utilities for iOS used often within projects at [
 
 ## Documentation
 
-Documentation is available [here](https://fueled.github.io/ios-utilities/).
-
-### Generating Documentation Locally
-
-To generate the documentation locally using Swift-DocC:
-
-```bash
-./docs-script.sh
-```
-
-This will generate the documentation in the `./docs` directory. Open `./docs/index.html` in your browser to view it.
-
-**Requirements:**
-- Swift 6.0+ (Swift-DocC is included)
-- `jq` (for parsing Package.swift): `brew install jq`
+Documentation is automatically generated and available [here](https://fueled.github.io/ios-utilities/).
 
 ## Contributing
 
@@ -34,3 +20,4 @@ If you'd like to contribute to the project, please familiarise yourself with [CO
 ## License
 
 This project is licensed under the Apache License, Version 2.0.
+ 
