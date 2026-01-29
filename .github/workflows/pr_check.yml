@@ -1,22 +1,29 @@
 name: PR Check
-on: [pull_request]
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
 concurrency: 
   group: ${{ github.head_ref }}
   cancel-in-progress: true
+
 jobs:
   pr_check:
-    runs-on: macOS-11
+    name: PR Checks
+    runs-on: macos-26
     if: github.event.pull_request.draft == false
+    
     steps:
       - name: Checkout Project
-        uses: actions/checkout@v2
-      - uses: ruby/setup-ruby@v1
-        with:
-          bundler-cache: true
-      - name: Danger
-        env:
-          DANGER_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: bundle exec danger
+        uses: actions/checkout@v4
+      
+      - name: Install SwiftLint
+        run: brew install swiftlint
+      
+      - name: SwiftLint
+        run: swiftlint lint --strict
+      
       - name: Test
         run: swift test
 

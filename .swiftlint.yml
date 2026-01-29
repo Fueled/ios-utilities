@@ -1,4 +1,4 @@
-whitelist_rules:
+only_rules:
   - block_based_kvo
   - class_delegate_protocol
   - closing_brace
@@ -39,7 +39,7 @@ whitelist_rules:
   - prohibited_super_call
   - protocol_property_accessors_order
   - redundant_discardable_let
-  - redundant_optional_initialization
+  - implicit_optional_initialization
   - redundant_string_enum_value
   - redundant_void_return
   - return_arrow_whitespace
@@ -66,8 +66,8 @@ whitelist_rules:
   - xctfail_message
   - trailing_comma
 included: # paths to include during linting. `--path` is ignored if present.
-  - FueledUtils
-  - FueledUtilsTests
+  - Sources
+  - Tests
 excluded: # paths to ignore during linting. Takes precedence over `included`.
   - Carthage
   - Pods
@@ -101,7 +101,6 @@ identifier_name:
   max_length:
     warning: 70
     error: 100
-  severity: error
   excluded:
     - x
     - y
@@ -123,6 +122,7 @@ identifier_name:
     - on
     - no
     - qa
+    - CombineLatestMany
 return_arrow_whitespace: error
 legacy_constructor: error
 legacy_constant: error

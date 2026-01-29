@@ -1,101 +1,79 @@
-// swift-tools-version:5.5
-// The swift-tools-version declares the minimum version of Swift required to build this package.
+// swift-tools-version:6.2
 
 import PackageDescription
 
 let package = Package(
 	name: "FueledUtils",
 	platforms: [
-		.macOS(.v10_12), .iOS(.v13), .tvOS(.v13), .watchOS(.v6)
+		.macOS(.v13), .iOS(.v16), .tvOS(.v16), .watchOS(.v8)
 	],
 	products: [
 		.library(
-			name: "FueledUtilsCore",
-			targets: ["FueledUtilsCore"]
+			name: "FueledCore",
+			targets: ["FueledCore"]
 		),
 		.library(
-			name: "FueledUtilsReactiveCommon",
-			targets: ["FueledUtilsReactiveCommon"]
+			name: "FueledCombine",
+			targets: ["FueledCombine"]
 		),
 		.library(
-			name: "FueledUtilsUIKit",
-			targets: ["FueledUtilsUIKit"]
+			name: "FueledSwiftUI",
+			targets: ["FueledSwiftUI"]
 		),
 		.library(
-			name: "FueledUtilsCombine",
-			targets: ["FueledUtilsCombine"]
-		),
-		.library(
-			name: "FueledUtilsCombineOperators",
-			targets: ["FueledUtilsCombineOperators"]
-		),
-		.library(
-			name: "FueledUtilsCombineUIKit",
-			targets: ["FueledUtilsCombineUIKit"]
-		),
-		.library(
-			name: "FueledUtilsSwiftUI",
-			targets: ["FueledUtilsSwiftUI"]
+			name: "FueledSwiftConcurrency",
+			targets: ["FueledSwiftConcurrency"]
 		),
 	],
 	dependencies: [
-		.package(url: "https://github.com/Quick/Quick.git", from: "4.0.0"),
-		.package(url: "https://github.com/Quick/Nimble.git", from: "9.0.0"),
+		.package(url: "https://github.com/swiftlang/swift-docc-plugin", from: "1.4.5"),
+        .package(url: "https://github.com/apple/swift-async-algorithms", from: "1.1.1"),
+        .package(url: "https://github.com/pointfreeco/swift-concurrency-extras", from: "1.3.2"),
 	],
 	targets: [
 		.target(
-			name: "FueledUtilsCore",
-			path: "FueledUtils/Core",
+			name: "FueledCore",
+			path: "Sources/FueledUtils/Core",
 			linkerSettings: [
                 .linkedFramework("Foundation")
             ]
 		),
 		.target(
-			name: "FueledUtilsReactiveCommon",
-			dependencies: ["FueledUtilsCore"],
-			path: "FueledUtils/ReactiveCommon"
+			name: "FueledCombine",
+			dependencies: [
+				"FueledCore"
+			],
+			path: "Sources/FueledUtils/Combine"
 		),
 		.target(
-			name: "FueledUtilsUIKit",
-			dependencies: ["FueledUtilsCore"],
-			path: "FueledUtils/UIKit",
-			linkerSettings: [
-                .linkedFramework("Foundation"),
-                .linkedFramework("UIKit", .when(platforms: [.iOS, .tvOS])),
-                .linkedFramework("AppKit", .when(platforms: [.macOS])),
-            ]
-		),
-		.target(
-			name: "FueledUtilsCombine",
-			dependencies: ["FueledUtilsReactiveCommon"],
-			path: "FueledUtils/Combine"
-		),
-		.target(
-			name: "FueledUtilsCombineOperators",
-			dependencies: ["FueledUtilsCombine"],
-			path: "FueledUtils/CombineOperators"
-		),
-		.target(
-			name: "FueledUtilsCombineUIKit",
-			dependencies: ["FueledUtilsCombine", "FueledUtilsUIKit"],
-			path: "FueledUtils/CombineUIKit"
-		),
-		.target(
-			name: "FueledUtilsSwiftUI",
-			dependencies: ["FueledUtilsCombine", "FueledUtilsCore"],
-			path: "FueledUtils/SwiftUI",
+			name: "FueledSwiftUI",
+			dependencies: ["FueledCombine", "FueledCore"],
+			path: "Sources/FueledUtils/SwiftUI",
 			linkerSettings: [
                 .linkedFramework("SwiftUI", .when(platforms: [.iOS, .tvOS, .macOS])),
             ]
 		),
-		.testTarget(
-				name: "FueledUtils",
-				dependencies: [
-					"FueledUtilsCombineUIKit",
-					"Quick",
-					"Nimble",
-				],
-				path: "Tests/Tests"
+		.target(
+			name: "FueledSwiftConcurrency",
+            dependencies: [
+                .product(name: "AsyncAlgorithms", package: "swift-async-algorithms"),
+                .product(name: "ConcurrencyExtras", package: "swift-concurrency-extras"),
+            ],
+			path: "Sources/FueledUtils/SwiftConcurrency"
 		),
+		.testTarget(
+			name: "FueledCombineTests",
+			dependencies: [
+				"FueledCombine",
+			],
+			path: "Tests/FueledUtils/CombineTests"
+		),
+        .testTarget(
+            name: "FueledSwiftConcurrencyTests",
+            dependencies: [
+                "FueledSwiftConcurrency"
+            ],
+            path: "Tests/FueledUtils/SwiftConcurrencyTests"
+        ),
 	]
 )

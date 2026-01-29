@@ -1,0 +1,32 @@
+{
+  "configurations" : [
+    {
+      "id" : "81D0F831-C9D6-4678-92BF-A02E2F8399DD",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "FueledSwiftConcurrencyTests",
+        "name" : "FueledSwiftConcurrencyTests"
+      }
+    },
+    {
+      "parallelizable" : false,
+      "target" : {
+        "containerPath" : "container:",
+        "identifier" : "FueledCombineTests",
+        "name" : "FueledCombineTests"
+      }
+    }
+  ],
+  "version" : 1
+}

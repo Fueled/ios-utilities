@@ -1,0 +1,78 @@
+name: Documentation
+
+on:
+  push:
+    branches: [main]
+    paths: ['Sources/**', 'Package.swift', 'scripts/**']
+    tags: ['*']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Build & Deploy
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Determine version
+        id: version
+        run: |
+          if [[ "${{ github.ref_type }}" == "tag" ]]; then
+            echo "version=${{ github.ref_name }}" >> $GITHUB_OUTPUT
+            echo "version_path=v${{ github.ref_name }}" >> $GITHUB_OUTPUT
+            echo "is_release=true" >> $GITHUB_OUTPUT
+          else
+            echo "version=latest" >> $GITHUB_OUTPUT
+            echo "version_path=" >> $GITHUB_OUTPUT
+            echo "is_release=false" >> $GITHUB_OUTPUT
+          fi
+
+      - uses: swift-actions/setup-swift@v2
+        with:
+          swift-version: "6.0"
+
+      - name: Install dependencies
+        run: brew install jq
+
+      - name: Generate documentation
+        run: ./scripts/docs-script.sh
+
+      - uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: gh-pages-work
+          fetch-depth: 0
+        continue-on-error: true
+
+      - name: Initialize gh-pages
+        run: |
+          if [ ! -d "gh-pages-work/.git" ]; then
+            mkdir -p gh-pages-work && cd gh-pages-work
+            git init && git checkout -b gh-pages
+            git remote add origin https://github.com/${{ github.repository }}.git || true
+          fi
+
+      - name: Deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: ./scripts/deploy-docs.sh "${{ steps.version.outputs.version_path }}" "${{ steps.version.outputs.is_release }}"
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: gh-pages-work
+
+      - uses: actions/deploy-pages@v4
