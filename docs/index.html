@@ -151,6 +151,17 @@
             font-weight: 500;
         }
         .footer a:hover { text-decoration: underline; }
+        .footer .fueled-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 12px;
+            color: var(--fueled-gray);
+        }
+        .footer .fueled-link svg {
+            height: 16px;
+            width: auto;
+        }
         @media (max-width: 640px) {
             .header { padding: 32px 20px 48px; }
             .header h1 { font-size: 2rem; }
@@ -161,7 +172,7 @@
 <body>
     <div class="header">
         <a href="https://fueled.com" class="logo" target="_blank" rel="noopener">
-            <img src="./logo.png" alt="Fueled Logo">
+            <img src="/ios-utilities/logo.png" alt="Fueled Logo">
         </a>
         <span class="badge">Swift Package</span>
         <h1>FueledUtils</h1>
@@ -173,7 +184,7 @@
                 <h2>Modules</h2>
             </div>
             <div class="modules">
-<a href="./documentation/fueledcore/" class="module-link">
+<a href="./documentation/fueledcombine/" class="module-link">
             <div class="module-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
@@ -199,7 +210,7 @@
             <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M9 18l6-6-6-6"/>
             </svg>
-        </a><a href="./documentation/fueledswiftui/" class="module-link">
+        </a><a href="./documentation/fueledcombine/" class="module-link">
             <div class="module-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
@@ -212,7 +223,7 @@
             <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M9 18l6-6-6-6"/>
             </svg>
-        </a><a href="./documentation/fueledswiftconcurrency/" class="module-link">
+        </a><a href="./documentation/fueledcombine/" class="module-link">
             <div class="module-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>

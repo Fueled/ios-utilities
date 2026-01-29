@@ -20,13 +20,19 @@ get_products() {
     '
 }
 
+# DocC creates per-module folders under documentation/ with lowercase names
+# (e.g. fueledcore, fueledcombine). Only link to modules that exist after generation.
+module_doc_path() {
+    echo "$1" | tr '[:upper:]' '[:lower:]'
+}
+
 generate_index() {
     local products=$(get_products)
     local product_links=""
     
     for product in $products; do
-        local lowercase=$(echo "$product" | tr '[:upper:]' '[:lower:]')
-        product_links+="<a href=\"./documentation/$lowercase/\" class=\"module-link\">
+        local doc_path=$(module_doc_path "$product")
+        product_links+="<a href=\"./documentation/$doc_path/\" class=\"module-link\">
             <div class=\"module-icon\">
                 <svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">
                     <path d=\"M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4\"/>
@@ -50,6 +56,7 @@ generate_index() {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="FueledUtils - iOS Utilities Library Documentation">
     <title>FueledUtils Documentation</title>
+    <link rel="icon" href="/ios-utilities/logo.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -217,7 +224,7 @@ generate_index() {
 <body>
     <div class="header">
         <a href="https://fueled.com" class="logo" target="_blank" rel="noopener">
-            <img src="./logo.png" alt="Fueled Logo">
+            <img src="/ios-utilities/logo.png" alt="Fueled Logo">
         </a>
         <span class="badge">Swift Package</span>
         <h1>FueledUtils</h1>

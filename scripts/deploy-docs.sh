@@ -49,6 +49,7 @@ generate_version_index() {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="FueledUtils Documentation">
     <title>FueledUtils Documentation</title>
+    <link rel="icon" href="/ios-utilities/logo.png" type="image/png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -159,7 +160,7 @@ generate_version_index() {
 <body>
     <div class="header">
         <a href="https://fueled.com" class="logo" target="_blank" rel="noopener">
-            <img src="./logo.png" alt="Fueled Logo">
+            <img src="/ios-utilities/logo.png" alt="Fueled Logo">
         </a>
         <h1>FueledUtils</h1>
         <p>Select a documentation version</p>
@@ -203,7 +204,7 @@ fi
 
 if ! git diff --staged --quiet; then
     git commit -m "docs: Update documentation"
-    git push origin gh-pages
+    git push -u origin HEAD:gh-pages
     echo -e "${GREEN}Deployed successfully${NC}"
 else
     echo -e "${YELLOW}No changes to deploy${NC}"
